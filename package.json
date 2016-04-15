@@ -1,0 +1,24 @@
+{
+  "name": "react-chartist",
+  "scripts": {
+    "browser-sync": "browser-sync start --server --files './bundle.js'",
+    "watch-js": "watchify main.js -t [ babelify --presets react ] -o bundle.js -dv",
+    "build": "browserify main.js -t [ babelify --presets react ] | uglifyjs --compress --mangle > bundle.js",
+    "watch": "npm run browser-sync & npm run watch-js"
+  },
+  "dependencies": {
+    "react-chartjs": "^0.7.3",
+    "react": "*",
+    "react-dom": "*",
+    "chart.js": "^1.1.1"
+  },
+  "devDependencies": {
+    "babel": "^5.1.8",
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.2.0",
+    "browser-sync": "^2.10.0",
+    "browserify": "^12.0.0",
+    "watchify": "^3.4.0",
+    "uglify-js": "^2.4.10"
+  }
+}
