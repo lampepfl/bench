@@ -71,8 +71,9 @@ var ChartComponent = React.createClass({
             ticks: {
               display: true,
               userCallback: function(tick) {
-                var date = new Date(tick);
-                return (date.getMonth() + 1) + "/" +  (date.getFullYear() - 2000);
+                // var date = new Date(tick);
+                // return (date.getMonth() + 1) + "/" +  (date.getFullYear() - 2000);
+                return tick;
               }
             },
             time: {
@@ -95,11 +96,11 @@ var ChartComponent = React.createClass({
   render: function() {
     if (this.state.ready)
       return <div>
-               <h1>{this.props.name}</h1>
+               <h2>{this.props.name}</h2>
                <LineChart data={this.state.data} options={this.state.options} width="800" height="300"/>
              </div>
     else
-      return <div><h1>{this.props.name}</h1><p>Loading...</p></div>
+      return <div><h2>{this.props.name}</h2><p>Loading...</p></div>
   }
 });
 
@@ -114,7 +115,7 @@ var ChartList = React.createClass({
 })
 
 ReactDOM.render(
-  <ChartList data={allCharts().slice(0, 5)} />,
+  <ChartList data={allCharts().slice(0, 11)} />,
   document.getElementById('app')
 );
 
