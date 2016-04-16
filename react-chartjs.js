@@ -40,27 +40,7 @@ function createClass(chartType, methodNames, dataKey) {
   classData.componentWillReceiveProps = function(nextProps) {
     var chart = this.state.chart;
 
-    // // Reset the array of datasets
-    chart.data.datasets.forEach(function(set, setIndex) {
-      set.data.forEach(function(val, pointIndex) {
-        set.data = [];
-      });
-    });
-
-    // // Reset the array of labels
-    chart.data.labels = [];
-
-    // Adds the datapoints from nextProps
-    nextProps.data.datasets.forEach(function(set, setIndex) {
-      set.data.forEach(function(val, pointIndex) {
-        chart.data.datasets[setIndex].data[pointIndex] = nextProps.data.datasets[setIndex].data[pointIndex];
-      });
-    });
-
-    // Sets the labels from nextProps
-    nextProps.data.labels.forEach(function(val, labelIndex) {
-        chart.data.labels[labelIndex] = nextProps.data.labels[labelIndex];
-    });
+    chart.data = nextProps.data;
 
     // Updates Chart with new data
     chart.update();
