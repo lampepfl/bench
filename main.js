@@ -11,14 +11,37 @@ function prepareData(tsvData) {
     return acc;
   }
 
+  function randomColorFactor() {
+    return Math.round(Math.random() * 255);
+  }
+
+  function randomColor(opacity) {
+    return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',' + (opacity || '.3') + ')';
+  }
+
   return {
     datasets : [{
         label: "dataset",
         pointBorderWidth : 1,
         data : tsvData.reduce(accumulate, []),
-        fill: false
+        fill: false,
+        borderColor: "rgba(100,100,100,0.2)",
+        backgroundColor: "transparent",
+        pointBorderColor: "rgba(220,220,220,1)",
+        pointBackgroundColor: "yellow",
+        pointBorderWidth: 1
     }]
   }
+}
+
+// get all charts from ScalaMeter.data.index
+function allCharts() {
+  return ScalaMeter.data.index.map(function(item) {
+    return {
+      name: item.name,
+      file: item.file.substr(3)
+    }
+  });
 }
 
 var ChartComponent = React.createClass({
@@ -65,7 +88,7 @@ var ChartComponent = React.createClass({
         }
       }
 
-    $.get("data/" + this.props.test, function(data) {
+    $.get("data/" + this.props.file, function(data) {
       this.setState({ data: prepareData(DSV.tsvParse(data)), ready: true, options: options })
     }.bind(this))
   },
@@ -80,8 +103,18 @@ var ChartComponent = React.createClass({
   }
 });
 
+var ChartList = React.createClass({
+  render: function() {
+    var chartNodes = this.props.data.map(function(chart) {
+      return <ChartComponent file={chart.file} name={chart.name} />
+    });
+
+    return <div class="chart-list">{chartNodes}</div>
+  }
+})
+
 ReactDOM.render(
-  <ChartComponent test="tests.dotc.dotc.dsv" name="dotc" />,
-  document.getElementById('react-chart')
+  <ChartList data={allCharts().slice(0, 5)} />,
+  document.getElementById('app')
 );
 
