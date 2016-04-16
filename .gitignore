@@ -30,3 +30,6 @@ node_modules
 
 # Compiled files
 bundle.js
+
+# data
+data/

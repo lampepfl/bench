@@ -7,10 +7,10 @@
     "watch": "npm run browser-sync & npm run watch-js"
   },
   "dependencies": {
-    "react-chartjs": "^0.7.3",
     "react": "*",
     "react-dom": "*",
-    "chart.js": "^1.1.1"
+    "chart.js": "^2.0.0",
+    "d3-dsv": "^0.3.2"
   },
   "devDependencies": {
     "babel": "^5.1.8",
