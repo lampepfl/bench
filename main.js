@@ -2,7 +2,8 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var LineChart = require("./react-chartjs").Line;
 var DSV = require('d3-dsv')
-
+var Redux = require('redux')
+var ReactRedux = require('react-redux')
 
 function prepareData(tsvData) {
   function accumulate(acc, item) {
@@ -43,6 +44,45 @@ function allCharts() {
     }
   });
 }
+
+// TODO: local storage of user data
+function initialState() {
+  return { charts: allCharts().slice(0, 11) };
+}
+
+function actionSelect(item) {
+  return { type: 'SELECT', item: item };
+}
+
+function actionDeselect(item) {
+  return { type: 'DESELECT', item: item };
+}
+
+function sortList(charts) {
+  return charts.sort(function(a, b) {
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return 0;
+  });
+}
+
+function reducer(state, action) {
+  var charts = [];
+  switch (action.type) {
+    case 'SELECT':
+      charts = state.charts.map(function(item) { return item; });
+      charts.push(action.item);
+      return { charts: sortList(charts) };
+    case 'DESELECT':
+      charts = state.charts.filter(item => item.name !== action.item.name);
+      return { charts: sortList(charts) };
+    default:
+      return state;
+  }
+}
+
+var store = Redux.createStore(reducer, initialState());
+
 
 var ChartComponent = React.createClass({
   getInitialState: function() {
@@ -104,18 +144,52 @@ var ChartComponent = React.createClass({
   }
 });
 
-var ChartList = React.createClass({
+var _ChartList = React.createClass({
   render: function() {
-    var chartNodes = this.props.data.map(function(chart) {
-      return <ChartComponent file={chart.file} name={chart.name} />
+    var chartNodes = this.props.charts.map(function(chart) {
+      return <ChartComponent file={chart.file} name={chart.name} key={chart.name} />
     });
 
-    return <div class="chart-list">{chartNodes}</div>
+    return <div className="chart-list">{chartNodes}</div>
   }
 })
 
+var ChartList = ReactRedux.connect(function(state) { return { charts: state.charts } })(_ChartList);
+
+
+var _ChoiceList = React.createClass({
+  selected: function(item) {
+    return this.props.charts.filter(function(d) { return d.name === item.name }).length > 0;
+  },
+  handleChange: function(chart, e) {
+    if (e.target.checked) {
+      this.props.select(chart);
+    } else {
+      this.props.deselect(chart);
+    }
+  },
+  render: function() {
+    var items = allCharts().map(function(chart) {
+      return <span className="sidebar-nav-item" key={chart.name}>
+               <input type="checkbox" defaultChecked={this.selected(chart)} onChange={this.handleChange.bind(this, chart)} />
+               {chart.name}
+             </span>
+    }.bind(this));
+
+    return <nav className="sidebar-nav">{items}</nav>
+  }
+})
+
+var ChoiceList = ReactRedux.connect(function(state) { return { charts: state.charts } },
+                                    { select: actionSelect, deselect: actionDeselect })(_ChoiceList);
+
+
 ReactDOM.render(
-  <ChartList data={allCharts().slice(0, 11)} />,
+  <ReactRedux.Provider store={store}><ChartList/></ReactRedux.Provider>,
   document.getElementById('app')
 );
 
+ReactDOM.render(
+  <ReactRedux.Provider store={store}><ChoiceList/></ReactRedux.Provider>,
+  document.getElementById('sidebar-app')
+);
