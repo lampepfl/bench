@@ -12,14 +12,6 @@ function prepareData(tsvData) {
     return acc;
   }
 
-  function randomColorFactor() {
-    return Math.round(Math.random() * 255);
-  }
-
-  function randomColor(opacity) {
-    return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',' + (opacity || '.3') + ')';
-  }
-
   return {
     datasets : [{
         label: "dataset",
@@ -47,7 +39,12 @@ function allCharts() {
 
 // TODO: local storage of user data
 function initialState() {
-  return { charts: allCharts().slice(0, 11) };
+  var charts = [];
+
+  if (window.localStorage && window.localStorage['dotty-benchmark'])
+    return JSON.parse(window.localStorage['dotty-benchmark']);
+  else
+    return { charts: allCharts().slice(0, 11) };
 }
 
 function actionSelect(item) {
@@ -82,6 +79,12 @@ function reducer(state, action) {
 }
 
 var store = Redux.createStore(reducer, initialState());
+
+// persist state to localStorage
+store.subscribe(function() {
+  if (window.localStorage)
+    window.localStorage['dotty-benchmark'] = JSON.stringify(store.getState());
+})
 
 
 var ChartComponent = React.createClass({
