@@ -71,7 +71,7 @@ function reducer(state, action) {
       charts.push(action.item);
       return { charts: sortList(charts) };
     case 'DESELECT':
-      charts = state.charts.filter(item => item.name !== action.item.name);
+      charts = state.charts.filter(function(item) { return item.name !== action.item.name });
       return { charts: sortList(charts) };
     default:
       return state;
