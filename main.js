@@ -37,7 +37,6 @@ function allCharts() {
   });
 }
 
-// TODO: local storage of user data
 function initialState() {
   var charts = [];
 
