@@ -13,9 +13,7 @@ Prerequisite: create a symbolic `data` under project root directory to the resul
 
 ## Deployment
 
-Adapt the script `deploy` to the destination infrastructure.
-
 - `npm run build`
-- `sh deploy`
+- `sh deploy user@host:path/to/dest/`
 
 

@@ -85,7 +85,7 @@ function createClass(chartType, methodNames, dataKey) {
 }
 
 module.exports = {
-	Line: createClass('Line', ['getPointsAtEvent']),
+  Line: createClass('Line', ['getPointsAtEvent']),
   Bar: createClass('Bar', ['getBarsAtEvent']),
   Bubble: createClass('Bubble', ['getPointsAtEvent']),
   Doughnut: createClass('Doughnut', ['getSegmentsAtEvent']),

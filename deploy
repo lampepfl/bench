@@ -1,4 +1,4 @@
-DEST_BASE_DIR="jenkins@lamppc34.epfl.ch:~/workspace/dotty-benchmarks/web/"
+DEST_BASE_DIR=$1
 
 scp index.html $DEST_BASE_DIR
 scp bundle.js $DEST_BASE_DIR
