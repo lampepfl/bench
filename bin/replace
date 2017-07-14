@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+# replace compiler artefacts with the artefacts built from source code
+
+if [ -z "$PROG_HOME" ] ; then
+  ## resolve links - $0 may be a link to PROG_HOME
+  PRG="$0"
+
+  # need this for relative symlinks
+  while [ -h "$PRG" ] ; do
+    ls=`ls -ld "$PRG"`
+    link=`expr "$ls" : '.*-> \(.*\)$'`
+    if expr "$link" : '/.*' > /dev/null; then
+      PRG="$link"
+    else
+      PRG="`dirname "$PRG"`/$link"
+    fi
+  done
+
+  saveddir=`pwd`
+
+  PROG_HOME=`dirname "$PRG"`/..
+
+  # make it fully qualified
+  PROG_HOME=`cd "$PROG_HOME" && pwd`
+
+  cd "$saveddir"
+fi
+
+find_lib () {
+  local lib=$(find $1 -name "$2")
+  if $cygwin; then
+    cygpath -am $lib
+  elif $mingw; then
+    echo $lib | sed 's|/|\\\\|g'
+  else
+    echo $lib
+  fi
+}
+
+cd $PROG_HOME/dotty && sbt "dotty/clean" "dotty/package" \
+                           "dotty-interfaces/clean" "dotty-interfaces/package" \
+                           "dotty-library/clean"  "dotty-library/package"
+
+DOTTY_COMP=$(find_lib $PROG_HOME/dotty/compiler/target/scala-2.11/ "*dotty-compiler*")
+DOTTY_INTF=$(find_lib $PROG_HOME/dotty/interfaes/target/scala-2.11/ "*dotty-interfaces*")
+DOTTY_LIB=$(find_lib $PROG_HOME/dotty/library/target/scala-2.11/ "*dotty-library*")
+
+cd $PROG_HOME && sbt pack
+DEST_DOTTY_COMP=$(find_lib $PROG_HOME/target/pack/lib/ "*dotty-compiler*")
+DEST_DOTTY_INTF=$(find_lib $PROG_HOME/target/pack/lib/ "*dotty-interfaces*")
+DEST_DOTTY_LIB=$(find_lib $PROG_HOME/target/pack/lib/ "*dotty-library*")
+
+cp $DOTTY_COMP $DEST_DOTTY_COMP
+cp $DOTTY_INTF $DEST_DOTTY_INTF
+cp $DOTTY_LIB  $DEST_DOTTY_LIB
+
