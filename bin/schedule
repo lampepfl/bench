@@ -63,7 +63,7 @@ test() {
   parse && echo "tests/implicit_cache.scala, $pr, $time, $commit, $avg, $error, $confidence, $(date)" >> history.csv
 }
 
-LAST_COMMIT=$(cat last-commit)
+LAST_COMMIT=$(cat $PROG_HOME/last-commit)
 
 cd $PROG_HOME/dotty
 merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' $LAST_COMMIT^..HEAD)
@@ -76,4 +76,6 @@ do
   pr=$(echo $commit | cut -d',' -f4 | grep -o '[0-9]\+')
 
   test $commit $author $time $pr
+
+  echo $commit > $PROG_HOME/last-commit
 done
