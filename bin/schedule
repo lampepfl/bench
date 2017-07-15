@@ -79,7 +79,7 @@ do
   commit=$(echo $commit_line | cut -d',' -f1)
   author=$(echo $commit_line | cut -d',' -f2)
   time=$(echo $commit_line | cut -d',' -f3)
-  pr=$(echo $commit_line | cut -d',' -f4 | grep -o '[0-9]\+')
+  pr=$(echo $commit_line | cut -d',' -f4 | grep -o 'pull request #[0-9]\+' | grep -o '[0-9]\+')
 
   test "$commit" "$author" "$time" "$pr"
 
