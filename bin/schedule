@@ -47,7 +47,7 @@ test() {
 
   # prepare compiler artifacts for benchmarking
   cd $PROG_HOME
-  $PROG_HOME/replace
+  $PROG_HOME/bin/replace
 
   # start running benchmarks
   cd $PROG_HOME
