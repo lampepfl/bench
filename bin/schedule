@@ -66,9 +66,9 @@ test() {
 LAST_COMMIT=$(cat $PROG_HOME/last-commit)
 
 cd $PROG_HOME/dotty
-merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' $LAST_COMMIT^..HEAD)
+merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' $LAST_COMMIT^..HEAD --reverse)
 
-for commit_line in $merge_commits
+while IFS= read -r commit_line
 do
   commit=$(echo $commit_line | cut -d',' -f1)
   author=$(echo $commit_line | cut -d',' -f2)
@@ -78,4 +78,4 @@ do
   test $commit $author $time $pr
 
   echo $commit > $PROG_HOME/last-commit
-done
+done <<< "$merge_commits"
