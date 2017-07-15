@@ -28,6 +28,7 @@ if [ -z "$PROG_HOME" ] ; then
 fi
 
 parse() {
+  confidence=$(cat result.csv | grep "Score Error" | cut -d',' -f6 | grep -o '[0-9]\+.[0-9]\+%')
   res=$(cat result.csv | grep "dotty.tools.benchmarks.Worker.compile")
   avg=$(echo $res | cut -d',' -f5)
   error=$(echo $res | cut -d',' -f6)
@@ -55,11 +56,11 @@ test() {
 
   # Dotty Project
   # $PROG_HOME/target/pack/bin/bench $PROG_HOME/projects/dotty/compiler/**/*.scala
-  # parse && echo "projects/dotty, $pr, $time, $commit, $avg, $error, $(date)" >> history.csv
+  # parse && echo "projects/dotty, $pr, $time, $commit, $avg, $error, $confidence, $(date)" >> history.csv
 
   # microbenchmarks
   $PROG_HOME/target/pack/bin/bench $PROG_HOME/tests/implicit_cache.scala -d $PROG_HOME
-  parse && echo "tests/implicit_cache.scala, $pr, $time, $commit, $avg, $error, $(date)" >> history.csv
+  parse && echo "tests/implicit_cache.scala, $pr, $time, $commit, $avg, $error, $confidence, $(date)" >> history.csv
 }
 
 LAST_COMMIT=$(cat last-commit)
