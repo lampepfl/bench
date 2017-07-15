@@ -68,12 +68,12 @@ LAST_COMMIT=$(cat $PROG_HOME/last-commit)
 cd $PROG_HOME/dotty
 merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' $LAST_COMMIT^..HEAD)
 
-for commit in $merge_commits
+for commit_line in $merge_commits
 do
-  commit=$(echo $commit | cut -d',' -f1)
-  author=$(echo $commit | cut -d',' -f2)
-  time=$(echo $commit | cut -d',' -f3)
-  pr=$(echo $commit | cut -d',' -f4 | grep -o '[0-9]\+')
+  commit=$(echo $commit_line | cut -d',' -f1)
+  author=$(echo $commit_line | cut -d',' -f2)
+  time=$(echo $commit_line | cut -d',' -f3)
+  pr=$(echo $commit_line | cut -d',' -f4 | grep -o '[0-9]\+')
 
   test $commit $author $time $pr
 
