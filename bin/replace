@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -x
+set -e
 
 # replace compiler artefacts with the artefacts built from source code
 
