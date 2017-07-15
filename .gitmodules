@@ -1,3 +1,6 @@
 [submodule "dotty"]
 	path = dotty
 	url = https://github.com/lampepfl/dotty.git
+[submodule "projects/dotty"]
+	path = projects/dotty
+	url = https://github.com/lampepfl/dotty.git
