@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+set -x
+
+if [ -z "$PROG_HOME" ] ; then
+  ## resolve links - $0 may be a link to PROG_HOME
+  PRG="$0"
+
+  # need this for relative symlinks
+  while [ -h "$PRG" ] ; do
+    ls=`ls -ld "$PRG"`
+    link=`expr "$ls" : '.*-> \(.*\)$'`
+    if expr "$link" : '/.*' > /dev/null; then
+      PRG="$link"
+    else
+      PRG="`dirname "$PRG"`/$link"
+    fi
+  done
+
+  saveddir=`pwd`
+
+  PROG_HOME=`dirname "$PRG"`/..
+
+  # make it fully qualified
+  PROG_HOME=`cd "$PROG_HOME" && pwd`
+
+  cd "$saveddir"
+fi
+
+parse() {
+  res=$(cat result.csv | grep "dotty.tools.benchmarks.Worker.compile")
+  avg=$(echo $res | cut -d',' -f5)
+  error=$(echo $res | cut -d',' -f6)
+}
+
+test() {
+  local commit=$1
+  local author=$2
+  local time=$3
+  local pr=$4
+
+  # prepare dotty source code
+  cd $PROG_HOME/dotty
+  git reset --hard $commit
+  git submodule update --recursive
+
+  # prepare compiler artifacts for benchmarking
+  cd $PROG_HOME
+  $PROG_HOME/replace
+
+  # start running benchmarks
+  cd $PROG_HOME
+
+  mkdir -p $PROG_HOME/out
+
+  # Dotty Project
+  # $PROG_HOME/target/pack/bin/bench $PROG_HOME/projects/dotty/compiler/**/*.scala
+  # parse && echo "projects/dotty, $pr, $time, $commit, $avg, $error, $(date)" >> history.csv
+
+  # microbenchmarks
+  $PROG_HOME/target/pack/bin/bench $PROG_HOME/tests/implicit_cache.scala -d $PROG_HOME
+  parse && echo "tests/implicit_cache.scala, $pr, $time, $commit, $avg, $error, $(date)" >> history.csv
+}
+
+LAST_COMMIT=$(cat last-commit)
+
+cd $PROG_HOME/dotty
+merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' $LAST_COMMIT^..HEAD)
+
+for commit in $merge_commits
+do
+  commit=$(echo $commit | cut -d',' -f1)
+  author=$(echo $commit | cut -d',' -f2)
+  time=$(echo $commit | cut -d',' -f3)
+  pr=$(echo $commit | cut -d',' -f4 | grep -o '[0-9]\+')
+
+  test $commit $author $time $pr
+done

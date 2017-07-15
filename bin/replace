@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 # replace compiler artefacts with the artefacts built from source code
 
 if [ -z "$PROG_HOME" ] ; then
@@ -29,29 +31,22 @@ fi
 
 find_lib () {
   local lib=$(find $1 -name "$2")
-  if $cygwin; then
-    cygpath -am $lib
-  elif $mingw; then
-    echo $lib | sed 's|/|\\\\|g'
-  else
-    echo $lib
-  fi
+  echo $lib
 }
 
 cd $PROG_HOME/dotty && sbt "dotty/clean" "dotty/package" \
                            "dotty-interfaces/clean" "dotty-interfaces/package" \
                            "dotty-library/clean"  "dotty-library/package"
 
-DOTTY_COMP=$(find_lib $PROG_HOME/dotty/compiler/target/scala-2.11/ "*dotty-compiler*")
-DOTTY_INTF=$(find_lib $PROG_HOME/dotty/interfaes/target/scala-2.11/ "*dotty-interfaces*")
-DOTTY_LIB=$(find_lib $PROG_HOME/dotty/library/target/scala-2.11/ "*dotty-library*")
+DOTTY_COMP=$(find_lib $PROG_HOME/dotty/compiler/target/scala-2.11 "*dotty-compiler*.jar")
+DOTTY_INTF=$(find_lib $PROG_HOME/dotty/interfaces/target "*dotty-interfaces*.jar")
+DOTTY_LIB=$(find_lib $PROG_HOME/dotty/library/target/scala-2.11 "*dotty-library*.jar")
 
 cd $PROG_HOME && sbt pack
-DEST_DOTTY_COMP=$(find_lib $PROG_HOME/target/pack/lib/ "*dotty-compiler*")
-DEST_DOTTY_INTF=$(find_lib $PROG_HOME/target/pack/lib/ "*dotty-interfaces*")
-DEST_DOTTY_LIB=$(find_lib $PROG_HOME/target/pack/lib/ "*dotty-library*")
+DEST_DOTTY_COMP=$(find_lib $PROG_HOME/target/pack/lib "*dotty-compiler*.jar")
+DEST_DOTTY_INTF=$(find_lib $PROG_HOME/target/pack/lib "*dotty-interfaces*.jar")
+DEST_DOTTY_LIB=$(find_lib $PROG_HOME/target/pack/lib "*dotty-library*.jar")
 
 cp $DOTTY_COMP $DEST_DOTTY_COMP
 cp $DOTTY_INTF $DEST_DOTTY_INTF
 cp $DOTTY_LIB  $DEST_DOTTY_LIB
-
