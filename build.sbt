@@ -4,6 +4,7 @@ packSettings
 enablePlugins(JmhPlugin)
 
 libraryDependencies ++= Seq(
+  ("org.scala-lang" % "scala-reflect" % "2.11.11").withDottyCompat(), // old version of dotty depends on it
   "ch.epfl.lamp" %% "dotty" % "0.2.0-RC1"
 )
 

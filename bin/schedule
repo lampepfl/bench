@@ -81,7 +81,7 @@ do
   time=$(echo $commit_line | cut -d',' -f3)
   pr=$(echo $commit_line | cut -d',' -f4 | grep -o '[0-9]\+')
 
-  test $commit $author $time $pr
+  test "$commit" "$author" "$time" "$pr"
 
   echo $commit > $PROG_HOME/last-commit
 done <<< "$merge_commits"
