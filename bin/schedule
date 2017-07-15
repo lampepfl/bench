@@ -43,7 +43,8 @@ test() {
   # prepare dotty source code
   cd $PROG_HOME/dotty
   git reset --hard $commit
-  git submodule update --recursive
+  git submodule init
+  git submodule update
 
   # prepare compiler artifacts for benchmarking
   cd $PROG_HOME
@@ -68,6 +69,8 @@ LAST_COMMIT=$(cat $PROG_HOME/last-commit)
 cd $PROG_HOME/dotty
 git reset --hard origin/master
 git pull origin
+git submodule init
+git submodule update
 merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' $LAST_COMMIT^..HEAD --reverse)
 
 while IFS= read -r commit_line
