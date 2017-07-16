@@ -12,14 +12,7 @@ num_field() {
 }
 
 obj_echo() {
-  local line=$1
-  key=$(echo "$line" | cut -d',' -f1)
-  pr=$(echo "$line" | cut -d',' -f2)
-  time=$(echo "$line" | cut -d',' -f3)
-  commit=$(echo "$line" | cut -d',' -f4)
-  avg=$(echo "$line" | cut -d',' -f5)
-  error=$(echo "$line" | cut -d',' -f6)
-  confidence=$(echo "$line" | cut -d',' -f7)
+  IFS=, read key pr time commit avg error confidence test_time <<< "$1"
 
   echo "{"
     str_field "key" "$key"
