@@ -14,15 +14,24 @@ num_field() {
 obj_echo() {
   IFS=, read key pr time commit avg error confidence test_time <<< "$1"
 
+  trim_key=$(trim "$key")
+  trim_time=$(trim "$time")
+  trim_commit=$(trim "$commit")
+  trim_confid=$(trim "$confidence")
+
   echo "{"
-    str_field "key" "$key"
+    str_field "key" "$trim_key"
     num_field "pr" "$pr"
-    str_field "time" "$time"
-    str_field "commit" "$commit"
+    str_field "time" "$trim_time"
+    str_field "commit" "$trim_commit"
     num_field "avg" "$avg"
     num_field "error" "$error"
-    echo "\"confidence\": \"$confidence\""
+    echo "\"confidence\": \"$trim_confid\""
   echo "}"
+}
+
+trim() {
+  echo -e "$1" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'
 }
 
 readarray data < $1
