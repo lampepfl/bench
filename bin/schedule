@@ -76,7 +76,7 @@ merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' $LAST_COMMIT^..
 
 while IFS= read -r commit_line
 do
-  if [[ $commit_line == *"Merge pull request #"* ]]; then
+  if [[ $commit_line == *"Merge pull request #"* ]] && [[ $commit_line != *"$LAST_COMMIT"*]]; then
     commit=$(echo $commit_line | cut -d',' -f1)
     author=$(echo $commit_line | cut -d',' -f2)
     time=$(echo $commit_line | cut -d',' -f3)
