@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+# csv2json history.csv
+
+
+str_field() {
+  echo "\"$1\": \"$2\","
+}
+
+num_field() {
+  echo "\"$1\": $2,"
+}
+
+obj_echo() {
+  local line=$1
+  key=$(echo $line | cut -d',' -f1)
+  pr=$(echo $line | cut -d',' -f2)
+  time=$(echo $line | cut -d',' -f3)
+  commit=$(echo $line | cut -d',' -f4)
+  avg=$(echo $line | cut -d',' -f5)
+  error=$(echo $line | cut -d',' -f6)
+  confidence=$(echo $line | cut -d',' -f7)
+
+  echo "{"
+    str_field "key" "$key"
+    num_field "pr" "$pr"
+    str_field "time" "$time"
+    str_field "commit" "$commit"
+    num_field "avg" "$avg"
+    num_field "error" "$error"
+    echo "\"confidence\": $confidence"
+  echo "}"
+}
+
+readarray data < $1
+
+# get length of an array
+len=${#data[@]}
+
+echo "["
+
+for (( i=0; i<$(($len-1)); i++ ));
+do
+  line=${data[$i]}
+  obj_echo line
+done
+
+obj_echo ${data[(($len-1))]}
+
+echo "]"
