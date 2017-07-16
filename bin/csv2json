@@ -13,13 +13,13 @@ num_field() {
 
 obj_echo() {
   local line=$1
-  key=$(echo $line | cut -d',' -f1)
-  pr=$(echo $line | cut -d',' -f2)
-  time=$(echo $line | cut -d',' -f3)
-  commit=$(echo $line | cut -d',' -f4)
-  avg=$(echo $line | cut -d',' -f5)
-  error=$(echo $line | cut -d',' -f6)
-  confidence=$(echo $line | cut -d',' -f7)
+  key=$(echo "$line" | cut -d',' -f1)
+  pr=$(echo "$line" | cut -d',' -f2)
+  time=$(echo "$line" | cut -d',' -f3)
+  commit=$(echo "$line" | cut -d',' -f4)
+  avg=$(echo "$line" | cut -d',' -f5)
+  error=$(echo "$line" | cut -d',' -f6)
+  confidence=$(echo "$line" | cut -d',' -f7)
 
   echo "{"
     str_field "key" "$key"
@@ -28,7 +28,7 @@ obj_echo() {
     str_field "commit" "$commit"
     num_field "avg" "$avg"
     num_field "error" "$error"
-    echo "\"confidence\": $confidence"
+    echo "\"confidence\": \"$confidence\""
   echo "}"
 }
 
@@ -42,9 +42,10 @@ echo "["
 for (( i=0; i<$(($len-1)); i++ ));
 do
   line=${data[$i]}
-  obj_echo line
+  obj_echo "$line"
+  echo ","
 done
 
-obj_echo ${data[(($len-1))]}
+obj_echo "${data[(($len-1))]}"
 
 echo "]"
