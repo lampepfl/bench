@@ -120,7 +120,7 @@ var ChartComponent = React.createClass({
       }
     }
 
-    this.setState({ data: prepareData(this.props.key), ready: true, options: options })
+    this.setState({ data: prepareData(this.props.id), ready: true, options: options })
   },
   render: function () {
     if (this.state.ready)
@@ -136,7 +136,7 @@ var ChartComponent = React.createClass({
 var _ChartList = React.createClass({
   render: function () {
     var chartNodes = this.props.charts.map(function (chart) {
-      return <ChartComponent url={chart.url} name={chart.name} key={chart.key} />
+      return <ChartComponent url={chart.url} name={chart.name} id={chart.key} />
     });
 
     return <div className="chart-list">{chartNodes}</div>
@@ -159,7 +159,7 @@ var _ChoiceList = React.createClass({
   },
   render: function () {
     var items = allCharts().map(function (chart) {
-      return <span className="sidebar-nav-item" key={chart.name}>
+      return <span className="sidebar-nav-item" key={chart.key}>
         <input type="checkbox" defaultChecked={this.selected(chart)} onChange={this.handleChange.bind(this, chart)} />
         {chart.name}
       </span>
