@@ -1,12 +1,15 @@
 # bench-web
 
-A simple web interface for ScalaMeter benchmarks
+A simple web interface for Benchmarks
 
-Note: It assumes the test scope is a **list**, instead of a **tree**.
+## Data Format
+
+Example data format can be found [here](https://github.com/liufengyun/bench/tree/gh-pages/data):
+
+- `charts.js`: specify meta data for charts
+- `dataset.json`: holds all data points for charts
 
 ## Development
-
-Prerequisite: create a symbolic `data` under project root directory to the result directory of ScalaMeter.
 
 - `npm install`
 - `npm run watch`
