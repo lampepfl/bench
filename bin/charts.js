@@ -1,4 +1,4 @@
-window.Bench = Bench || {}
+var Bench = Bench || {}
 
 Bench.charts = [
     {
