@@ -5,11 +5,12 @@ DEST_BASE_DIR="../_site/"
 # build data
 mkdir -p web/data
 cp bin/charts.js web/data/
-bin/csv2json history.csv web/data/dataset.json
+bin/csv2json history.csv > web/data/dataset.json
 
 # build web
 cd web
-git pull origin
+git fetch origin
+git merge origin/master
 npm run build
 
 # copy resource
