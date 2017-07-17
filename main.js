@@ -16,10 +16,18 @@ function prepareData(key) {
     return acc;
   }
 
+  var points = Bench.dataset.reduce(accumulate, []);
+
+  var labels = [];
+  for (var i = 0; i < points.length; i++) {
+    labels.push(i);
+  }
+
   return {
+    labels: labels,
     datasets: [{
       label: "dataset",
-      data: Bench.dataset.reduce(accumulate, []),
+      data: points,
       fill: false,
       borderColor: "rgba(100,100,100,0.2)",
       backgroundColor: "transparent",
@@ -80,8 +88,14 @@ var ChartComponent = React.createClass({
     return { data: {}, options: {}, ready: false };
   },
   componentDidMount: function () {
+    var data = prepareData(this.props.id);
+
+    function getItem(point) {
+      return data["datasets"][point.datasetIndex].data[point.index].obj;
+    }
+
     var options = {
-      responsive: false,
+      responsive: true,
       title: { display: false, text: "Benchmarks for " + this.props.name },
       legend: { display: false },
       tooltips: {
@@ -89,44 +103,30 @@ var ChartComponent = React.createClass({
           title: function (data) {
             return "";
           }.bind(this),
-          label: function (data) {
-            return data.yLabel + "ms, " + data.xLabel.toDateString();
+          label: function (point) {
+            var item = getItem(point);
+            var time = new Date(item.time);
+            return point.yLabel + "µs \n" + "PR#" + item.pr + " \n" + time.toDateString();
           }
         }
       },
       scales: {
-        xAxes: [{
-          type: "time",
-          display: true,
-          scaleLabel: { display: false },
-          ticks: {
-            display: true,
-            userCallback: function (tick) {
-              // var date = new Date(tick);
-              // return (date.getMonth() + 1) + "/" +  (date.getFullYear() - 2000);
-              return tick;
-            }
-          },
-          time: {
-            displayFormats: {
-              'day': "MM'YY", // Sep 4 2015
-            }
-          }
-        }],
         yAxes: [{
           display: true,
-          scaleLabel: { display: false, labelString: 'ms' }
+          scaleLabel: { display: false, labelString: 'µs' }
         }]
       }
     }
 
-    this.setState({ data: prepareData(this.props.id), ready: true, options: options })
+    this.setState({ data: data, ready: true, options: options })
   },
   render: function () {
+    var width = $("#app").width();
+
     if (this.state.ready)
       return <div>
         <h2><a href={this.props.url}>{this.props.name}</a></h2>
-        <LineChart data={this.state.data} options={this.state.options} width="800" height="300" />
+        <LineChart data={this.state.data} options={this.state.options} width={width} height="300" />
       </div>
     else
       return <div><h2>{this.props.name}</h2><p>Loading...</p></div>
