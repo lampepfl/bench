@@ -42,15 +42,6 @@ function allCharts() {
   return Bench.charts;
 }
 
-function initialState() {
-  var charts = [];
-
-  if (window.localStorage && window.localStorage['dotty-benchmark'])
-    return JSON.parse(window.localStorage['dotty-benchmark']);
-  else
-    return { charts: allCharts().slice(0, 11) };
-}
-
 function actionSelect(item) {
   return { type: 'SELECT', item: item };
 }
@@ -172,6 +163,15 @@ var _ChoiceList = React.createClass({
 var ChoiceList = ReactRedux.connect(function (state) { return { charts: state.charts } },
   { select: actionSelect, deselect: actionDeselect })(_ChoiceList);
 
+function initialState() {
+  var charts = [];
+
+  if (window.localStorage && window.localStorage['dotty-benchmark-v2'])
+    return JSON.parse(window.localStorage['dotty-benchmark-v2']);
+  else
+    return { charts: allCharts().slice(0, 11) };
+}
+
 $.get("data/dataset.json", function (dataset) {
   Bench.dataset = dataset;
 
@@ -180,7 +180,7 @@ $.get("data/dataset.json", function (dataset) {
   // persist state to localStorage
   store.subscribe(function () {
     if (window.localStorage)
-      window.localStorage['dotty-benchmark'] = JSON.stringify(store.getState());
+      window.localStorage['dotty-benchmark-v2'] = JSON.stringify(store.getState());
   })
 
 
