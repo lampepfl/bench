@@ -57,11 +57,11 @@ test() {
 
   # Dotty Project
   $PROG_HOME/target/pack/bin/bench $(find $PROG_HOME/projects/dotty/compiler/src/dotty -name *.scala) -d $PROG_HOME/out
-  parse && echo "projects/dotty, $pr, $time, $commit, $avg, $error, $confidence, $(date -R)" >> history.csv
+  parse && echo "projects/dotty, $pr, $time, $commit, $avg, $error, $confidence, $(date)" >> history.csv
 
   # microbenchmarks
   $PROG_HOME/target/pack/bin/bench $PROG_HOME/tests/implicit_cache.scala -d $PROG_HOME/out
-  parse && echo "tests/implicit_cache.scala, $pr, $time, $commit, $avg, $error, $confidence, $(date -R)" >> history.csv
+  parse && echo "tests/implicit_cache.scala, $pr, $time, $commit, $avg, $error, $confidence, $(date)" >> history.csv
 }
 
 LAST_COMMIT=$(cat $PROG_HOME/last-commit)
