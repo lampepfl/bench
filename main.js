@@ -116,7 +116,7 @@ var ChartComponent = React.createClass({
 
     if (this.state.ready)
       return <div>
-        <h2><a href={this.props.url}>{this.props.name}</a></h2>
+        <h3><a href={this.props.url}>{this.props.name}</a></h3>
         <LineChart data={this.state.data} options={this.state.options} width={width} height="300" />
       </div>
     else
