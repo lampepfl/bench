@@ -7,3 +7,5 @@ Bench.charts = [
         "url": "https://github.com/liufengyun/bench/blob/master/tests/implicit_cache.scala"
     }
 ]
+
+Bench.pr_base_url = "https://github.com/lampepfl/dotty/pull/"
