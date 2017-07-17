@@ -1,2 +1,4 @@
-# bench
-benchmark compilation of Dotty
+# Bench
+
+Benchmark Dotty
+
