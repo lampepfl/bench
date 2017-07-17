@@ -113,7 +113,7 @@ var ChartComponent = React.createClass({
           var pindex = activeElems[0]._index;
           var dindex = activeElems[0]._datasetIndex;
           var obj = getItem(dindex, pindex);
-          var win = window.open("https://github.com/lampepfl/dotty/pull/" + obj.pr, '_blank');
+          var win = window.open(Bench.pr_base_url + obj.pr, '_blank');
           win.focus();
         }
       }
