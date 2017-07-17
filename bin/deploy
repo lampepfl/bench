@@ -23,4 +23,4 @@ cp -r data $DEST_BASE_DIR
 cd $DEST_BASE_DIR
 git add .
 git commit -m "update site"
-git push origin master:gh-pages
+git push origin gh-pages:gh-pages
