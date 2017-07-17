@@ -81,8 +81,8 @@ var ChartComponent = React.createClass({
   componentDidMount: function () {
     var data = prepareData(this.props.id);
 
-    function getItem(point) {
-      return data["datasets"][point.datasetIndex].data[point.index].obj;
+    function getItem(didx, pidx) {
+      return data["datasets"][didx].data[pidx].obj;
     }
 
     var options = {
@@ -95,7 +95,7 @@ var ChartComponent = React.createClass({
             return "";
           }.bind(this),
           label: function (point) {
-            var item = getItem(point);
+            var item = getItem(point.datasetIndex, point.index);
             var time = new Date(item.time);
             return point.yLabel + "µs \n" + "PR#" + item.pr + " \n" + time.toDateString();
           }
@@ -106,6 +106,16 @@ var ChartComponent = React.createClass({
           display: true,
           scaleLabel: { display: false, labelString: 'µs' }
         }]
+      },
+      onClick: function(e) {
+        var activeElems = this.getElementsAtEvent(e);
+        if (actionSelect.length == 1) {
+          var pindex = activeElems[0]._index;
+          var dindex = activeElems[0]._datasetIndex;
+          var obj = getItem(dindex, pindex);
+          var win = window.open("https://github.com/lampepfl/dotty/pull/" + obj.pr, '_blank');
+          win.focus();
+        }
       }
     }
 
