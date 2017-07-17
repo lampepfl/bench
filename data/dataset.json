@@ -1,0 +1,2691 @@
+[
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2332,
+"time": "Mon May 1 08:59:57 2017 +0200",
+"commit": "4897be1",
+"avg":  85466.120717,
+"error":  6500.249657,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2338,
+"time": "Mon May 1 13:31:00 2017 +0200",
+"commit": "a37d233",
+"avg":  84583.995545,
+"error":  6790.204568,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2341,
+"time": "Mon May 1 15:11:59 2017 +0200",
+"commit": "954afd4",
+"avg":  84746.364334,
+"error":  5658.079468,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2312,
+"time": "Mon May 1 21:51:33 2017 +0200",
+"commit": "b19d1fb",
+"avg":  84237.855484,
+"error":  5447.812263,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2330,
+"time": "Mon May 1 22:44:39 2017 +0200",
+"commit": "9567fc4",
+"avg":  84219.928114,
+"error":  5563.806219,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2331,
+"time": "Mon May 1 23:40:55 2017 +0200",
+"commit": "0fea788",
+"avg":  85039.170503,
+"error":  7235.951596,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2343,
+"time": "Mon May 1 23:46:22 2017 +0200",
+"commit": "de53e52",
+"avg":  83778.069492,
+"error":  5347.076027,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2347,
+"time": "Tue May 2 15:34:28 2017 +0200",
+"commit": "4961709",
+"avg":  86470.615859,
+"error":  6117.025700,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2346,
+"time": "Tue May 2 15:53:04 2017 +0200",
+"commit": "5514655",
+"avg":  84040.807794,
+"error":  4784.398348,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2348,
+"time": "Tue May 2 16:57:27 2017 +0200",
+"commit": "df22149",
+"avg":  88104.467106,
+"error":  7497.502346,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2361,
+"time": "Thu May 4 14:07:12 2017 +0200",
+"commit": "13443fa",
+"avg":  85016.622806,
+"error":  6881.076356,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2342,
+"time": "Thu May 4 16:19:25 2017 +0200",
+"commit": "92fe2a5",
+"avg":  86322.308273,
+"error":  6708.124175,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2272,
+"time": "Fri May 5 10:29:09 2017 +0200",
+"commit": "f28c984",
+"avg":  85365.388013,
+"error":  6665.202860,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2366,
+"time": "Fri May 5 11:09:25 2017 +0200",
+"commit": "a5245eb",
+"avg":  85409.700839,
+"error":  6491.187429,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2353,
+"time": "Fri May 5 14:50:56 2017 +0200",
+"commit": "0b44aed",
+"avg":  86284.252666,
+"error":  6637.052563,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2314,
+"time": "Fri May 5 14:51:45 2017 +0200",
+"commit": "b1f5432",
+"avg":  86982.711423,
+"error":  7207.052975,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2323,
+"time": "Fri May 5 14:55:37 2017 +0200",
+"commit": "62deba5",
+"avg":  84849.925065,
+"error":  6132.176293,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2374,
+"time": "Fri May 5 16:17:32 2017 +0200",
+"commit": "c180052",
+"avg":  87371.438961,
+"error":  7215.998180,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2364,
+"time": "Fri May 5 16:49:04 2017 +0200",
+"commit": "ad2bb89",
+"avg":  82907.203556,
+"error":  4690.324011,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2380,
+"time": "Sat May 6 00:13:53 2017 +0200",
+"commit": "e67ff61",
+"avg":  85453.504100,
+"error":  4694.744172,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2365,
+"time": "Sat May 6 00:20:29 2017 +0200",
+"commit": "feafd80",
+"avg":  86667.378839,
+"error":  5997.926328,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2382,
+"time": "Sat May 6 10:40:45 2017 +0200",
+"commit": "3b19452",
+"avg":  86307.931384,
+"error":  6823.575999,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2383,
+"time": "Sat May 6 10:41:01 2017 +0200",
+"commit": "23fb2d9",
+"avg":  84919.654721,
+"error":  5718.941315,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2370,
+"time": "Sat May 6 10:41:17 2017 +0200",
+"commit": "81a0b53",
+"avg":  84319.218676,
+"error":  6671.917755,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2358,
+"time": "Sat May 6 11:11:57 2017 +0200",
+"commit": "4886857",
+"avg":  85289.720131,
+"error":  6309.737900,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2384,
+"time": "Sat May 6 11:54:24 2017 +0200",
+"commit": "e4e4810",
+"avg":  86168.388038,
+"error":  7097.283452,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2386,
+"time": "Sat May 6 14:25:07 2017 +0200",
+"commit": "5db8e84",
+"avg":  86402.182491,
+"error":  5736.878045,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2372,
+"time": "Sat May 6 14:25:41 2017 +0200",
+"commit": "1ab7641",
+"avg":  84287.767140,
+"error":  5394.535990,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2377,
+"time": "Sat May 6 15:25:03 2017 +0200",
+"commit": "385178d",
+"avg":  84897.209599,
+"error":  5718.651111,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2336,
+"time": "Sun May 7 11:35:41 2017 +0200",
+"commit": "83da57a",
+"avg":  87630.453744,
+"error":  7198.487268,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2169,
+"time": "Sun May 7 18:57:05 2017 +0200",
+"commit": "1014af3",
+"avg":  86568.531017,
+"error":  7051.071903,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2352,
+"time": "Mon May 8 09:18:46 2017 +0200",
+"commit": "37255c5",
+"avg":  87487.244569,
+"error":  6587.507234,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2359,
+"time": "Mon May 8 09:19:22 2017 +0200",
+"commit": "8052e9a",
+"avg":  86984.230178,
+"error":  7209.538843,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2388,
+"time": "Mon May 8 10:46:49 2017 +0200",
+"commit": "d1754fa",
+"avg":  86862.554123,
+"error":  5886.165960,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2392,
+"time": "Mon May 8 15:53:27 2017 +0200",
+"commit": "4c8a950",
+"avg":  85387.239501,
+"error":  6642.749733,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2393,
+"time": "Mon May 8 16:31:04 2017 +0200",
+"commit": "d0f4d57",
+"avg":  85422.748599,
+"error":  5590.189547,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2389,
+"time": "Mon May 8 16:32:08 2017 +0200",
+"commit": "7b1cdbc",
+"avg":  90012.174397,
+"error":  8720.416798,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2136,
+"time": "Mon May 8 19:17:09 2017 +0200",
+"commit": "a391a58",
+"avg":  86366.856072,
+"error":  6729.644636,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2402,
+"time": "Tue May 9 14:07:48 2017 +0200",
+"commit": "825f8de",
+"avg":  86598.367049,
+"error":  5948.315609,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2313,
+"time": "Tue May 9 15:32:15 2017 +0200",
+"commit": "7a3f880",
+"avg":  90488.691842,
+"error":  9215.644896,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2407,
+"time": "Wed May 10 16:27:22 2017 +0200",
+"commit": "85d9684",
+"avg":  86191.643665,
+"error":  6067.469113,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2398,
+"time": "Thu May 11 11:39:01 2017 +0200",
+"commit": "058658d",
+"avg":  85842.381261,
+"error":  6795.621390,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2408,
+"time": "Thu May 11 11:40:26 2017 +0200",
+"commit": "ae4f1fa",
+"avg":  84439.407630,
+"error":  4445.798101,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2410,
+"time": "Thu May 11 16:13:24 2017 +0200",
+"commit": "81d0178",
+"avg":  86981.128405,
+"error":  6517.731671,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2411,
+"time": "Thu May 11 17:43:39 2017 +0200",
+"commit": "cc4533d",
+"avg":  86107.370366,
+"error":  5425.714806,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2413,
+"time": "Fri May 12 10:19:02 2017 +0200",
+"commit": "cfe7d70",
+"avg":  88769.899891,
+"error":  7820.555606,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2413,
+"time": "Fri May 12 10:19:02 2017 +0200",
+"commit": "cfe7d70",
+"avg":  84573.558435,
+"error":  5101.314947,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2354,
+"time": "Fri May 12 10:42:18 2017 +0200",
+"commit": "1c1b78f",
+"avg":  87143.168435,
+"error":  5352.962448,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2416,
+"time": "Fri May 12 10:49:48 2017 +0200",
+"commit": "d62607f",
+"avg":  86834.725912,
+"error":  6300.873257,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2357,
+"time": "Fri May 12 11:32:27 2017 +0200",
+"commit": "ff88246",
+"avg":  87385.077780,
+"error":  7590.083230,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2423,
+"time": "Fri May 12 22:32:25 2017 +0200",
+"commit": "11e2526",
+"avg":  86076.704386,
+"error":  5929.691988,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2420,
+"time": "Mon May 15 09:08:00 2017 +0200",
+"commit": "476039b",
+"avg":  86996.916255,
+"error":  6942.428932,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2406,
+"time": "Mon May 15 09:09:32 2017 +0200",
+"commit": "87ccb85",
+"avg":  90161.373832,
+"error":  9017.017141,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2427,
+"time": "Mon May 15 09:47:54 2017 +0200",
+"commit": "3ae3b08",
+"avg":  85130.950901,
+"error":  5629.312570,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2428,
+"time": "Mon May 15 10:48:18 2017 +0200",
+"commit": "b046500",
+"avg":  88279.800242,
+"error":  7078.156881,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2422,
+"time": "Mon May 15 11:47:28 2017 +0200",
+"commit": "c6a2a3f",
+"avg":  86630.792416,
+"error":  6138.623316,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2415,
+"time": "Mon May 15 14:38:21 2017 +0200",
+"commit": "031879a",
+"avg":  87396.795145,
+"error":  6134.854490,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2431,
+"time": "Mon May 15 15:00:10 2017 +0200",
+"commit": "4f6ac12",
+"avg":  85836.527387,
+"error":  6265.189795,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2434,
+"time": "Mon May 15 16:39:18 2017 +0200",
+"commit": "5d8cee3",
+"avg":  86366.436644,
+"error":  6866.513906,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2424,
+"time": "Tue May 16 11:00:08 2017 +0200",
+"commit": "e9fd333",
+"avg":  85304.882723,
+"error":  5744.421263,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2400,
+"time": "Tue May 16 11:02:22 2017 +0200",
+"commit": "f73483e",
+"avg":  86384.736119,
+"error":  6382.620783,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2436,
+"time": "Tue May 16 11:03:32 2017 +0200",
+"commit": "fc5994d",
+"avg":  86416.736676,
+"error":  5635.893684,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2441,
+"time": "Tue May 16 12:43:03 2017 +0200",
+"commit": "d9d5670",
+"avg":  84157.165542,
+"error":  5175.502284,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2435,
+"time": "Tue May 16 13:37:17 2017 +0200",
+"commit": "9aeb139",
+"avg":  86269.482452,
+"error":  5939.647889,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2443,
+"time": "Tue May 16 16:46:41 2017 +0200",
+"commit": "09a1f56",
+"avg":  86537.836659,
+"error":  6019.784986,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2445,
+"time": "Tue May 16 17:13:43 2017 +0200",
+"commit": "8fbe087",
+"avg":  85057.779203,
+"error":  5882.891481,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2447,
+"time": "Wed May 17 09:42:46 2017 +0200",
+"commit": "f556b04",
+"avg":  86342.702170,
+"error":  6417.070031,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2444,
+"time": "Wed May 17 09:47:41 2017 +0200",
+"commit": "a9a468b",
+"avg":  86179.654034,
+"error":  5731.937895,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2448,
+"time": "Wed May 17 10:05:11 2017 +0200",
+"commit": "b05975c",
+"avg":  86156.271932,
+"error":  7214.546678,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2450,
+"time": "Wed May 17 11:40:39 2017 +0200",
+"commit": "725ca9f",
+"avg":  86318.276330,
+"error":  5938.875171,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2449,
+"time": "Wed May 17 11:44:50 2017 +0200",
+"commit": "e639043",
+"avg":  88633.540909,
+"error":  8540.413004,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2452,
+"time": "Wed May 17 14:13:50 2017 +0200",
+"commit": "b5584b5",
+"avg":  87403.450715,
+"error":  7156.038330,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2453,
+"time": "Wed May 17 14:57:43 2017 +0200",
+"commit": "a4d4abb",
+"avg":  85429.800841,
+"error":  5188.794446,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2457,
+"time": "Wed May 17 15:41:11 2017 +0200",
+"commit": "7ddf490",
+"avg":  87228.195484,
+"error":  7638.320821,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2458,
+"time": "Wed May 17 16:03:24 2017 +0200",
+"commit": "a9fabb4",
+"avg":  87867.171029,
+"error":  7202.599015,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2459,
+"time": "Wed May 17 16:04:05 2017 +0200",
+"commit": "4daeeb3",
+"avg":  86130.438580,
+"error":  6129.580481,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2455,
+"time": "Wed May 17 17:55:00 2017 +0200",
+"commit": "8a9aedc",
+"avg":  85572.437370,
+"error":  5475.107019,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2474,
+"time": "Fri May 19 13:07:56 2017 +0200",
+"commit": "5d39c87",
+"avg":  85723.316317,
+"error":  5612.589184,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2477,
+"time": "Fri May 19 15:36:00 2017 +0200",
+"commit": "64f7320",
+"avg":  85009.776707,
+"error":  5550.890391,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2481,
+"time": "Fri May 19 19:27:13 2017 +0200",
+"commit": "730e50b",
+"avg":  85287.662510,
+"error":  5597.200809,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2484,
+"time": "Sat May 20 00:17:31 2017 +0200",
+"commit": "d204179",
+"avg":  86313.165310,
+"error":  7097.152088,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2465,
+"time": "Sat May 20 11:43:02 2017 +0200",
+"commit": "d8955ce",
+"avg":  85329.618533,
+"error":  6571.901086,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2485,
+"time": "Sat May 20 16:00:05 2017 +0200",
+"commit": "c564511",
+"avg":  86897.026398,
+"error":  7094.963313,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2483,
+"time": "Sat May 20 19:32:36 2017 +0200",
+"commit": "a147797",
+"avg":  88187.752178,
+"error":  6216.638098,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2487,
+"time": "Mon May 22 10:09:50 2017 +0200",
+"commit": "d97d35d",
+"avg":  85766.435030,
+"error":  5302.818125,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2461,
+"time": "Mon May 22 14:59:15 2017 +0200",
+"commit": "b7f5bf9",
+"avg":  86820.332786,
+"error":  7012.550579,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2501,
+"time": "Mon May 22 15:07:35 2017 +0200",
+"commit": "34b98f3",
+"avg":  88166.367289,
+"error":  7953.325013,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2460,
+"time": "Mon May 22 17:01:37 2017 +0200",
+"commit": "5efbe52",
+"avg":  87427.568980,
+"error":  6694.222999,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2506,
+"time": "Tue May 23 10:46:26 2017 +0200",
+"commit": "d524e28",
+"avg":  162993.415031,
+"error":  9560.742116,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2432,
+"time": "Tue May 23 11:08:01 2017 +0200",
+"commit": "abad0ad",
+"avg":  163680.568803,
+"error":  7310.493275,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2475,
+"time": "Tue May 23 14:33:15 2017 +0200",
+"commit": "1518801",
+"avg":  164699.759585,
+"error":  8742.156103,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2503,
+"time": "Tue May 23 15:15:08 2017 +0200",
+"commit": "de2fd79",
+"avg":  161061.345845,
+"error":  7642.319802,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2509,
+"time": "Tue May 23 18:44:42 2017 +0200",
+"commit": "79d4e3e",
+"avg":  158259.126601,
+"error":  6398.264357,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2493,
+"time": "Tue May 23 18:46:06 2017 +0200",
+"commit": "7d34049",
+"avg":  166587.660241,
+"error":  10804.632464,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2486,
+"time": "Tue May 23 18:53:22 2017 +0200",
+"commit": "83745f3",
+"avg":  164097.737527,
+"error":  9054.717927,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2505,
+"time": "Wed May 24 10:14:56 2017 +0200",
+"commit": "4fe21b0",
+"avg":  161234.870261,
+"error":  8554.191981,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2517,
+"time": "Wed May 24 11:01:46 2017 +0200",
+"commit": "f3b462a",
+"avg":  169655.413925,
+"error":  7906.132200,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2518,
+"time": "Wed May 24 12:48:03 2017 +0200",
+"commit": "5192eac",
+"avg":  167598.673004,
+"error":  10130.166054,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2522,
+"time": "Wed May 24 15:19:56 2017 +0200",
+"commit": "d02bf3b",
+"avg":  160716.720365,
+"error":  6181.429388,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2504,
+"time": "Thu May 25 09:11:35 2017 +0200",
+"commit": "6d18c2d",
+"avg":  163709.582916,
+"error":  10579.934988,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2529,
+"time": "Thu May 25 10:51:24 2017 +0200",
+"commit": "dffccfa",
+"avg":  166902.273480,
+"error":  9339.569592,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2531,
+"time": "Fri May 26 08:24:56 2017 +0200",
+"commit": "b74fca1",
+"avg":  164059.063957,
+"error":  9363.234317,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2524,
+"time": "Fri May 26 10:57:31 2017 +0200",
+"commit": "585ec67",
+"avg":  165708.430017,
+"error":  10035.648774,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2538,
+"time": "Fri May 26 13:08:43 2017 +0200",
+"commit": "a4f0d35",
+"avg":  168663.950615,
+"error":  11602.978085,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2534,
+"time": "Fri May 26 13:15:14 2017 +0200",
+"commit": "c101ce9",
+"avg":  166432.892330,
+"error":  11239.213116,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2525,
+"time": "Fri May 26 13:16:54 2017 +0200",
+"commit": "48258c5",
+"avg":  166543.173571,
+"error":  8981.541642,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2537,
+"time": "Fri May 26 14:09:02 2017 +0200",
+"commit": "d9e1e2d",
+"avg":  163968.105637,
+"error":  7672.869206,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2543,
+"time": "Fri May 26 15:58:54 2017 +0200",
+"commit": "12c2e47",
+"avg":  158593.729278,
+"error":  5899.669482,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2546,
+"time": "Fri May 26 17:11:34 2017 +0200",
+"commit": "11476d1",
+"avg":  162465.252644,
+"error":  9296.451418,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2498,
+"time": "Fri May 26 21:15:18 2017 +0200",
+"commit": "58a4cc3",
+"avg":  163115.815031,
+"error":  8751.630015,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2532,
+"time": "Fri May 26 21:49:05 2017 +0200",
+"commit": "352c09e",
+"avg":  161116.439628,
+"error":  6116.430579,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2549,
+"time": "Sat May 27 00:01:30 2017 +0200",
+"commit": "5fbf6b4",
+"avg":  162083.296236,
+"error":  7783.197581,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2542,
+"time": "Sat May 27 12:08:19 2017 +0200",
+"commit": "aff93b1",
+"avg":  164399.946321,
+"error":  7458.396630,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2550,
+"time": "Sat May 27 22:36:34 2017 +0200",
+"commit": "8b0aca2",
+"avg":  169120.045114,
+"error":  9724.731046,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2547,
+"time": "Sun May 28 16:32:02 2017 +0200",
+"commit": "5f1a8de",
+"avg":  166313.402636,
+"error":  9088.484264,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2558,
+"time": "Mon May 29 11:08:07 2017 +0200",
+"commit": "27a5526",
+"avg":  167490.740116,
+"error":  11686.494537,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2559,
+"time": "Mon May 29 11:23:49 2017 +0200",
+"commit": "4a54c76",
+"avg":  160212.460722,
+"error":  6499.922853,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2562,
+"time": "Mon May 29 12:57:19 2017 +0200",
+"commit": "4e1c918",
+"avg":  166257.528019,
+"error":  12027.009201,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2557,
+"time": "Mon May 29 12:57:36 2017 +0200",
+"commit": "227cd73",
+"avg":  165944.946059,
+"error":  9452.454292,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2568,
+"time": "Mon May 29 15:24:40 2017 +0200",
+"commit": "52b84e2",
+"avg":  169586.613738,
+"error":  11590.905128,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2561,
+"time": "Mon May 29 15:34:21 2017 +0200",
+"commit": "b28b769",
+"avg":  165317.682747,
+"error":  7079.257386,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2414,
+"time": "Mon May 29 16:18:35 2017 +0200",
+"commit": "2ba509d",
+"avg":  166978.683954,
+"error":  10269.372623,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2425,
+"time": "Mon May 29 16:19:12 2017 +0200",
+"commit": "2b34272",
+"avg":  160496.626248,
+"error":  6612.524638,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2479,
+"time": "Mon May 29 16:20:57 2017 +0200",
+"commit": "b76bcc6",
+"avg":  163476.394991,
+"error":  8235.358754,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2511,
+"time": "Mon May 29 16:21:25 2017 +0200",
+"commit": "b377235",
+"avg":  163786.624036,
+"error":  6977.435921,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2523,
+"time": "Mon May 29 16:29:08 2017 +0200",
+"commit": "39acd47",
+"avg":  166718.384353,
+"error":  9515.174540,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2553,
+"time": "Mon May 29 16:31:33 2017 +0200",
+"commit": "e4bcbda",
+"avg":  167942.076894,
+"error":  9398.217259,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2555,
+"time": "Mon May 29 16:32:30 2017 +0200",
+"commit": "96854ef",
+"avg":  162634.940851,
+"error":  7407.421213,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2552,
+"time": "Mon May 29 16:33:19 2017 +0200",
+"commit": "a570e24",
+"avg":  162150.509828,
+"error":  6987.893647,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2579,
+"time": "Mon May 29 17:25:59 2017 +0200",
+"commit": "0ef4f0b",
+"avg":  162515.776371,
+"error":  7427.257953,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2580,
+"time": "Mon May 29 18:07:26 2017 +0200",
+"commit": "3f222ca",
+"avg":  167287.539561,
+"error":  11406.246324,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2569,
+"time": "Mon May 29 18:10:29 2017 +0200",
+"commit": "4639a10",
+"avg":  164419.328945,
+"error":  7123.364514,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2584,
+"time": "Mon May 29 18:36:25 2017 +0200",
+"commit": "a4d1894",
+"avg":  165281.636820,
+"error":  7575.777214,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2510,
+"time": "Mon May 29 19:32:29 2017 +0200",
+"commit": "d207e7e",
+"avg":  164996.080859,
+"error":  6803.220205,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2583,
+"time": "Mon May 29 20:50:42 2017 +0200",
+"commit": "ec92d30",
+"avg":  168526.869107,
+"error":  11041.298353,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2586,
+"time": "Mon May 29 21:05:27 2017 +0200",
+"commit": "73a8a5e",
+"avg":  166029.960031,
+"error":  7173.615854,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2587,
+"time": "Mon May 29 21:20:46 2017 +0200",
+"commit": "c1e5e44",
+"avg":  163273.891707,
+"error":  6626.997424,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2589,
+"time": "Mon May 29 21:42:26 2017 +0200",
+"commit": "d11d20f",
+"avg":  173595.301843,
+"error":  10183.140881,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2592,
+"time": "Tue May 30 00:47:25 2017 +0200",
+"commit": "a45451a",
+"avg":  165819.367526,
+"error":  8909.877290,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2593,
+"time": "Tue May 30 01:00:12 2017 +0200",
+"commit": "f8f52cc",
+"avg":  165832.508333,
+"error":  8264.727028,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2598,
+"time": "Tue May 30 09:30:55 2017 +0200",
+"commit": "836ec49",
+"avg":  160605.139826,
+"error":  7079.444407,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2600,
+"time": "Tue May 30 13:49:33 2017 +0200",
+"commit": "00c7f96",
+"avg":  165481.469132,
+"error":  6307.730666,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2599,
+"time": "Tue May 30 13:50:03 2017 +0200",
+"commit": "9417485",
+"avg":  163335.279115,
+"error":  6931.220122,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2601,
+"time": "Tue May 30 13:50:25 2017 +0200",
+"commit": "25ec895",
+"avg":  158294.476489,
+"error":  6815.173424,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2597,
+"time": "Tue May 30 14:01:08 2017 +0200",
+"commit": "3d00bd6",
+"avg":  167465.123815,
+"error":  8799.491356,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2588,
+"time": "Tue May 30 14:03:38 2017 +0200",
+"commit": "877e9e7",
+"avg":  165679.053403,
+"error":  8468.848202,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2604,
+"time": "Tue May 30 14:11:15 2017 +0200",
+"commit": "4daa92d",
+"avg":  163866.089902,
+"error":  6738.723970,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2606,
+"time": "Tue May 30 14:37:08 2017 +0200",
+"commit": "61ad6bf",
+"avg":  170192.850647,
+"error":  8518.346728,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2605,
+"time": "Tue May 30 14:38:01 2017 +0200",
+"commit": "342b94f",
+"avg":  171499.365327,
+"error":  7895.124043,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2609,
+"time": "Tue May 30 15:41:49 2017 +0200",
+"commit": "e5cafa2",
+"avg":  162108.958513,
+"error":  6160.413501,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2603,
+"time": "Tue May 30 16:28:09 2017 +0200",
+"commit": "29c3034",
+"avg":  167567.495173,
+"error":  7484.574269,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2607,
+"time": "Tue May 30 16:28:31 2017 +0200",
+"commit": "735af26",
+"avg":  166739.477878,
+"error":  7776.987229,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2614,
+"time": "Tue May 30 17:42:44 2017 +0200",
+"commit": "e51d44a",
+"avg":  163989.431143,
+"error":  6913.345765,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2513,
+"time": "Tue May 30 18:39:21 2017 +0200",
+"commit": "b583461",
+"avg":  165256.071158,
+"error":  6913.374505,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2617,
+"time": "Tue May 30 19:42:16 2017 +0200",
+"commit": "36abd04",
+"avg":  169192.954371,
+"error":  10299.594990,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2611,
+"time": "Tue May 30 21:17:03 2017 +0200",
+"commit": "d350348",
+"avg":  168444.703617,
+"error":  9413.906008,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2618,
+"time": "Tue May 30 21:49:16 2017 +0200",
+"commit": "465b320",
+"avg":  167443.948521,
+"error":  7171.101029,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2608,
+"time": "Tue May 30 22:02:12 2017 +0200",
+"commit": "9366528",
+"avg":  171109.766135,
+"error":  10594.809542,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2619,
+"time": "Tue May 30 22:57:50 2017 +0200",
+"commit": "05aeeb5",
+"avg":  168765.044903,
+"error":  8543.499468,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2620,
+"time": "Tue May 30 23:39:05 2017 +0200",
+"commit": "b5d4926",
+"avg":  166874.357663,
+"error":  5926.284387,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2622,
+"time": "Wed May 31 07:47:17 2017 +0200",
+"commit": "99a314f",
+"avg":  166986.633720,
+"error":  7581.206601,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2565,
+"time": "Wed May 31 13:09:46 2017 +0200",
+"commit": "56f8705",
+"avg":  165605.739531,
+"error":  8050.322889,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2627,
+"time": "Wed May 31 14:36:11 2017 +0200",
+"commit": "dac7df2",
+"avg":  173299.070363,
+"error":  12634.402435,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2629,
+"time": "Wed May 31 15:16:36 2017 +0200",
+"commit": "ddd2a1b",
+"avg":  163395.734468,
+"error":  5799.094186,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2630,
+"time": "Wed May 31 15:40:12 2017 +0200",
+"commit": "5d9e31b",
+"avg":  167498.334100,
+"error":  6538.000678,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2638,
+"time": "Thu Jun 1 08:21:57 2017 +0200",
+"commit": "3e0d6d3",
+"avg":  168012.230787,
+"error":  7101.755936,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2521,
+"time": "Thu Jun 1 09:45:48 2017 +0200",
+"commit": "983202b",
+"avg":  164874.579710,
+"error":  5809.865712,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2634,
+"time": "Thu Jun 1 11:14:19 2017 +0200",
+"commit": "1f1b696",
+"avg":  167287.259728,
+"error":  6989.343515,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2632,
+"time": "Thu Jun 1 12:11:22 2017 +0200",
+"commit": "02f765b",
+"avg":  169901.605746,
+"error":  8451.346748,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2643,
+"time": "Thu Jun 1 13:34:22 2017 +0200",
+"commit": "8b814cf",
+"avg":  170626.378548,
+"error":  8900.809009,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2645,
+"time": "Thu Jun 1 16:54:52 2017 +0200",
+"commit": "3a66d73",
+"avg":  171129.759829,
+"error":  10732.806078,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2649,
+"time": "Thu Jun 1 22:26:19 2017 +0200",
+"commit": "ca5b489",
+"avg":  168975.140305,
+"error":  9020.514423,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2528,
+"time": "Fri Jun 2 11:46:41 2017 +0200",
+"commit": "025cfa5",
+"avg":  165901.455786,
+"error":  5995.467964,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2654,
+"time": "Fri Jun 2 15:39:51 2017 +0200",
+"commit": "c59e711",
+"avg":  167057.111713,
+"error":  10451.460337,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2658,
+"time": "Fri Jun 2 16:01:32 2017 +0200",
+"commit": "f7052d4",
+"avg":  170153.977433,
+"error":  7435.916320,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2590,
+"time": "Fri Jun 2 16:05:13 2017 +0200",
+"commit": "a1d7db2",
+"avg":  164328.004825,
+"error":  7143.732087,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2660,
+"time": "Fri Jun 2 19:41:14 2017 +0200",
+"commit": "f1eba24",
+"avg":  165921.093595,
+"error":  6099.006032,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2651,
+"time": "Sat Jun 3 15:01:10 2017 +0200",
+"commit": "fa1f23f",
+"avg":  165657.754193,
+"error":  7660.836466,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2664,
+"time": "Sun Jun 4 10:24:54 2017 +0200",
+"commit": "60171a9",
+"avg":  168921.751068,
+"error":  6984.182049,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2667,
+"time": "Sun Jun 4 10:25:45 2017 +0200",
+"commit": "ebfc2ef",
+"avg":  170174.909600,
+"error":  8041.683471,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2674,
+"time": "Sun Jun 4 11:33:28 2017 +0200",
+"commit": "27a8779",
+"avg":  170480.230301,
+"error":  8223.352210,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2639,
+"time": "Mon Jun 5 01:35:17 2017 +0200",
+"commit": "92b2561",
+"avg":  165075.881065,
+"error":  5955.767989,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2519,
+"time": "Mon Jun 5 09:08:15 2017 +0200",
+"commit": "41085c8",
+"avg":  166488.623105,
+"error":  8551.703221,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2682,
+"time": "Mon Jun 5 09:10:49 2017 +0200",
+"commit": "b8398a3",
+"avg":  171681.597440,
+"error":  8549.271685,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2683,
+"time": "Mon Jun 5 10:57:11 2017 +0200",
+"commit": "a082b9c",
+"avg":  169392.851323,
+"error":  9701.738559,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2688,
+"time": "Mon Jun 5 19:21:56 2017 +0200",
+"commit": "fa9f8b2",
+"avg":  172093.250637,
+"error":  9204.862888,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2692,
+"time": "Tue Jun 6 15:53:19 2017 +0200",
+"commit": "6c20773",
+"avg":  169090.159124,
+"error":  8979.567511,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2695,
+"time": "Wed Jun 7 07:41:59 2017 +0200",
+"commit": "21f6fa2",
+"avg":  168020.205104,
+"error":  8316.626791,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2696,
+"time": "Wed Jun 7 07:43:48 2017 +0200",
+"commit": "36298e7",
+"avg":  167351.931792,
+"error":  6934.228346,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2676,
+"time": "Wed Jun 7 10:52:49 2017 +0200",
+"commit": "a527f3b",
+"avg":  169568.950015,
+"error":  9541.113284,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2700,
+"time": "Wed Jun 7 13:17:36 2017 +0200",
+"commit": "3ad624f",
+"avg":  161814.812436,
+"error":  5945.263759,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2694,
+"time": "Wed Jun 7 14:31:17 2017 +0200",
+"commit": "7e9ea25",
+"avg":  164390.030046,
+"error":  7373.601033,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2690,
+"time": "Wed Jun 7 15:19:50 2017 +0200",
+"commit": "6f8bc43",
+"avg":  163477.685626,
+"error":  6480.872099,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2703,
+"time": "Wed Jun 7 19:39:24 2017 +0200",
+"commit": "5331db9",
+"avg":  167746.484117,
+"error":  9327.163794,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2706,
+"time": "Wed Jun 7 21:34:14 2017 +0200",
+"commit": "60f5b03",
+"avg":  167993.540270,
+"error":  7564.453489,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2708,
+"time": "Wed Jun 7 22:12:37 2017 +0200",
+"commit": "4882762",
+"avg":  166620.008577,
+"error":  9707.892164,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2702,
+"time": "Thu Jun 8 09:42:10 2017 +0200",
+"commit": "b89e00a",
+"avg":  168097.230032,
+"error":  6867.627312,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2710,
+"time": "Thu Jun 8 13:57:30 2017 +0200",
+"commit": "bc9b520",
+"avg":  164961.500431,
+"error":  8196.391900,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2705,
+"time": "Thu Jun 8 13:58:12 2017 +0200",
+"commit": "1f7af24",
+"avg":  162697.607635,
+"error":  7883.873476,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2714,
+"time": "Thu Jun 8 15:23:32 2017 +0200",
+"commit": "70910f9",
+"avg":  163497.062418,
+"error":  9831.437979,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2713,
+"time": "Thu Jun 8 15:35:58 2017 +0200",
+"commit": "e6be996",
+"avg":  168306.856927,
+"error":  8598.241313,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2715,
+"time": "Thu Jun 8 17:02:06 2017 +0200",
+"commit": "0c11376",
+"avg":  169813.437398,
+"error":  8804.262914,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2719,
+"time": "Fri Jun 9 10:26:29 2017 +0200",
+"commit": "b380fb0",
+"avg":  162364.469377,
+"error":  7076.128601,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2721,
+"time": "Fri Jun 9 11:53:00 2017 +0200",
+"commit": "b7632b9",
+"avg":  164558.189934,
+"error":  6886.191390,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2718,
+"time": "Fri Jun 9 11:55:35 2017 +0200",
+"commit": "1d24a1b",
+"avg":  165619.466203,
+"error":  8467.721040,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2720,
+"time": "Fri Jun 9 15:55:06 2017 +0200",
+"commit": "c804620",
+"avg":  165273.575986,
+"error":  7469.831098,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2699,
+"time": "Sat Jun 10 09:54:43 2017 +0200",
+"commit": "b38fa72",
+"avg":  161488.026170,
+"error":  7329.008158,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2726,
+"time": "Sun Jun 11 21:37:55 2017 +0200",
+"commit": "0311967",
+"avg":  166195.446285,
+"error":  6087.162696,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2731,
+"time": "Mon Jun 12 15:56:27 2017 +0200",
+"commit": "cf44c8a",
+"avg":  172105.880064,
+"error":  7380.677901,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2737,
+"time": "Mon Jun 12 18:12:27 2017 +0200",
+"commit": "cee829f",
+"avg":  162067.839464,
+"error":  8048.933332,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2740,
+"time": "Tue Jun 13 09:47:24 2017 +0200",
+"commit": "c9e2e6a",
+"avg":  165955.171691,
+"error":  8858.483878,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2739,
+"time": "Tue Jun 13 09:51:45 2017 +0200",
+"commit": "1d56bb1",
+"avg":  165056.894746,
+"error":  5633.545816,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2735,
+"time": "Tue Jun 13 09:53:01 2017 +0200",
+"commit": "c77213e",
+"avg":  165378.866017,
+"error":  10266.102337,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2722,
+"time": "Tue Jun 13 09:53:53 2017 +0200",
+"commit": "57ee82c",
+"avg":  164784.106530,
+"error":  6626.377740,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2691,
+"time": "Tue Jun 13 15:03:39 2017 +0200",
+"commit": "bf22702",
+"avg":  163439.301371,
+"error":  6510.360581,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2742,
+"time": "Tue Jun 13 15:11:08 2017 +0200",
+"commit": "1ee888a",
+"avg":  170231.853112,
+"error":  7585.359996,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2746,
+"time": "Tue Jun 13 22:10:39 2017 +0200",
+"commit": "243e439",
+"avg":  164237.464109,
+"error":  7484.703735,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2748,
+"time": "Wed Jun 14 09:13:22 2017 +0200",
+"commit": "b90c324",
+"avg":  166474.414300,
+"error":  10434.030233,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2685,
+"time": "Wed Jun 14 12:44:52 2017 +0200",
+"commit": "91cf397",
+"avg":  164331.449255,
+"error":  7210.162858,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2647,
+"time": "Wed Jun 14 12:47:25 2017 +0200",
+"commit": "2520992",
+"avg":  164860.698132,
+"error":  6063.614339,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2752,
+"time": "Wed Jun 14 15:48:25 2017 +0200",
+"commit": "8ddfcaf",
+"avg":  164286.784224,
+"error":  7052.876498,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2758,
+"time": "Thu Jun 15 10:34:35 2017 +0200",
+"commit": "7cf6409",
+"avg":  162484.121579,
+"error":  6180.142203,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2764,
+"time": "Thu Jun 15 13:17:06 2017 +0200",
+"commit": "e1564d4",
+"avg":  167484.564376,
+"error":  8743.321477,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2773,
+"time": "Thu Jun 15 20:09:47 2017 +0200",
+"commit": "ce30e26",
+"avg":  168987.131557,
+"error":  8254.522598,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2755,
+"time": "Thu Jun 15 20:11:02 2017 +0200",
+"commit": "b0f6d04",
+"avg":  169772.314086,
+"error":  10689.875463,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2744,
+"time": "Thu Jun 15 21:17:17 2017 +0200",
+"commit": "21b3149",
+"avg":  161065.733550,
+"error":  6291.652768,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2766,
+"time": "Sun Jun 18 17:48:42 2017 +0200",
+"commit": "3330992",
+"avg":  164704.577045,
+"error":  7449.954025,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2777,
+"time": "Mon Jun 19 10:57:14 2017 +0200",
+"commit": "888744f",
+"avg":  171044.743802,
+"error":  8933.023745,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2779,
+"time": "Mon Jun 19 13:17:19 2017 +0200",
+"commit": "3242e86",
+"avg":  163927.947543,
+"error":  6481.777350,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2776,
+"time": "Mon Jun 19 14:58:23 2017 +0200",
+"commit": "6ade705",
+"avg":  164347.187894,
+"error":  8676.861194,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2768,
+"time": "Tue Jun 20 09:05:17 2017 +0200",
+"commit": "ea582a7",
+"avg":  162431.410880,
+"error":  10140.490655,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2756,
+"time": "Tue Jun 20 09:06:03 2017 +0200",
+"commit": "eddf030",
+"avg":  165483.566926,
+"error":  7443.779492,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2754,
+"time": "Tue Jun 20 09:18:14 2017 +0200",
+"commit": "c792e95",
+"avg":  164865.521121,
+"error":  5886.809313,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2784,
+"time": "Tue Jun 20 14:07:40 2017 +0200",
+"commit": "1d05796",
+"avg":  167959.056797,
+"error":  8532.755474,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2787,
+"time": "Thu Jun 22 14:43:00 2017 +0200",
+"commit": "7381e9d",
+"avg":  167094.388199,
+"error":  9857.469305,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2762,
+"time": "Fri Jun 23 09:38:22 2017 +0200",
+"commit": "f77e8de",
+"avg":  166240.316915,
+"error":  8634.338121,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2701,
+"time": "Fri Jun 23 11:02:13 2017 +0200",
+"commit": "0109fef",
+"avg":  161631.818706,
+"error":  7356.253493,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2800,
+"time": "Fri Jun 23 18:22:51 2017 +0200",
+"commit": "82767d1",
+"avg":  165937.265094,
+"error":  5458.093031,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2786,
+"time": "Fri Jun 23 18:23:24 2017 +0200",
+"commit": "73618f8",
+"avg":  164622.826269,
+"error":  6791.512963,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2785,
+"time": "Fri Jun 23 18:38:38 2017 +0200",
+"commit": "76e7bb5",
+"avg":  163765.346949,
+"error":  4996.358427,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2798,
+"time": "Fri Jun 23 19:33:55 2017 +0200",
+"commit": "9513ed2",
+"avg":  168700.207468,
+"error":  8504.775261,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2790,
+"time": "Fri Jun 23 19:45:34 2017 +0200",
+"commit": "94e45f4",
+"avg":  172245.318537,
+"error":  7624.440056,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2716,
+"time": "Fri Jun 23 20:24:36 2017 +0200",
+"commit": "d1f7968",
+"avg":  172924.013657,
+"error":  11449.156610,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2802,
+"time": "Sat Jun 24 11:30:29 2017 +0200",
+"commit": "124778f",
+"avg":  164960.810542,
+"error":  6227.707006,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2801,
+"time": "Sat Jun 24 12:58:19 2017 +0200",
+"commit": "1a959c3",
+"avg":  163859.335429,
+"error":  6707.327648,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2804,
+"time": "Sat Jun 24 14:19:49 2017 +0200",
+"commit": "d39dfc0",
+"avg":  165016.849839,
+"error":  7191.469645,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2805,
+"time": "Sat Jun 24 16:10:49 2017 +0200",
+"commit": "6d910bf",
+"avg":  163044.725357,
+"error":  7103.703816,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2781,
+"time": "Sun Jun 25 20:21:15 2017 +0200",
+"commit": "45e4030",
+"avg":  171259.644322,
+"error":  9156.847977,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2810,
+"time": "Mon Jun 26 09:38:40 2017 +0200",
+"commit": "618f826",
+"avg":  161391.015904,
+"error":  6308.635063,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2765,
+"time": "Tue Jun 27 11:37:23 2017 +0200",
+"commit": "04ac312",
+"avg":  167368.639758,
+"error":  8888.122700,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2763,
+"time": "Tue Jun 27 12:53:26 2017 +0200",
+"commit": "fed30e1",
+"avg":  163354.974007,
+"error":  7018.124421,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2814,
+"time": "Tue Jun 27 12:56:49 2017 +0200",
+"commit": "bf1082d",
+"avg":  163693.875976,
+"error":  5991.948165,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2821,
+"time": "Fri Jun 30 20:23:33 2017 +0200",
+"commit": "3bfe849",
+"avg":  164491.560246,
+"error":  6250.750322,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2824,
+"time": "Mon Jul 3 09:49:24 2017 +0200",
+"commit": "e52095a",
+"avg":  167021.358507,
+"error":  8303.848656,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2825,
+"time": "Tue Jul 4 15:21:55 2017 +0200",
+"commit": "0a7e6c9",
+"avg":  163155.614726,
+"error":  6210.407282,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2832,
+"time": "Wed Jul 5 12:57:40 2017 +0200",
+"commit": "7820b5f",
+"avg":  164100.098062,
+"error":  8343.789367,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2836,
+"time": "Thu Jul 6 14:30:17 2017 +0200",
+"commit": "962bc82",
+"avg":  162971.310919,
+"error":  7333.654103,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2835,
+"time": "Thu Jul 6 14:32:45 2017 +0200",
+"commit": "7b39007",
+"avg":  162932.121851,
+"error":  7143.778657,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2834,
+"time": "Thu Jul 6 14:53:50 2017 +0200",
+"commit": "26b852a",
+"avg":  167684.136874,
+"error":  10237.264309,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2831,
+"time": "Thu Jul 6 15:03:27 2017 +0200",
+"commit": "d8b3e8e",
+"avg":  168016.836526,
+"error":  10929.673283,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2839,
+"time": "Thu Jul 6 16:26:53 2017 +0200",
+"commit": "dd517c5",
+"avg":  166463.600711,
+"error":  9864.335939,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2838,
+"time": "Thu Jul 6 16:27:03 2017 +0200",
+"commit": "a9b7beb",
+"avg":  165172.963271,
+"error":  5772.326101,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2842,
+"time": "Sat Jul 8 21:30:53 2017 +0200",
+"commit": "1392444",
+"avg":  169972.530915,
+"error":  8161.596650,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2826,
+"time": "Sun Jul 9 19:04:26 2017 +0200",
+"commit": "bae3df2",
+"avg":  163392.348764,
+"error":  6800.216354,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2820,
+"time": "Sun Jul 9 19:05:20 2017 +0200",
+"commit": "23e64a3",
+"avg":  166487.956826,
+"error":  7539.340654,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2813,
+"time": "Mon Jul 10 09:37:14 2017 +0200",
+"commit": "b791979",
+"avg":  165951.447881,
+"error":  7178.842908,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2837,
+"time": "Mon Jul 10 09:37:46 2017 +0200",
+"commit": "b8edc55",
+"avg":  166383.200052,
+"error":  6327.326685,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2829,
+"time": "Mon Jul 10 14:52:47 2017 +0200",
+"commit": "8a93f6e",
+"avg":  166615.021270,
+"error":  7365.875576,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit_cache.scala",
+"pr":  2843,
+"time": "Mon Jul 10 15:30:41 2017 +0200",
+"commit": "1c9552b",
+"avg":  163877.704648,
+"error":  6393.134644,
+"confidence": "99.9%"
+}
+]
