@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var LineChart = require("./react-chartjs").Line;
 var Redux = require('redux');
 var ReactRedux = require('react-redux');
-window.Bench = Bench || {};
+Bench = Bench || {};
 
 function prepareData(key) {
   var index = 0;
