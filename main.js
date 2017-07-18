@@ -50,24 +50,16 @@ function actionDeselect(item) {
   return { type: 'DESELECT', item: item };
 }
 
-function sortList(charts) {
-  return charts.sort(function (a, b) {
-    if (a.name < b.name) return -1;
-    if (a.name > b.name) return 1;
-    return 0;
-  });
-}
-
 function reducer(state, action) {
   var charts = [];
   switch (action.type) {
     case 'SELECT':
-      charts = state.charts.map(function (item) { return item; });
+      charts = state.charts.map(function (item) { return item; });  // must create new array for Redux to work
       charts.push(action.item);
-      return { charts: sortList(charts) };
+      return { charts: charts };
     case 'DESELECT':
-      charts = state.charts.filter(function (item) { return item.name !== action.item.name });
-      return { charts: sortList(charts) };
+      charts = state.charts.filter(function (item) { return item.name !== action.item.name }); // same as above
+      return { charts: charts };
     default:
       return state;
   }
