@@ -64,6 +64,10 @@ test() {
   parse && echo "tests/implicit_cache.scala, $pr, $time, $commit, $avg, $error, $confidence, $(date)" >> history.csv
 }
 
+# compile current project
+sbt pack
+
+# schedule test for all pull requests
 LAST_COMMIT=$(cat $PROG_HOME/last-commit)
 
 cd $PROG_HOME/dotty
