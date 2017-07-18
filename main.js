@@ -166,25 +166,13 @@ var ChoiceList = ReactRedux.connect(function (state) { return { charts: state.ch
   { select: actionSelect, deselect: actionDeselect })(_ChoiceList);
 
 function initialState() {
-  var charts = [];
-
-  if (window.localStorage && window.localStorage['dotty-benchmark-v2'])
-    return JSON.parse(window.localStorage['dotty-benchmark-v2']);
-  else
-    return { charts: allCharts().slice(0, 11) };
+  return { charts: allCharts() };
 }
 
 $.get("data/dataset.json", function (dataset) {
   Bench.dataset = dataset;
 
   var store = Redux.createStore(reducer, initialState());
-
-  // persist state to localStorage
-  store.subscribe(function () {
-    if (window.localStorage)
-      window.localStorage['dotty-benchmark-v2'] = JSON.stringify(store.getState());
-  })
-
 
   ReactDOM.render(
     <ReactRedux.Provider store={store}><ChartList /></ReactRedux.Provider>,
