@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-DEST_BASE_DIR="../_site/"
-
-# build data
-mkdir -p web/data
-cp bin/charts.js web/data/
-bin/csv2json history.csv > web/data/dataset.json
-
 # build web
 cd web
 git fetch origin
@@ -14,13 +7,19 @@ git merge origin/master
 npm run build
 
 # copy resource
-cp index.html $DEST_BASE_DIR
-cp bundle.js $DEST_BASE_DIR
-cp -r css $DEST_BASE_DIR
-cp -r data $DEST_BASE_DIR
+cd ..
+cp web/index.html _site/
+cp web/bundle.js _site/
+cp -r web/css _site/
+
+# build data
+cd ..
+mkdir -p _site/data
+cp bin/charts.js _site/data/charts.js
+bin/csv2json history.csv > _site/data/dataset.json
 
 # push to github
-cd $DEST_BASE_DIR
+cd _site
 git add .
 git commit -m "update site"
 git push origin gh-pages:gh-pages
