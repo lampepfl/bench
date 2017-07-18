@@ -9,7 +9,7 @@ Bench.charts = [
     {
         "key": "projects/dotty",
         "name": "Dotty",
-        "url": "https://github.com/liufengyun/bench/blob/master/projects/dotty"
+        "url": "https://github.com/liufengyun/bench/blob/master/projects"
     }
 
 ]
