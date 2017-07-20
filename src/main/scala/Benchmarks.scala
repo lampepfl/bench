@@ -25,10 +25,10 @@ object Bench {
     val opts = new OptionsBuilder()
                .jvmArgsPrepend(s"-Xbootclasspath/a:$libs")
                .mode(Mode.AverageTime)
-               .timeUnit(TimeUnit.MICROSECONDS)
-               .forks(5)
+               .timeUnit(TimeUnit.MILLISECONDS)
+               .forks(1)
                .warmupIterations(5)
-               .measurementIterations(10)
+               .measurementIterations(20)
                .resultFormat(ResultFormatType.CSV)
                .result("result.csv")
                .build
