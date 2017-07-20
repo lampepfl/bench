@@ -2,13 +2,15 @@
 
 set -e
 
-# usage: schedule from  [to = HEAD]
+# usage: schedule [-f COMMIT]  [-t COMMIT]
+#
+# -f COMMIT    from commit (excluded), default to last tested commit in history.csv
+# -t COMMIT    to commit, default to HEAD
 #
 # e.g.
-#     schedule a37d233
-#     schedule a37d233 4c8a950
-#
-# note: from is excluded
+#     schedule
+#     schedule -f a37d233
+#     schedule -f a37d233 -t 4c8a950
 
 if [ -z "$PROG_HOME" ] ; then
   ## resolve links - $0 may be a link to PROG_HOME
@@ -72,17 +74,41 @@ test() {
   parse && echo "tests/implicit_cache.scala, $pr, $time, $commit, $avg, $error, $confidence, $(date)" >> history.csv
 }
 
+
+# parse command line params
+while getopts "f:t:" opt; do
+ case $opt in
+    f)
+      FROM_COMMIT=$OPTARG
+      ;;
+    t)
+      TILL_COMMIT=$OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
+shift $((OPTIND-1))
+
+if [[ -z $FROM_COMMIT ]]; then
+  FROM_COMMIT=$(tail -n 1 history.csv | cut -d, -f4 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+  echo "Start commit defaults to $FROM_COMMIT"
+fi
+
+if [[ -z $TILL_COMMIT ]]; then
+  TILL_COMMIT="HEAD"
+  echo "End commit defaults to $TILL_COMMIT"
+fi
+
 # compile current project
 sbt pack
-
-# schedule test for all pull requests
-LAST_COMMIT="$1"
-
-if [[ -z $1 ]]; then
-   TILL_COMMIT="HEAD"
-else
-   TILL_COMMIT="$1"
-fi
 
 cd $PROG_HOME/dotty
 git reset --hard origin/master
@@ -90,7 +116,7 @@ git fetch origin
 git merge origin/master
 git submodule init
 git submodule update
-merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' $LAST_COMMIT..$TILL_COMMIT --reverse)
+merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' $FROM_COMMIT..$TILL_COMMIT --reverse)
 
 while IFS= read -r commit_line
 do
