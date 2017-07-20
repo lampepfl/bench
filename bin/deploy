@@ -13,7 +13,6 @@ cp web/bundle.js _site/
 cp -r web/css _site/
 
 # build data
-cd ..
 mkdir -p _site/data
 cp bin/charts.js _site/data/charts.js
 bin/csv2json history.csv > _site/data/dataset.json
