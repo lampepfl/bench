@@ -5378,4 +5378,454 @@
 "error":  251396.138189,
 "confidence": "99.9%"
 }
+,
+{
+"key": "projects/dotty",
+"pr":  2824,
+"time": "Mon Jul 3 09:49:24 2017 +0200",
+"commit": "e52095a",
+"avg":  23643243.417000,
+"error":  940708.299769,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2825,
+"time": "Tue Jul 4 15:21:55 2017 +0200",
+"commit": "0a7e6c9",
+"avg":  23636962.727000,
+"error":  496025.702559,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2832,
+"time": "Wed Jul 5 12:57:40 2017 +0200",
+"commit": "7820b5f",
+"avg":  23526275.603100,
+"error":  604061.001964,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2836,
+"time": "Thu Jul 6 14:30:17 2017 +0200",
+"commit": "962bc82",
+"avg":  24060093.052800,
+"error":  664503.058519,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2835,
+"time": "Thu Jul 6 14:32:45 2017 +0200",
+"commit": "7b39007",
+"avg":  23703473.518200,
+"error":  232828.566429,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2834,
+"time": "Thu Jul 6 14:53:50 2017 +0200",
+"commit": "26b852a",
+"avg":  24231129.781500,
+"error":  771569.764708,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2831,
+"time": "Thu Jul 6 15:03:27 2017 +0200",
+"commit": "d8b3e8e",
+"avg":  24062434.543900,
+"error":  793494.116256,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2839,
+"time": "Thu Jul 6 16:26:53 2017 +0200",
+"commit": "dd517c5",
+"avg":  22695105.359600,
+"error":  298702.803404,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2838,
+"time": "Thu Jul 6 16:27:03 2017 +0200",
+"commit": "a9b7beb",
+"avg":  24112030.933900,
+"error":  961102.005502,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2842,
+"time": "Sat Jul 8 21:30:53 2017 +0200",
+"commit": "1392444",
+"avg":  23481094.258400,
+"error":  694655.198630,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2826,
+"time": "Sun Jul 9 19:04:26 2017 +0200",
+"commit": "bae3df2",
+"avg":  22874746.950500,
+"error":  99233.855415,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2820,
+"time": "Sun Jul 9 19:05:20 2017 +0200",
+"commit": "23e64a3",
+"avg":  23573678.596800,
+"error":  633237.976808,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2813,
+"time": "Mon Jul 10 09:37:14 2017 +0200",
+"commit": "b791979",
+"avg":  23946466.874300,
+"error":  820416.342833,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2837,
+"time": "Mon Jul 10 09:37:46 2017 +0200",
+"commit": "b8edc55",
+"avg":  23656066.820900,
+"error":  764183.895426,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2829,
+"time": "Mon Jul 10 14:52:47 2017 +0200",
+"commit": "8a93f6e",
+"avg":  23175580.210700,
+"error":  646313.288093,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2843,
+"time": "Mon Jul 10 15:30:41 2017 +0200",
+"commit": "1c9552b",
+"avg":  23005079.584800,
+"error":  648912.779404,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2841,
+"time": "Mon Jul 10 16:29:20 2017 +0200",
+"commit": "8a42e27",
+"avg":  23189064.117100,
+"error":  732914.110406,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2819,
+"time": "Tue Jul 11 12:05:41 2017 +0200",
+"commit": "f14e289",
+"avg":  22722178.634100,
+"error":  740325.588266,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2848,
+"time": "Tue Jul 11 14:04:50 2017 +0200",
+"commit": "2407a24",
+"avg":  22625138.098500,
+"error":  809165.133050,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2830,
+"time": "Tue Jul 11 14:54:45 2017 +0200",
+"commit": "c6fb9cf",
+"avg":  22489698.057700,
+"error":  525018.978683,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2849,
+"time": "Tue Jul 11 15:31:29 2017 +0200",
+"commit": "1e589ac",
+"avg":  22791818.954900,
+"error":  725251.710107,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2847,
+"time": "Tue Jul 11 15:35:09 2017 +0200",
+"commit": "54d7089",
+"avg":  22784489.704000,
+"error":  247047.616338,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2852,
+"time": "Tue Jul 11 19:17:45 2017 +0200",
+"commit": "5e8a387",
+"avg":  23527032.456000,
+"error":  872669.628071,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2855,
+"time": "Wed Jul 12 10:14:02 2017 +0200",
+"commit": "4f4ed97",
+"avg":  23974231.549500,
+"error":  251976.162978,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2844,
+"time": "Wed Jul 12 13:32:39 2017 +0200",
+"commit": "483b771",
+"avg":  23530972.405100,
+"error":  707294.273255,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2854,
+"time": "Wed Jul 12 13:39:09 2017 +0200",
+"commit": "f6c1461",
+"avg":  22881738.679400,
+"error":  711514.977773,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2859,
+"time": "Wed Jul 12 16:53:11 2017 +0200",
+"commit": "18b69a5",
+"avg":  23593876.532800,
+"error":  643081.864187,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2750,
+"time": "Wed Jul 12 17:20:54 2017 +0200",
+"commit": "5e05d3f",
+"avg":  23040584.960700,
+"error":  645195.103996,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2865,
+"time": "Thu Jul 13 17:05:30 2017 +0200",
+"commit": "707ff86",
+"avg":  23246598.080900,
+"error":  710036.113145,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2861,
+"time": "Thu Jul 13 21:29:05 2017 +0200",
+"commit": "c933e0d",
+"avg":  22567070.047200,
+"error":  756116.828305,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2860,
+"time": "Thu Jul 13 23:18:13 2017 +0200",
+"commit": "5ba8ea3",
+"avg":  23450066.061900,
+"error":  388291.222045,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2870,
+"time": "Sat Jul 15 10:22:12 2017 +0200",
+"commit": "b12326c",
+"avg":  23141471.316800,
+"error":  148446.832618,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2868,
+"time": "Sat Jul 15 11:49:27 2017 +0200",
+"commit": "9e1ed7a",
+"avg":  22555243.092200,
+"error":  231978.260878,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2872,
+"time": "Sat Jul 15 11:49:46 2017 +0200",
+"commit": "0734ce9",
+"avg":  23056125.564700,
+"error":  672259.793280,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2476,
+"time": "Sun Jul 16 11:19:16 2017 +0200",
+"commit": "76df105",
+"avg":  23759187.383000,
+"error":  712013.781947,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2880,
+"time": "Mon Jul 17 18:41:01 2017 +0200",
+"commit": "26a697b",
+"avg":  23753602.427800,
+"error":  144295.267489,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2876,
+"time": "Tue Jul 18 13:19:57 2017 +0200",
+"commit": "b3dd94f",
+"avg":  23664436.450800,
+"error":  809888.782741,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2875,
+"time": "Tue Jul 18 14:20:22 2017 +0200",
+"commit": "3ce184f",
+"avg":  23528648.805800,
+"error":  758716.220572,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2882,
+"time": "Tue Jul 18 15:27:38 2017 +0200",
+"commit": "775e3db",
+"avg":  23396555.232500,
+"error":  970619.394435,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2877,
+"time": "Tue Jul 18 16:52:49 2017 +0200",
+"commit": "717bd99",
+"avg":  23547795.463000,
+"error":  758127.713714,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2751,
+"time": "Tue Jul 18 17:02:01 2017 +0200",
+"commit": "b989415",
+"avg":  23101428.489700,
+"error":  1097543.817891,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2399,
+"time": "Tue Jul 18 20:31:32 2017 +0200",
+"commit": "d121ad5",
+"avg":  23200166.408500,
+"error":  724517.994349,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2889,
+"time": "Wed Jul 19 18:57:41 2017 +0200",
+"commit": "a33258e",
+"avg":  23192597.681600,
+"error":  1032396.034835,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2891,
+"time": "Wed Jul 19 21:12:42 2017 +0200",
+"commit": "9ac2d67",
+"avg":  23518870.068700,
+"error":  777398.125020,
+"confidence": "99.9%"
+}
+,
+{
+"key": "projects/dotty",
+"pr":  2886,
+"time": "Wed Jul 19 22:08:53 2017 +0200",
+"commit": "9b99107",
+"avg":  23216650.756500,
+"error":  591455.312592,
+"confidence": "99.9%"
+}
 ]
