@@ -43,14 +43,11 @@ measure() {
 
   $PROG_HOME/target/pack/bin/bench "$@" -d $PROG_HOME/out | tee output.txt
 
-  res=$(cat result.csv | grep "dotty.tools.benchmarks.Worker.compile")
-  avg=$(echo $res | cut -d',' -f5)
-  error=$(echo $res | cut -d',' -f6)
-
   runs=$(cat output.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/' | tr '\n' ' ')
   warmups=$(cat output.txt | grep -E '^# Warmup Iteration' | sed -r 's/^# Warmup Iteration.*: ([0-9\.]+).*$/\1/' | tr '\n' ' ')
+  median=$(echo $runs | datamash mean 1)
 
-  echo "$key, $pr, $time, $commit, $avg, $error, $(date), $warmups, $runs" >> history.csv
+  echo "$key, $pr, $time, $commit, $median, $(date), $warmups, $runs" >> history.csv
 }
 
 test() {
@@ -79,6 +76,7 @@ test() {
 
   # microbenchmarks
   measure "tests/implicit_cache.scala" $PROG_HOME/tests/implicit_cache.scala
+  measure "tests/implicit-scope-loop.scala" $PROG_HOME/tests/implicit-scope-loop.scala
 }
 
 
