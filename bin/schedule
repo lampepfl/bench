@@ -37,18 +37,27 @@ if [ -z "$PROG_HOME" ] ; then
   cd "$saveddir"
 fi
 
-parse() {
-  confidence=$(cat result.csv | grep "Score Error" | cut -d',' -f6 | grep -o '[0-9]\+.[0-9]\+%')
+measure() {
+  key=$1
+  shift
+
+  $PROG_HOME/target/pack/bin/bench "$@" -d $PROG_HOME/out | tee output.txt
+
   res=$(cat result.csv | grep "dotty.tools.benchmarks.Worker.compile")
   avg=$(echo $res | cut -d',' -f5)
   error=$(echo $res | cut -d',' -f6)
+
+  runs=$(cat log.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/')
+  warmups=$(cat log.txt | grep -E '^# Warmup Iteration' | sed -r 's/^# Warmup Iteration.*: ([0-9\.]+).*$/\1/')
+
+  echo "$key, $pr, $time, $commit, $avg, $error, $(date), $warmups, $runs" >> history.csv
 }
 
 test() {
-  local commit=$1
-  local author=$2
-  local time=$3
-  local pr=$4
+  commit=$1
+  author=$2
+  time=$3
+  pr=$4
 
   # prepare dotty source code
   cd $PROG_HOME/dotty
@@ -66,12 +75,10 @@ test() {
   mkdir -p $PROG_HOME/out
 
   # Dotty Project
-  $PROG_HOME/target/pack/bin/bench $(find $PROG_HOME/projects/dotty/compiler/src/dotty -name *.scala) -d $PROG_HOME/out
-  parse && echo "projects/dotty, $pr, $time, $commit, $avg, $error, $confidence, $(date)" >> history.csv
+  measure "projects/dotty" $(find $PROG_HOME/projects/dotty/compiler/src/dotty -name *.scala)
 
   # microbenchmarks
-  $PROG_HOME/target/pack/bin/bench $PROG_HOME/tests/implicit_cache.scala -d $PROG_HOME/out
-  parse && echo "tests/implicit_cache.scala, $pr, $time, $commit, $avg, $error, $confidence, $(date)" >> history.csv
+  measure "tests/implicit_cache.scala" $PROG_HOME/tests/implicit_cache.scala
 }
 
 

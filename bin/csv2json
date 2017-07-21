@@ -12,12 +12,11 @@ num_field() {
 }
 
 obj_echo() {
-  IFS=, read key pr time commit avg error confidence test_time <<< "$1"
+  IFS=, read key pr time commit avg error test_time warmups runs <<< "$1"
 
   trim_key=$(trim "$key")
   trim_time=$(trim "$time")
   trim_commit=$(trim "$commit")
-  trim_confid=$(trim "$confidence")
 
   echo "{"
     str_field "key" "$trim_key"
@@ -26,7 +25,8 @@ obj_echo() {
     str_field "commit" "$trim_commit"
     num_field "avg" "$avg"
     num_field "error" "$error"
-    echo "\"confidence\": \"$trim_confid\""
+    echo "\"warmups\": [$(echo $warmups | sed -r 's/ +/, /g')],"
+    echo "\"runs\": [$(echo $runs | sed -r 's/ +/, /g')]"
   echo "}"
 }
 
