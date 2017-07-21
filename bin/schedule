@@ -115,7 +115,7 @@ if [[ -z $TILL_COMMIT ]]; then
 fi
 
 # compile current project
-sbt pack
+sbt jmh:compile pack
 
 cd $PROG_HOME/dotty
 git reset --hard origin/master
