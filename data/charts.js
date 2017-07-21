@@ -10,8 +10,12 @@ Bench.charts = [
         "key": "projects/dotty",
         "name": "dotty",
         "url": "https://github.com/liufengyun/bench/blob/master/projects"
+    },
+    {
+        "key": "tests/implicit-scope-loop.scala",
+        "name": "implicit scope loop",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/implicit-scope-loop.scala"
     }
-
 ]
 
 Bench.pr_base_url = "https://github.com/lampepfl/dotty/pull/"
