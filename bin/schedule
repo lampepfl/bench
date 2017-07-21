@@ -47,8 +47,8 @@ measure() {
   avg=$(echo $res | cut -d',' -f5)
   error=$(echo $res | cut -d',' -f6)
 
-  runs=$(cat log.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/')
-  warmups=$(cat log.txt | grep -E '^# Warmup Iteration' | sed -r 's/^# Warmup Iteration.*: ([0-9\.]+).*$/\1/')
+  runs=$(cat output.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/' | tr '\n' ' ')
+  warmups=$(cat output.txt | grep -E '^# Warmup Iteration' | sed -r 's/^# Warmup Iteration.*: ([0-9\.]+).*$/\1/' | tr '\n' ' ')
 
   echo "$key, $pr, $time, $commit, $avg, $error, $(date), $warmups, $runs" >> history.csv
 }
