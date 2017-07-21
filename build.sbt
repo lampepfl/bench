@@ -1,5 +1,9 @@
 scalaVersion := "0.2.0-RC1"
 
+
+// avoid incident errors in testing
+parallelExecution := false
+
 packSettings
 enablePlugins(JmhPlugin)
 
