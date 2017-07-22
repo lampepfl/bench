@@ -8658,4 +8658,184 @@
 "error":  18.612945,
 "confidence": "99.9%"
 }
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2868,
+"time": "Sat Jul 15 11:49:27 2017 +0200",
+"commit": "9e1ed7a",
+"avg":  281.948331,
+"error":  20.869028,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2872,
+"time": "Sat Jul 15 11:49:46 2017 +0200",
+"commit": "0734ce9",
+"avg":  281.173504,
+"error":  31.261559,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2476,
+"time": "Sun Jul 16 11:19:16 2017 +0200",
+"commit": "76df105",
+"avg":  280.378837,
+"error":  27.002372,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2880,
+"time": "Mon Jul 17 18:41:01 2017 +0200",
+"commit": "26a697b",
+"avg":  300.854603,
+"error":  33.426724,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2876,
+"time": "Tue Jul 18 13:19:57 2017 +0200",
+"commit": "b3dd94f",
+"avg":  282.634439,
+"error":  24.898167,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2875,
+"time": "Tue Jul 18 14:20:22 2017 +0200",
+"commit": "3ce184f",
+"avg":  283.754975,
+"error":  31.373367,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2882,
+"time": "Tue Jul 18 15:27:38 2017 +0200",
+"commit": "775e3db",
+"avg":  281.208748,
+"error":  40.739685,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2877,
+"time": "Tue Jul 18 16:52:49 2017 +0200",
+"commit": "717bd99",
+"avg":  305.951531,
+"error":  34.606252,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2751,
+"time": "Tue Jul 18 17:02:01 2017 +0200",
+"commit": "b989415",
+"avg":  290.149531,
+"error":  43.056450,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2399,
+"time": "Tue Jul 18 20:31:32 2017 +0200",
+"commit": "d121ad5",
+"avg":  284.309624,
+"error":  29.224374,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2889,
+"time": "Wed Jul 19 18:57:41 2017 +0200",
+"commit": "a33258e",
+"avg":  278.845053,
+"error":  28.146842,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2891,
+"time": "Wed Jul 19 21:12:42 2017 +0200",
+"commit": "9ac2d67",
+"avg":  277.062616,
+"error":  25.311456,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2886,
+"time": "Wed Jul 19 22:08:53 2017 +0200",
+"commit": "9b99107",
+"avg":  277.677460,
+"error":  23.059337,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2892,
+"time": "Thu Jul 20 10:13:32 2017 +0200",
+"commit": "1a4060c",
+"avg":  287.854238,
+"error":  31.437485,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2890,
+"time": "Thu Jul 20 11:10:06 2017 +0200",
+"commit": "56933ec",
+"avg":  289.533968,
+"error":  30.664442,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2893,
+"time": "Thu Jul 20 14:33:33 2017 +0200",
+"commit": "1ac0b4a",
+"avg":  306.193441,
+"error":  27.844060,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2885,
+"time": "Thu Jul 20 18:43:31 2017 +0200",
+"commit": "4f60767",
+"avg":  294.206836,
+"error":  42.330913,
+"confidence": "99.9%"
+}
+,
+{
+"key": "tests/implicit-scope-loop.scala",
+"pr":  2900,
+"time": "Fri Jul 21 15:52:21 2017 +0200",
+"commit": "d7faafa",
+"avg":  290.070713,
+"error":  39.905196,
+"confidence": "99.9%"
+}
 ]
