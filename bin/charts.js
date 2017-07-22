@@ -7,6 +7,11 @@ Bench.charts = [
         "url": "https://github.com/liufengyun/bench/blob/master/tests/implicit_cache.scala"
     },
     {
+        "key": "tests/implicit-scope-loop.scala",
+        "name": "implicit scope loop",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/implicit-scope-loop.scala"
+    },
+    {
         "key": "projects/dotty",
         "name": "dotty",
         "url": "https://github.com/liufengyun/bench/blob/master/projects"
