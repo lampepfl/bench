@@ -27,7 +27,7 @@ object Bench {
                .mode(Mode.AverageTime)
                .timeUnit(TimeUnit.MILLISECONDS)
                .forks(1)
-               .warmupIterations(5)
+               .warmupIterations(10)
                .measurementIterations(20)
                .build
 
