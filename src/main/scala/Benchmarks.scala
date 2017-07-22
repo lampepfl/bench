@@ -25,7 +25,7 @@ object Bench {
     val opts = new OptionsBuilder()
                .jvmArgsPrepend(s"-Xbootclasspath/a:$libs")
                .mode(Mode.AverageTime)
-               .timeUnit(TimeUnit.MICROSECONDS)
+               .timeUnit(TimeUnit.MILLISECONDS)
                .forks(1)
                .warmupIterations(10)
                .measurementIterations(20)
