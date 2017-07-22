@@ -46,8 +46,8 @@ measure() {
   runs=$(cat output.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/')
   warmups=$(cat output.txt | grep -E '^# Warmup Iteration' | sed -r 's/^# Warmup Iteration.*: ([0-9\.]+).*$/\1/' | tr '\n' ' ')
 
-  median=$(echo $runs | datamash median 1)
-  runs_flat=$(echo $runs | tr '\n' ' ')
+  median=$(echo "$runs" | datamash median 1) # datamash work on columns
+  runs_flat=$(echo "$runs" | tr '\n' ' ')
 
   echo "$key, $pr, $time, $commit, $median, $(date), $warmups, $runs_flat" >> history.csv
 }
