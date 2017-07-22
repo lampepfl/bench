@@ -147,9 +147,9 @@ do
 
     if ((skip_counter == SKIP)); then
       test "$commit" "$author" "$time" "$pr"
-      ((skip_counter = 0))
+      skip_counter=0
     else
-      ((skip_counter += 1))
+      skip_counter=$(expr $skip_counter + 1)
     fi
   fi
 done <<< "$merge_commits"
