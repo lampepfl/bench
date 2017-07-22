@@ -14,4 +14,5 @@ Benchmark Dotty
 - NodeJS
 - git
 - sbt
+- [ghi](https://github.com/stephencelis/ghi)
 

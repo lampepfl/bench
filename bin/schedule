@@ -13,6 +13,12 @@ set -e
 #     schedule -f a37d233
 #     schedule -f a37d233 -t 4c8a950
 
+function report {
+  ghi comment -m "benchmark failed" 4
+}
+
+trap report ERR
+
 if [ -z "$PROG_HOME" ] ; then
   ## resolve links - $0 may be a link to PROG_HOME
   PRG="$0"
