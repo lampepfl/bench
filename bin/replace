@@ -34,9 +34,10 @@ find_lib () {
   echo $lib
 }
 
-cd $PROG_HOME/dotty && sbt "dotty/clean" "dotty/package" \
-                           "dotty-interfaces/clean" "dotty-interfaces/package" \
-                           "dotty-library/clean"  "dotty-library/package"
+cd $PROG_HOME/dotty
+sbt "dotty/clean" "dotty/package"
+sbt "dotty-interfaces/clean" "dotty-interfaces/package"
+sbt "dotty-library/clean"  "dotty-library/package"
 
 DOTTY_COMP=$(find_lib $PROG_HOME/dotty/compiler/target/scala-2.11 "*dotty-compiler*.jar")
 DOTTY_INTF=$(find_lib $PROG_HOME/dotty/interfaces/target "*dotty-interfaces*.jar")
