@@ -120,7 +120,7 @@ var ChartComponent = React.createClass({
           }.bind(this),
           label: function (point) {
             var item = getItem(point.datasetIndex, point.index);
-            return point.yLabel + "ms";
+            return numberWithCommas(point.yLabel) + "ms";
           }
         },
         mode: "index",
