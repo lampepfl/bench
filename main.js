@@ -17,6 +17,16 @@ function prepareData(key) {
   }
 
   var points = Bench.dataset.reduce(accumulate, []);
+  var median = {
+      label: "median",
+      data: points,
+      fill: false,
+      borderColor: "rgba(100,100,100,0.2)",
+      backgroundColor: "yellow",
+      pointBorderColor: "rgba(220,220,220,1)",
+      pointBackgroundColor: "yellow",
+      pointBorderWidth: 1
+  }
 
   var labels = [];
   for (var i = 0; i < points.length; i++) {
@@ -26,18 +36,31 @@ function prepareData(key) {
     labels.push(day + "/" + month);
   }
 
+  index = 0
+  var minPoints = Bench.dataset.reduce(function(acc, item) {
+    if (item.key === key) {
+      acc.push({ y: Math.min.apply(null, item.runs), x: index, obj: item });
+      index++;
+    }
+
+    return acc;
+  }, []);
+
+  var min = {
+      label: "min",
+      data: minPoints,
+      fill: false,
+      // borderColor: "rgba(100,100,100,0.2)",
+      // backgroundColor: "transparent",
+      // pointBorderColor: "rgba(220,220,220,1)",
+      // pointBackgroundColor: "yellow",
+      borderDash: [5, 5],
+      pointBorderWidth: 1
+  }
+
   return {
     labels: labels,
-    datasets: [{
-      label: "dataset",
-      data: points,
-      fill: false,
-      borderColor: "rgba(100,100,100,0.2)",
-      backgroundColor: "transparent",
-      pointBorderColor: "rgba(220,220,220,1)",
-      pointBackgroundColor: "yellow",
-      pointBorderWidth: 1
-    }]
+    datasets: [median, min]
   }
 }
 
@@ -85,20 +108,19 @@ var ChartComponent = React.createClass({
 
     var options = {
       responsive: true,
-      title: { display: false, text: "Benchmarks for " + this.props.name },
-      legend: { display: false },
       tooltips: {
         callbacks: {
           title: function (data) {
-            return "";
-          }.bind(this),
-          label: function (point) {
-            var item = getItem(point.datasetIndex, point.index);
+            var item = getItem(data[0].datasetIndex, data[0].index);
             var date = new Date(item.time);
             var day = date.getDate();
             var month = date.getMonth();
             var year = date.getFullYear();
-            return point.yLabel + "ms \n" + "PR#" + item.pr + " \n" + day + "/" + month + "/" + year;
+            return "PR#" + item.pr + " \n" + day + "/" + month + "/" + year;
+          }.bind(this),
+          label: function (point) {
+            var item = getItem(point.datasetIndex, point.index);
+            return point.yLabel + "ms";
           }
         },
         mode: "index",
@@ -115,7 +137,7 @@ var ChartComponent = React.createClass({
       },
       onClick: function(e) {
         var activeElems = this.getElementsAtEvent(e);
-        if (actionSelect.length == 1) {
+        if (activeElems.length > 0) {
           var pindex = activeElems[0]._index;
           var dindex = activeElems[0]._datasetIndex;
           var obj = getItem(dindex, pindex);
