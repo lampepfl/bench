@@ -16,7 +16,10 @@ function prepareData(key) {
     return acc;
   }
 
-  var points = Bench.dataset.reduce(accumulate, []);
+  var points = Bench.dataset.reduce(accumulate, []).sort(function(a, b) {
+    return new Date(a.obj.time) - new Date(b.obj.time);
+  });
+
   var median = {
       label: "median",
       data: points,
@@ -37,23 +40,14 @@ function prepareData(key) {
   }
 
   index = 0
-  var minPoints = Bench.dataset.reduce(function(acc, item) {
-    if (item.key === key) {
-      acc.push({ y: Math.min.apply(null, item.runs), x: index, obj: item });
-      index++;
-    }
-
-    return acc;
-  }, []);
+  var minPoints = points.map(function(p) {
+    return { y: Math.min.apply(null, p.obj.runs), x: p.index, obj: p.obj }
+  });
 
   var min = {
       label: "min",
       data: minPoints,
       fill: false,
-      // borderColor: "rgba(100,100,100,0.2)",
-      // backgroundColor: "transparent",
-      // pointBorderColor: "rgba(220,220,220,1)",
-      // pointBackgroundColor: "yellow",
       borderDash: [5, 5],
       pointBorderWidth: 1
   }
