@@ -35,7 +35,7 @@ function prepareData(key) {
   for (var i = 0; i < points.length; i++) {
     var date = new Date(points[i].obj.time);
     var day = date.getDate();
-    var month = date.getMonth();
+    var month = date.getMonth() + 1;
     labels.push(day + "/" + month);
   }
 
@@ -108,7 +108,7 @@ var ChartComponent = React.createClass({
             var item = getItem(data[0].datasetIndex, data[0].index);
             var date = new Date(item.time);
             var day = date.getDate();
-            var month = date.getMonth();
+            var month = date.getMonth() + 1;
             var year = date.getFullYear();
             return "PR#" + item.pr + " \n" + day + "/" + month + "/" + year;
           }.bind(this),
