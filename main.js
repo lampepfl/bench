@@ -9,7 +9,7 @@ function prepareData(key) {
   var index = 0;
   function accumulate(acc, item) {
     if (item.key === key) {
-      acc.push({ y: item.avg, x: index, obj: item });
+      acc.push({ y: item.median, x: index, obj: item });
       index++;
     }
 
@@ -20,7 +20,10 @@ function prepareData(key) {
 
   var labels = [];
   for (var i = 0; i < points.length; i++) {
-    labels.push(i);
+    var date = new Date(points[i].obj.time);
+    var day = date.getDate();
+    var month = date.getMonth();
+    labels.push(day + "/" + month);
   }
 
   return {
@@ -65,6 +68,9 @@ function reducer(state, action) {
   }
 }
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 var ChartComponent = React.createClass({
   getInitialState: function () {
@@ -88,15 +94,23 @@ var ChartComponent = React.createClass({
           }.bind(this),
           label: function (point) {
             var item = getItem(point.datasetIndex, point.index);
-            var time = new Date(item.time);
-            return point.yLabel + "µs \n" + "PR#" + item.pr + " \n" + time.toDateString();
+            var date = new Date(item.time);
+            var day = date.getDate();
+            var month = date.getMonth();
+            var year = date.getFullYear();
+            return point.yLabel + "ms \n" + "PR#" + item.pr + " \n" + day + "/" + month + "/" + year;
           }
-        }
+        },
+        mode: "index",
+        intersect: false
       },
       scales: {
         yAxes: [{
           display: true,
-          scaleLabel: { display: false, labelString: 'µs' }
+          scaleLabel: { display: true, labelString: 'ms' },
+          ticks: {
+            callback: function(value, index, values) { return numberWithCommas(value); }
+          }
         }]
       },
       onClick: function(e) {
