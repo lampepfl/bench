@@ -20,6 +20,11 @@ Bench.charts = [
         "key": "tests/i1687.scala",
         "name": "issue #1687",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/i1687.scala"
+    },
+    {
+        "key": "tests/Vector.scala",
+        "name": "Vector",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/Vector.scala"
     }
 ]
 
