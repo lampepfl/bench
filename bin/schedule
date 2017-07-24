@@ -82,7 +82,7 @@ test() {
   mkdir -p $PROG_HOME/out
 
   # Dotty Project
-  measure "projects/dotty" $(find $PROG_HOME/projects/dotty/compiler/src/dotty -name *.scala)
+  measure "projects/dotty" -classpath "$PROG_HOME/projects/dotty-libs/*" $(find $PROG_HOME/projects/dotty/compiler/src/ -name *.scala -o -name *.java)
 
   # microbenchmarks
   measure "tests/implicit_cache.scala" $PROG_HOME/tests/implicit_cache.scala
