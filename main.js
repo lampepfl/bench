@@ -125,6 +125,7 @@ var ChartComponent = React.createClass({
           display: true,
           scaleLabel: { display: true, labelString: 'ms' },
           ticks: {
+            min: 0,
             callback: function(value, index, values) { return numberWithCommas(value); }
           }
         }]
