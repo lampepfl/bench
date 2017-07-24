@@ -144,9 +144,10 @@ find_lib () {
 
 DOTTY_LIB=$(find_lib "*dotty-library*")
 SCALA_LIB=$(find_lib "*scala-library-2.11*")
+SCALA_RFL=$(find_lib "*scala-reflect*")
 
 # add default libraries for compilation
-export BOOTSTRAP_APPEND="$DOTTY_LIB$PSEP$SCALA_LIB"
+export BOOTSTRAP_APPEND="$DOTTY_LIB$PSEP$SCALA_LIB$PSEP$SCALA_RFL"
 
 eval exec "\"$JAVACMD\"" \
      {{{JVM_OPTS}}} \
