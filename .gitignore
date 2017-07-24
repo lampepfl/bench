@@ -74,3 +74,5 @@ compiler/after-pickling.txt
 
 # generated site
 _site/
+
+*.jar
