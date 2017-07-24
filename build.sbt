@@ -8,7 +8,7 @@ packSettings
 enablePlugins(JmhPlugin)
 
 libraryDependencies ++= Seq(
-  ("me.d-d" % "scala-compiler" % "2.11.5-20170111-125332-40bdc7b65a").withDottyCompat(),
+  // ("me.d-d" % "scala-compiler" % "2.11.5-20170111-125332-40bdc7b65a").withDottyCompat(),
   ("org.scala-lang" % "scala-reflect" % "2.11.11").withDottyCompat(), // old version of dotty depends on it
   "ch.epfl.lamp" %% "dotty" % "0.2.0-RC1"
 )
@@ -21,7 +21,7 @@ packMain := Map("bench" -> "dotty.tools.benchmarks.Bench")
 
 packGenerateWindowsBatFile := false
 
-packExpandedClasspath := true
+packExpandedClasspath := false
 
 packBashTemplate := baseDirectory.value + "/templates/launch.mustache"
 

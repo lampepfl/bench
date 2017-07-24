@@ -131,8 +131,22 @@ PROG_NAME={{{PROG_NAME}}}
 PROG_VERSION={{{PROG_VERSION}}}
 PROG_REVISION={{{PROG_REVISION}}}
 
+find_lib () {
+  local lib=$(find $PROG_HOME/lib/ -name "$1")
+  if $cygwin; then
+    cygpath -am $lib
+  elif $mingw; then
+    echo $lib | sed 's|/|\\\\|g'
+  else
+    echo $lib
+  fi
+}
+
+DOTTY_LIB=$(find_lib "*dotty-library*")
+SCALA_LIB=$(find_lib "*scala-library-2.11*")
+
 # add default libraries for compilation
-export BOOTSTRAP_APPEND="{{{EXPANDED_CLASSPATH}}}${CLASSPATH_SUFFIX}"
+export BOOTSTRAP_APPEND="$DOTTY_LIB$PSEP$SCALA_LIB"
 
 eval exec "\"$JAVACMD\"" \
      {{{JVM_OPTS}}} \
