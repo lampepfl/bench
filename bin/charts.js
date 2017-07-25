@@ -12,11 +12,20 @@ Bench.charts = [
         "url": "https://github.com/liufengyun/bench/blob/master/tests/implicit-scope-loop.scala"
     },
     {
-        "key": "projects/dotty",
-        "name": "dotty",
-        "url": "https://github.com/liufengyun/bench/blob/master/projects"
+        "key": "tests/i1535.scala",
+        "name": "issue #1535",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/i1535.scala"
+    },
+    {
+        "key": "tests/i1687.scala",
+        "name": "issue #1687",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/i1687.scala"
+    },
+    {
+        "key": "tests/Vector.scala",
+        "name": "Vector",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/Vector.scala"
     }
-
 ]
 
 Bench.pr_base_url = "https://github.com/lampepfl/dotty/pull/"
