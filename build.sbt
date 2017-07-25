@@ -21,7 +21,7 @@ packMain := Map("bench" -> "dotty.tools.benchmarks.Bench")
 
 packGenerateWindowsBatFile := false
 
-packExpandedClasspath := false
+packExpandedClasspath := true
 
 packBashTemplate := baseDirectory.value + "/templates/launch.mustache"
 
