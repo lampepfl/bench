@@ -13,3 +13,7 @@ trap report ERR
 
 cd /data/workspace/bench
 bin/schedule > logs/$(date +%m-%d).out 2>&1 < /dev/null
+bin/deploy
+
+ghi comment -m "benchmark finished success $(date)" 4
+
