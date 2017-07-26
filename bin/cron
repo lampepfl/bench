@@ -15,5 +15,10 @@ cd /data/workspace/bench
 bin/schedule > logs/$(date +%m-%d).out 2>&1 < /dev/null
 bin/deploy
 
+git add history.csv
+git commit -m "add data to history"
+git push origim master:master
+
+
 ghi comment -m "benchmark finished success $(date)" 4
 
