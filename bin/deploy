@@ -8,17 +8,17 @@ npm run build
 
 # copy resource
 cd ..
-cp web/index.html _site/
-cp web/bundle.js _site/
-cp -r web/css _site/
+cp web/index.html site/
+cp web/bundle.js site/
+cp -r web/css site/
 
 # build data
-mkdir -p _site/data
-cp bin/charts.js _site/data/charts.js
-bin/csv2json history.csv > _site/data/dataset.json
+mkdir -p site/data
+cp bin/charts.js site/data/charts.js
+bin/csv2json history.csv > site/data/dataset.json
 
 # push to github
-cd _site
+cd site
 git add .
 git commit -m "update site"
 git push origin gh-pages:gh-pages
