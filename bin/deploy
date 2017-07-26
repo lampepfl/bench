@@ -20,5 +20,5 @@ bin/csv2json history.csv > site/data/dataset.json
 # push to github
 cd site
 git add .
-git commit -m "update site"
+git commit -m "[bot]update site"
 git push origin gh-pages:gh-pages

@@ -15,7 +15,7 @@ set -eE
 #     schedule -f a37d233 -t 4c8a950
 
 function report {
-  ghi comment -m "benchmark failed" 4
+  ghi comment -m "[bot]benchmark failed" 4
 }
 
 trap report ERR
@@ -90,6 +90,9 @@ test() {
   measure "tests/i1535.scala" $PROG_HOME/tests/i1535.scala
   measure "tests/i1687.scala" $PROG_HOME/tests/i1687.scala
   measure "tests/Vector.scala" $PROG_HOME/tests/Vector.scala
+  measure "tests/empty-class.scala" $PROG_HOME/tests/empty-class.scala
+  measure "tests/empty-object.scala" $PROG_HOME/tests/empty-object.scala
+  measure "tests/empty-file.scala" $PROG_HOME/tests/empty-file.scala
 }
 
 

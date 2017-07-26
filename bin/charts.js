@@ -25,6 +25,21 @@ Bench.charts = [
         "key": "tests/Vector.scala",
         "name": "Vector",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/Vector.scala"
+    },
+    {
+        "key": "tests/empty-class.scala",
+        "name": "empty class",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/empty-class.scala"
+    },
+    {
+        "key": "tests/empty-object.scala",
+        "name": "empty object",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/empty-object.scala"
+    },
+    {
+        "key": "tests/empty-file.scala",
+        "name": "empty file",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/empty-file.scala"
     }
 ]
 
