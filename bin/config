@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+echo "1" | tee /sys/devices/system/cpu/intel_pstate/no_turbo
+
+for i in {0..7}
+do
+   echo "config cpu $i"
+
+   cpufreq-set -u 2.5Ghz -d 2.5Ghz -c $i
+done
+
+# grep -E '^model name|^cpu MHz' /proc/cpuinfo
+cpufreq-info
