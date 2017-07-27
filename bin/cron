@@ -12,13 +12,15 @@ function report {
 trap report ERR
 
 cd /data/workspace/bench
-bin/schedule > logs/$(date +%m-%d).out 2>&1 < /dev/null
-bin/deploy
+log_file=logs/$(date +%m-%d).out
+
+bin/schedule > $log_file 2>&1
+bin/deploy   > $log_file 2>&1
 
 git add history.csv
-git commit -m "[bot]add data to history"
-git push origim master:master
+git commit -m "[bot]add data to history" > $log_file 2>&1
+git push origin master:master > $log_file 2>&1
 
 
-ghi comment -m "[bot]benchmark finished success $(date)" 4
+ghi comment -m "[bot]benchmark finished success $(date)" 4 > $log_file 2>&1
 
