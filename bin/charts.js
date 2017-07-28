@@ -2,6 +2,16 @@ var Bench = Bench || {}
 
 Bench.charts = [
     {
+        "key": "tests/Vector.scala",
+        "name": "Vector",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/Vector.scala"
+    },
+    {
+        "key": "tests/scala-library",
+        "name": "scala library",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/scala-library"
+    },
+    {
         "key": "tests/implicit_cache.scala",
         "name": "implicit cache",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/implicit_cache.scala"
@@ -20,11 +30,6 @@ Bench.charts = [
         "key": "tests/i1687.scala",
         "name": "issue #1687",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/i1687.scala"
-    },
-    {
-        "key": "tests/Vector.scala",
-        "name": "Vector",
-        "url": "https://github.com/liufengyun/bench/blob/master/tests/Vector.scala"
     },
     {
         "key": "tests/empty-class.scala",
