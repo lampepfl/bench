@@ -22,6 +22,31 @@ Bench.charts = [
         "url": "https://github.com/liufengyun/bench/blob/master/tests/implicit-scope-loop.scala"
     },
     {
+        "key": "tests/patmatexhaust.scala",
+        "name": "exhaustivity check",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/patmatexhaust.scala"
+    },
+    {
+        "key": "tests/exhaustivity-I.scala",
+        "name": "exhaustivity I",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/exhaustivity-I.scala"
+    },
+    {
+        "key": "tests/exhaustivity-S.scala",
+        "name": "exhaustivity S",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/exhaustivity-S.scala"
+    },
+    {
+        "key": "tests/exhaustivity-T.scala",
+        "name": "exhaustivity T",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/exhaustivity-T.scala"
+    },
+    {
+        "key": "tests/exhaustivity-V.scala",
+        "name": "exhaustivity V",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/exhaustivity-V.scala"
+    },
+    {
         "key": "tests/i1535.scala",
         "name": "issue #1535",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/i1535.scala"

@@ -99,6 +99,11 @@ test() {
   measure "tests/empty-class.scala" $PROG_HOME/tests/empty-class.scala
   measure "tests/empty-object.scala" $PROG_HOME/tests/empty-object.scala
   measure "tests/empty-file.scala" $PROG_HOME/tests/empty-file.scala
+  measure "tests/patmatexhaust.scala" $PROG_HOME/tests/patmatexhaust.scala
+  measure "tests/exhaustivity-I.scala" $PROG_HOME/tests/exhaustivity-I.scala
+  measure "tests/exhaustivity-S.scala" $PROG_HOME/tests/exhaustivity-S.scala
+  measure "tests/exhaustivity-T.scala" $PROG_HOME/tests/exhaustivity-T.scala
+  measure "tests/exhaustivity-V.scala" $PROG_HOME/tests/exhaustivity-V.scala
 }
 
 
