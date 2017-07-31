@@ -45,6 +45,10 @@ if [ -z "$PROG_HOME" ] ; then
   cd "$saveddir"
 fi
 
+trim() {
+  echo -e "$1" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'
+}
+
 measure() {
   key=$1
   shift
@@ -56,6 +60,7 @@ measure() {
 
   median=$(echo "$runs" | datamash median 1) # datamash work on columns
   runs_flat=$(echo "$runs" | tr '\n' ' ')
+  runs_flat=$(trim "$runs_flat")
 
   echo "$key, $pr, $time, $commit, $median, $(date), $warmups, $runs_flat" >> history.csv
 }
