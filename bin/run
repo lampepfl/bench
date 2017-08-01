@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+set -eE
+
+# usage: run FROM_COMMIT  TO_COMMIT
+#
+# FROM_COMMIT    from commit (excluded)
+# TO_COMMIT      to commit, included
+#
+# Change test plans in `bin/plan`.
+#
+
+plans=$(cat bin/plan | grep "^measure")
+
+function report {
+  content=$(tail -n 20 $log_file)
+  ghi comment 4 -m << EOF
+[bot] regression for following benchmarks:
+
+$plans
+
+Error message:
+
+$content
+
+[check `$log_file` for more information]
+
+EOF
+}
+
+trap report ERR
+
+cd /data/workspace/bench
+log_file=logs/$(date +%m-%d-%H.%M)-regression.out
+
+bin/schedule -f $1 -t $2 -o regression.csv > $log_file 2>&1
+bin/deploy   > $log_file 2>&1
+
+ghi comment 4 -m << EOF
+[bot] regression finished successfully:
+
+$plans
+
+EOF
+
+# restore plan
+git checkout bin/plan
