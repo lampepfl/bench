@@ -1,11 +1,13 @@
 # Bench
 
-Benchmark Dotty
+Benchmarking Dotty
 
 ## Usage
 
-- `bin/schedule`
-- `bin/deploy`
+- `bin/cron`: used for the cron job
+- `bin/run`: for manually benchmarking a specific test for a specific period
+
+Check the documentation in the source code of each command for more detail.
 
 ## Dependencies
 
