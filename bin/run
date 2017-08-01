@@ -34,7 +34,6 @@ cd /data/workspace/bench
 log_file=logs/$(date +%m-%d-%H.%M)-regression.out
 
 bin/schedule -f $1 -t $2 -o regression.csv > $log_file 2>&1
-bin/deploy   > $log_file 2>&1
 
 ghi comment 4 -m << EOF
 [bot] regression finished successfully:
