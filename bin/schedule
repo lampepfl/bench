@@ -3,16 +3,18 @@
 # https://stackoverflow.com/questions/35800082/how-to-trap-err-when-using-set-e-in-bash
 set -eE
 
-# usage: schedule [-f COMMIT]  [-t COMMIT] [-s num]
+# usage: schedule [-f COMMIT]  [-t COMMIT] [-s NUM] [-o FILE]
 #
-# -f COMMIT    from commit (excluded), default to last tested commit in history.csv
+# -f COMMIT    from commit (excluded), default to last tested commit in the output file
 # -t COMMIT    to commit, default to HEAD
-# -s num       skip `num` of PR before the next testing PR, defaults to 0
+# -s NUM       skip `num` of PR before the next testing PR, defaults to 0
+# -o FILE      output data to the given file, default to history.csv
 #
 # e.g.
 #     schedule
 #     schedule -f a37d233
 #     schedule -f a37d233 -t 4c8a950
+#     schedule -f a37d233 -t 4c8a950 -s 10
 
 function report {
   ghi comment -m "[bot]benchmark failed" 4
@@ -62,7 +64,7 @@ measure() {
   runs_flat=$(echo "$runs" | tr '\n' ' ')
   runs_flat=$(trim "$runs_flat")
 
-  echo "$key, $pr, $time, $commit, $median, $(date), $warmups, $runs_flat" >> history.csv
+  echo "$key, $pr, $time, $commit, $median, $(date), $warmups, $runs_flat" >> $FILE
 }
 
 test() {
@@ -86,29 +88,12 @@ test() {
 
   mkdir -p $PROG_HOME/out
 
-  # Dotty Project
-  # measure "projects/dotty" $(find $PROG_HOME/projects/dotty/compiler/src/dotty -name *.scala -o -name *.java)
-  measure "tests/scala-library" -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
-
-  # microbenchmarks
-  measure "tests/implicit_cache.scala" $PROG_HOME/tests/implicit_cache.scala
-  measure "tests/implicit-scope-loop.scala" $PROG_HOME/tests/implicit-scope-loop.scala
-  measure "tests/i1535.scala" $PROG_HOME/tests/i1535.scala
-  measure "tests/i1687.scala" $PROG_HOME/tests/i1687.scala
-  measure "tests/Vector.scala" $PROG_HOME/tests/Vector.scala
-  measure "tests/empty-class.scala" $PROG_HOME/tests/empty-class.scala
-  measure "tests/empty-object.scala" $PROG_HOME/tests/empty-object.scala
-  measure "tests/empty-file.scala" $PROG_HOME/tests/empty-file.scala
-  measure "tests/patmatexhaust.scala" $PROG_HOME/tests/patmatexhaust.scala
-  measure "tests/exhaustivity-I.scala" $PROG_HOME/tests/exhaustivity-I.scala
-  measure "tests/exhaustivity-S.scala" $PROG_HOME/tests/exhaustivity-S.scala
-  measure "tests/exhaustivity-T.scala" $PROG_HOME/tests/exhaustivity-T.scala
-  measure "tests/exhaustivity-V.scala" $PROG_HOME/tests/exhaustivity-V.scala
+  source $PROG_HOME/bin/plan
 }
 
 
 # parse command line params
-while getopts "f:t:s:" opt; do
+while getopts "f:t:s:o:" opt; do
  case $opt in
     f)
       FROM_COMMIT=$OPTARG
@@ -118,6 +103,9 @@ while getopts "f:t:s:" opt; do
       ;;
     s)
       SKIP=$OPTARG
+      ;;
+    o)
+      FILE=$OPTARG
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -132,8 +120,13 @@ done
 
 shift $((OPTIND-1))
 
+if [[ -z $FILE ]]; then
+  FILE="history.csv"
+  echo "output file defaults to history.csv"
+fi
+
 if [[ -z $FROM_COMMIT ]]; then
-  FROM_COMMIT=$(tail -n 1 history.csv | cut -d, -f4 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+  FROM_COMMIT=$(tail -n 1 $FILE | cut -d, -f4 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
   echo "Start commit defaults to $FROM_COMMIT"
 fi
 
@@ -146,6 +139,7 @@ if [[ -z $SKIP ]]; then
   SKIP=0
   echo "skip steps defaults to $SKIP"
 fi
+
 
 # compile current project
 sbt jmh:compile pack
