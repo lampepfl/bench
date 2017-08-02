@@ -40,8 +40,6 @@ bin/schedule -f $1 -t $2 -o regression.csv > $log_file 2>&1
 
 cat regression.csv | cat - history.csv > temp.csv && mv temp.csv history.csv
 
-rm temp.csv
-
 bin/deploy   > $log_file 2>&1
 
 git add history.csv
