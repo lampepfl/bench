@@ -9,6 +9,15 @@ Benchmarking Dotty
 
 Check the documentation in the source code of each command for more detail.
 
+## Add Test
+
+Update the two files below:
+
+- `bin/charts.js`
+- `bin/plan`
+
+Use `bin/run` to manually benchmark the new tests for history periods.
+
 ## Dependencies
 
 - [datamash](https://www.gnu.org/software/datamash/)
