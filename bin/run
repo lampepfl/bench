@@ -14,7 +14,7 @@ plans=$(cat bin/plan | grep "^measure")
 
 function report {
   content=$(tail -n 20 $log_file)
-  ghi comment 4 -m << EOF
+  message=$(cat << EOF
 [bot] regression for following benchmarks:
 
 $plans
@@ -23,9 +23,12 @@ Error message:
 
 $content
 
+
 [check `$log_file` for more information]
 
-EOF
+EOF)
+
+  ghi comment 4 -m "$message"
 }
 
 trap report ERR
@@ -35,12 +38,13 @@ log_file=logs/$(date +%m-%d-%H.%M)-regression.out
 
 bin/schedule -f $1 -t $2 -o regression.csv > $log_file 2>&1
 
-ghi comment 4 -m << EOF
+message=$(cat <<EOF
 [bot] regression finished successfully:
 
 $plans
 
-EOF
+EOF)
+ghi comment 4 -m "$message"
 
 # restore plan
 git checkout bin/plan

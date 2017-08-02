@@ -7,14 +7,16 @@ set -eE
 
 function report {
   content=$(tail -n 20 $log_file)
-  ghi comment 4 -m << EOF
+  message=$(cat << EOF
 [bot] cron failed
 
 $content
 
 [check `$log_file` for more information]
 
-EOF
+EOF)
+
+  ghi comment 4 -m "$message"
 }
 
 trap report ERR
