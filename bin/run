@@ -24,7 +24,7 @@ Error message:
 $content
 
 
-[check `$log_file` for more information]
+[check $log_file for more information]
 
 EOF)
 
