@@ -58,3 +58,4 @@ ghi comment 4 -m "$message"
 
 # restore plan
 git checkout bin/plan
+rm regression.csv
