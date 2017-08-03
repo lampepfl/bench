@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # https://stackoverflow.com/questions/35800082/how-to-trap-err-when-using-set-e-in-bash
-set -eE
+set -e
 
 # usage: schedule [-f COMMIT]  [-t COMMIT] [-s NUM] [-o FILE]
 #
@@ -15,12 +15,6 @@ set -eE
 #     schedule -f a37d233
 #     schedule -f a37d233 -t 4c8a950
 #     schedule -f a37d233 -t 4c8a950 -s 10
-
-function report {
-  ghi comment -m "[bot]benchmark failed" 4
-}
-
-trap report ERR
 
 if [ -z "$PROG_HOME" ] ; then
   ## resolve links - $0 may be a link to PROG_HOME
