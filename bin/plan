@@ -16,3 +16,4 @@ measure "tests/exhaustivity-I.scala" $PROG_HOME/tests/exhaustivity-I.scala
 measure "tests/exhaustivity-S.scala" $PROG_HOME/tests/exhaustivity-S.scala
 measure "tests/exhaustivity-T.scala" $PROG_HOME/tests/exhaustivity-T.scala
 measure "tests/exhaustivity-V.scala" $PROG_HOME/tests/exhaustivity-V.scala
+measure "tests/implicitNums.scala" $PROG_HOME/tests/implicitNums.scala

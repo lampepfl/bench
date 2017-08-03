@@ -13,8 +13,13 @@ Bench.charts = [
     },
     {
         "key": "tests/implicit_cache.scala",
-        "name": "implicit cache",
+        "name": "implicit cache I",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/implicit_cache.scala"
+    },
+    {
+        "key": "tests/implicitNums.scala",
+        "name": "implicit cache II",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/implicitNums.scala"
     },
     {
         "key": "tests/implicit-scope-loop.scala",
