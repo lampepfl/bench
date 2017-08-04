@@ -121,7 +121,7 @@ fi
 
 if [[ -z $FROM_PR ]]; then
   FROM_PR=$(tail -n 1 $FILE | cut -d, -f2 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
-  echo "Start commit defaults to $FROM_COMMIT"
+  echo "Start PR defaults to $FROM_PR"
 fi
 
 if [[ -z $SKIP ]]; then
