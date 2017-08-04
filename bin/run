@@ -2,11 +2,11 @@
 
 set -eE
 
-# usage: run FROM_COMMIT TO_COMMIT STEP
+# usage: run [-f PR] [-t PR] [-s STEP]
 #
-# FROM_COMMIT    from commit (excluded)
-# TO_COMMIT      to commit, included
-# STEP           every n pull requests
+# -f PR             from pull request (excluded)
+# -t PR             to pull request (excluded)
+# -s STEP           every n pull requests
 #
 # Change test plans in `bin/plan`.
 #
@@ -37,7 +37,7 @@ trap report ERR
 cd /data/workspace/bench
 log_file=logs/$(date +%m-%d-%H.%M)-regression.out
 
-bin/schedule -f $1 -t $2 -s $3 -o regression.csv > $log_file 2>&1
+bin/schedule $@ -o regression.csv > $log_file 2>&1
 
 cat regression.csv | cat - history.csv > temp.csv && mv temp.csv history.csv
 
