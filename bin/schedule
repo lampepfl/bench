@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 
-# https://stackoverflow.com/questions/35800082/how-to-trap-err-when-using-set-e-in-bash
 set -e
 
-# usage: schedule [-f COMMIT]  [-t COMMIT] [-s NUM] [-o FILE]
+# usage: schedule [-f PR]  [-t PR] [-s NUM] [-o FILE]
 #
-# -f COMMIT    from commit (excluded), default to last tested commit in the output file
-# -t COMMIT    to commit, default to HEAD
+# -f PR        from pull reuest (excluded), default to last tested commit in the output file
+# -t PR        to pull request (excluded), default to run all PRs till HEAD (included)
 # -s NUM       skip `num` of PR before the next testing PR, defaults to 0
 # -o FILE      output data to the given file, default to history.csv
 #
 # e.g.
 #     schedule
-#     schedule -f a37d233
-#     schedule -f a37d233 -t 4c8a950
-#     schedule -f a37d233 -t 4c8a950 -s 10
+#     schedule -f 2874
+#     schedule -f 1514 -t 2840
+#     schedule -f 2110 -t 3210 -s 10
+#     schedule -f 2110 -t 3210 -s 10 -o regression.csv
 
 if [ -z "$PROG_HOME" ] ; then
   ## resolve links - $0 may be a link to PROG_HOME
@@ -90,10 +90,10 @@ test() {
 while getopts "f:t:s:o:" opt; do
  case $opt in
     f)
-      FROM_COMMIT=$OPTARG
+      FROM_PR=$OPTARG
       ;;
     t)
-      TILL_COMMIT=$OPTARG
+      TILL_PR=$OPTARG
       ;;
     s)
       SKIP=$OPTARG
@@ -119,14 +119,9 @@ if [[ -z $FILE ]]; then
   echo "output file defaults to history.csv"
 fi
 
-if [[ -z $FROM_COMMIT ]]; then
-  FROM_COMMIT=$(tail -n 1 $FILE | cut -d, -f4 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
-  echo "Start commit defaults to $FROM_COMMIT"
-fi
-
-if [[ -z $TILL_COMMIT ]]; then
-  TILL_COMMIT="HEAD"
-  echo "End commit defaults to $TILL_COMMIT"
+if [[ -z $FROM_PR ]]; then
+  FROM_PR=$(tail -n 1 $FILE | cut -d, -f2 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+  echo "Start PR defaults to $FROM_PR"
 fi
 
 if [[ -z $SKIP ]]; then
@@ -144,9 +139,12 @@ git fetch origin
 git merge origin/master
 git submodule init
 git submodule update
-merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' $FROM_COMMIT..$TILL_COMMIT --reverse)
+
+# c488e01 is the commit that refactors the repo
+merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' c488e01..HEAD --reverse)
 
 skip_counter=$SKIP
+in_range=false
 
 while IFS= read -r commit_line
 do
@@ -157,12 +155,25 @@ do
   if [[ $commit_line == *"Merge pull request #"* ]]; then
     pr=$(echo $commit_line | cut -d',' -f4 | grep -o 'pull request #[0-9]\+' | grep -o '[0-9]\+')
 
-    if ((skip_counter == SKIP)); then
-      test "$commit" "$author" "$time" "$pr"
-      skip_counter=0
-    else
-      skip_counter=$(expr $skip_counter + 1)
+    # finish test when TILL_PR is reached
+    if [[ $pr == $TILL_PR ]]; then
+       exit 0
     fi
+
+    if [[ $in_range == "true" ]]; then
+
+        if ((skip_counter == SKIP)); then
+          test "$commit" "$author" "$time" "$pr"
+          skip_counter=0
+        else
+          skip_counter=$(expr $skip_counter + 1)
+        fi
+    fi
+
+    if [[ $pr == $FROM_PR ]]; then
+       in_range=true
+    fi
+
   fi
 done <<< "$merge_commits"
 
