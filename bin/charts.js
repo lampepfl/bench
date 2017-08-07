@@ -12,6 +12,11 @@ Bench.charts = [
         "url": "https://github.com/liufengyun/bench/blob/master/tests/scala-library"
     },
     {
+        "key": "dotty",
+        "name": "dotty (compiled by itself -- source changes over time)",
+        "url": "https://github.com/lampepfl/dotty"
+    },
+    {
         "key": "tests/implicit_cache.scala",
         "name": "implicit cache I",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/implicit_cache.scala"
