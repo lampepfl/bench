@@ -32,5 +32,12 @@ git commit -m "[bot]add data to history" > $log_file 2>&1
 git push origin master:master > $log_file 2>&1
 
 
-ghi comment -m "[bot]benchmark finished success $(date)" 4 > $log_file 2>&1
+message=$(cat << EOF
+[bot]benchmark finished success $(date)
+
+Visit https://liufengyun.github.io/bench/ to see the changes.
+
+EOF)
+
+ghi comment -m "$message" 4 > $log_file 2>&1
 

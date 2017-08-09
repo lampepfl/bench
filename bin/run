@@ -58,6 +58,8 @@ arguments: $args
 
 $plans
 
+Visit https://liufengyun.github.io/bench/ to see the changes.
+
 EOF)
 ghi comment 4 -m "$message"
 
