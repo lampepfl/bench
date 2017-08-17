@@ -7,7 +7,7 @@ job queue exception
 job queue exception
 EOF
 
-  # ghi open -m "$message" -- liufengyun/bench
+  ghi open -m "$message" -- liufengyun/bench
 
   exit 1
 }
