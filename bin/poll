@@ -12,6 +12,7 @@ polling service exception
 
 polling service exception
 EOF)
+
   ghi open -m "$message" -- liufengyun/bench
 }
 
@@ -27,9 +28,8 @@ comment() {
   pr=$1
   files=(jobs/*.job)
   total=${#files[@]}
-  before=$(expr $total - 1)
   message=$(cat << EOF
-[bot] performance test scheduled: $before jobs before current.
+[bot] performance test scheduled: $total jobs in total.
 EOF)
 
   ghi comment $pr -m "$message"  -- $REPO
@@ -47,12 +47,12 @@ while true; do
     if [ "$line" != "" ]; then
       # https://github.com/lampepfl/dotty/pull/2970#issuecomment-321860528
       pr=$(echo $line | sed 's/^.*pull\/\([0-9]\+\)#.*/\1/')
-      if [ "$pr" =~ '^[0-9]+$' ]; then
+      if [[ "$pr" =~ ^[0-9]+$ ]]; then
         echo "bin/pull $pr" > jobs/pull-$pr.job
         comment $pr
       fi
     fi
   done <<< "$pulls"
 
-  sleep 60
+  sleep 30
 done
