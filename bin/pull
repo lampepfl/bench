@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+
+set -eE
+
+# usage: pull PR
+#
+# PR             pull request number
+#
+
+############# Variables
+
+PR=$1
+FILE=pull-$PR.csv
+LOG=logs/pull-$PR-$(date +%m-%d-%H.%M).out
+
+############# Resolve directory
+
+if [ -z "$PROG_HOME" ] ; then
+  ## resolve links - $0 may be a link to PROG_HOME
+  PRG="$0"
+
+  # need this for relative symlinks
+  while [ -h "$PRG" ] ; do
+    ls=`ls -ld "$PRG"`
+    link=`expr "$ls" : '.*-> \(.*\)$'`
+    if expr "$link" : '/.*' > /dev/null; then
+      PRG="$link"
+    else
+      PRG="`dirname "$PRG"`/$link"
+    fi
+  done
+
+  saveddir=`pwd`
+
+  PROG_HOME=`dirname "$PRG"`/..
+
+  # make it fully qualified
+  PROG_HOME=`cd "$PROG_HOME" && pwd`
+
+  cd "$saveddir"
+fi
+
+source $PROG_HOME/bin/common
+
+############## Error handling
+
+function report {
+  content=$(tail -n 20 $LOG)
+  message=$(cat << EOF
+[bot] performance test failed:
+
+$content
+
+[check $LOG for more information]
+
+EOF)
+
+  ghi comment $PR -m "$message" -- lampepfl/dotty
+}
+
+trap report ERR
+
+############## test
+cd $PROG_HOME/dotty
+git fetch staging
+
+cp history.csv $FILE
+
+# get info of last commit in PR
+
+output=/tmp/pull-commits-$PR
+wget http://api.github.com/repos/lampepfl/dotty/pulls/$PR/commits -O $ouput
+info=$(cat $output | jq '.[-1] | {author: .author.login, time: .commit.committer.date, commit: .sha}')
+author=$(echo $info | jq -r '.author' )
+commit_time=$(echo $info | jq -r '.time' )
+commit=$(echo $info | jq -r '.commit' )      # no , for last field
+
+test "$commit" "$author" "$commit_time" "$PR" > $LOG 2>&1
+
+############## Deploy
+
+# build web
+cd web
+git fetch origin
+git merge origin/master
+npm run build
+
+# copy resource
+cd ..
+mkdir -p site/$PR
+cp web/index.html site/$PR
+cp web/bundle.js site/$PR
+cp -r web/css site/$PR
+
+# build data
+mkdir -p site/$PR/data
+cp bin/charts.js site/$PR/data/charts.js
+bin/csv2json $FILE > site/$PR/data/dataset.json
+
+# push to github
+cd site
+git add .
+git commit -m "[bot]update site for pull request $PR"
+git push origin gh-pages:gh-pages
+
+
+message=$(cat <<EOF
+[bot] performance finished successfully:
+
+Visit https://liufengyun.github.io/bench/$PR to see the changes.
+
+EOF)
+ghi comment $PR -m "$message" -- lampepfl/dotty

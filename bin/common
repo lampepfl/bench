@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+trim() {
+  echo -e "$1" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'
+}
+
+measure() {
+  key=$1
+  shift
+
+  $PROG_HOME/target/pack/bin/bench "$@" -d $PROG_HOME/out | tee output.txt
+
+  runs=$(cat output.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/')
+  warmups=$(cat output.txt | grep -E '^# Warmup Iteration' | sed -r 's/^# Warmup Iteration.*: ([0-9\.]+).*$/\1/' | tr '\n' ' ')
+
+  median=$(echo "$runs" | datamash median 1) # datamash work on columns
+  runs_flat=$(echo "$runs" | tr '\n' ' ')
+  runs_flat=$(trim "$runs_flat")
+
+  echo "$key, $pr, $time, $commit, $median, $(date), $warmups, $runs_flat" >> $FILE
+}
+
+test() {
+  commit=$1
+  author=$2
+  time=$3
+  pr=$4
+
+  # prepare dotty source code
+  cd $PROG_HOME/dotty
+  git reset --hard $commit
+  git submodule init
+  git submodule update
+
+  # prepare compiler artifacts for benchmarking
+  cd $PROG_HOME
+  $PROG_HOME/bin/replace
+
+  # start running benchmarks
+  cd $PROG_HOME
+
+  mkdir -p $PROG_HOME/out
+
+  source $PROG_HOME/bin/plan
+}
