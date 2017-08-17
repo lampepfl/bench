@@ -1,34 +1,35 @@
 #!/usr/bin/env bash
 
-set -eE
-
 # poll github to check performance commands
 
 ############# Error
 
 function report {
-  message= << EOF
+  read -r -d '' message << EOF
 polling service exception
 
 polling service exception
 EOF
 
-  ghi open -m "$message" -- liufengyun/bench
+  ghi open -m "$message"
+
+  exit 1
 }
 
-trap report ERR
+trap report INT TERM EXIT
 
 ############# Variables
 
 USERS=(odersky DarkDimius felixmulder smarter nicolasstucki liufengyun OlivierBlanvillain)
-REPO=lampepfl/dotty
+# REPO=lampepfl/dotty
+REPO=liufengyun/bench
 LAST_POLL=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 comment() {
   pr=$1
-  files=$(ls jobs/*.job) # don't use `(jobs/*.job)` for array, it doesn't work in tmux
+  files=$(ls jobs/*.job 2> /dev/null) # don't use `(jobs/*.job)` for array, it doesn't work in tmux
   total=$(echo $files | wc -w)
-  message= << EOF
+  read -r -d '' message << EOF
 [bot] performance test scheduled: $total jobs in total.
 EOF
 
@@ -44,6 +45,7 @@ while true; do
   pulls=$(cat $output | jq -r '.[] | select((.body | contains("/perftest")) and (.html_url | contains("pull")) )  | .html_url')
 
   while IFS= read -r line; do
+    echo "line $line"
     if [ "$line" != "" ]; then
       # https://github.com/lampepfl/dotty/pull/2970#issuecomment-321860528
       pr=$(echo $line | sed 's/^.*pull\/\([0-9]\+\)#.*/\1/')
@@ -54,5 +56,5 @@ while true; do
     fi
   done <<< "$pulls"
 
-  sleep 30
+  sleep 2
 done

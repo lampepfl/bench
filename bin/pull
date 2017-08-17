@@ -12,6 +12,7 @@ set -eE
 PR=$1
 FILE=pull-$PR.csv
 LOG=logs/pull-$PR-$(date +%m-%d-%H.%M).out
+REPO=lampepfl/dotty
 
 ############# Resolve directory
 
@@ -46,7 +47,7 @@ source $PROG_HOME/bin/common
 
 function report {
   content=$(tail -n 20 $LOG)
-  message= << EOF
+  read -r -d '' message << EOF
 [bot] performance test failed:
 
 $content
@@ -55,7 +56,8 @@ $content
 
 EOF
 
-  ghi comment $PR -m "$message" -- lampepfl/dotty
+  # ghi comment $PR -m "$message" -- $REPO
+  ghi comment 4 -m "$message" -- $REPO
 }
 
 trap report ERR
@@ -64,6 +66,7 @@ trap report ERR
 cd $PROG_HOME/dotty
 git fetch staging
 
+cd $PROG_HOME
 cp history.csv $FILE
 
 # get info of last commit in PR
@@ -76,6 +79,7 @@ commit_time=$(echo $info | jq -r '.time' )
 commit=$(echo $info | jq -r '.commit' )      # no , for last field
 
 test "$commit" "$author" "$commit_time" "$PR" > $LOG 2>&1
+cd $PROG_HOME
 
 ############## Deploy
 
@@ -104,10 +108,14 @@ git commit -m "[bot]update site for pull request $PR"
 git push origin gh-pages:gh-pages
 
 
-message= <<EOF
+read -r -d '' message << EOF
 [bot] performance finished successfully:
 
 Visit https://liufengyun.github.io/bench/$PR to see the changes.
 
 EOF
-ghi comment $PR -m "$message" -- lampepfl/dotty
+# ghi comment $PR -m "$message" -- $REPO
+ghi comment 4 -m "$message" -- $REPO
+
+# clean up
+rm $FILE

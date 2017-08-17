@@ -17,7 +17,7 @@ plans=$(cat bin/plan | grep "^measure")
 
 function report {
   content=$(tail -n 20 $log_file)
-  message= << EOF
+  read -r -d '' message << EOF
 [bot] regression failed for following benchmarks:
 
 arguments: $args
@@ -51,7 +51,7 @@ git add history.csv
 git commit -m "[bot]add data to history" > $log_file 2>&1
 git push origin master:master > $log_file 2>&1
 
-message= <<EOF
+read -r -d '' message << EOF
 [bot] regression finished successfully:
 
 arguments: $args

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 report() {
-  message= << EOF
+  read -r -d '' message << EOF
 job queue exception
 
 job queue exception
