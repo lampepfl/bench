@@ -56,5 +56,5 @@ while true; do
     fi
   done <<< "$pulls"
 
-  sleep 2
+  sleep 60
 done
