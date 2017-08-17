@@ -12,7 +12,8 @@ set -eE
 PR=$1
 FILE=pull-$PR.csv
 LOG=logs/pull-$PR-$(date +%m-%d-%H.%M).out
-REPO=lampepfl/dotty
+# REPO=lampepfl/dotty
+REPO=liufengyun/bench
 
 ############# Resolve directory
 
@@ -53,11 +54,11 @@ function report {
 $content
 
 [check $LOG for more information]
-
 EOF
 
   # ghi comment $PR -m "$message" -- $REPO
   ghi comment 4 -m "$message" -- $REPO
+  rm $FILE
 }
 
 trap report ERR
@@ -72,10 +73,11 @@ cp history.csv $FILE
 # get info of last commit in PR
 
 output=/tmp/pull-commits-$PR
-wget http://api.github.com/repos/lampepfl/dotty/pulls/$PR/commits -O $ouput
-info=$(cat $output | jq '.[-1] | {author: .author.login, time: .commit.committer.date, commit: .sha}')
+wget https://api.github.com/repos/lampepfl/dotty/pulls/$PR/commits -O $output
+
+info=$(cat $output | jq '.[-1] | {author: .author.login, commit: .sha}')
 author=$(echo $info | jq -r '.author' )
-commit_time=$(echo $info | jq -r '.time' )
+commit_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ") # use current time so the point appear last
 commit=$(echo $info | jq -r '.commit' )      # no , for last field
 
 test "$commit" "$author" "$commit_time" "$PR" > $LOG 2>&1
@@ -118,4 +120,4 @@ EOF
 ghi comment 4 -m "$message" -- $REPO
 
 # clean up
-rm $FILE
+rm $PROG_HOME/$FILE
