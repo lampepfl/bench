@@ -47,7 +47,7 @@ while true; do
     if [ "$line" != "" ]; then
       # https://github.com/lampepfl/dotty/pull/2970#issuecomment-321860528
       pr=$(echo $line | sed 's/^.*pull\/\([0-9]\+\)#.*/\1/')
-      if [ "$pr" != "" ]; then
+      if [ "$pr" =~ '^[0-9]+$' ]; then
         echo "bin/pull $pr" > jobs/pull-$pr.job
         comment $pr
       fi
