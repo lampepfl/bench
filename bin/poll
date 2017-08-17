@@ -31,7 +31,7 @@ comment() {
   files=$(ls jobs/*.job 2> /dev/null) # don't use `(jobs/*.job)` for array, it doesn't work in tmux
   total=$(echo $files | wc -w)
   read -r -d '' message << EOF
-[bot] performance test scheduled: $total jobs in total.
+performance test scheduled: $total jobs in total.
 EOF
 
   ghi comment $pr -m "$message"  -- $REPO

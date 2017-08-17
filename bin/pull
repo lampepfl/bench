@@ -10,10 +10,10 @@ set -eE
 ############# Variables
 
 PR=$1
-FILE=pull-$PR.csv
+FILE=/tmp/pull-$PR.csv
 LOG=logs/pull-$PR-$(date +%m-%d-%H.%M).out
-# REPO=lampepfl/dotty
-REPO=liufengyun/bench
+REPO=lampepfl/dotty
+# REPO=liufengyun/bench
 
 ############# Resolve directory
 
@@ -49,16 +49,15 @@ source $PROG_HOME/bin/common
 function report {
   content=$(tail -n 20 $LOG)
   read -r -d '' message << EOF
-[bot] performance test failed:
+performance test failed:
 
 $content
 
 [check $LOG for more information]
 EOF
 
-  # ghi comment $PR -m "$message" -- $REPO
-  ghi comment 4 -m "$message" -- $REPO
-  rm $FILE
+  ghi comment $PR -m "$message" -- $REPO
+  # ghi comment 4 -m "$message" -- $REPO
 }
 
 trap report ERR
@@ -111,13 +110,15 @@ git push origin gh-pages:gh-pages
 
 
 read -r -d '' message << EOF
-[bot] performance finished successfully:
+performance finished successfully:
 
 Visit https://liufengyun.github.io/bench/$PR to see the changes.
-
 EOF
-# ghi comment $PR -m "$message" -- $REPO
-ghi comment 4 -m "$message" -- $REPO
+
+ghi comment $PR -m "$message" -- $REPO
+# ghi comment 4 -m "$message" -- $REPO
 
 # clean up
-rm $PROG_HOME/$FILE
+cd $PROG_HOME
+rm $FILE
+
