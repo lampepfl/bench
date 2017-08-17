@@ -16,7 +16,8 @@ EOF
   exit 1
 }
 
-trap report INT TERM EXIT
+# trap report INT TERM EXIT
+trap report EXIT
 
 ############# Variables
 
