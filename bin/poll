@@ -45,7 +45,6 @@ while true; do
   pulls=$(cat $output | jq -r '.[] | select((.body | contains("/perftest")) and (.html_url | contains("pull")) )  | .html_url')
 
   while IFS= read -r line; do
-    echo "line $line"
     if [ "$line" != "" ]; then
       # https://github.com/lampepfl/dotty/pull/2970#issuecomment-321860528
       pr=$(echo $line | sed 's/^.*pull\/\([0-9]\+\)#.*/\1/')
