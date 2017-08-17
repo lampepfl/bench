@@ -1,30 +1,38 @@
 #!/usr/bin/env bash
 
-set -eE
-
-function report {
-  message=$(cat << EOF
+report() {
+  message= << EOF
 job queue exception
 
 job queue exception
-EOF)
-  ghi open -m "$message" -- liufengyun/bench}
+EOF
 
-trap report ERR
+  # ghi open -m "$message" -- liufengyun/bench
+
+  exit 1
+}
+
+trap report INT TERM EXIT
 
 # job queue service
 
 while true; do
-  files=( jobs/*.job )
-  first="${files[0]}"
-  source $first
+  files=$(ls jobs/*.job 2>/dev/null) # don't use `(jobs/*.job)` for array, it doesn't work in tmux
+  total=$(echo $files | wc -w)
 
-  rc=$?
-  if [[ $rc != 0 ]]; then
-    mv "$first" "${first%.job}.fail"
+  if [ "$total" != "0" ]; then
+    first=$(echo $files | cut -d' ' -f1)  # don't use array, it's buggy
+
+    bash $first
+
+    rc=$?
+    if [[ $rc != 0 ]]; then
+      mv "$first" "${first%.job}.fail"
+    else
+      mv "$first" "${first%.job}.done"
+    fi
+
   else
-    mv "$first" "${first%.job}.done"
+    sleep 60
   fi
-
-  sleep 10;
 done

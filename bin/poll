@@ -7,11 +7,11 @@ set -eE
 ############# Error
 
 function report {
-  message=$(cat << EOF
+  message= << EOF
 polling service exception
 
 polling service exception
-EOF)
+EOF
 
   ghi open -m "$message" -- liufengyun/bench
 }
@@ -26,11 +26,11 @@ LAST_POLL=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 comment() {
   pr=$1
-  files=(jobs/*.job)
-  total=${#files[@]}
-  message=$(cat << EOF
+  files=$(ls jobs/*.job) # don't use `(jobs/*.job)` for array, it doesn't work in tmux
+  total=$(echo $files | wc -w)
+  message= << EOF
 [bot] performance test scheduled: $total jobs in total.
-EOF)
+EOF
 
   ghi comment $pr -m "$message"  -- $REPO
 }

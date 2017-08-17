@@ -17,7 +17,7 @@ plans=$(cat bin/plan | grep "^measure")
 
 function report {
   content=$(tail -n 20 $log_file)
-  message=$(cat << EOF
+  message= << EOF
 [bot] regression failed for following benchmarks:
 
 arguments: $args
@@ -31,7 +31,7 @@ $content
 
 [check $log_file for more information]
 
-EOF)
+EOF
 
   ghi comment 4 -m "$message"
 }
@@ -51,7 +51,7 @@ git add history.csv
 git commit -m "[bot]add data to history" > $log_file 2>&1
 git push origin master:master > $log_file 2>&1
 
-message=$(cat <<EOF
+message= <<EOF
 [bot] regression finished successfully:
 
 arguments: $args
@@ -60,7 +60,7 @@ $plans
 
 Visit https://liufengyun.github.io/bench/ to see the changes.
 
-EOF)
+EOF
 ghi comment 4 -m "$message"
 
 # restore plan

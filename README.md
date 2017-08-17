@@ -4,7 +4,7 @@ Benchmarking Dotty
 
 ## Usage
 
-- `bin/cron`: used for the cron job
+- `bin/daily`: used for the daily job
 - `bin/run`: for manually benchmarking a specific test for a specific period
 - `bin/pull`: for testing a specific pull request
 
