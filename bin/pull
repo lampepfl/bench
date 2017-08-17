@@ -46,14 +46,14 @@ source $PROG_HOME/bin/common
 
 function report {
   content=$(tail -n 20 $LOG)
-  message=$(cat << EOF
+  message= << EOF
 [bot] performance test failed:
 
 $content
 
 [check $LOG for more information]
 
-EOF)
+EOF
 
   ghi comment $PR -m "$message" -- lampepfl/dotty
 }
@@ -104,10 +104,10 @@ git commit -m "[bot]update site for pull request $PR"
 git push origin gh-pages:gh-pages
 
 
-message=$(cat <<EOF
+message= <<EOF
 [bot] performance finished successfully:
 
 Visit https://liufengyun.github.io/bench/$PR to see the changes.
 
-EOF)
+EOF
 ghi comment $PR -m "$message" -- lampepfl/dotty
