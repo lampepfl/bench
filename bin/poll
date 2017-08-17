@@ -5,11 +5,9 @@
 ############# Error
 
 function report {
-  read -r -d '' message << EOF
-polling service exception
+  message="polling service exception
 
-polling service exception
-EOF
+polling service exception"
 
   ghi open -m "$message"
 
@@ -30,9 +28,7 @@ comment() {
   pr=$1
   files=$(ls jobs/*.job 2> /dev/null) # don't use `(jobs/*.job)` for array, it doesn't work in tmux
   total=$(echo $files | wc -w)
-  read -r -d '' message << EOF
-performance test scheduled: $total jobs in total.
-EOF
+  message="performance test scheduled: $total jobs in total."
 
   ghi comment $pr -m "$message"  -- $REPO
 }

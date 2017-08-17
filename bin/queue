@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
 report() {
-  read -r -d '' message << EOF
-job queue exception
+  message="job queue exception
 
-job queue exception
-EOF
+job queue exception"
 
   ghi open -m "$message" -- liufengyun/bench
 

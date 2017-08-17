@@ -13,7 +13,6 @@ PR=$1
 FILE=/tmp/pull-$PR.csv
 LOG=logs/pull-$PR-$(date +%m-%d-%H.%M).out
 REPO=lampepfl/dotty
-# REPO=liufengyun/bench
 
 ############# Resolve directory
 
@@ -48,16 +47,13 @@ source $PROG_HOME/bin/common
 
 function report {
   content=$(tail -n 20 $LOG)
-  read -r -d '' message << EOF
-performance test failed:
+  message="performance test failed:
 
 $content
 
-[check $LOG for more information]
-EOF
+[check $LOG for more information]"
 
   ghi comment $PR -m "$message" -- $REPO
-  # ghi comment 4 -m "$message" -- $REPO
 }
 
 trap report ERR
@@ -109,14 +105,11 @@ git commit -m "[bot]update site for pull request $PR"
 git push origin gh-pages:gh-pages
 
 
-read -r -d '' message << EOF
-performance finished successfully:
+message="Performance test finished successfully:
 
-Visit https://liufengyun.github.io/bench/$PR to see the changes.
-EOF
+Visit https://liufengyun.github.io/bench/$PR to see the changes."
 
 ghi comment $PR -m "$message" -- $REPO
-# ghi comment 4 -m "$message" -- $REPO
 
 # clean up
 cd $PROG_HOME
