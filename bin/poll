@@ -43,7 +43,7 @@ while true; do
   wget https://api.github.com/repos/$REPO/issues/comments?since=$LAST_POLL -O $output
   LAST_POLL=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-  pulls=$(cat $output | jq -r '.[] | select((.body | contains("/perftest")) and (.html_url | contains("pull")) )  | .html_url')
+  pulls=$(cat $output | jq -r '.[] | select((.body | contains("test performance please")) and (.html_url | contains("pull")) )  | .html_url')
 
   while IFS= read -r line; do
     if [ "$line" != "" ]; then
