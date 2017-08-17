@@ -22,8 +22,8 @@ trap report EXIT
 ############# Variables
 
 USERS=(odersky DarkDimius felixmulder smarter nicolasstucki liufengyun OlivierBlanvillain)
-# REPO=lampepfl/dotty
-REPO=liufengyun/bench
+REPO=lampepfl/dotty
+# REPO=liufengyun/bench
 LAST_POLL=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 comment() {
