@@ -1,7 +1,9 @@
+# The following cron jobs should be installed
+
 # root task
 @reboot /data/workspace/bench/bin/config
 
 # user task
 @reboot /data/workspace/bench/bin/queue
 @reboot /data/workspace/bench/bin/poll
-0 0 * * * echo "/data/workspace/bench/bin/daily" > /data/workspace/bench/jobs/daily-`date +%m-%d`
+0 0 * * * echo "/data/workspace/bench/bin/daily" > /data/workspace/bench/jobs/daily-`date +%m-%d`.job

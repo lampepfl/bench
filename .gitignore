@@ -76,3 +76,5 @@ compiler/after-pickling.txt
 _site/
 
 *.jar
+
+jobs/*.done
