@@ -21,14 +21,16 @@ while true; do
 
   if [ "$total" != "0" ]; then
     first=$(echo $files | cut -d' ' -f1)  # don't use array, it's buggy
+    base=${first%.job}
 
-    bash $first
+    mv "$base.job" "$base.running"
+    bash "$base.running"
 
     rc=$?
     if [[ $rc != 0 ]]; then
-      mv "$first" "${first%.job}.fail"
+      mv "$base.running" "$base.fail"
     else
-      mv "$first" "${first%.job}.done"
+      mv "$base.running" "$base.done"
     fi
 
   else
