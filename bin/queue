@@ -20,6 +20,12 @@ while true; do
   files=$(ls jobs/*.job 2>/dev/null) # don't use `(jobs/*.job)` for array, it doesn't work in tmux
   total=$(echo $files | wc -w)
 
+  if [ -f stop-queue ]; then
+    echo "stop queue"
+    trap '' EXIT
+    exit 0
+  fi
+
   if [ "$total" != "0" ]; then
     first=$(echo $files | cut -d' ' -f1)  # don't use array, it's buggy
     base=${first%.job}

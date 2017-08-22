@@ -4,6 +4,6 @@
 @reboot /data/workspace/bench/bin/config
 
 # user task
-@reboot /data/workspace/bench/bin/queue
-@reboot /data/workspace/bench/bin/poll
+@reboot cd /data/workspace/bench; bin/queue
+@reboot cd /data/workspace/bench; bin/poll
 0 0 * * * echo "/data/workspace/bench/bin/daily" > /data/workspace/bench/jobs/daily-$(date +\%m-\%d).job

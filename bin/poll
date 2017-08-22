@@ -55,5 +55,11 @@ while true; do
     fi
   done <<< "$pulls"
 
+  if [ -f stop-poll ]; then
+    trap '' EXIT
+    echo "stop polling"
+    exit 0
+  fi
+
   sleep $POLL_SLEEP
 done
