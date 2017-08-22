@@ -13,7 +13,7 @@ $content
 
 [check $log_file for more information]"
 
-  ghi comment 4 -m "$message"
+  ghi comment $MONITOR_ISSUE -m "$message" -- $MONITOR_REPO
 }
 
 trap report ERR
@@ -31,7 +31,7 @@ git push origin master:master > $log_file 2>&1
 
 message="benchmark finished success $(date)
 
-Visit https://liufengyun.github.io/bench/ to see the changes."
+Visit $WEB_URL to see the changes."
 
-ghi comment -m "$message" 4 > $log_file 2>&1
+ghi comment -m "$message" $MONITOR_ISSUE -- $MONITOR_REPO
 

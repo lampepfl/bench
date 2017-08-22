@@ -5,7 +5,7 @@ report() {
 
 job queue exception"
 
-  ghi open -m "$message" -- liufengyun/bench
+  ghi open -m "$message" -- $MONITOR_REPO
 
   exit 1
 }
@@ -14,6 +14,7 @@ job queue exception"
 trap report EXIT
 
 # job queue service
+source bin/config
 
 while true; do
   files=$(ls jobs/*.job 2>/dev/null) # don't use `(jobs/*.job)` for array, it doesn't work in tmux
@@ -34,6 +35,6 @@ while true; do
     fi
 
   else
-    sleep 60
+    sleep $QUEUE_IDLE_SLEEP
   fi
 done

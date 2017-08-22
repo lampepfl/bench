@@ -11,6 +11,8 @@ set -eE
 # Change test plans in `bin/plan`.
 #
 
+source bin/config
+
 args="$@"
 
 plans=$(cat bin/plan | grep "^measure")
@@ -30,7 +32,7 @@ $content
 
 [check $log_file for more information]"
 
-  ghi comment 4 -m "$message"
+  ghi comment $MONITOR_ISSUE -m "$message" -- $MONITOR_REPO
 }
 
 trap report ERR
@@ -54,10 +56,9 @@ arguments: $args
 
 $plans
 
-Visit https://liufengyun.github.io/bench/ to see the changes."
+Visit $WEB_URL to see the changes."
 
-ghi comment 4 -m "$message"
+ghi comment $MONITOR_ISSUE -m "$message" -- $MONITOR_REPO
 
 # restore plan
-git checkout bin/plan
 rm regression.csv

@@ -7,6 +7,10 @@ set -eE
 # PR             pull request number
 #
 
+
+############# config
+source bin/config
+
 ############# Variables
 
 PR=$1
@@ -107,7 +111,7 @@ git push origin gh-pages:gh-pages
 
 message="Performance test finished successfully:
 
-Visit https://liufengyun.github.io/bench/$PR to see the changes."
+Visit $WEB_URL/$PR to see the changes."
 
 ghi comment $PR -m "$message" -- $REPO
 

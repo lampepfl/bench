@@ -9,13 +9,16 @@ function report {
 
 polling service exception"
 
-  ghi open -m "$message"
+  ghi open -m "$message" -- $MONITOR_REPO
 
   exit 1
 }
 
 # trap report INT TERM EXIT
 trap report EXIT
+
+############# Config
+source bin/config
 
 ############# Variables
 
@@ -52,5 +55,5 @@ while true; do
     fi
   done <<< "$pulls"
 
-  sleep 60
+  sleep $POLL_SLEEP
 done

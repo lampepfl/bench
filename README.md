@@ -35,12 +35,11 @@ Put regression jobs as scripts under `jobs/`.
 
 ## Deployment
 
-TODO: make deployment a script
-
 - Install all dependencies listed above
 - Clone current project and its submodules, submodules of submodules
 - Checkout the branch `gh-pages` of current project as a folder `site` under current project
 - In `dotty` folder, run `git remote add staging https://github.com/dotty-staging/dotty.git`
-- Setup cron jobs under `bin/cron`, run `bin/config` once
+- Update configuration in `bin/config`
+- Setup cron jobs listed in `bin/cron`, run `bin/cpu` once, start `bin/poll` and `bin/queue`
 - Authorize `ghi config --auth`, make sure it works from command line
 - Make sure `git` can push to current project

@@ -1,0 +1,5 @@
+MONITOR_REPO=liufengyun/bench
+MONITOR_ISSUE=4
+WEB_URL=https://liufengyun.github.io/bench
+POLL_SLEEP=60
+QUEUE_IDLE_SLEEP=60
