@@ -39,9 +39,9 @@ sbt "dotty/clean" "dotty/package"
 sbt "dotty-interfaces/clean" "dotty-interfaces/package"
 sbt "dotty-library/clean"  "dotty-library/package"
 
-DOTTY_COMP=$(find_lib $PROG_HOME/dotty/compiler/target/scala-2.11 "*dotty-compiler*.jar")
+DOTTY_COMP=$(find_lib $PROG_HOME/dotty/compiler/target "*dotty-compiler*.jar")
 DOTTY_INTF=$(find_lib $PROG_HOME/dotty/interfaces/target "*dotty-interfaces*.jar")
-DOTTY_LIB=$(find_lib $PROG_HOME/dotty/library/target/scala-2.11 "*dotty-library*.jar")
+DOTTY_LIB=$(find_lib $PROG_HOME/dotty/library/target "*dotty-library*.jar")
 
 cd $PROG_HOME
 DEST_DOTTY_COMP=$(find_lib $PROG_HOME/target/pack/lib "*dotty-compiler*.jar")
@@ -51,3 +51,7 @@ DEST_DOTTY_LIB=$(find_lib $PROG_HOME/target/pack/lib "*dotty-library*.jar")
 cp $DOTTY_COMP $DEST_DOTTY_COMP
 cp $DOTTY_INTF $DEST_DOTTY_INTF
 cp $DOTTY_LIB  $DEST_DOTTY_LIB
+
+echo $DOTTY_COMP
+echo $DOTTY_INTF
+echo $DOTTY_LIB

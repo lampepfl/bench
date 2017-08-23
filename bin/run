@@ -11,11 +11,40 @@ set -eE
 # Change test plans in `bin/plan`.
 #
 
+if [ -z "$PROG_HOME" ] ; then
+  ## resolve links - $0 may be a link to PROG_HOME
+  PRG="$0"
+
+  # need this for relative symlinks
+  while [ -h "$PRG" ] ; do
+    ls=`ls -ld "$PRG"`
+    link=`expr "$ls" : '.*-> \(.*\)$'`
+    if expr "$link" : '/.*' > /dev/null; then
+      PRG="$link"
+    else
+      PRG="`dirname "$PRG"`/$link"
+    fi
+  done
+
+  saveddir=`pwd`
+
+  PROG_HOME=`dirname "$PRG"`/..
+
+  # make it fully qualified
+  PROG_HOME=`cd "$PROG_HOME" && pwd`
+
+  cd "$saveddir"
+fi
+
+## init
+cd $PROG_HOME
+
 source bin/config
-
 args="$@"
-
 plans=$(cat bin/plan | grep "^measure")
+log_file=logs/$(date +%m-%d-%H.%M)-regression.out
+
+## errors
 
 function report {
   content=$(tail -n 20 $log_file)
@@ -37,8 +66,7 @@ $content
 
 trap report ERR
 
-cd /data/workspace/bench
-log_file=logs/$(date +%m-%d-%H.%M)-regression.out
+## work
 
 bin/schedule $args -o regression.csv > $log_file 2>&1
 
@@ -49,6 +77,8 @@ bin/deploy   > $log_file 2>&1
 git add history.csv
 git commit -m "[bot]add data to history" > $log_file 2>&1
 git push origin master:master > $log_file 2>&1
+
+## success message
 
 message="regression finished successfully:
 

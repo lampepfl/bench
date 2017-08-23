@@ -1,5 +1,33 @@
 #!/usr/bin/env bash
 
+if [ -z "$PROG_HOME" ] ; then
+  ## resolve links - $0 may be a link to PROG_HOME
+  PRG="$0"
+
+  # need this for relative symlinks
+  while [ -h "$PRG" ] ; do
+    ls=`ls -ld "$PRG"`
+    link=`expr "$ls" : '.*-> \(.*\)$'`
+    if expr "$link" : '/.*' > /dev/null; then
+      PRG="$link"
+    else
+      PRG="`dirname "$PRG"`/$link"
+    fi
+  done
+
+  saveddir=`pwd`
+
+  PROG_HOME=`dirname "$PRG"`/..
+
+  # make it fully qualified
+  PROG_HOME=`cd "$PROG_HOME" && pwd`
+
+  cd "$saveddir"
+fi
+
+
+## error
+
 report() {
   message="job queue exception
 
@@ -13,7 +41,10 @@ job queue exception"
 # trap report INT TERM EXIT
 trap report EXIT
 
-# job queue service
+
+## work
+
+cd $PROG_HOME
 source bin/config
 
 while true; do

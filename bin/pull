@@ -45,8 +45,6 @@ if [ -z "$PROG_HOME" ] ; then
   cd "$saveddir"
 fi
 
-source $PROG_HOME/bin/common
-
 ############## Error handling
 
 function report {
@@ -63,7 +61,10 @@ $content
 trap report ERR
 
 ############## test
-cd $PROG_HOME/dotty
+cd $PROG_HOME
+source bin/common
+
+cd dotty/
 git fetch staging
 
 cd $PROG_HOME
