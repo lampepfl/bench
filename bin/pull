@@ -8,9 +8,6 @@ set -eE
 #
 
 
-############# config
-source bin/config
-
 ############# Variables
 
 PR=$1
@@ -63,6 +60,7 @@ trap report ERR
 ############## test
 cd $PROG_HOME
 source bin/common
+source bin/config
 
 cd dotty/
 git fetch staging
