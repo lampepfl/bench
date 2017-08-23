@@ -30,28 +30,37 @@ if [ -z "$PROG_HOME" ] ; then
 fi
 
 find_lib () {
-  local lib=$(find $1 -name "$2")
+  local lib=$(find "$PROG_HOME/dotty/dist/target/pack/lib" -name "$1")
   echo $lib
 }
 
 cd $PROG_HOME/dotty
-sbt "dotty/clean" "dotty/package"
-sbt "dotty-interfaces/clean" "dotty-interfaces/package"
-sbt "dotty-library/clean"  "dotty-library/package"
+# sbt "dotty/clean" "dist/pack"
+sbt "dist/pack"
 
-DOTTY_COMP=$(find_lib $PROG_HOME/dotty/compiler/target "*dotty-compiler*.jar")
-DOTTY_INTF=$(find_lib $PROG_HOME/dotty/interfaces/target "*dotty-interfaces*.jar")
-DOTTY_LIB=$(find_lib $PROG_HOME/dotty/library/target "*dotty-library*.jar")
+DOTTY_COMP=$(find_lib "*dotty-compiler*")
+DOTTY_INTF=$(find_lib "*dotty-interfaces*")
+DOTTY_LIB=$(find_lib "*dotty-library*")
+SCALA_ASM=$(find_lib "*scala-asm*")
+SCALA_LIB=$(find_lib "*scala-library*")
+SCALA_XML=$(find_lib "*scala-xml*")
+SBT_INTF=$(find_lib "*sbt-interface*")
 
 cd $PROG_HOME
-DEST_DOTTY_COMP=$(find_lib $PROG_HOME/target/pack/lib "*dotty-compiler*.jar")
-DEST_DOTTY_INTF=$(find_lib $PROG_HOME/target/pack/lib "*dotty-interfaces*.jar")
-DEST_DOTTY_LIB=$(find_lib $PROG_HOME/target/pack/lib "*dotty-library*.jar")
+DEST_DOTTY_COMP=$(find "$PROG_HOME/target/pack/lib" -name "*dotty-compiler*.jar")
+DEST_DOTTY_INTF=$(find "$PROG_HOME/target/pack/lib" -name "*dotty-interfaces*.jar")
+DEST_DOTTY_LIB=$(find "$PROG_HOME/target/pack/lib" -name "*dotty-library*.jar")
+DEST_SCALA_ASM=$(find "$PROG_HOME/target/pack/lib" -name "*scala-asm*")
+DEST_SCALA_LIB=$(find "$PROG_HOME/target/pack/lib" -name "*scala-library*")
+DEST_SCALA_XML=$(find "$PROG_HOME/target/pack/lib" -name "*scala-xml*")
+DEST_SBT_INTF=$(find "$PROG_HOME/target/pack/lib" -name "*sbt-interface*")
+rm -f $DEST_DOTTY_COMP $DEST_DOTTY_INTF $DEST_DOTTY_LIB $DEST_SCALA_ASM $DEST_SCALA_LIB $DEST_SCALA_XML $DEST_SBT_INTF
 
-cp $DOTTY_COMP $DEST_DOTTY_COMP
-cp $DOTTY_INTF $DEST_DOTTY_INTF
-cp $DOTTY_LIB  $DEST_DOTTY_LIB
+cp $DOTTY_COMP "$PROG_HOME/target/pack/lib"
+cp $DOTTY_INTF "$PROG_HOME/target/pack/lib"
+cp $DOTTY_LIB  "$PROG_HOME/target/pack/lib"
+cp $SCALA_ASM  "$PROG_HOME/target/pack/lib"
+cp $SCALA_LIB  "$PROG_HOME/target/pack/lib"
+cp $SCALA_XML  "$PROG_HOME/target/pack/lib"
+cp $SBT_INTF   "$PROG_HOME/target/pack/lib"
 
-echo $DOTTY_COMP
-echo $DOTTY_INTF
-echo $DOTTY_LIB

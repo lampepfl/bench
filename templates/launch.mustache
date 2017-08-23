@@ -142,22 +142,21 @@ find_lib () {
   fi
 }
 
-DOTTY_LIB=$(find_lib "*dotty-library*")
-SCALA_LIB=$(find_lib "*scala-library-2.11*")
-SCALA_RFL=$(find_lib "*scala-reflect*")
+DOTTY_COMP=$(find_lib "*dotty-compiler*")
+DOTTY_INTF=$(find_lib "*dotty-interfaces*")
+DOTTY_LIB=$( find_lib "*dotty-library*")
+SCALA_ASM=$( find_lib "*scala-asm*")
+SCALA_LIB=$( find_lib "*scala-library*")
+SCALA_XML=$( find_lib "*scala-xml*")
+SBT_INTF=$(  find_lib "*sbt-interface*")
 
 # add default libraries for compilation
 # export BOOTSTRAP_APPEND="$DOTTY_LIB$PSEP$SCALA_LIB$PSEP$SCALA_RFL"
-export BOOTSTRAP_APPEND="{{{EXPANDED_CLASSPATH}}}${CLASSPATH_SUFFIX}"
+export BOOTSTRAP_APPEND="$DOTTY_COMP:$DOTTY_INTF:$DOTTY_LIB:$SCALA_ASM:$SCALA_LIB:$SCALA_XML:$SBT_INTF"
 
 eval exec "\"$JAVACMD\"" \
      {{{JVM_OPTS}}} \
      ${JAVA_OPTS} \
-     {{^EXPANDED_CLASSPATH}}
      -cp "'{{{EXTRA_CLASSPATH}}}${PROG_HOME}/lib/*${CLASSPATH_SUFFIX}'" \
-     {{/EXPANDED_CLASSPATH}}
-     {{#EXPANDED_CLASSPATH}}
-     -cp "'{{{EXTRA_CLASSPATH}}}{{{EXPANDED_CLASSPATH}}}${CLASSPATH_SUFFIX}'" \
-     {{/EXPANDED_CLASSPATH}}
      {{{MAIN_CLASS}}} \"\$@\"
 exit $?
