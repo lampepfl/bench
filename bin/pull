@@ -63,6 +63,9 @@ source bin/common
 source bin/config
 
 cd dotty/
+git fetch origin
+git reset --hard origin/master
+
 git fetch staging
 
 cd $PROG_HOME
@@ -77,6 +80,10 @@ info=$(cat $output | jq '.[-1] | {author: .author.login, commit: .sha}')
 author=$(echo $info | jq -r '.author' )
 commit_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ") # use current time so the point appear last
 commit=$(echo $info | jq -r '.commit' )      # no , for last field
+
+# do a local merge
+git merge $commit
+commit=$(git rev-parse --short HEAD)
 
 test "$commit" "$author" "$commit_time" "$PR" > $LOG 2>&1
 cd $PROG_HOME
@@ -110,7 +117,9 @@ git push origin gh-pages:gh-pages
 
 message="Performance test finished successfully:
 
-Visit $WEB_URL/$PR to see the changes."
+Visit $WEB_URL/$PR to see the changes.
+
+Benchmarks for this PR is based on the merge of this PR ($commit) with master"
 
 ghi comment $PR -m "$message" -- $REPO
 
