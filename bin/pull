@@ -8,13 +8,6 @@ set -eE
 #
 
 
-############# Variables
-
-PR=$1
-FILE=/tmp/pull-$PR.csv
-LOG=logs/pull-$PR-$(date +%m-%d-%H.%M).out
-REPO=lampepfl/dotty
-
 ############# Resolve directory
 
 if [ -z "$PROG_HOME" ] ; then
@@ -41,6 +34,12 @@ if [ -z "$PROG_HOME" ] ; then
 
   cd "$saveddir"
 fi
+############# Variables
+
+PR=$1
+FILE=/tmp/pull-$PR.csv
+LOG=$PROG_HOME/logs/pull-$PR-$(date +%m-%d-%H.%M).out
+REPO=lampepfl/dotty
 
 ############## Error handling
 
@@ -62,31 +61,32 @@ cd $PROG_HOME
 source bin/common
 source bin/config
 
+
+cp history.csv $FILE
+
 cd dotty/
 git fetch origin
 git reset --hard origin/master
 
 git fetch staging
 
-cd $PROG_HOME
-cp history.csv $FILE
-
 # get info of last commit in PR
 
-output=/tmp/pull-commits-$PR
-wget https://api.github.com/repos/lampepfl/dotty/pulls/$PR/commits -O $output
+output=/tmp/pull-$PR
+wget https://api.github.com/repos/lampepfl/dotty/pulls/$PR -O $output
 
-info=$(cat $output | jq '.[-1] | {author: .author.login, commit: .sha}')
+info=$(cat $output | jq '{ commit: .head.sha, author: .user.login }')
 author=$(echo $info | jq -r '.author' )
 commit_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ") # use current time so the point appear last
 commit=$(echo $info | jq -r '.commit' )      # no , for last field
 
 # do a local merge
-git merge $commit
+cd $PROG_HOME/dotty
+git merge $commit -m "merge PR $PR with master" > $LOG 2>&1
 commit=$(git rev-parse --short HEAD)
 
-test "$commit" "$author" "$commit_time" "$PR" > $LOG 2>&1
 cd $PROG_HOME
+test "$commit" "$author" "$commit_time" "$PR" > $LOG 2>&1
 
 ############## Deploy
 
