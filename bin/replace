@@ -36,7 +36,7 @@ find_lib () {
 
 cd $PROG_HOME/dotty
 # sbt "dotty/clean" "dist/pack"
-sbt "dist-bootstrapped/pack"
+sbt "dotty-bootstrapped/clean" "dist-bootstrapped/pack"
 
 DOTTY_COMP=$(find_lib "*dotty-compiler*")
 DOTTY_INTF=$(find_lib "*dotty-interfaces*")
