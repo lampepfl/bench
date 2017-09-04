@@ -78,11 +78,11 @@ wget https://api.github.com/repos/lampepfl/dotty/pulls/$PR -O $output
 info=$(cat $output | jq '{ commit: .head.sha, author: .user.login }')
 author=$(echo $info | jq -r '.author' )
 commit_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ") # use current time so the point appear last
-commit=$(echo $info | jq -r '.commit' )      # no , for last field
+last_commit=$(echo $info | jq -r '.commit' )      # no , for last field
 
 # do a local merge
 cd $PROG_HOME/dotty
-git merge $commit -m "merge PR $PR with master" > $LOG 2>&1
+git merge $last_commit -m "merge PR #$PR with master" > $LOG 2>&1
 commit=$(git rev-parse --short HEAD)
 
 cd $PROG_HOME
@@ -119,7 +119,7 @@ message="Performance test finished successfully:
 
 Visit $WEB_URL/$PR to see the changes.
 
-Benchmarks for this PR is based on the merge of this PR ($commit) with master"
+Benchmarks for this PR is based on the merge of this PR ($last_commit) with master"
 
 ghi comment $PR -m "$message" -- $REPO
 
