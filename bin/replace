@@ -30,13 +30,13 @@ if [ -z "$PROG_HOME" ] ; then
 fi
 
 find_lib () {
-  local lib=$(find "$PROG_HOME/dotty/dist/target/pack/lib" -name "$1")
+  local lib=$(find "$PROG_HOME/dotty/dist-bootstrapped/target/pack/lib" -name "$1")
   echo $lib
 }
 
 cd $PROG_HOME/dotty
 # sbt "dotty/clean" "dist/pack"
-sbt "dist/pack"
+sbt "dist-bootstrapped/pack"
 
 DOTTY_COMP=$(find_lib "*dotty-compiler*")
 DOTTY_INTF=$(find_lib "*dotty-interfaces*")
