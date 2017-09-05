@@ -55,7 +55,7 @@ LAST_POLL=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 comment() {
   local pr=$1
-  local commits=$(echo $2 | cut -d':' --output-delimiter=' , ' -f1-)
+  local commits=$(echo $2 | cut -d':' --output-delimiter=' ' -f1-)
   files=$(ls jobs/*.job 2> /dev/null) # don't use `(jobs/*.job)` for array, it doesn't work in tmux
   total=$(echo $files | wc -w)
 
