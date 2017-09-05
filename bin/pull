@@ -47,7 +47,9 @@ function report {
   content=$(tail -n 20 $LOG)
   message="performance test failed:
 
+```
 $content
+```
 
 [check $LOG for more information]"
 

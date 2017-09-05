@@ -34,7 +34,9 @@ function report {
   content=$(tail -n 20 $log_file)
   message="cron failed
 
+```
 $content
+```
 
 [check $log_file for more information]"
 
