@@ -81,7 +81,7 @@ while true; do
       # https://github.com/lampepfl/dotty/pull/2970#issuecomment-321860528
       pr=$(echo $line | sed 's/^.*pull\/\([0-9]\+\)#.*/\1/')
 
-      commits_info=$(echo $line | sed 's/.*test performance please *:\(.*\)$/\1/')
+      commits_info=$(echo $line | sed 's/.*test performance please *:\(.*\)$/\1/' | sed 's/[^1-9a-z ]//g') # sanitize input
       if [[ $commits_info != *"test performance please"* ]]; then
         commits=$(echo $commits_info | cut -d' ' --output-delimiter=':' -f1-)
       else
