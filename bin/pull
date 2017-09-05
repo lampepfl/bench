@@ -110,11 +110,11 @@ do
 
   cd $PROG_HOME/dotty
   git reset --hard origin/master
-  git merge $origin_commit -m "merge PR #$PR commit $origin_commit with master" > $LOG 2>&1
+  git merge $origin_commit -m "merge PR #$PR commit $origin_commit with master" >> $LOG 2>&1
   commit=$(git rev-parse --short HEAD)
 
   cd $PROG_HOME
-  test "$commit" "$author" "$commit_time" "$PR" > $LOG 2>&1
+  test "$commit" "$author" "$commit_time" "$PR" >> $LOG 2>&1
 done
 
 ############## Deploy
