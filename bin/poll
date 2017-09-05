@@ -54,10 +54,16 @@ REPO=lampepfl/dotty
 LAST_POLL=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 comment() {
-  pr=$1
+  local pr=$1
+  local commits=$(echo $2 | cut -d':' --output-delimiter=',' -f1-)
   files=$(ls jobs/*.job 2> /dev/null) # don't use `(jobs/*.job)` for array, it doesn't work in tmux
   total=$(echo $files | wc -w)
-  message="performance test scheduled: $total jobs in total."
+
+  if [[ -z $commits ]]; then
+     message="performance test scheduled: $total job(s) in queue."
+  else
+    message="performance test scheduled for $commits: $total job(s) in queue."
+  fi
 
   ghi comment $pr -m "$message"  -- $REPO
 }
@@ -68,15 +74,27 @@ while true; do
   wget https://api.github.com/repos/$REPO/issues/comments?since=$LAST_POLL -O $output
   LAST_POLL=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-  pulls=$(cat $output | jq -r '.[] | select((.body | contains("test performance please")) and (.html_url | contains("pull")) )  | .html_url')
+  pulls=$(cat $output | jq -r '.[] | select((.body | contains("test performance please")) and (.html_url | contains("pull")) ) | [.html_url,  .body] | @tsv')
 
   while IFS= read -r line; do
     if [ "$line" != "" ]; then
       # https://github.com/lampepfl/dotty/pull/2970#issuecomment-321860528
       pr=$(echo $line | sed 's/^.*pull\/\([0-9]\+\)#.*/\1/')
+
+      commits_info=$(echo $line | sed 's/.*test performance please *:\(.*\)$/\1/' | sed 's/[^1-9a-z ]//g') # sanitize input
+      if [[ $commits_info != *"test performance please"* ]]; then
+        commits=$(echo $commits_info | cut -d' ' --output-delimiter=':' -f1-)
+      else
+        commits=""  # reset is important
+      fi
+
       if [[ "$pr" =~ ^[0-9]+$ ]]; then
-        echo "bin/pull $pr" > jobs/pull-$pr.job
-        comment $pr
+        if [[ -z $commits ]]; then
+           echo "bin/pull $pr" > jobs/pull-$pr.job
+        else
+           echo "bin/pull $pr -c $commits" > jobs/pull-$pr.job
+        fi
+        comment $pr $commits
       fi
     fi
   done <<< "$pulls"
