@@ -84,6 +84,8 @@ while true; do
       commits_info=$(echo $line | sed 's/.*test performance please *:\(.*\)$/\1/')
       if [[ $commits_info != *"test performance please"* ]]; then
         commits=$(echo $commits_info | cut -d' ' --output-delimiter=':' -f1-)
+      else
+        commits=""  # reset is important
       fi
 
       if [[ "$pr" =~ ^[0-9]+$ ]]; then
