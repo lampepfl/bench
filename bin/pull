@@ -2,7 +2,7 @@
 
 set -eE
 
-# usage: pull PR
+# usage: pull PR [-c COMMIT1:COMMIT2]
 #
 # PR             pull request number
 #
@@ -40,6 +40,24 @@ PR=$1
 FILE=/tmp/pull-$PR.csv
 LOG=$PROG_HOME/logs/pull-$PR-$(date +%m-%d-%H.%M).out
 REPO=lampepfl/dotty
+COMMITS=
+
+############## Options
+while getopts "c:" opt; do
+  case $opt in
+    c)
+      COMMITS=$OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
 
 ############## Error handling
 
@@ -68,27 +86,36 @@ cp history.csv $FILE
 
 cd dotty/
 git fetch origin
-git reset --hard origin/master
-
 git fetch staging
 
-# get info of last commit in PR
+############# get PR info
 
 output=/tmp/pull-$PR
 wget https://api.github.com/repos/lampepfl/dotty/pulls/$PR -O $output
 
 info=$(cat $output | jq '{ commit: .head.sha, author: .user.login }')
 author=$(echo $info | jq -r '.author' )
-commit_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ") # use current time so the point appear last
-last_commit=$(echo $info | jq -r '.commit' )      # no , for last field
+last_commit=$(echo $info | jq -r '.commit' )
 
-# do a local merge
-cd $PROG_HOME/dotty
-git merge $last_commit -m "merge PR #$PR with master" > $LOG 2>&1
-commit=$(git rev-parse --short HEAD)
+if [[ -z $COMMITS ]]; then
+  COMMITS="$last_commit"
+fi
 
-cd $PROG_HOME
-test "$commit" "$author" "$commit_time" "$PR" > $LOG 2>&1
+############ test commits
+
+for origin_commit in $(echo $COMMITS | tr ":" "\n")
+do
+  # do a local merge
+  commit_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")   # use current time so the point appear last
+
+  cd $PROG_HOME/dotty
+  git reset --hard origin/master
+  git merge $origin_commit -m "merge PR #$PR commit $origin_commit with master" > $LOG 2>&1
+  commit=$(git rev-parse --short HEAD)
+
+  cd $PROG_HOME
+  test "$commit" "$author" "$commit_time" "$PR" > $LOG 2>&1
+done
 
 ############## Deploy
 
@@ -121,7 +148,7 @@ message="Performance test finished successfully:
 
 Visit $WEB_URL/$PR to see the changes.
 
-Benchmarks for this PR is based on the merge of this PR ($last_commit) with master"
+Benchmarks is based on merge(s) with master"
 
 ghi comment $PR -m "$message" -- $REPO
 
