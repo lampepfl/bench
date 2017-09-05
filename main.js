@@ -110,7 +110,7 @@ var ChartComponent = React.createClass({
             var day = date.getDate();
             var month = date.getMonth() + 1;
             var year = date.getFullYear();
-            return "PR#" + item.pr + " \n" + day + "/" + month + "/" + year;
+            return "PR#" + item.pr + " \n" + item.commit + " \n" + day + "/" + month + "/" + year;
           }.bind(this),
           label: function (point) {
             var item = getItem(point.datasetIndex, point.index);
