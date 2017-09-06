@@ -120,6 +120,7 @@ do
     if [[ $in_range == "true" ]]; then
 
         if ((skip_counter == SKIP)); then
+          prepare "$commit"
           test "$commit" "$author" "$time" "$pr"
           skip_counter=0
         else
