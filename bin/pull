@@ -34,13 +34,23 @@ if [ -z "$PROG_HOME" ] ; then
 
   cd "$saveddir"
 fi
-############# Variables
 
-PR=$1
-FILE=/tmp/pull-$PR.csv
-LOG=$PROG_HOME/logs/pull-$PR-$(date +%m-%d-%H.%M).out
-REPO=lampepfl/dotty
-COMMITS=
+############## Error handling
+
+function report {
+  content=$(tail -n 20 $LOG)
+  message="performance test failed:
+
+```
+$content
+```
+
+[check $LOG for more information]"
+
+  ghi comment $PR -m "$message" -- $REPO
+}
+
+trap report ERR
 
 ############## Options
 while getopts "c:" opt; do
@@ -59,22 +69,15 @@ while getopts "c:" opt; do
   esac
 done
 
-############## Error handling
+shift $((OPTIND-1))
 
-function report {
-  content=$(tail -n 20 $LOG)
-  message="performance test failed:
+############# Variables
 
-```
-$content
-```
+PR=$1
+FILE=/tmp/pull-$PR.csv
+LOG=$PROG_HOME/logs/pull-$PR-$(date +%m-%d-%H.%M).out
+REPO=lampepfl/dotty
 
-[check $LOG for more information]"
-
-  ghi comment $PR -m "$message" -- $REPO
-}
-
-trap report ERR
 
 ############## test
 cd $PROG_HOME
@@ -113,8 +116,10 @@ do
   git merge $origin_commit -m "merge PR #$PR commit $origin_commit with master" >> $LOG 2>&1
   commit=$(git rev-parse --short HEAD)
 
+  prepare $commit
+
   cd $PROG_HOME
-  test "$commit" "$author" "$commit_time" "$PR" >> $LOG 2>&1
+  test "$origin_commit" "$author" "$commit_time" "$PR" >> $LOG 2>&1
 done
 
 ############## Deploy

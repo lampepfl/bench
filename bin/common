@@ -20,12 +20,8 @@ measure() {
   echo "$key, $pr, $time, $commit, $median, $(date), $warmups, $runs_flat" >> $FILE
 }
 
-test() {
+prepare() {
   commit=$1
-  author=$2
-  time=$3
-  pr=$4
-
   # prepare dotty source code
   cd $PROG_HOME/dotty
   git reset --hard $commit
@@ -35,6 +31,13 @@ test() {
   # prepare compiler artifacts for benchmarking
   cd $PROG_HOME
   $PROG_HOME/bin/replace
+}
+
+test() {
+  commit=$1
+  author=$2
+  time=$3
+  pr=$4
 
   # start running benchmarks
   cd $PROG_HOME

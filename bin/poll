@@ -92,7 +92,7 @@ while true; do
         if [[ -z $commits ]]; then
            echo "bin/pull $pr" > jobs/pull-$pr.job
         else
-           echo "bin/pull $pr -c $commits" > jobs/pull-$pr.job
+           echo "bin/pull -c $commits $pr" > jobs/pull-$pr.job
         fi
         comment $pr $commits
       fi
