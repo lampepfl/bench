@@ -98,7 +98,7 @@ wget https://api.github.com/repos/lampepfl/dotty/pulls/$PR -O $output
 
 info=$(cat $output | jq '{ commit: .head.sha, author: .user.login }')
 author=$(echo $info | jq -r '.author' )
-last_commit=$(echo $info | jq -r '.commit' )
+last_commit=$(echo $info | jq -r '.commit' | cut -c 1-7 )
 
 if [[ -z $COMMITS ]]; then
   COMMITS="$last_commit"
