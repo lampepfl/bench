@@ -41,7 +41,7 @@ cd $PROG_HOME
 
 source bin/config
 args="$@"
-plans=$(cat bin/plan | grep "^measure")
+plans=$(cat bin/plan | grep "^[^#]")
 log_file=logs/$(date +%m-%d-%H.%M)-regression.out
 
 ## errors
