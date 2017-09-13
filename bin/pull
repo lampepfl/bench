@@ -87,22 +87,34 @@ source bin/config
 
 cp history.csv $FILE
 
-cd dotty/
-git fetch origin
-git fetch staging
-
 ############# get PR info
 
 output=/tmp/pull-$PR
 wget https://api.github.com/repos/lampepfl/dotty/pulls/$PR -O $output
 
-info=$(cat $output | jq '{ commit: .head.sha, author: .user.login }')
+info=$(cat $output | jq '{ commit: .head.sha, author: .user.login, repo: .head.repo.full_name, branch: .head.ref }')
 author=$(echo $info | jq -r '.author' )
 last_commit=$(echo $info | jq -r '.commit' | cut -c 1-7 )
+from_repo=$(echo $info | jq -r '.repo' )
+from_branch=$(echo $info | jq -r '.branch' )
 
 if [[ -z $COMMITS ]]; then
   COMMITS="$last_commit"
 fi
+
+
+cd dotty/
+
+if [[ $from_repo == "dotty-staging/dotty" ]]; then
+   remote_name="staging"
+else
+   remote_name="PR$PR"
+   git remote add $remote_name https://github.com/$from_repo
+fi
+
+# get commits from github
+git fetch $remote_name $from_branch
+git fetch origin master
 
 ############ test commits
 
