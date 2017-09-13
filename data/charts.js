@@ -12,6 +12,11 @@ Bench.charts = [
         "url": "https://github.com/liufengyun/bench/blob/master/tests/scala-library"
     },
     {
+        "key": "tests/scalapb",
+        "name": "scalapb",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/scalapb"
+    },
+    {
         "key": "dotty",
         "name": "dotty (compiled by itself -- source changes over time)",
         "url": "https://github.com/lampepfl/dotty"
