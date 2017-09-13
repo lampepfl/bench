@@ -14,7 +14,7 @@ Bench.charts = [
     {
         "key": "tests/scalapb",
         "name": "scalapb",
-        "url": "https://github.com/liufengyun/bench/blob/master/tests/scalapb"
+        "url": "https://github.com/liufengyun/ScalaPB/"
     },
     {
         "key": "dotty",
