@@ -58,11 +58,12 @@ comment() {
   local commits=$(echo $2 | cut -d':' --output-delimiter=' ' -f1-)
   files=$(ls jobs/*.job 2> /dev/null) # don't use `(jobs/*.job)` for array, it doesn't work in tmux
   total=$(echo $files | wc -w)
+  running=$(find jobs/ -name "*.running" | wc -l)
 
   if [[ -z $commits ]]; then
-     message="performance test scheduled: $total job(s) in queue."
+     message="performance test scheduled: $total job(s) in queue, $running running."
   else
-    message="performance test scheduled for $commits: $total job(s) in queue."
+     message="performance test scheduled for $commits: $total job(s) in queue, $running running."
   fi
 
   ghi comment $pr -m "$message"  -- $REPO
