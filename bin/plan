@@ -17,3 +17,4 @@ measure "tests/exhaustivity-S.scala" tests/exhaustivity-S.scala
 measure "tests/exhaustivity-T.scala" tests/exhaustivity-T.scala
 measure "tests/exhaustivity-V.scala" tests/exhaustivity-V.scala
 measure "tests/implicitNums.scala" tests/implicitNums.scala
+source tests/scripts/scalapb
