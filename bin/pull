@@ -85,7 +85,7 @@ source bin/common
 source bin/config
 
 # compile current project
-bin/schedule:sbt jmh:compile pack
+sbt jmh:compile pack
 
 
 cp history.csv $FILE
