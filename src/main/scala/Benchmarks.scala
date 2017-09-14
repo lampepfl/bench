@@ -18,7 +18,21 @@ object Bench {
   val COMPILE_OPTS_FILE = "compile.txt"
 
   def main(args: Array[String]): Unit = {
-    storeCompileOptions(args)
+    if (args.isEmpty) {
+      println("Missing <args>")
+      return
+    }
+    val (intArgs, args1) = args.span(x => try { x.toInt; true } catch { case _: Throwable => false } )
+
+    val warmup = if (intArgs.length > 0) intArgs(0).toInt else 10
+    val iterations = if (intArgs.length > 1) intArgs(1).toInt else 20
+    val forks = if (intArgs.length > 2) intArgs(2).toInt else 2
+
+    val args2 = args1.map { arg =>
+      if ((arg.endsWith(".scala") || arg.endsWith(".java")) && arg.head != '/') "../" + arg
+      else arg
+    }
+    storeCompileOptions(args2)
 
     val libs = System.getenv("BOOTSTRAP_APPEND")
 
@@ -26,9 +40,9 @@ object Bench {
                .jvmArgsPrepend(s"-Xbootclasspath/a:$libs")
                .mode(Mode.AverageTime)
                .timeUnit(TimeUnit.MILLISECONDS)
-               .forks(1)
-               .warmupIterations(10)
-               .measurementIterations(20)
+               .warmupIterations(warmup)
+               .measurementIterations(iterations)
+                .forks(forks)
                .build
 
     val runner = new Runner(opts) // full access to all JMH features, you can also provide a custom output Format here
