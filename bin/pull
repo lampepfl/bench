@@ -166,7 +166,7 @@ git push origin gh-pages:gh-pages
 
 message="Performance test finished successfully:
 
-Visit $WEB_URL/$PR to see the changes.
+Visit $WEB_URL/$PR/ to see the changes.
 
 Benchmarks is based on merge(s) with master"
 
