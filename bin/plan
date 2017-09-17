@@ -7,14 +7,14 @@ measure "tests/implicit_cache.scala" tests/implicit_cache.scala
 measure "tests/implicit-scope-loop.scala" tests/implicit-scope-loop.scala
 measure "tests/i1535.scala" tests/i1535.scala
 measure "tests/i1687.scala" tests/i1687.scala
-measure "tests/Vector.scala" tests/Vector.scala
+measure "tests/Vector.scala" 20 30 3 tests/Vector.scala
 measure "tests/empty-class.scala" tests/empty-class.scala
 measure "tests/empty-object.scala" tests/empty-object.scala
 measure "tests/empty-file.scala" tests/empty-file.scala
-measure "tests/patmatexhaust.scala" tests/patmatexhaust.scala
-measure "tests/exhaustivity-I.scala" tests/exhaustivity-I.scala
-measure "tests/exhaustivity-S.scala" tests/exhaustivity-S.scala
-measure "tests/exhaustivity-T.scala" tests/exhaustivity-T.scala
-measure "tests/exhaustivity-V.scala" tests/exhaustivity-V.scala
+measure "tests/patmatexhaust.scala" 20 40 3 tests/patmatexhaust.scala
+measure "tests/exhaustivity-I.scala" 20 40 3 tests/exhaustivity-I.scala
+measure "tests/exhaustivity-S.scala" 20 40 3 tests/exhaustivity-S.scala
+measure "tests/exhaustivity-T.scala" 20 40 3 tests/exhaustivity-T.scala
+measure "tests/exhaustivity-V.scala" 20 40 3 tests/exhaustivity-V.scala
 measure "tests/implicitNums.scala" tests/implicitNums.scala
 source tests/scripts/scalapb

@@ -25,7 +25,7 @@ object Bench {
 
     val warmup = if (intArgs.length > 0) intArgs(0).toInt else 10
     val iterations = if (intArgs.length > 1) intArgs(1).toInt else 20
-    val forks = if (intArgs.length > 2) intArgs(2).toInt else 3
+    val forks = if (intArgs.length > 2) intArgs(2).toInt else 1
 
     storeCompileOptions(args1)
 
