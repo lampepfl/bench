@@ -74,10 +74,9 @@ shift $((OPTIND-1))
 ############# Variables
 
 PR=$1
-FILE=/tmp/pull-$PR.csv
+FILE=$PROG_HOME/site/$PR/history.csv
 LOG=$PROG_HOME/logs/pull-$PR-$(date +%m-%d-%H.%M).out
 REPO=lampepfl/dotty
-
 
 ############## test
 cd $PROG_HOME
@@ -87,8 +86,8 @@ source bin/config
 # compile current project
 sbt jmh:compile pack
 
-
-cp history.csv $FILE
+# make sure folder for PR exists
+mkdir -p site/$PR/
 
 ############# get PR info
 
@@ -135,8 +134,6 @@ do
 
   cd $PROG_HOME
   test "$origin_commit" "$author" "$commit_time" "$PR" >> $LOG 2>&1
-
-  last_commit=$(echo $origin_commit | cut -c 1-7) # for deployment
 done
 
 ############## Deploy
@@ -149,16 +146,20 @@ npm run build
 
 # copy resource
 cd ..
-DEST_DIR="site/$PR-$last_commit"
+DEST_DIR="site/$PR"
 mkdir -p $DEST_DIR
 cp web/index.html $DEST_DIR
 cp web/bundle.js $DEST_DIR
 cp -r web/css $DEST_DIR
 
 # build data
+TEMP_FILE="/tmp/pull-$PR.csv"
+cp $PROG_HOME/history.csv $TEMP_FILE
+echo $FILE >> $TEMP_FILE
+
 mkdir -p site/$PR/data
 cp bin/charts.js site/$PR/data/charts.js
-bin/csv2json $FILE > site/$PR/data/dataset.json
+bin/csv2json $TEMP_FILE > site/$PR/data/dataset.json
 
 # push to github
 cd site
@@ -169,7 +170,7 @@ git push origin gh-pages:gh-pages
 
 message="Performance test finished successfully:
 
-Visit $WEB_URL/$PR-$last_commit/ to see the changes.
+Visit $WEB_URL/$PR/ to see the changes.
 
 Benchmarks is based on merge(s) with master"
 
