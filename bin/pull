@@ -97,7 +97,7 @@ wget https://api.github.com/repos/lampepfl/dotty/pulls/$PR -O $output
 
 info=$(cat $output | jq '{ commit: .head.sha, author: .user.login, repo: .head.repo.full_name, branch: .head.ref }')
 author=$(echo $info | jq -r '.author' )
-last_commit=$(echo $info | jq -r '.commit' | cut -c 1-7 )
+last_commit=$(echo $info | jq -r '.commit' )
 from_repo=$(echo $info | jq -r '.repo' )
 from_branch=$(echo $info | jq -r '.branch' )
 
@@ -135,6 +135,8 @@ do
 
   cd $PROG_HOME
   test "$origin_commit" "$author" "$commit_time" "$PR" >> $LOG 2>&1
+
+  last_commit=$(echo $origin_commit | cut -c 1-7) # for deployment
 done
 
 ############## Deploy
@@ -147,10 +149,11 @@ npm run build
 
 # copy resource
 cd ..
-mkdir -p site/$PR
-cp web/index.html site/$PR
-cp web/bundle.js site/$PR
-cp -r web/css site/$PR
+DEST_DIR="site/$PR-$last_commit"
+mkdir -p $DEST_DIR
+cp web/index.html $DEST_DIR
+cp web/bundle.js $DEST_DIR
+cp -r web/css $DEST_DIR
 
 # build data
 mkdir -p site/$PR/data
@@ -166,7 +169,7 @@ git push origin gh-pages:gh-pages
 
 message="Performance test finished successfully:
 
-Visit $WEB_URL/$PR/ to see the changes.
+Visit $WEB_URL/$PR-$last_commit/ to see the changes.
 
 Benchmarks is based on merge(s) with master"
 
