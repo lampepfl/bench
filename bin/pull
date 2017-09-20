@@ -74,10 +74,9 @@ shift $((OPTIND-1))
 ############# Variables
 
 PR=$1
-FILE=/tmp/pull-$PR.csv
+FILE=$PROG_HOME/site/$PR/history.csv
 LOG=$PROG_HOME/logs/pull-$PR-$(date +%m-%d-%H.%M).out
 REPO=lampepfl/dotty
-
 
 ############## test
 cd $PROG_HOME
@@ -87,8 +86,8 @@ source bin/config
 # compile current project
 sbt jmh:compile pack
 
-
-cp history.csv $FILE
+# make sure folder for PR exists
+mkdir -p site/$PR/
 
 ############# get PR info
 
@@ -97,7 +96,7 @@ wget https://api.github.com/repos/lampepfl/dotty/pulls/$PR -O $output
 
 info=$(cat $output | jq '{ commit: .head.sha, author: .user.login, repo: .head.repo.full_name, branch: .head.ref }')
 author=$(echo $info | jq -r '.author' )
-last_commit=$(echo $info | jq -r '.commit' | cut -c 1-7 )
+last_commit=$(echo $info | jq -r '.commit' )
 from_repo=$(echo $info | jq -r '.repo' )
 from_branch=$(echo $info | jq -r '.branch' )
 
@@ -147,15 +146,20 @@ npm run build
 
 # copy resource
 cd ..
-mkdir -p site/$PR
-cp web/index.html site/$PR
-cp web/bundle.js site/$PR
-cp -r web/css site/$PR
+DEST_DIR="site/$PR"
+mkdir -p $DEST_DIR
+cp web/index.html $DEST_DIR
+cp web/bundle.js $DEST_DIR
+cp -r web/css $DEST_DIR
 
 # build data
+TEMP_FILE="/tmp/pull-$PR.csv"
+cp $PROG_HOME/history.csv $TEMP_FILE
+echo $FILE >> $TEMP_FILE
+
 mkdir -p site/$PR/data
 cp bin/charts.js site/$PR/data/charts.js
-bin/csv2json $FILE > site/$PR/data/dataset.json
+bin/csv2json $TEMP_FILE > site/$PR/data/dataset.json
 
 # push to github
 cd site
