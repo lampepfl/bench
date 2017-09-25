@@ -31,14 +31,14 @@ fi
 ## error
 
 function report {
-  content=$(tail -n 20 $log_file)
+  content=$(tail -n 20 $LOG)
   message="cron failed
 
 ```
 $content
 ```
 
-[check $log_file for more information]"
+[check $LOG for more information]"
 
   ghi comment $MONITOR_ISSUE -m "$message" -- $MONITOR_REPO
 }
@@ -48,17 +48,17 @@ trap report ERR
 ## init
 
 cd $PROG_HOME
-log_file=logs/$(date +%m-%d).out
+LOG=$PROG_HOME/logs/$(date +%m-%d).out
 source bin/config
 
 ## work
 
-bin/schedule "$@" >> $log_file 2>&1
-bin/deploy   >> $log_file 2>&1
+bin/schedule "$@" >> $LOG 2>&1
+bin/deploy   >> $LOG 2>&1
 
 git add history.csv
-git commit -m "[bot]add data to history" >> $log_file 2>&1
-git push origin master:master >> $log_file 2>&1
+git commit -m "[bot]add data to history" >> $LOG 2>&1
+git push origin master:master >> $LOG 2>&1
 
 
 message="benchmark finished success $(date)
