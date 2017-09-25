@@ -53,7 +53,7 @@ source bin/config
 
 ## work
 
-bin/schedule >> $log_file 2>&1
+bin/schedule "$@" >> $log_file 2>&1
 bin/deploy   >> $log_file 2>&1
 
 git add history.csv
