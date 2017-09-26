@@ -178,5 +178,4 @@ ghi comment $PR -m "$message" -- $REPO
 
 # clean up
 cd $PROG_HOME
-rm $FILE
 
