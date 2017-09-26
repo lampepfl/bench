@@ -155,7 +155,7 @@ cp -r web/css $DEST_DIR
 # build data
 TEMP_FILE="/tmp/pull-$PR.csv"
 cp $PROG_HOME/history.csv $TEMP_FILE
-echo $FILE >> $TEMP_FILE
+cat $FILE >> $TEMP_FILE
 
 mkdir -p site/$PR/data
 cp bin/charts.js site/$PR/data/charts.js
