@@ -56,8 +56,7 @@ LAST_POLL=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 comment() {
   local pr=$1
   local commits=$(echo $2 | cut -d':' --output-delimiter=' ' -f1-)
-  files=$(ls jobs/*.job 2> /dev/null) # don't use `(jobs/*.job)` for array, it doesn't work in tmux
-  total=$(echo $files | wc -w)
+  total=$(find jobs/ -name "*.job" | wc -l)
   running=$(find jobs/ -name "*.running" | wc -l)
 
   if [[ -z $commits ]]; then
@@ -75,7 +74,7 @@ while true; do
   wget https://api.github.com/repos/$REPO/issues/comments?since=$LAST_POLL -O $output
   LAST_POLL=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-  pulls=$(cat $output | jq -r '.[] | select((.body | test("^test performance please")) and (.html_url | contains("pull")) ) | [.html_url,  .body] | @tsv')
+  pulls=$(cat $output | jq -r '.[] | select((.body | test("^(re)?test performance please")) and (.html_url | contains("pull")) ) | [.html_url,  .body] | @tsv')
 
   while IFS= read -r line; do
     if [ "$line" != "" ]; then
@@ -89,11 +88,18 @@ while true; do
         commits=""  # reset is important
       fi
 
+      if [[ $line == "retest performance please"* ]]; then
+        fresh="-n"
+      else
+        fresh=""
+      fi
+
+
       if [[ "$pr" =~ ^[0-9]+$ ]]; then
         if [[ -z $commits ]]; then
-           echo "bin/pull $pr" > jobs/pull-$pr.job
+           echo "bin/pull $fresh $pr" > jobs/pull-$pr.job
         else
-           echo "bin/pull -c $commits $pr" > jobs/pull-$pr.job
+           echo "bin/pull $fresh -c $commits $pr" > jobs/pull-$pr.job
         fi
         comment $pr $commits
       fi
