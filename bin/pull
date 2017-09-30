@@ -78,7 +78,7 @@ done
 shift $((OPTIND-1))
 
 ############# set session home directory
-# By default prepend points to last test session
+# By default append points to last test session
 # input: requires $PR to be set
 # output: set $SESSION_DIR
 set_session_dir() {
