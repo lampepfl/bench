@@ -185,7 +185,7 @@ cat $FILE >> $TEMP_FILE
 
 mkdir -p $SESSION_HOME/data
 cp bin/charts.js $SESSION_HOME/data/charts.js
-bin/csv2json $TEMP_FILE > $$SESSION_HOME/data/dataset.json
+bin/csv2json $TEMP_FILE > $SESSION_HOME/data/dataset.json
 
 # push to github
 cd site
