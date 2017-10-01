@@ -173,7 +173,6 @@ npm run build
 
 # copy resource
 cd ..
-mkdir -p $DEST_DIR
 cp web/index.html $SESSION_HOME
 cp web/bundle.js $SESSION_HOME
 cp -r web/css $SESSION_HOME
@@ -201,7 +200,4 @@ Visit $WEB_URL/$SESSION_DIR/ to see the changes.
 Benchmarks is based on merging with master ($master_hash)"
 
 ghi comment $PR -m "$message" -- $REPO
-
-# clean up
-cd $PROG_HOME
 
