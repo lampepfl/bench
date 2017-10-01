@@ -166,13 +166,13 @@ done
 ############## Deploy
 
 # build web
-cd web
+cd $PROG_HOME/web
 git fetch origin
 git merge origin/master
 npm run build
 
 # copy resource
-cd ..
+cd $PROG_HOME
 cp web/index.html $SESSION_HOME
 cp web/bundle.js $SESSION_HOME
 cp -r web/css $SESSION_HOME
@@ -187,7 +187,7 @@ cp bin/charts.js $SESSION_HOME/data/charts.js
 bin/csv2json $TEMP_FILE > $SESSION_HOME/data/dataset.json
 
 # push to github
-cd site
+cd $PROG_HOME/site
 git add .
 git commit -m "[bot]update site for pull request $PR"
 git push origin gh-pages:gh-pages
