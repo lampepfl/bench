@@ -149,11 +149,12 @@ master_hash=$(git rev-parse --short origin/master)
 
 for origin_commit in $(echo $COMMITS | tr ":" "\n")
 do
+  cd $PROG_HOME/dotty
+
   # do a local merge
   commit_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")   # use current time so the point appear last
   short_hash=$(git rev-parse --short $origin_commit)
 
-  cd $PROG_HOME/dotty
   git reset --hard origin/master
   git merge $origin_commit -m "merge PR #$PR commit $short_hash with master" >> $LOG 2>&1
 
