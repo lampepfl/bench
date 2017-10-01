@@ -84,12 +84,12 @@ shift $((OPTIND-1))
 set_session_dir() {
   count=$(find $PROG_HOME/site -name "$PR*" | wc -l)
 
-  if [[ $count == "0" ]]; then
+  if [[ $count == "0" || ($count == "1" && $FRESH != "true") ]]; then
     SESSION_DIR="$PR"
   elif [[ $FRESH == "true" ]]; then
-    SESSION_DIR="$PR-$(expr $count + 1)"
+    SESSION_DIR="$PR-$(expr $count)"
   else
-    SESSION_DIR="$PR-$count"
+    SESSION_DIR="$PR-$(expr $count - 1)"
   fi
 }
 
