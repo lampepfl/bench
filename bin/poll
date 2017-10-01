@@ -89,7 +89,7 @@ while true; do
       fi
 
       if [[ $line == "retest performance please"* ]]; then
-        fresh="-n"
+        fresh=" -n"   # initial space is important!!
       else
         fresh=""
       fi
