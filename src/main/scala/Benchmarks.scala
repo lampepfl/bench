@@ -32,7 +32,7 @@ object Bench {
     val libs = System.getenv("BOOTSTRAP_APPEND")
 
     val opts = new OptionsBuilder()
-               .jvmArgsPrepend(s"-Xbootclasspath/a:$libs")
+               .jvmArgsPrepend(s"-Xbootclasspath/a:$libs", "-Xms2G", "-Xmx2G")
                .mode(Mode.AverageTime)
                .timeUnit(TimeUnit.MILLISECONDS)
                .warmupIterations(warmup)
