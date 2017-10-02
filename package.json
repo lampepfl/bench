@@ -9,8 +9,6 @@
   "dependencies": {
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "redux": "^3.4.0",
-    "react-redux": "^4.4.5",
     "chart.js": "^2.0.0"
   },
   "devDependencies": {
