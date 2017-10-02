@@ -4,7 +4,7 @@ Benchmarking Dotty
 
 ## Usage
 
-- `bin/daily`: used for the daily job
+- `bin/master`: used for benchmarking the master
 - `bin/run`: for manually benchmarking a specific test for a specific period
 - `bin/pull`: for testing a specific pull request
 
