@@ -183,33 +183,6 @@ var _ChartList = React.createClass({
 
 var ChartList = ReactRedux.connect(function (state) { return { charts: state.charts } })(_ChartList);
 
-
-var _ChoiceList = React.createClass({
-  selected: function (item) {
-    return this.props.charts.filter(function (d) { return d.name === item.name }).length > 0;
-  },
-  handleChange: function (chart, e) {
-    if (e.target.checked) {
-      this.props.select(chart);
-    } else {
-      this.props.deselect(chart);
-    }
-  },
-  render: function () {
-    var items = allCharts().map(function (chart) {
-      return <span className="sidebar-nav-item" key={chart.key}>
-        <input type="checkbox" defaultChecked={this.selected(chart)} onChange={this.handleChange.bind(this, chart)} />
-        {chart.name}
-      </span>
-    }.bind(this));
-
-    return <nav className="sidebar-nav">{items}</nav>
-  }
-})
-
-var ChoiceList = ReactRedux.connect(function (state) { return { charts: state.charts } },
-  { select: actionSelect, deselect: actionDeselect })(_ChoiceList);
-
 function initialState() {
   return { charts: allCharts() };
 }
@@ -222,10 +195,5 @@ $.get("data/dataset.json", function (dataset) {
   ReactDOM.render(
     <ReactRedux.Provider store={store}><ChartList /></ReactRedux.Provider>,
     document.getElementById('app')
-  );
-
-  ReactDOM.render(
-    <ReactRedux.Provider store={store}><ChoiceList /></ReactRedux.Provider>,
-    document.getElementById('sidebar-app')
   );
 })
