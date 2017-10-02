@@ -16,9 +16,23 @@ function prepareData(key) {
     return acc;
   }
 
+  function sample(points, rate) {
+    return points.reduce(function(acc, item) {
+      if (Math.random() < rate) acc.push(item);
+
+      return acc;
+    }, []);
+  }
+
   var points = Bench.dataset.reduce(accumulate, []).sort(function(a, b) {
     return new Date(a.obj.time) - new Date(b.obj.time);
   });
+
+  var pts1 = sample(points.slice(0, -100), 50 / (points.length - 100));
+  var pts2 = sample(points.slice(-100, -40), 0.5);
+  var pts3 = points.slice(-40);
+
+  points = pts1.concat(pts2).concat(pts3);
 
   var median = {
       label: "median",
