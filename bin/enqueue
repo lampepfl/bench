@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "/data/workspace/bench/bin/master" > /data/workspace/bench/jobs/master-$(date +\%m-\%d-%H.%M).job
+
