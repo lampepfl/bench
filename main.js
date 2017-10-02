@@ -77,14 +77,12 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function getState(id, showAll) {
-  var data = prepareData(id, !showAll);
-
+function options(chart) {
   function getItem(didx, pidx) {
-    return data["datasets"][didx].data[pidx].obj;
+    return chart.state.data["datasets"][didx].data[pidx].obj;
   }
 
-  var options = {
+  return {
     responsive: true,
     tooltips: {
       callbacks: {
@@ -125,8 +123,6 @@ function getState(id, showAll) {
       }
     }
   }
-
-  return { data: data, ready: true, options: options, showAll: showAll };
 }
 
 var ChartComponent = React.createClass({
@@ -134,10 +130,10 @@ var ChartComponent = React.createClass({
     return { data: {}, options: {}, ready: false, showAll: false };
   },
   handleChange: function (e) {
-    this.setState(getState(this.props.id, e.target.checked));
+    this.setState({ data: prepareData(this.props.id, !e.target.checked), ready: true, options: options(this), showAll: this.state.showAll });
   },
   componentDidMount: function () {
-    this.setState(getState(this.props.id, this.state.showAll));
+    this.setState({ data: prepareData(this.props.id, !this.state.showAll), ready: true, options: options(this), showAll: this.state.showAll });
   },
   render: function () {
     var width = $("#app").width();
