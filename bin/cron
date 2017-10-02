@@ -6,4 +6,4 @@
 # user task
 @reboot cd /data/workspace/bench; bin/queue
 @reboot cd /data/workspace/bench; bin/poll
-*/10 * * * * echo "/data/workspace/bench/bin/master" > /data/workspace/bench/jobs/master-$(date +\%m-\%d).job
+*/10 * * * * echo "/data/workspace/bench/bin/master" > /data/workspace/bench/jobs/master-$(date +\%m-\%d-%H.%M).job
