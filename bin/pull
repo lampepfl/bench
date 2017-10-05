@@ -41,6 +41,8 @@ fi
 ############## Error handling
 
 function report {
+  set +e
+
   content=$(tail -n 20 $LOG)
   message="performance test failed:
 
@@ -48,12 +50,14 @@ function report {
 $content
 ```
 
+Error line number: $1
+
 [check $LOG for more information]"
 
   ghi comment $PR -m "$message" -- $REPO
 }
 
-trap report ERR
+trap 'report $LINENO' ERR
 
 ############## Options
 while getopts "c:n" opt; do
