@@ -41,9 +41,10 @@ fi
 ############## Error handling
 
 function report {
-  set +e
+  if [ -f "$LOG" ]; then
+    content=$(tail -n 20 "$LOG")
+  fi
 
-  content=$(tail -n 20 $LOG)
   message="performance test failed:
 
 ```
