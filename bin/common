@@ -8,7 +8,7 @@ measure() {
   key=$1
   shift
 
-  $PROG_HOME/target/pack/bin/bench "$@" -d $PROG_HOME/out | tee output.txt
+  $PROG_HOME/target/pack/bin/bench "$@" -d $PROG_HOME/out -nowarn | tee output.txt
 
   runs=$(cat output.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/')
   warmups=$(cat output.txt | grep -E '^# Warmup Iteration' | sed -r 's/^# Warmup Iteration.*: ([0-9\.]+).*$/\1/' | tr '\n' ' ')
