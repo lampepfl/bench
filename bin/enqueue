@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
 
-echo "/data/workspace/bench/bin/master" > /data/workspace/bench/jobs/master-$(date +\%m-\%d-%H.%M).job
+cd /data/workspace/bench
+
+COUNT=$(find jobs/ -name "master-*.job" | wc -l)
+
+if [[ $COUNT == "0" ]]; then
+  echo "/data/workspace/bench/bin/master" > /data/workspace/bench/jobs/master-$(date +\%m-\%d-%H.%M).job
+fi
 
