@@ -8,7 +8,9 @@ measure() {
   key=$1
   shift
 
-  $PROG_HOME/target/pack/bin/bench "$@" -d $PROG_HOME/out -nowarn | tee output.txt
+  cd "$PROG_HOME/dotty"
+
+  sbt "dotty-bench-bootstrapped/jmh:run $@ -d $PROG_HOME/out -nowarn" 2>&1 | tee output.txt
 
   runs=$(cat output.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/')
   warmups=$(cat output.txt | grep -E '^# Warmup Iteration' | sed -r 's/^# Warmup Iteration.*: ([0-9\.]+).*$/\1/' | tr '\n' ' ')
@@ -23,14 +25,13 @@ measure() {
 prepare() {
   commit=$1
   # prepare dotty source code
-  cd $PROG_HOME/dotty
+  cd "$PROG_HOME/dotty"
   git reset --hard $commit
   git submodule init
   git submodule update
 
-  # prepare compiler artifacts for benchmarking
-  cd $PROG_HOME
-  $PROG_HOME/bin/replace
+  git clean -xdf
+  sbt "dotty-bench-bootstrapped/jmh:compile"
 }
 
 test() {
