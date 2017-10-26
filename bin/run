@@ -42,7 +42,7 @@ cd $PROG_HOME
 source bin/config
 args="$@"
 plans=$(cat bin/plan | grep "^[^#]")
-log_file=logs/$(date +%m-%d-%H.%M)-regression.out
+log_file="$PROG_HOME/logs/$(date +%m-%d-%H.%M)-regression.out"
 
 ## errors
 
@@ -68,7 +68,7 @@ trap report ERR
 
 ## work
 
-bin/schedule $args -o regression.csv >> $log_file 2>&1
+bin/schedule $args -o "$PROG_HOME/regression.csv" >> $log_file 2>&1
 
 cat regression.csv | cat - history.csv > temp.csv && mv temp.csv history.csv
 
