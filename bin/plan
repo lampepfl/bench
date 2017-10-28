@@ -1,5 +1,5 @@
 # Dotty Project
-measure "dotty" $(find dotty/compiler/src/dotty -name *.scala -o -name *.java)
+measure "dotty" $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
 measure "tests/scala-library" -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
 
 # microbenchmarks
