@@ -142,7 +142,12 @@ if [[ $from_repo == "dotty-staging/dotty" ]]; then
    remote_name="staging"
 else
    remote_name="PR$PR"
-   git remote add $remote_name https://github.com/$from_repo
+
+   if git remote | grep $remote_name > /dev/null; then
+     echo "branch $remote_name already exists"
+   else
+     git remote add $remote_name https://github.com/$from_repo
+   fi
 fi
 
 # get commits from github
