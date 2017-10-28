@@ -72,7 +72,7 @@ done
 shift $((OPTIND-1))
 
 if [[ -z $FILE ]]; then
-  FILE="history.csv"
+  FILE="$PROG_HOME/history.csv"
   echo "output file defaults to history.csv"
 fi
 

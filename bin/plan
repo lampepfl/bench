@@ -1,20 +1,20 @@
 # Dotty Project
-measure "dotty" $(find dotty/compiler/src/dotty -name *.scala -o -name *.java)
-measure "tests/scala-library" -language:Scala2 $(find tests/scala-library -name *.scala)
+measure "dotty" $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
+measure "tests/scala-library" -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
 
 # microbenchmarks
-measure "tests/implicit_cache.scala" tests/implicit_cache.scala
-measure "tests/implicit-scope-loop.scala" tests/implicit-scope-loop.scala
-measure "tests/i1535.scala" tests/i1535.scala
-measure "tests/i1687.scala" tests/i1687.scala
-measure "tests/Vector.scala" 20 30 3 tests/Vector.scala
-measure "tests/empty-class.scala" tests/empty-class.scala
-measure "tests/empty-object.scala" tests/empty-object.scala
-measure "tests/empty-file.scala" tests/empty-file.scala
-measure "tests/patmatexhaust.scala" 20 40 3 tests/patmatexhaust.scala
-measure "tests/exhaustivity-I.scala" 20 40 3 tests/exhaustivity-I.scala
-measure "tests/exhaustivity-S.scala" 20 40 3 tests/exhaustivity-S.scala
-measure "tests/exhaustivity-T.scala" 20 40 3 tests/exhaustivity-T.scala
-measure "tests/exhaustivity-V.scala" 20 40 3 tests/exhaustivity-V.scala
-measure "tests/implicitNums.scala" tests/implicitNums.scala
+measure "tests/implicit_cache.scala" $PROG_HOME/tests/implicit_cache.scala
+measure "tests/implicit-scope-loop.scala" $PROG_HOME/tests/implicit-scope-loop.scala
+measure "tests/i1535.scala" $PROG_HOME/tests/i1535.scala
+measure "tests/i1687.scala" $PROG_HOME/tests/i1687.scala
+measure "tests/Vector.scala" 20 30 3 $PROG_HOME/tests/Vector.scala
+measure "tests/empty-class.scala" $PROG_HOME/tests/empty-class.scala
+measure "tests/empty-object.scala" $PROG_HOME/tests/empty-object.scala
+measure "tests/empty-file.scala" $PROG_HOME/tests/empty-file.scala
+measure "tests/patmatexhaust.scala" 20 40 3 $PROG_HOME/tests/patmatexhaust.scala
+measure "tests/exhaustivity-I.scala" 20 40 3 $PROG_HOME/tests/exhaustivity-I.scala
+measure "tests/exhaustivity-S.scala" 20 40 3 $PROG_HOME/tests/exhaustivity-S.scala
+measure "tests/exhaustivity-T.scala" 20 40 3 $PROG_HOME/tests/exhaustivity-T.scala
+measure "tests/exhaustivity-V.scala" 20 40 3 $PROG_HOME/tests/exhaustivity-V.scala
+measure "tests/implicitNums.scala" $PROG_HOME/tests/implicitNums.scala
 source tests/scripts/scalapb

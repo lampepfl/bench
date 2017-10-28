@@ -5,7 +5,7 @@ Benchmarking Dotty
 ## Usage
 
 - `bin/master`: used for benchmarking the master
-- `bin/run`: for manually benchmarking a specific test for a specific period
+- `bin/run`: for manually benchmarking a specific period (after 2017.10.27)
 - `bin/pull`: for testing a specific pull request
 
 Check the documentation in the source code of each command for more detail.
@@ -19,7 +19,8 @@ Update the two files below:
 
 ## Schedule a regression job
 
-Put regression jobs as scripts under `jobs/`. 
+- Put regression jobs as scripts under `jobs/`. 
+- Remember to use absolute path with the `$PROG_HOME` variable
 
 ## Dependencies
 
@@ -28,7 +29,6 @@ Put regression jobs as scripts under `jobs/`.
 - sed
 - cron
 - npm
-- NodeJS
 - [ghi](https://github.com/stephencelis/ghi)
 - git
 - sbt
