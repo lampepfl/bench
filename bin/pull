@@ -144,7 +144,7 @@ else
    remote_name="PR$PR"
 
    if git remote | grep $remote_name > /dev/null; then
-     echo "branch $remote_name already exists"
+     echo "remote $remote_name already exists"
    else
      git remote add $remote_name https://github.com/$from_repo
    fi
