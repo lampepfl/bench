@@ -17,4 +17,4 @@ measure "tests/exhaustivity-S.scala" 20 40 3 $PROG_HOME/tests/exhaustivity-S.sca
 measure "tests/exhaustivity-T.scala" 20 40 3 $PROG_HOME/tests/exhaustivity-T.scala
 measure "tests/exhaustivity-V.scala" 20 40 3 $PROG_HOME/tests/exhaustivity-V.scala
 measure "tests/implicitNums.scala" $PROG_HOME/tests/implicitNums.scala
-source tests/scripts/scalapb
+source $PROG_HOME/tests/scripts/scalapb
