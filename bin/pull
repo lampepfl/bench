@@ -114,9 +114,6 @@ cd $PROG_HOME
 source bin/common
 source bin/config
 
-# compile current project
-sbt jmh:compile pack
-
 # make sure folder for session home exists
 mkdir -p $SESSION_HOME
 
