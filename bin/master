@@ -32,13 +32,7 @@ fi
 
 function report {
   content=$(tail -n 20 $LOG)
-  message="cron failed
-
-```
-$content
-```
-
-[check $LOG for more information]"
+  message="cron failed, check $LOG for more information"
 
   ghi comment $MONITOR_ISSUE -m "$message" -- $MONITOR_REPO
 }
