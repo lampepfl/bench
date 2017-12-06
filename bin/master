@@ -64,10 +64,7 @@ git add history.csv
 git commit -m "[bot]add data to history" >> $LOG 2>&1
 git push origin master:master >> $LOG 2>&1
 
-
-message="benchmark finished success $(date)
-
-Visit $WEB_URL to see the changes."
-
-ghi comment -m "$message" $MONITOR_ISSUE -- $MONITOR_REPO
+# message="benchmark finished success $(date)
+# Visit $WEB_URL to see the changes."
+# ghi comment -m "$message" $MONITOR_ISSUE -- $MONITOR_REPO
 
