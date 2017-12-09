@@ -46,16 +46,12 @@ source bin/config
 
 LOG="$PROG_HOME/logs/$(date +%m-%d).out"
 FILE="$PROG_HOME/history.csv"
-FROM_PR=$(tail -n 1 $FILE | cut -d, -f2 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+FROM_COMMIT=$(tail -n 1 $FILE | cut -d, -f4 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
 
 cd "$PROG_HOME/dotty"
-git reset --hard origin/master
-git fetch origin
-git merge origin/master
-git submodule init
-git submodule update
+git fetch origin master
 
-merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' $FROM_PR..HEAD --reverse)
+merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' $FROM_COMMIT..origin/master --reverse)
 
 while IFS= read -r commit_line
 do
@@ -69,8 +65,4 @@ do
     echo "bin/gauge $pr $commit" > "$PROG_HOME/jobs/work-merge-$pr.job"
   fi
 done <<< "$merge_commits"
-
-# message="benchmark finished success $(date)
-# Visit $WEB_URL to see the changes."
-# ghi comment -m "$message" $MONITOR_ISSUE -- $MONITOR_REPO
 
