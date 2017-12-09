@@ -6,4 +6,4 @@
 # user task
 @reboot cd /data/workspace/bench; bin/queue
 @reboot cd /data/workspace/bench; bin/poll
-*/10 * * * * /data/workspace/bench/bin/enqueue
+*/10 * * * * /data/workspace/bench/bin/master
