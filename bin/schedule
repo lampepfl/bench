@@ -41,7 +41,7 @@ if [ -z "$PROG_HOME" ] ; then
   cd "$saveddir"
 fi
 
-source $PROG_HOME/bin/common
+source "$PROG_HOME/bin/common"
 
 # parse command line params
 while getopts "f:t:s:o:" opt; do
@@ -87,7 +87,7 @@ if [[ -z $SKIP ]]; then
 fi
 
 
-cd $PROG_HOME/dotty
+cd "$PROG_HOME/dotty"
 git reset --hard origin/master
 git fetch origin
 git merge origin/master

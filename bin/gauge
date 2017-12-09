@@ -2,6 +2,13 @@
 
 set -eE
 
+# Test a merge point on master
+#
+# usage: gauge PR COMMIT
+#
+# e.g.
+#        gauge 2874 a2dbd
+
 
 if [ -z "$PROG_HOME" ] ; then
   ## resolve links - $0 may be a link to PROG_HOME
@@ -32,7 +39,7 @@ fi
 
 function report {
   content=$(tail -n 20 $LOG)
-  message="schedule master jobs failed, check $LOG for more information"
+  message="test $PR $COMMIT failed, check $LOG for more information"
 
   ghi comment $MONITOR_ISSUE -m "$message" -- $MONITOR_REPO
 }
@@ -41,12 +48,14 @@ trap report ERR
 
 ## init
 
-cd "$PROG_HOME"
-source bin/config
-
-LOG="$PROG_HOME/logs/$(date +%m-%d).out"
+cd $PROG_HOME
+PR=$1
+COMMIT=$2
+LOG="$PROG_HOME/logs/pr-$PR-$COMMIT.out"
 FILE="$PROG_HOME/history.csv"
-FROM_PR=$(tail -n 1 $FILE | cut -d, -f2 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+
+source "$PROG_HOME/bin/config"
+source "$PROG_HOME/bin/common"
 
 cd "$PROG_HOME/dotty"
 git reset --hard origin/master
@@ -55,20 +64,23 @@ git merge origin/master
 git submodule init
 git submodule update
 
-merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' $FROM_PR..HEAD --reverse)
+line=$(git show --no-patch --pretty=format:'%h,%an,%ad,%s' $COMMIT)
+author=$(echo $commit_line | cut -d',' -f2)
+time=$(echo $commit_line | cut -d',' -f3)
 
-while IFS= read -r commit_line
-do
-  commit=$(echo $commit_line | cut -d',' -f1)
-  author=$(echo $commit_line | cut -d',' -f2)
-  time=$(echo $commit_line | cut -d',' -f3)
+prepare "$COMMIT"
+test "$COMMIT" "$author" "$time" "$PR"
 
-  if [[ $commit_line == *"Merge pull request #"* ]]; then
-    pr=$(echo $commit_line | cut -d',' -f4 | grep -o 'pull request #[0-9]\+' | grep -o '[0-9]\+')
+cd "$PROG_HOME"
+## deploy if there are changes
+changes=$(git diff history.csv | wc -l)
+[[ $changes == "0" ]] && exit 0
 
-    echo "bin/gauge $pr $commit" > "$PROG_HOME/jobs/work-merge-$pr.job"
-  fi
-done <<< "$merge_commits"
+bin/deploy   >> $LOG 2>&1
+
+git add history.csv
+git commit -m "[bot]add data to history" >> $LOG 2>&1
+git push origin master:master >> $LOG 2>&1
 
 # message="benchmark finished success $(date)
 # Visit $WEB_URL to see the changes."
