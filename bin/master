@@ -46,7 +46,8 @@ source bin/config
 
 LOG="$PROG_HOME/logs/$(date +%m-%d).out"
 FILE="$PROG_HOME/history.csv"
-FROM_COMMIT=$(tail -n 1 $FILE | cut -d, -f4 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+LAST="$PROG_HOME/LAST_SCHEDULED"
+FROM_COMMIT=$(cat "$LAST")
 
 cd "$PROG_HOME/dotty"
 git fetch origin master
@@ -62,7 +63,14 @@ do
   if [[ $commit_line == *"Merge pull request #"* ]]; then
     pr=$(echo $commit_line | cut -d',' -f4 | grep -o 'pull request #[0-9]\+' | grep -o '[0-9]\+')
 
+    # 1. avoiding rescheduling of same commit
+    # 2. avoiding scheduling of already tested merges
+    #
+    # Achieve the above by
+    # 1. remember the last scheduled commit
+    # 2. schedule new jobs from the last scheduled commit
     echo "bin/gauge $pr $commit" > "$PROG_HOME/jobs/work-merge-$pr.job"
+    echo $commit > "$LAST"
   fi
 done <<< "$merge_commits"
 
