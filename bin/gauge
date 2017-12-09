@@ -65,8 +65,8 @@ git submodule init
 git submodule update
 
 line=$(git show --no-patch --pretty=format:'%h,%an,%ad,%s' $COMMIT)
-author=$(echo $commit_line | cut -d',' -f2)
-time=$(echo $commit_line | cut -d',' -f3)
+author=$(echo $line | cut -d',' -f2)
+time=$(echo $line | cut -d',' -f3)
 
 prepare "$COMMIT"
 test "$COMMIT" "$author" "$time" "$PR"
