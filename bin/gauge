@@ -4,10 +4,12 @@ set -eE
 
 # Test a merge point on master
 #
-# usage: gauge PR COMMIT
+# usage: gauge [-o FILE]  PR COMMIT
+#
+#    -o FILE     output file for the data
 #
 # e.g.
-#        gauge 2874 a2dbd
+#        gauge -o /path/to/data.csv 2874 a2dbd
 
 
 if [ -z "$PROG_HOME" ] ; then
@@ -48,11 +50,35 @@ trap report ERR
 
 ## init
 
+# parse command line params
+while getopts "o:" opt; do
+ case $opt in
+    o)
+      FILE=$OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
+
+shift $((OPTIND-1))
+
+if [[ -z $FILE ]]; then
+  FILE="$PROG_HOME/history.csv"
+  echo "output file defaults to history.csv"
+fi
+
 cd $PROG_HOME
 PR=$1
 COMMIT=$2
 LOG="$PROG_HOME/logs/pr-$PR-$COMMIT.out"
-FILE="$PROG_HOME/history.csv"
 
 source "$PROG_HOME/bin/config"
 source "$PROG_HOME/bin/common"
