@@ -124,7 +124,7 @@ do
     if [[ $in_range == "true" ]]; then
 
         if ((skip_counter == SKIP)); then
-          echo "bin/gauge $pr $commit -o \"$FILE\"" > "$PROG_HOME/jobs/work-regression-$pr.job"
+          echo "bin/gauge -o \"$FILE\" $pr $commit" > "$PROG_HOME/jobs/work-regression-$pr.job"
           skip_counter=0
         else
           skip_counter=$(expr $skip_counter + 1)
