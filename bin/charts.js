@@ -2,8 +2,18 @@ var Bench = Bench || {}
 
 Bench.charts = [
     {
+        "key": "dotty",
+        "name": "dotty (source changes over time)",
+        "url": "https://github.com/lampepfl/dotty"
+    },
+    {
         "key": "tests/Vector.scala",
         "name": "Vector",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/Vector.scala"
+    },
+    {
+        "key": "opts/Vector.scala",
+        "name": "Vector (optimised)",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/Vector.scala"
     },
     {
@@ -12,14 +22,19 @@ Bench.charts = [
         "url": "https://github.com/liufengyun/bench/blob/master/tests/scala-library"
     },
     {
+        "key": "opts/scala-library",
+        "name": "scala library (optimised)",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/scala-library"
+    },
+    {
         "key": "tests/scalapb",
         "name": "scalapb",
         "url": "https://github.com/liufengyun/ScalaPB/"
     },
     {
-        "key": "dotty",
-        "name": "dotty (compiled by itself -- source changes over time)",
-        "url": "https://github.com/lampepfl/dotty"
+        "key": "opts/scalapb",
+        "name": "scalapb (optimised)",
+        "url": "https://github.com/liufengyun/ScalaPB/"
     },
     {
         "key": "tests/implicit_cache.scala",

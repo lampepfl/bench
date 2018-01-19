@@ -1,5 +1,3 @@
-#!/bin/bash
-
 mkdir -p "$PROG_HOME/tests/power-macro/out"
 
 compile -d "$PROG_HOME/tests/power-macro/out" "$PROG_HOME/tests/power-macro/PowerMacro.scala"
