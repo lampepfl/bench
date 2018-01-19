@@ -11,7 +11,7 @@ measure() {
 
   cd "$PROG_HOME/dotty"
 
-  sbt "dotty-bench-bootstrapped/jmh:run $args -d $PROG_HOME/out -nowarn" 2>&1 | tee output.txt
+  sbt "dotty-bench-bootstrapped/jmh:run $args -d $PROG_HOME/out -nowarn" 2>&1 | tee output.txt >> $LOG
 
   runs=$(cat output.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/')
   warmups=$(cat output.txt | grep -E '^# Warmup Iteration' | sed -r 's/^# Warmup Iteration.*: ([0-9\.]+).*$/\1/' | tr '\n' ' ')
@@ -39,7 +39,7 @@ prepare() {
 }
 
 compile() {
-  "$PROG_HOME/dotty/dist-bootstrapped/target/pack/bin/dotc" "$@"
+  "$PROG_HOME/dotty/dist-bootstrapped/target/pack/bin/dotc" "$@" >> $LOG
 }
 
 
