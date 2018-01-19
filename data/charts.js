@@ -85,6 +85,16 @@ Bench.charts = [
         "key": "tests/empty-file.scala",
         "name": "empty file",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/empty-file.scala"
+    },
+    {
+        "key": "tests/power-macro/PowerInlined-1.scala",
+        "name": "Inline a quote",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/power-macro/PowerInlined-1.scala"
+    },
+    {
+        "key": "tests/power-macro/PowerInlined-1k.scala",
+        "name": "Inline 1k quotes",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/power-macro/PowerInlined-1k.scala"
     }
 ]
 
