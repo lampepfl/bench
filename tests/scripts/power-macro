@@ -2,7 +2,7 @@
 
 mkdir "$PROG_HOME/tests/power-macro/out"
 
-dotc -d "$PROG_HOME/tests/power-macro/out" PowerMacro.scala
+dotc -d "$PROG_HOME/tests/power-macro/out" "$PROG_HOME/tests/PowerMacro.scala"
 
 measure "tests/PowerInlined-1.scala" -classpath "$PROG_HOME/tests/power-macro/out"
 measure "tests/PowerInlined-1k.scala" -classpath "$PROG_HOME/tests/power-macro/out"
