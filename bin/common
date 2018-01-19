@@ -33,7 +33,15 @@ prepare() {
 
   git clean -xdf
   sbt "dotty-bench-bootstrapped/jmh:compile"
+
+  # for compilation with `dotc`
+  sbt "dist-bootstrapped/pack"
 }
+
+compile() {
+  "$PROG_HOME/dotty/dist-bootstrapped/target/pack/bin/dotc" "$@"
+}
+
 
 test() {
   commit=$1
