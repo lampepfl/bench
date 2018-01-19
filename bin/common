@@ -11,7 +11,7 @@ measure() {
 
   cd "$PROG_HOME/dotty"
 
-  sbt "dotty-bench-bootstrapped/jmh:run $args -d $PROG_HOME/out -nowarn" 2>&1 | tee output.txt >> $LOG
+  sbt "dotty-bench-bootstrapped/jmh:run $args -d $PROG_HOME/out -nowarn" 2>&1 | tee output.txt
 
   runs=$(cat output.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/')
   warmups=$(cat output.txt | grep -E '^# Warmup Iteration' | sed -r 's/^# Warmup Iteration.*: ([0-9\.]+).*$/\1/' | tr '\n' ' ')
@@ -20,7 +20,7 @@ measure() {
   runs_flat=$(echo "$runs" | tr '\n' ' ')
   runs_flat=$(trim "$runs_flat")
 
-  echo "$key, $pr, $time, $commit, $median, $(date), $warmups, $runs_flat" >> $FILE
+  echo "$key, $pr, $time, $commit, $median, $(date), $warmups, $runs_flat" >> "$FILE"
 }
 
 prepare() {
@@ -32,14 +32,14 @@ prepare() {
   git submodule update
 
   git clean -xdf
-  sbt "dotty-bench-bootstrapped/jmh:compile"
+  sbt "dotty-bench-bootstrapped/jmh:compile" >> "$LOG"
 
   # for compilation with `dotc`
-  sbt "dist-bootstrapped/pack"
+  sbt "dist-bootstrapped/pack" >> "$LOG"
 }
 
 compile() {
-  "$PROG_HOME/dotty/dist-bootstrapped/target/pack/bin/dotc" "$@" >> $LOG
+  "$PROG_HOME/dotty/dist-bootstrapped/target/pack/bin/dotc" "$@" >> "$LOG"
 }
 
 
@@ -54,5 +54,5 @@ test() {
 
   mkdir -p $PROG_HOME/out
 
-  source "$PLAN"
+  source "$PLAN" >> "$LOG"
 }
