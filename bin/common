@@ -54,5 +54,5 @@ test() {
 
   mkdir -p $PROG_HOME/out
 
-  source $PROG_HOME/bin/plan
+  source "$PLAN"
 }

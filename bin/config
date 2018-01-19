@@ -3,3 +3,5 @@ MONITOR_ISSUE=4
 WEB_URL=http://dotty-bench.epfl.ch
 POLL_SLEEP=60
 QUEUE_IDLE_SLEEP=60
+FILE="$PROG_HOME/history.csv"
+PLAN="$PROG_HOME/bin/plan"

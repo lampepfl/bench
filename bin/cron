@@ -1,7 +1,7 @@
 # The following cron jobs should be installed
 
 # root task
-@reboot /data/workspace/bench/bin/config
+@reboot /data/workspace/bench/bin/cpu
 
 # user task
 @reboot cd /data/workspace/bench; bin/queue

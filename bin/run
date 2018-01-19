@@ -8,6 +8,7 @@ set -eE
 # -t PR             to pull request (excluded)
 # -s STEP           every n pull requests, defaults to 0
 # -o FILE           data output to FILE, defaults to history.csv
+# -p PLAN           the test plan, default to `bin/plan`
 #
 # Change test plans in `bin/plan`.
 #
@@ -57,7 +58,7 @@ arguments: $args
 trap report ERR
 
 # parse command line params
-while getopts "f:t:s:o:" opt; do
+while getopts "f:t:s:o:p:" opt; do
  case $opt in
     f)
       FROM_PR=$OPTARG
@@ -70,6 +71,9 @@ while getopts "f:t:s:o:" opt; do
       ;;
     o)
       FILE=$OPTARG
+      ;;
+    p)
+      PLAN=$OPTARG
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -85,11 +89,6 @@ done
 
 shift $((OPTIND-1))
 
-
-if [[ -z $FILE ]]; then
-  FILE="$PROG_HOME/history.csv"
-  echo "output file defaults to history.csv"
-fi
 
 if [[ -z $SKIP ]]; then
   SKIP=0
@@ -124,7 +123,7 @@ do
     if [[ $in_range == "true" ]]; then
 
         if ((skip_counter == SKIP)); then
-          echo "bin/gauge -o \"$FILE\" $pr $commit" > "$PROG_HOME/jobs/work-regression-$pr.job"
+          echo "bin/gauge -o \"$FILE\" -p \"$PLAN\" $pr $commit" > "$PROG_HOME/jobs/work-regression-$pr.job"
           skip_counter=0
         else
           skip_counter=$(expr $skip_counter + 1)
@@ -137,4 +136,3 @@ do
 
   fi
 done <<< "$merge_commits"
-
