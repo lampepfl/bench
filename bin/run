@@ -39,9 +39,10 @@ if [ -z "$PROG_HOME" ] ; then
 fi
 
 ## init
-cd $PROG_HOME
 
-source bin/config
+# before `getopts`, so that defaults can be overwritten
+source "$PROG_HOME/bin/config"
+
 args="$@"
 
 ## errors

@@ -60,6 +60,12 @@ Error line number: $1
 
 trap 'report $LINENO' ERR
 
+############## Configs and library
+
+# before `getopts`, so that defaults can be overwritten
+source "$PROG_HOME/bin/config"
+source "$PROG_HOME/bin/common"
+
 ############## Options
 while getopts "c:n" opt; do
   case $opt in
@@ -111,8 +117,6 @@ REPO=lampepfl/dotty
 
 ############## test
 cd $PROG_HOME
-source bin/common
-source bin/config
 
 # make sure folder for session home exists
 mkdir -p $SESSION_HOME

@@ -41,11 +41,10 @@ trap report ERR
 
 ## init
 
-cd "$PROG_HOME"
-source bin/config
+# before `getopts`, so that defaults can be overwritten
+source "$PROG_HOME/bin/config"
 
 LOG="$PROG_HOME/logs/$(date +%m-%d).out"
-FILE="$PROG_HOME/history.csv"
 LAST="$PROG_HOME/LAST_SCHEDULED"
 FROM_COMMIT=$(cat "$LAST")
 

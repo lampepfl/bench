@@ -51,6 +51,11 @@ trap report ERR
 
 ## init
 
+# before `getopts`, so that defaults can be overwritten
+source "$PROG_HOME/bin/config"
+source "$PROG_HOME/bin/common"
+
+
 # parse command line params
 while getopts "o:p:" opt; do
  case $opt in
@@ -78,9 +83,6 @@ cd $PROG_HOME
 PR=$1
 COMMIT=$2
 LOG="$PROG_HOME/logs/pr-$PR-$COMMIT.out"
-
-source "$PROG_HOME/bin/config"
-source "$PROG_HOME/bin/common"
 
 cd "$PROG_HOME/dotty"
 git reset --hard origin/master
