@@ -9,7 +9,7 @@
   "dependencies": {
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "chart.js": "^2.0.0"
+    "chart.js": "^2.7.1"
   },
   "devDependencies": {
     "babel": "^5.1.8",

@@ -12,7 +12,21 @@ function sample(points, rate) {
   }, []);
 }
 
-function dataForKey(key, isSample) {
+function dedup(points) {
+  var lastDate = null;
+  points = points.reduce(function(acc, point) {
+    var curDate = new Date(point.x).toLocaleDateString();
+    if (!lastDate || lastDate !== curDate) {
+      lastDate = curDate;
+      acc.push(point);
+    }
+    return acc;
+  }, []);
+
+  return points;
+}
+
+function dataForKey(key, isSample, isDedup) {
   function accumulate(acc, item) {
     if (item.key === key) {
       acc.push({ y: item.median, x: item.time, obj: item });
@@ -32,6 +46,8 @@ function dataForKey(key, isSample) {
 
     points = pts1.concat(pts2).concat(pts3);
   }
+
+  if (isDedup) points = dedup(points);
 
   return points;
 }
@@ -66,11 +82,11 @@ window.showTime = function() {
     grey: 'rgb(201, 203, 207)'
   };
 
-  function prepareData(chart) {
+  function prepareData(chart, isDedup) {
     var datasets = [];
     var index = 0;
     chart.lines.map(function(line) {
-      var points = dataForKey(line.key, false);
+      var points = dataForKey(line.key, false, isDedup);
       datasets.push({
         label: line.name,
         fill: false,
@@ -79,7 +95,7 @@ window.showTime = function() {
       });
     });
 
-    return { datasets: datasets };
+    return { datasets: datasets, labels: [] };
   }
 
   function options(chart) {
@@ -146,10 +162,13 @@ window.showTime = function() {
 
   var ChartComponent = React.createClass({
     getInitialState: function () {
-      return { data: {}, options: {}, ready: false };
+      return { data: {}, options: {}, ready: false, showAll: false };
+    },
+    handleChange: function (e) {
+      this.setState({ data: prepareData(this.props.chart, !e.target.checked), ready: true, options: options(this), showAll: this.state.showAll });
     },
     componentDidMount: function () {
-      this.setState({ data: prepareData(this.props.chart), ready: true, options: options(this) });
+      this.setState({ data: prepareData(this.props.chart, !this.state.showAll), ready: true, options: options(this), showAll: this.state.showAll });
     },
     render: function () {
       var width = $("#app").width();
@@ -158,6 +177,10 @@ window.showTime = function() {
         return <div>
           <h3>
             <a href={this.props.url}>{this.props.name}</a>
+            <span style={{float: "right"}}>
+              <input type="checkbox" defaultChecked={this.props.showAll} onChange={this.handleChange} />
+              <small style={{color: "#aaa", fontSize: "15px"}}> show all points</small>
+            </span>
           </h3>
           <LineChart data={this.state.data} options={this.state.options} width={width} height="300" />
         </div>
@@ -184,7 +207,7 @@ window.showTime = function() {
 
 window.showCommit = function () {
   function prepareData(key, isSample) {
-    var points = dataForKey(key, isSample);
+    var points = dataForKey(key, isSample, false);
 
     var median = {
         label: "median",
