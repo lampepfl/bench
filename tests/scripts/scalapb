@@ -1,5 +1,3 @@
-#!/bin/bash
-
 cd $PROG_HOME/tests/scalapb
 sbt runtimeJVM/compile:packCopyDependencies
 rm scalapb-runtime/jvm/target/lib/scalapb*
