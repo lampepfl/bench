@@ -13,11 +13,9 @@ function sample(points, rate) {
 }
 
 function dataForKey(key, isSample) {
-  var index = 0;
   function accumulate(acc, item) {
     if (item.key === key) {
-      acc.push({ y: item.median, x: index, obj: item });
-      index++;
+      acc.push({ y: item.median, x: item.time, obj: item });
     }
 
     return acc;
@@ -57,6 +55,33 @@ function flatten() {
 }
 
 window.showTime = function() {
+  var colorNames  = ['yellow', 'purple', 'orange', 'green', 'blue', 'red', 'grey'];
+  var colors = {
+    red: 'rgb(255, 99, 132)',
+    orange: 'rgb(255, 159, 64)',
+    yellow: 'rgb(255, 205, 86)',
+    green: 'rgb(75, 192, 192)',
+    blue: 'rgb(54, 162, 235)',
+    purple: 'rgb(153, 102, 255)',
+    grey: 'rgb(201, 203, 207)'
+  };
+
+  function prepareData(chart) {
+    var datasets = [];
+    var index = 0;
+    chart.lines.map(function(line) {
+      var points = dataForKey(line.key, false);
+      datasets.push({
+        label: line.name,
+        fill: false,
+        backgroundColor: colors[colorNames[index++]],
+        data: points
+      });
+    });
+
+    return { datasets: datasets };
+  }
+
   function options(chart) {
     function getItem(didx, pidx) {
       return chart.state.data["datasets"][didx].data[pidx].obj;
@@ -64,6 +89,9 @@ window.showTime = function() {
 
     return {
       responsive: true,
+      legend: {
+        display: chart.props.chart.lines.length > 1
+      },
       tooltips: {
         callbacks: {
           title: function (data) {
@@ -86,13 +114,12 @@ window.showTime = function() {
         xAxes: [{
           type: "time",
           time: {
-            format: 'MM/DD/YYYY HH:mm',
+            // format: 'MM/DD/YYYY HH:mm',
             // round: 'day'
             tooltipFormat: 'll HH:mm'
           },
           scaleLabel: {
-            display: true,
-            labelString: 'Date'
+            display: false
           }
         }],
         yAxes: [{
@@ -119,13 +146,10 @@ window.showTime = function() {
 
   var ChartComponent = React.createClass({
     getInitialState: function () {
-      return { data: {}, options: {}, ready: false, showAll: false };
-    },
-    handleChange: function (e) {
-      this.setState({ data: prepareData(this.props.id, !e.target.checked), ready: true, options: options(this), showAll: this.state.showAll });
+      return { data: {}, options: {}, ready: false };
     },
     componentDidMount: function () {
-      this.setState({ data: prepareData(this.props.id, !this.state.showAll), ready: true, options: options(this), showAll: this.state.showAll });
+      this.setState({ data: prepareData(this.props.chart), ready: true, options: options(this) });
     },
     render: function () {
       var width = $("#app").width();
@@ -134,10 +158,6 @@ window.showTime = function() {
         return <div>
           <h3>
             <a href={this.props.url}>{this.props.name}</a>
-            <span style={{float: "right"}}>
-              <input type="checkbox" defaultChecked={this.props.showAll} onChange={this.handleChange} />
-              <small style={{color: "#aaa", fontSize: "15px"}}> show all points</small>
-            </span>
           </h3>
           <LineChart data={this.state.data} options={this.state.options} width={width} height="300" />
         </div>
@@ -149,7 +169,7 @@ window.showTime = function() {
   var ChartList = React.createClass({
     render: function () {
       var chartNodes = this.props.charts.map(function (chart) {
-        return <ChartComponent url={chart.url} name={chart.name} id={chart.key} />
+        return <ChartComponent url={chart.url} name={chart.name} chart={chart} />
       });
 
       return <div className="chart-list">{chartNodes}</div>
@@ -157,7 +177,7 @@ window.showTime = function() {
   })
 
   ReactDOM.render(
-    <ChartList charts={[]}/>,
+    <ChartList charts={Bench.charts}/>,
     document.getElementById('app')
   );
 }
