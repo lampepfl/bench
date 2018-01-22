@@ -95,6 +95,11 @@ Bench.charts = [
         "lines": [ { "key": "tests/power-macro/PowerInlined-1k.scala", "name": "bootstrapped" } ],
         "name": "Inline 1k quotes",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/power-macro/PowerInlined-1k.scala"
+    },
+    {
+        "lines": [ { "key": "tests/re2s", "name": "bootstrapped" }, { "key": "opts/re2s", "name": "optimised" } ],
+        "name": "re2",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/re2s"
     }
 ]
 
