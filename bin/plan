@@ -3,8 +3,8 @@ measure "dotty" $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -nam
 measure "tests/scala-library" -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
 measure-opt "opts/scala-library" -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
 
-measure "tests/re2s" $(find $PROG_HOME/tests/re2s -name *.scala)
-measure-opt "opts/re2s" $(find $PROG_HOME/tests/re2s -name *.scala)
+measure "tests/re2s" $(find $PROG_HOME/tests/re2s/src -name *.scala)
+measure-opt "opts/re2s" $(find $PROG_HOME/tests/re2s/src -name *.scala)
 
 # microbenchmarks
 measure "tests/implicit_cache.scala" $PROG_HOME/tests/implicit_cache.scala
