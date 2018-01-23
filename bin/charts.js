@@ -7,7 +7,10 @@ Bench.charts = [
         "url": "https://github.com/lampepfl/dotty"
     },
     {
-        "lines": [ { "key": "tests/Vector.scala", "name": "bootstrapped" }, { "key": "opts/Vector.scala", "name": "optimised" } ],
+        "lines": [ { "key": "tests/Vector.scala", "name": "bootstrapped" },
+                   { "key": "opts/Vector.scala", "name": "optimised" },
+                   { "key": "from-tasty/Vector.scala", "name": "from-tasty" }
+                 ],
         "name": "Vector",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/Vector.scala"
     },
