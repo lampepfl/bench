@@ -27,4 +27,5 @@ measure-opt "opts/implicitNums.scala" $PROG_HOME/tests/implicitNums.scala
 source $PROG_HOME/tests/scripts/scalapb
 source $PROG_HOME/tests/scripts/scalapb-opt
 source $PROG_HOME/tests/scripts/power-macro
+source $PROG_HOME/tests/scripts/implicit_cache-from-tasty
 source $PROG_HOME/tests/scripts/implicitNums-from-tasty
