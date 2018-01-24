@@ -8,8 +8,7 @@ Bench.charts = [
     },
     {
         "lines": [ { "key": "tests/Vector.scala", "name": "bootstrapped" },
-                   { "key": "opts/Vector.scala", "name": "optimised" },
-                   { "key": "from-tasty/Vector.scala", "name": "from-tasty" }
+                   { "key": "opts/Vector.scala", "name": "optimised" }
                  ],
         "name": "Vector",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/Vector.scala"
@@ -25,12 +24,20 @@ Bench.charts = [
         "url": "https://github.com/liufengyun/ScalaPB/"
     },
     {
-        "lines": [ { "key": "tests/implicit_cache.scala", "name": "bootstrapped" } ],
+        "lines": [
+            { "key": "tests/implicit_cache.scala", "name": "bootstrapped" },
+            { "key": "opts/implicit_cache.scala", "name": "optimised" },
+            { "key": "from-tasty/implicit_cache.scala", "name": "from-tasty" }
+        ],
         "name": "implicit cache I",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/implicit_cache.scala"
     },
     {
-        "lines": [ { "key": "tests/implicitNums.scala", "name": "bootstrapped" } ],
+        "lines": [
+            { "key": "tests/implicitNums.scala", "name": "bootstrapped" },
+            { "key": "opts/implicitNums.scala", "name": "optimised" },
+            { "key": "from-tasty/implicitNums.scala", "name": "from-tasty" }
+        ],
         "name": "implicit cache II",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/implicitNums.scala"
     },
