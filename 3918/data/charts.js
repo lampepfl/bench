@@ -26,8 +26,7 @@ Bench.charts = [
     {
         "lines": [
             { "key": "tests/implicit_cache.scala", "name": "bootstrapped" },
-            { "key": "opts/implicit_cache.scala", "name": "optimised" },
-            { "key": "from-tasty/implicit_cache.scala", "name": "from-tasty" }
+            { "key": "opts/implicit_cache.scala", "name": "optimised" }
         ],
         "name": "implicit cache I",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/implicit_cache.scala"
@@ -35,8 +34,7 @@ Bench.charts = [
     {
         "lines": [
             { "key": "tests/implicitNums.scala", "name": "bootstrapped" },
-            { "key": "opts/implicitNums.scala", "name": "optimised" },
-            { "key": "from-tasty/implicitNums.scala", "name": "from-tasty" }
+            { "key": "opts/implicitNums.scala", "name": "optimised" }
         ],
         "name": "implicit cache II",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/implicitNums.scala"
