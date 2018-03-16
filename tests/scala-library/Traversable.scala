@@ -89,7 +89,7 @@ trait Traversable[+A] extends TraversableLike[A, Traversable[A]]
 /** $factoryInfo
  *  The current default implementation of a $Coll is a `List`.
  */
-object Traversable extends TraversableFactory[Traversable] { self =>
+object Traversable extends TraversableFactory[Traversable] {
 
   /** Provides break functionality separate from client code */
   private[collection] val breaks: Breaks = new Breaks
