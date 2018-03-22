@@ -1,14 +1,11 @@
 # Dotty Project
 measure "dotty" $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
 measure "tests/scala-library" -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
-measure-opt "opts/scala-library" -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
 
 measure "tests/re2s" $(find $PROG_HOME/tests/re2s/src -name *.scala)
-measure-opt "opts/re2s" $(find $PROG_HOME/tests/re2s/src -name *.scala)
 
 # microbenchmarks
 measure "tests/implicit_cache.scala" $PROG_HOME/tests/implicit_cache.scala
-measure-opt "opts/implicit_cache.scala" $PROG_HOME/tests/implicit_cache.scala
 measure "tests/implicit-scope-loop.scala" $PROG_HOME/tests/implicit-scope-loop.scala
 measure "tests/i1535.scala" $PROG_HOME/tests/i1535.scala
 measure "tests/i1687.scala" $PROG_HOME/tests/i1687.scala
@@ -23,9 +20,7 @@ measure "tests/exhaustivity-S.scala" 20 40 3 $PROG_HOME/tests/exhaustivity-S.sca
 measure "tests/exhaustivity-T.scala" 20 40 3 $PROG_HOME/tests/exhaustivity-T.scala
 measure "tests/exhaustivity-V.scala" 20 40 3 $PROG_HOME/tests/exhaustivity-V.scala
 measure "tests/implicitNums.scala" $PROG_HOME/tests/implicitNums.scala
-measure-opt "opts/implicitNums.scala" $PROG_HOME/tests/implicitNums.scala
 source $PROG_HOME/tests/scripts/scalapb
-source $PROG_HOME/tests/scripts/scalapb-opt
 source $PROG_HOME/tests/scripts/power-macro
-source $PROG_HOME/tests/scripts/implicit_cache-from-tasty
-source $PROG_HOME/tests/scripts/implicitNums-from-tasty
+# source $PROG_HOME/tests/scripts/implicit_cache-from-tasty
+# source $PROG_HOME/tests/scripts/implicitNums-from-tasty

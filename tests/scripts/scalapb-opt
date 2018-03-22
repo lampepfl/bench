@@ -1,7 +1,0 @@
-cd $PROG_HOME/tests/scalapb
-sbt runtimeJVM/compile:packCopyDependencies
-rm scalapb-runtime/jvm/target/lib/scalapb*
-rm scalapb-runtime/jvm/target/lib/root*
-
-cd $PROG_HOME
-measure-opt "opts/scalapb" -language:Scala2 -classpath "$PROG_HOME/tests/scalapb/scalapb-runtime/jvm/target/lib/*" $(find $PROG_HOME/tests/scalapb/scalapb-runtime/jvm/src/main -name "*.scala") $(find $PROG_HOME/tests/scalapb/scalapb-runtime/shared/src/main -name "*.scala")
