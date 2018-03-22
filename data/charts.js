@@ -14,27 +14,25 @@ Bench.charts = [
         "url": "https://github.com/liufengyun/bench/blob/master/tests/Vector.scala"
     },
     {
-        "lines": [ { "key": "tests/scala-library", "name": "bootstrapped" }, { "key": "opts/scala-library", "name": "optimised" } ],
+        "lines": [ { "key": "tests/scala-library", "name": "bootstrapped" } ],
         "name": "scala library",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/scala-library"
     },
     {
-        "lines": [ { "key": "tests/scalapb", "name": "bootstrapped" }, { "key": "opts/scalapb", "name": "optimised" } ],
+        "lines": [ { "key": "tests/scalapb", "name": "bootstrapped" } ],
         "name": "scalapb",
         "url": "https://github.com/liufengyun/ScalaPB/"
     },
     {
         "lines": [
-            { "key": "tests/implicit_cache.scala", "name": "bootstrapped" },
-            { "key": "opts/implicit_cache.scala", "name": "optimised" }
+            { "key": "tests/implicit_cache.scala", "name": "bootstrapped" }
         ],
         "name": "implicit cache I",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/implicit_cache.scala"
     },
     {
         "lines": [
-            { "key": "tests/implicitNums.scala", "name": "bootstrapped" },
-            { "key": "opts/implicitNums.scala", "name": "optimised" }
+            { "key": "tests/implicitNums.scala", "name": "bootstrapped" }
         ],
         "name": "implicit cache II",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/implicitNums.scala"
@@ -105,7 +103,7 @@ Bench.charts = [
         "url": "https://github.com/liufengyun/bench/blob/master/tests/power-macro/PowerInlined-1k.scala"
     },
     {
-        "lines": [ { "key": "tests/re2s", "name": "bootstrapped" }, { "key": "opts/re2s", "name": "optimised" } ],
+        "lines": [ { "key": "tests/re2s", "name": "bootstrapped" } ],
         "name": "re2",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/re2s"
     }
