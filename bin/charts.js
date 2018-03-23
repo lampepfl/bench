@@ -24,6 +24,16 @@ Bench.charts = [
         "url": "https://github.com/liufengyun/ScalaPB/"
     },
     {
+        "lines": [ { "key": "tests/scalap", "name": "bootstrapped" } ],
+        "name": "scalap",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/scalap"
+    },
+    {
+        "lines": [ { "key": "tests/re2s", "name": "bootstrapped" } ],
+        "name": "re2",
+        "url": "https://github.com/liufengyun/bench/blob/master/tests/re2s"
+    },
+    {
         "lines": [
             { "key": "tests/implicit_cache.scala", "name": "bootstrapped" }
         ],
@@ -101,11 +111,6 @@ Bench.charts = [
         "lines": [ { "key": "tests/power-macro/PowerInlined-1k.scala", "name": "bootstrapped" } ],
         "name": "Inline 1k quotes",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/power-macro/PowerInlined-1k.scala"
-    },
-    {
-        "lines": [ { "key": "tests/re2s", "name": "bootstrapped" } ],
-        "name": "re2",
-        "url": "https://github.com/liufengyun/bench/blob/master/tests/re2s"
     }
 ]
 
