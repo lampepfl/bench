@@ -1,7 +1,16 @@
 cd $PROG_HOME/tests/scalap/lib
-curl -O http://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.12.4/scala-compiler-2.12.4.jar
-curl -O http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.4/scala-library-2.12.4.jar
-curl -O http://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.4/scala-reflect-2.12.4.jar
+
+download() {
+  url=$1
+  file=$(basename "$url")
+  if [ ! -f "$file" ]; then
+      curl -O "$url"
+  fi
+}
+
+download http://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.12.4/scala-compiler-2.12.4.jar
+download http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.4/scala-library-2.12.4.jar
+download http://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.4/scala-reflect-2.12.4.jar
 
 cd $PROG_HOME
 measure "tests/scalap" -language:Scala2 -classpath "$PROG_HOME/tests/scalap/lib" $(find $PROG_HOME/tests/scalap/src -name "*.scala")
