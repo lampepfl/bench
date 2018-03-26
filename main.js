@@ -61,9 +61,11 @@ function flatten() {
 
   Bench.charts.map(function(chart) {
     chart.lines.map(function(line) {
+      var name = chart.name;
+      if (chart.lines.length > 1) name = name + " - " + line.name;
       Bench.flattened.push({
         "key": line.key,
-        "name": chart.name + " - " + line.name,
+        "name": name,
         "url": chart.url
       });
     });
