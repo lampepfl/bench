@@ -1,4 +1,4 @@
-# Bench
+# Bench [![Build Status](https://travis-ci.org/liufengyun/bench.svg?branch=master)](https://travis-ci.org/liufengyun/bench)
 
 Benchmarking Dotty
 
@@ -21,6 +21,15 @@ Update the two files below:
 
 - Put regression jobs as scripts under `jobs/`. 
 - Remember to use absolute path with the `$PROG_HOME` variable
+
+The command `bin/run` does the above automatically, allowing
+specify an interval by PR numbers, optionally with a step.
+You may need to specify a custom plan, check `bin/plan`.
+
+## Development
+
+- Put new test in both `bin/plan-ci` and `bin/plan`
+- Make a pull request
 
 ## Dependencies
 
