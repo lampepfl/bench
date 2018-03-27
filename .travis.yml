@@ -1,13 +1,10 @@
 os: linux
 language: scala
 jdk: oraclejdk8
-git:
-  submodules: false
 script:
-  - git submodule --depth 50 --init
   - cd dotty && git fetch origin master
   - git checkout master
   - git reset --hard origin/master
-  - git submodule update --depth 50 --init --recursive
+  - git submodule update --init --recursive
   - cd ..
   - bin/gauge -o /dev/stdout -p bin/plan-ci 9999 master
