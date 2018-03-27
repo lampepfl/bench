@@ -4,8 +4,7 @@ trim() {
   echo -e "$1" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'
 }
 
-
-measure() {
+jmh() {
   key=$1
   shift
   args="$@"
@@ -17,7 +16,18 @@ measure() {
   else
     sbt "dotty-bench-bootstrapped/jmh:run $args -d $PROG_HOME/out -nowarn" 2>&1 | tee output.txt
   fi
+}
 
+jmh-opt() {
+  OPT="yes"
+  jmh "$@"
+  OPT=""
+}
+
+
+
+measure() {
+  jmh "$@"
   runs=$(cat output.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/')
   warmups=$(cat output.txt | grep -E '^# Warmup Iteration' | sed -r 's/^# Warmup Iteration.*: ([0-9\.]+).*$/\1/' | tr '\n' ' ')
 

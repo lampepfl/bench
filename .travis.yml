@@ -1,6 +1,8 @@
 os: linux
 language: scala
 jdk: oraclejdk8
+scala:
+  - 2.12.4
 git:
   submodules: false
 script:

@@ -1,25 +1,25 @@
 # Dotty Project
-measure "dotty" 1 1 1 $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
-measure "tests/scala-library" 1 1 1 -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
+jmh "dotty" 1 1 1 $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
+jmh "tests/scala-library" 1 1 1 -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
 
-measure "tests/re2s" 1 1 1 $(find $PROG_HOME/tests/re2s/src -name *.scala)
+jmh "tests/re2s" 1 1 1 $(find $PROG_HOME/tests/re2s/src -name *.scala)
 
 # microbenchmarks
-measure "tests/implicit_cache.scala" 1 1 1 $PROG_HOME/tests/implicit_cache.scala
-measure "tests/implicit-scope-loop.scala" 1 1 1 $PROG_HOME/tests/implicit-scope-loop.scala
-measure "tests/i1535.scala" 1 1 1 $PROG_HOME/tests/i1535.scala
-measure "tests/i1687.scala" 1 1 1 $PROG_HOME/tests/i1687.scala
-measure "tests/Vector.scala" 1 1 1 $PROG_HOME/tests/Vector.scala
-measure-opt "opts/Vector.scala" 1 1 1 $PROG_HOME/tests/Vector.scala
-measure "tests/empty-class.scala" 1 1 1 $PROG_HOME/tests/empty-class.scala
-measure "tests/empty-object.scala"  1 1 1 $PROG_HOME/tests/empty-object.scala
-measure "tests/empty-file.scala" 1 1 1 $PROG_HOME/tests/empty-file.scala
-measure "tests/patmatexhaust.scala" 1 1 1 $PROG_HOME/tests/patmatexhaust.scala
-measure "tests/exhaustivity-I.scala" 1 1 1 $PROG_HOME/tests/exhaustivity-I.scala
-measure "tests/exhaustivity-S.scala" 1 1 1 $PROG_HOME/tests/exhaustivity-S.scala
-measure "tests/exhaustivity-T.scala" 1 1 1 $PROG_HOME/tests/exhaustivity-T.scala
-measure "tests/exhaustivity-V.scala" 1 1 1 $PROG_HOME/tests/exhaustivity-V.scala
-measure "tests/implicitNums.scala" 1 1 1 $PROG_HOME/tests/implicitNums.scala
+jmh "tests/implicit_cache.scala" 1 1 1 $PROG_HOME/tests/implicit_cache.scala
+jmh "tests/implicit-scope-loop.scala" 1 1 1 $PROG_HOME/tests/implicit-scope-loop.scala
+jmh "tests/i1535.scala" 1 1 1 $PROG_HOME/tests/i1535.scala
+jmh "tests/i1687.scala" 1 1 1 $PROG_HOME/tests/i1687.scala
+jmh "tests/Vector.scala" 1 1 1 $PROG_HOME/tests/Vector.scala
+jmh-opt "opts/Vector.scala" 1 1 1 $PROG_HOME/tests/Vector.scala
+jmh "tests/empty-class.scala" 1 1 1 $PROG_HOME/tests/empty-class.scala
+jmh "tests/empty-object.scala"  1 1 1 $PROG_HOME/tests/empty-object.scala
+jmh "tests/empty-file.scala" 1 1 1 $PROG_HOME/tests/empty-file.scala
+jmh "tests/patmatexhaust.scala" 1 1 1 $PROG_HOME/tests/patmatexhaust.scala
+jmh "tests/exhaustivity-I.scala" 1 1 1 $PROG_HOME/tests/exhaustivity-I.scala
+jmh "tests/exhaustivity-S.scala" 1 1 1 $PROG_HOME/tests/exhaustivity-S.scala
+jmh "tests/exhaustivity-T.scala" 1 1 1 $PROG_HOME/tests/exhaustivity-T.scala
+jmh "tests/exhaustivity-V.scala" 1 1 1 $PROG_HOME/tests/exhaustivity-V.scala
+jmh "tests/implicitNums.scala" 1 1 1 $PROG_HOME/tests/implicitNums.scala
 # source $PROG_HOME/tests/scripts/scalapb
 # source $PROG_HOME/tests/scripts/scalap
 # source $PROG_HOME/tests/scripts/power-macro
