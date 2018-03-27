@@ -3,4 +3,4 @@ language: scala
 jdk: oraclejdk8
 script:
   - git submodule update --init --recursive
-  - bin/gauge -o /dev/stdout 9999 master
+  - bin/gauge -o /dev/stdout -p bin/plan-ci 9999 master
