@@ -1,8 +1,10 @@
 os: linux
 language: scala
 jdk: oraclejdk8
+git:
+  submodules: false
 script:
-  - git submodule update --depth 50 --init
+  - git submodule --depth 50 --init
   - cd dotty && git fetch origin master
   - git checkout master
   - git reset --hard origin/master
