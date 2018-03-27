@@ -6,4 +6,4 @@
 	url = https://github.com/liufengyun/bench-web.git
 [submodule "tests/scalapb"]
 	path = tests/scalapb
-	url = git@github.com:liufengyun/ScalaPB.git
+	url = https://github.com/liufengyun/ScalaPB.git
