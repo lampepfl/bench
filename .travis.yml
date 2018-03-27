@@ -1,10 +1,10 @@
 os: linux
 language: scala
 jdk: oraclejdk8
+git:
+  submodules: false
 script:
-  - cd dotty && git fetch origin master
-  - git checkout master
-  - git reset --hard origin/master
-  - git submodule update --init --recursive
-  - cd ..
+  - git submodule init
+  - git submodule update tests/scalapb
+  - git clone --recursive --single-branch https://github.com/lampepfl/dotty.git
   - bin/gauge -o /dev/stdout -p bin/plan-ci 9999 master
