@@ -43,14 +43,14 @@ prepare() {
   git submodule update
 
   git clean -xdf
-  sbt "dotty-bench-bootstrapped/jmh:compile" >> "$LOG"
+  sbt "dotty-bench-bootstrapped/jmh:compile" 2>&1 | tee -a "$LOG"
 
   # for compilation with `dotc`
-  sbt "dist-bootstrapped/pack" >> "$LOG"
+  sbt "dist-bootstrapped/pack"  2>&1 | tee -a "$LOG"
 }
 
 compile() {
-  "$PROG_HOME/dotty/dist-bootstrapped/target/pack/bin/dotc" "$@" >> "$LOG"
+  "$PROG_HOME/dotty/dist-bootstrapped/target/pack/bin/dotc" "$@" 2>&1 | tee -a "$LOG"
 }
 
 
