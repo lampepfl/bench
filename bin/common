@@ -65,5 +65,5 @@ test() {
 
   mkdir -p $PROG_HOME/out
 
-  source "$PLAN" >> "$LOG"
+  source "$PLAN" 2>&1 | tee "$LOG"
 }

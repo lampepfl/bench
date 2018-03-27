@@ -85,11 +85,6 @@ COMMIT=$2
 LOG="$PROG_HOME/logs/pr-$PR-$COMMIT.out"
 
 cd "$PROG_HOME/dotty"
-git reset --hard origin/master
-git fetch origin
-git merge origin/master
-git submodule init
-git submodule update
 
 line=$(git show --no-patch --pretty=format:'%h,%an,%ad,%s' $COMMIT)
 author=$(echo $line | cut -d',' -f2)
