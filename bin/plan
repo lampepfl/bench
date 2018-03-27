@@ -21,7 +21,7 @@ measure "tests/exhaustivity-T.scala" 20 40 3 $PROG_HOME/tests/exhaustivity-T.sca
 measure "tests/exhaustivity-V.scala" 20 40 3 $PROG_HOME/tests/exhaustivity-V.scala
 measure "tests/implicitNums.scala" $PROG_HOME/tests/implicitNums.scala
 source $PROG_HOME/tests/scripts/scalapb
-source $PROG_HOME/tests/scripts/scalap
+# source $PROG_HOME/tests/scripts/scalap
 source $PROG_HOME/tests/scripts/power-macro
 # source $PROG_HOME/tests/scripts/implicit_cache-from-tasty
 # source $PROG_HOME/tests/scripts/implicitNums-from-tasty

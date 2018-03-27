@@ -1,0 +1,6 @@
+os: linux
+language: scala
+jdk: oraclejdk8
+script:
+  - git submodule update --init --recursive
+  - bin/gauge -o /dev/stdout 9999 master
