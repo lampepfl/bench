@@ -45,7 +45,7 @@ trap report ERR
 source "$PROG_HOME/bin/config"
 
 LOG="$PROG_HOME/logs/$(date +%m-%d).out"
-LAST="$PROG_HOME/LAST_SCHEDULED"
+LAST="$PROG_HOME/data/LAST_SCHEDULED"
 FROM_COMMIT=$(cat "$LAST")
 
 cd "$PROG_HOME/dotty"
