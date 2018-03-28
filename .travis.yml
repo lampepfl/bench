@@ -5,6 +5,9 @@ scala:
   - 2.12.4
 git:
   submodules: false
+branches:
+  only:
+    - master
 script:
   - git submodule init
   - git submodule update tests/scalapb
