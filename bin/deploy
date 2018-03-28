@@ -35,7 +35,7 @@ cd "$PROG_HOME/data"
 changes=$(git diff | wc -l)
 [[ $changes == "0" ]] && exit 0
 
-git add history.csv
+git add .
 git commit -m "[bot] add data"
 git push origin master:master
 
