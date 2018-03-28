@@ -111,7 +111,8 @@ PR=$1
 set_session_dir
 
 SESSION_HOME=$PROG_HOME/site/$SESSION_DIR
-SESSION_FILE=$SESSION_HOME/history.csv
+ORIG_FILE=$FILE
+FILE=$SESSION_HOME/history.csv
 LOG=$PROG_HOME/logs/pull-$PR-$(date +%m-%d-%H.%M).out
 REPO=lampepfl/dotty
 
@@ -191,8 +192,8 @@ cp -r web/css $SESSION_HOME
 
 # build data
 TEMP_FILE="/tmp/pull-$PR.csv"
-cp $FILE $TEMP_FILE
-cat $SESSION_FILE >> $TEMP_FILE
+cp $ORIG_FILE $TEMP_FILE
+cat $FILE >> $TEMP_FILE
 
 mkdir -p $SESSION_HOME/data
 cp bin/charts.js $SESSION_HOME/data/charts.js
