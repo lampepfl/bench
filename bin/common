@@ -4,8 +4,7 @@ trim() {
   echo -e "$1" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'
 }
 
-
-measure() {
+jmh() {
   key=$1
   shift
   args="$@"
@@ -13,11 +12,20 @@ measure() {
   cd "$PROG_HOME/dotty"
 
   if [ "$OPT" == "yes" ]; then
-    sbt "dotty-bench-optimised/jmh:run $args -d $PROG_HOME/out -nowarn" 2>&1 | tee output.txt
+    sbt "dotty-bench-optimised/jmh:run $args -d $PROG_HOME/out -nowarn"
   else
-    sbt "dotty-bench-bootstrapped/jmh:run $args -d $PROG_HOME/out -nowarn" 2>&1 | tee output.txt
+    sbt "dotty-bench-bootstrapped/jmh:run $args -d $PROG_HOME/out -nowarn"
   fi
+}
 
+jmh-opt() {
+  OPT="yes"
+  jmh "$@"
+  OPT=""
+}
+
+measure() {
+  jmh "$@" 2>&1 | tee output.txt
   runs=$(cat output.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/')
   warmups=$(cat output.txt | grep -E '^# Warmup Iteration' | sed -r 's/^# Warmup Iteration.*: ([0-9\.]+).*$/\1/' | tr '\n' ' ')
 
@@ -43,14 +51,14 @@ prepare() {
   git submodule update
 
   git clean -xdf
-  sbt "dotty-bench-bootstrapped/jmh:compile" >> "$LOG"
+  sbt "dotty-bench-bootstrapped/jmh:compile" 2>&1 | tee -a "$LOG"
 
   # for compilation with `dotc`
-  sbt "dist-bootstrapped/pack" >> "$LOG"
+  sbt "dist-bootstrapped/pack"  2>&1 | tee -a "$LOG"
 }
 
 compile() {
-  "$PROG_HOME/dotty/dist-bootstrapped/target/pack/bin/dotc" "$@" >> "$LOG"
+  "$PROG_HOME/dotty/bin/dotc" "$@" 2>&1 | tee -a "$LOG"
 }
 
 
@@ -65,5 +73,5 @@ test() {
 
   mkdir -p $PROG_HOME/out
 
-  source "$PLAN" >> "$LOG"
+  source "$PLAN" 2>&1 | tee "$LOG"
 }
