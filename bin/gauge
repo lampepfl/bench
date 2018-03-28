@@ -101,7 +101,7 @@ changes=$(git diff history.csv | wc -l)
 bin/deploy   >> $LOG 2>&1
 
 git add history.csv
-git commit -m "[bot] add data for PR $PR to history" >> $LOG 2>&1
+git commit -m "[bot] add data for PR $PR to history [ci skip]" >> $LOG 2>&1
 git push origin master:master >> $LOG 2>&1
 
 # message="benchmark finished success $(date)

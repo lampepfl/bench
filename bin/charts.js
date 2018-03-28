@@ -24,11 +24,6 @@ Bench.charts = [
         "url": "https://github.com/liufengyun/ScalaPB/"
     },
     {
-        "lines": [ { "key": "tests/scalap", "name": "bootstrapped" } ],
-        "name": "scalap",
-        "url": "https://github.com/liufengyun/bench/blob/master/tests/scalap"
-    },
-    {
         "lines": [ { "key": "tests/re2s", "name": "bootstrapped" } ],
         "name": "re2",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/re2s"
