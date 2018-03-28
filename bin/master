@@ -68,7 +68,7 @@ do
     # Achieve the above by
     # 1. remember the last scheduled commit
     # 2. schedule new jobs from the last scheduled commit
-    echo "bin/gauge $pr $commit" > "$PROG_HOME/jobs/work-merge-$pr.job"
+    echo "bin/gauge $pr $commit && bin/deploy" > "$PROG_HOME/jobs/work-merge-$pr.job"
     echo $commit > "$LAST"
   fi
 done <<< "$merge_commits"

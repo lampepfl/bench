@@ -94,17 +94,4 @@ prepare "$COMMIT"
 test "$COMMIT" "$author" "$time" "$PR"
 
 cd "$PROG_HOME"
-## deploy if there are changes
-changes=$(git diff history.csv | wc -l)
-[[ $changes == "0" ]] && exit 0
-
-bin/deploy   >> $LOG 2>&1
-
-git add history.csv
-git commit -m "[bot] add data for PR $PR to history [ci skip]" >> $LOG 2>&1
-git push origin master:master >> $LOG 2>&1
-
-# message="benchmark finished success $(date)
-# Visit $WEB_URL to see the changes."
-# ghi comment -m "$message" $MONITOR_ISSUE -- $MONITOR_REPO
 

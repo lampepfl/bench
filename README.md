@@ -47,6 +47,7 @@ You may need to specify a custom plan, check `bin/plan`.
 - Install all dependencies listed above
 - Clone current project and its submodules, submodules of submodules
 - Checkout the branch `gh-pages` of current project as a folder `site` under current project
+- Make a git repo under the directory `data` for storing test data, make sure `git push origin master:master` works for the repo. 
 - In `dotty` folder, run `git remote add staging https://github.com/dotty-staging/dotty.git`
 - Update configuration in `bin/config`
 - Setup cron jobs listed in `bin/cron`, run `bin/cpu` once, start `bin/poll` and `bin/queue`

@@ -7,7 +7,7 @@ set -eE
 # -f PR             from pull request (excluded)
 # -t PR             to pull request (excluded)
 # -s STEP           every n pull requests, defaults to 0
-# -o FILE           data output to FILE, defaults to history.csv
+# -o FILE           data output to FILE, defaults to data/history.csv
 # -p PLAN           the test plan, default to `bin/plan`
 #
 # Change test plans in `bin/plan`.
@@ -124,7 +124,7 @@ do
     if [[ $in_range == "true" ]]; then
 
         if ((skip_counter == SKIP)); then
-          echo "bin/gauge -o \"$FILE\" -p \"$PLAN\" $pr $commit" > "$PROG_HOME/jobs/work-regression-$pr.job"
+          echo "bin/gauge -o \"$FILE\" -p \"$PLAN\" $pr $commit && bin/deploy" > "$PROG_HOME/jobs/work-regression-$pr.job"
           skip_counter=0
         else
           skip_counter=$(expr $skip_counter + 1)
