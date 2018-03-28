@@ -12,9 +12,9 @@ jmh() {
   cd "$PROG_HOME/dotty"
 
   if [ "$OPT" == "yes" ]; then
-    sbt "dotty-bench-optimised/jmh:run $args -d $PROG_HOME/out -nowarn" 2>&1 | tee output.txt
+    sbt "dotty-bench-optimised/jmh:run $args -d $PROG_HOME/out -nowarn"
   else
-    sbt "dotty-bench-bootstrapped/jmh:run $args -d $PROG_HOME/out -nowarn" 2>&1 | tee output.txt
+    sbt "dotty-bench-bootstrapped/jmh:run $args -d $PROG_HOME/out -nowarn"
   fi
 }
 
@@ -24,10 +24,8 @@ jmh-opt() {
   OPT=""
 }
 
-
-
 measure() {
-  jmh "$@"
+  jmh "$@" 2>&1 | tee output.txt
   runs=$(cat output.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/')
   warmups=$(cat output.txt | grep -E '^# Warmup Iteration' | sed -r 's/^# Warmup Iteration.*: ([0-9\.]+).*$/\1/' | tr '\n' ' ')
 
@@ -60,7 +58,7 @@ prepare() {
 }
 
 compile() {
-  "$PROG_HOME/dotty/dist-bootstrapped/target/pack/bin/dotc" "$@" 2>&1 | tee -a "$LOG"
+  "$PROG_HOME/dotty/bin/dotc" "$@" 2>&1 | tee -a "$LOG"
 }
 
 
