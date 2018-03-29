@@ -41,6 +41,7 @@ You may need to specify a custom plan, check `bin/plan`.
 - [ghi](https://github.com/stephencelis/ghi)
 - git
 - sbt
+- [ecstatic](https://github.com/jfhbrook/node-ecstatic)
 
 ## Deployment
 
@@ -50,6 +51,7 @@ You may need to specify a custom plan, check `bin/plan`.
 - Make a git repo under the directory `data` for storing test data, make sure `git push origin master:master` works for the repo. 
 - In `dotty` folder, run `git remote add staging https://github.com/dotty-staging/dotty.git`
 - Update configuration in `bin/config`
+- Run static web server for logs: `ecstatic ./logs --port 8000 --content-type text/plain`
 - Setup cron jobs listed in `bin/cron`, run `bin/cpu` once, start `bin/poll` and `bin/queue`
 - Authorize `ghi config --auth`, make sure it works from command line
 - Make sure `git` can push to current project
