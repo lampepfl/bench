@@ -25,3 +25,4 @@ jmh "tests/implicitNums.scala" 1 1 1 $PROG_HOME/tests/implicitNums.scala
 # source $PROG_HOME/tests/scripts/power-macro
 # source $PROG_HOME/tests/scripts/implicit_cache-from-tasty
 # source $PROG_HOME/tests/scripts/implicitNums-from-tasty
+# source $PROG_HOME/tests/scripts/scalap
