@@ -45,20 +45,20 @@ function report {
     content=$(tail -n 20 "$LOG")
   fi
 
+  log_url="$LOG_URL/$(basename $LOG)"
+
   message="performance test failed:
 
 ```
 $content
 ```
 
-Error line number: $1
-
-[check $LOG for more information]"
+Please check $log_url for more information"
 
   ghi comment $PR -m "$message" -- $REPO
 }
 
-trap 'report $LINENO' ERR
+trap 'report' ERR
 
 ############## Configs and library
 
