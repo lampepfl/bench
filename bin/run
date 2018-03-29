@@ -2,7 +2,7 @@
 
 set -eE
 
-# usage: run [-f PR] [-t PR] [-s STEP] [-o FILE]
+# usage: run [-p PLAN] [-f PR] [-t PR] [-s STEP] [-o FILE]
 #
 # -f PR             from pull request (excluded)
 # -t PR             to pull request (excluded)
@@ -10,7 +10,6 @@ set -eE
 # -o FILE           data output to FILE, defaults to data/history.csv
 # -p PLAN           the test plan, default to `bin/plan`
 #
-# Change test plans in `bin/plan`.
 #
 
 if [ -z "$PROG_HOME" ] ; then
