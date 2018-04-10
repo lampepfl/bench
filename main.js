@@ -4,6 +4,16 @@ var LineChart = require("./react-chartjs").Line;
 
 Bench = Bench || {};
 
+function process(item) {
+  return { y: item[3], x: item[1], obj: item };
+}
+
+function sort(points) {
+  return points.sort(function(a, b) {
+    return new Date(a.obj[1]) - new Date(b.obj[1]);
+  });
+}
+
 function sample(points, rate) {
   return points.reduce(function(acc, item) {
     if (Math.random() < rate) acc.push(item);
@@ -22,32 +32,6 @@ function dedup(points) {
     }
     return acc;
   }, []);
-
-  return points;
-}
-
-function dataForKey(key, isSample, isDedup) {
-  function accumulate(acc, item) {
-    if (item.key === key) {
-      acc.push({ y: item.median, x: item.time, obj: item });
-    }
-
-    return acc;
-  }
-
-  var points = Bench.dataset.reduce(accumulate, []).sort(function(a, b) {
-    return new Date(a.obj.time) - new Date(b.obj.time);
-  });
-
-  if (isSample) {
-    var pts1 = sample(points.slice(0, -100), 50 / (points.length - 100));
-    var pts2 = sample(points.slice(-100, -40), 0.5);
-    var pts3 = points.slice(-40);
-
-    points = pts1.concat(pts2).concat(pts3);
-  }
-
-  if (isDedup) points = dedup(points);
 
   return points;
 }
@@ -84,20 +68,34 @@ window.showTime = function() {
     grey: 'rgb(201, 203, 207)'
   };
 
-  function prepareData(chart, isDedup) {
-    var datasets = [];
-    var index = 0;
-    chart.lines.map(function(line) {
-      var points = dataForKey(line.key, false, isDedup);
-      datasets.push({
-        label: line.name,
-        fill: false,
-        backgroundColor: colors[colorNames[index++]],
-        data: points
-      });
-    });
+  function getData(chart, isDedup, callback) {
+    var dataset = []
+    var deferreds = chart.lines.map(function(line) {
+      return $.get("data/" + line.key + ".json", function(data) {
+        dataset.push({ line: line, data: data });
+      })
+    })
 
-    return { datasets: datasets, labels: [] };
+    $.when.apply($, deferreds).then(function() {
+      callback({ datasets: prepareData(dataset, isDedup), labels: [] });
+    })
+  }
+
+  function prepareData(datasets, isDedup) {
+    var index = -1;
+    return datasets.map(function(tuple) {
+      index++;
+
+      var points = sort(tuple.data.map(process))
+      if (isDedup) points = dedup(points);
+
+      return {
+        label: tuple.line.name,
+        fill: false,
+        backgroundColor: colors[colorNames[index]],
+        data: points
+      };
+    });
   }
 
   function options(chart) {
@@ -114,11 +112,11 @@ window.showTime = function() {
         callbacks: {
           title: function (data) {
             var item = getItem(data[0].datasetIndex, data[0].index);
-            var date = new Date(item.time);
+            var date = new Date(item[1]);
             var day = date.getDate();
             var month = date.getMonth() + 1;
             var year = date.getFullYear();
-            return "PR#" + item.pr + " \n" + item.commit + " \n" + day + "/" + month + "/" + year;
+            return "PR#" + item[0] + " \n" + item[2] + " \n" + day + "/" + month + "/" + year;
           },
           label: function (point) {
             var item = getItem(point.datasetIndex, point.index);
@@ -155,7 +153,7 @@ window.showTime = function() {
           var pindex = activeElems[0]._index;
           var dindex = activeElems[0]._datasetIndex;
           var obj = getItem(dindex, pindex);
-          var win = window.open(Bench.pr_base_url + obj.pr, '_blank');
+          var win = window.open(Bench.pr_base_url + obj[0], '_blank');
           win.focus();
         }
       }
@@ -167,10 +165,14 @@ window.showTime = function() {
       return { data: {}, options: {}, ready: false, showAll: false };
     },
     handleChange: function (e) {
-      this.setState({ data: prepareData(this.props.chart, !e.target.checked), ready: true, options: options(this), showAll: this.state.showAll });
+      getData(this.props.chart, !e.target.checked, function(data) {
+        this.setState({ data: data, ready: true, options: options(this), showAll: this.state.showAll });
+      }.bind(this))
     },
     componentDidMount: function () {
-      this.setState({ data: prepareData(this.props.chart, !this.state.showAll), ready: true, options: options(this), showAll: this.state.showAll });
+      getData(this.props.chart, !this.state.showAll, function(data) {
+        this.setState({ data: data, ready: true, options: options(this), showAll: this.state.showAll });
+      }.bind(this))
     },
     render: function () {
       var width = $("#app").width();
@@ -208,8 +210,22 @@ window.showTime = function() {
 }
 
 window.showCommit = function () {
-  function prepareData(key, isSample) {
-    var points = dataForKey(key, isSample, false);
+  function getData(key, isSample, callback) {
+    $.get("data/" + key + ".json", function (data) { // data cached by browser
+      callback(prepareData(data, isSample))
+    })
+  }
+
+  function prepareData(data, isSample) {
+    var points = sort(data.map(process))
+
+    if (isSample) {
+      var pts1 = sample(points.slice(0, -100), 50 / (points.length - 100));
+      var pts2 = sample(points.slice(-100, -40), 0.5);
+      var pts3 = points.slice(-40);
+
+      points = pts1.concat(pts2).concat(pts3);
+    }
 
     var median = {
         label: "median",
@@ -224,14 +240,14 @@ window.showCommit = function () {
 
     var labels = [];
     for (var i = 0; i < points.length; i++) {
-      var date = new Date(points[i].obj.time);
+      var date = new Date(points[i].obj[1]);
       var day = date.getDate();
       var month = date.getMonth() + 1;
       labels.push(day + "/" + month);
     }
 
     var minPoints = points.map(function(p) {
-      return { y: Math.min.apply(null, p.obj.runs), x: p.index, obj: p.obj }
+      return { y: p.obj[4], x: p.index, obj: p.obj }
     });
 
     var min = {
@@ -259,11 +275,11 @@ window.showCommit = function () {
         callbacks: {
           title: function (data) {
             var item = getItem(data[0].datasetIndex, data[0].index);
-            var date = new Date(item.time);
+            var date = new Date(item[1]);
             var day = date.getDate();
             var month = date.getMonth() + 1;
             var year = date.getFullYear();
-            return "PR#" + item.pr + " \n" + item.commit + " \n" + day + "/" + month + "/" + year;
+            return "PR#" + item[0] + " \n" + item[2] + " \n" + day + "/" + month + "/" + year;
           },
           label: function (point) {
             var item = getItem(point.datasetIndex, point.index);
@@ -289,7 +305,7 @@ window.showCommit = function () {
           var pindex = activeElems[0]._index;
           var dindex = activeElems[0]._datasetIndex;
           var obj = getItem(dindex, pindex);
-          var win = window.open(Bench.pr_base_url + obj.pr, '_blank');
+          var win = window.open(Bench.pr_base_url + obj[0], '_blank');
           win.focus();
         }
       }
@@ -301,10 +317,14 @@ window.showCommit = function () {
       return { data: {}, options: {}, ready: false, showAll: false };
     },
     handleChange: function (e) {
-      this.setState({ data: prepareData(this.props.id, !e.target.checked), ready: true, options: options(this), showAll: this.state.showAll });
+      getData(this.props.id, !e.target.checked, function(data) {
+        this.setState({ data: data, ready: true, options: options(this), showAll: this.state.showAll });
+      }.bind(this))
     },
     componentDidMount: function () {
-      this.setState({ data: prepareData(this.props.id, !this.state.showAll), ready: true, options: options(this), showAll: this.state.showAll });
+      getData(this.props.id, !this.state.showAll, function(data) {
+        this.setState({ data: data, ready: true, options: options(this), showAll: this.state.showAll });
+      }.bind(this))
     },
     render: function () {
       var width = $("#app").width();
@@ -341,9 +361,7 @@ window.showCommit = function () {
   );
 }
 
-$.get("data/dataset.json", function (dataset) {
-  Bench.dataset = dataset;
-
+$(function () {
   flatten();
   showCommit();
 })
