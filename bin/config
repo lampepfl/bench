@@ -4,4 +4,4 @@ LOG_URL=http://lamppc37.epfl.ch:8000
 POLL_SLEEP=60
 QUEUE_IDLE_SLEEP=60
 FILE="$PROG_HOME/data/history.csv"
-PLAN="$PROG_HOME/bin/plan"
+PLAN="$PROG_HOME/profile/default.plan"

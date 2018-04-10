@@ -5,7 +5,6 @@ trim() {
 }
 
 jmh() {
-  shift # shift the key
   args="$@"
 
   cd "$PROG_HOME/dotty"
@@ -17,19 +16,11 @@ jmh() {
   fi
 }
 
-jmh-opt() {
-  OPT="yes"
-  jmh "$@"
-  OPT=""
-}
-
 measure() {
-  key=$1
   jmh "$@" 2>&1 | tee output.txt
   runs=$(cat output.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/')
   warmups=$(cat output.txt | grep -E '^# Warmup Iteration' | sed -r 's/^# Warmup Iteration.*: ([0-9\.]+).*$/\1/' | tr '\n' ' ')
 
-  median=$(echo "$runs" | datamash median 1) # datamash work on columns
   runs_flat=$(echo "$runs" | tr '\n' ' ')
   runs_flat=$(trim "$runs_flat")
 
@@ -61,6 +52,9 @@ compile() {
   "$PROG_HOME/dotty/bin/dotc" "$@" 2>&1 | tee -a "$LOG"
 }
 
+set-key() {
+  key=$1
+}
 
 test() {
   commit=$1

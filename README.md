@@ -19,7 +19,7 @@ Update the two files below:
 
 ## Schedule a regression job
 
-- Put regression jobs as scripts under `jobs/`. 
+- Put regression jobs as scripts under `jobs/`.
 - Remember to use absolute path with the `$PROG_HOME` variable
 
 The command `bin/run` does the above automatically, allowing
@@ -33,7 +33,6 @@ You may need to specify a custom plan, check `bin/plan`.
 
 ## Dependencies
 
-- [datamash](https://www.gnu.org/software/datamash/)
 - [jq](https://stedolan.github.io/jq)
 - sed
 - cron
@@ -48,7 +47,7 @@ You may need to specify a custom plan, check `bin/plan`.
 - Install all dependencies listed above
 - Clone current project and its submodules, submodules of submodules
 - Checkout the branch `gh-pages` of current project as a folder `site` under current project
-- Make a git repo under the directory `data` for storing test data, make sure `git push origin master:master` works for the repo. 
+- Make a git repo under the directory `data` for storing test data, make sure `git push origin master:master` works for the repo.
 - In `dotty` folder, run `git remote add staging https://github.com/dotty-staging/dotty.git`
 - Update configuration in `bin/config`
 - Run static web server for logs: `ecstatic ./logs --port 8000 --content-type text/plain`

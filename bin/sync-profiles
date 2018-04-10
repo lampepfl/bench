@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+if [ -z "$PROG_HOME" ] ; then
+  ## resolve links - $0 may be a link to PROG_HOME
+  PRG="$0"
+
+  # need this for relative symlinks
+  while [ -h "$PRG" ] ; do
+    ls=`ls -ld "$PRG"`
+    link=`expr "$ls" : '.*-> \(.*\)$'`
+    if expr "$link" : '/.*' > /dev/null; then
+      PRG="$link"
+    else
+      PRG="`dirname "$PRG"`/$link"
+    fi
+  done
+
+  saveddir=`pwd`
+
+  PROG_HOME=`dirname "$PRG"`/..
+
+  # make it fully qualified
+  PROG_HOME=`cd "$PROG_HOME" && pwd`
+
+  cd "$saveddir"
+fi
+
+cd "$PROG_HOME"
+
+for profile in profiles/*.yml
+do
+  filename=$(basename -- "$profile")
+  filename="${filename%.*}"
+  bin/profile $profile profiles/$filename.plan
+  bin/profile $profile profiles/$filename.js
+done

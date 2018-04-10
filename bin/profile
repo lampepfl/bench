@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+
+# Generate json output by key
+#
+#     profile data.yml plan
+#     profile data.yml charts.js
+#
+# The data will be generated as `out/key.json`.
+
+require 'yaml'
+require 'json'
+
+Profile = YAML.load_file(ARGV[0])
+
+def generate_js
+  File.open(ARGV[1], "w") do |f|
+    f.puts "var Bench = Bench || {}"
+    f.print "Bench.charts = "
+    f.puts Profile["charts"].to_json
+    if Profile.key?("config")
+      f.print "Bench.config = "
+      f.puts Profile["config"].to_json
+    end
+  end
+end
+
+def generate_scripts
+  File.open(ARGV[1], "w") do |f|
+    Profile["scripts"].each do |key, value|
+      f.puts "set-key #{key}"
+      f.puts value
+      f.puts
+    end
+  end
+end
+
+if ARGV[1].end_with?(".js")
+  generate_js
+else
+  generate_scripts
+end

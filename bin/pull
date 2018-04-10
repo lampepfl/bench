@@ -2,10 +2,11 @@
 
 set -eE
 
-# usage: pull [-n] [-c COMMIT1:COMMIT2] PR
+# usage: pull [-n] [-p PROFILE] [-c COMMIT1:COMMIT2] PR
 #
 # -n             new test session
 # -c             commits to test, separated by semicolon
+# -p             test profile, `quotes` or `default`
 #
 # PR             pull request number
 #
@@ -66,11 +67,16 @@ trap 'report' ERR
 source "$PROG_HOME/bin/config"
 source "$PROG_HOME/bin/common"
 
+PROFILE=default
+
 ############## Options
 while getopts "c:n" opt; do
   case $opt in
     c)
       COMMITS=$OPTARG
+      ;;
+    c)
+      PROFILE=$OPTARG
       ;;
     n)
       FRESH="true"
@@ -118,6 +124,15 @@ REPO=lampepfl/dotty
 
 ############## test
 cd $PROG_HOME
+
+############## check profile & update plan
+
+if [! -f profiles/$PROFILE.yml ]; then
+   echo "unknown profile: $PROFILE" >> $LOG
+   exit 1
+fi
+
+PLAN=$PROG_HOME/profiles/$PROFILE.plan
 
 # make sure folder for session home exists
 mkdir -p $SESSION_HOME
@@ -196,7 +211,7 @@ cp $ORIG_FILE $TEMP_FILE
 cat $FILE >> $TEMP_FILE
 
 mkdir -p $SESSION_HOME/data
-cp bin/charts.js $SESSION_HOME/data/charts.js
+cp profiles/$PROFILE.js $SESSION_HOME/data/charts.js
 bin/csv $TEMP_FILE $SESSION_HOME/data/
 
 # push to github

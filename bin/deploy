@@ -31,7 +31,7 @@ source "$PROG_HOME/bin/config"
 
 cd "$PROG_HOME/data"
 
-## deploy if there are changes
+## sync test data with data repo
 changes=$(git diff | wc -l)
 if [[ $changes != "0" ]]; then
   git add .
@@ -54,7 +54,7 @@ cp -r web/css site/
 
 # build data
 mkdir -p site/data
-cp bin/charts.js site/data/charts.js
+cp profiles/default.js site/data/charts.js
 bin/csv "$FILE" site/data
 
 # push to github

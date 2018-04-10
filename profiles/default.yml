@@ -1,0 +1,199 @@
+charts:
+    - name: "dotty (source changes over time)"
+      url: https://github.com/lampepfl/dotty
+      lines:
+        - key:  dotty
+          label: bootstrapped
+
+    - name: Vector
+      url: https://github.com/liufengyun/bench/blob/master/tests/Vector.scala
+      lines:
+        - key: vector
+          label: bootstrapped
+        - key: vector-opt
+          label: optimised
+
+    - name: "scala library"
+      url: https://github.com/liufengyun/bench/blob/master/tests/scala-library
+      lines:
+        - key: scala-library
+          label: bootstrapped
+
+    - name: scalapb
+      url: https://github.com/liufengyun/ScalaPB/
+      lines:
+        - key: scalapb
+          label: bootstrapped
+
+    - name: scalap
+      url: https://github.com/liufengyun/bench/blob/master/tests/scalap
+      lines:
+        - key: scalap
+          label: bootstrapped
+
+    - name: re2
+      url: https://github.com/liufengyun/bench/blob/master/tests/re2s
+      lines:
+        - key: re2s
+          label: bootstrapped
+
+    - name: "implicit cache I"
+      url: https://github.com/liufengyun/bench/blob/master/tests/implicit_cache.scala
+      lines:
+        - key: implicit-cache
+          label: bootstrapped
+
+    - name: "implicit cache II"
+      url: https://github.com/liufengyun/bench/blob/master/tests/implicitNums.scala
+      lines:
+        - key: implicitNums
+        - label: bootstrapped
+
+    - name: "implicit scope loop"
+      url: https://github.com/liufengyun/bench/blob/master/tests/implicit-scope-loop.scala
+      lines:
+        - key: implicit-scope-loop
+        - label: bootstrapped
+
+    - name: "exhaustivity check"
+      url: https://github.com/liufengyun/bench/blob/master/tests/patmatexhaust.scala
+      lines:
+        - key: patmatexhaust
+        - label: bootstrapped
+
+    - name: "exhaustivity I"
+      url: https://github.com/liufengyun/bench/blob/master/tests/exhaustivity-I.scala
+      lines:
+        - key: exhaustivity-I
+        - label: bootstrapped
+
+    - name: "exhaustivity S"
+      url: https://github.com/liufengyun/bench/blob/master/tests/exhaustivity-S.scala
+      lines:
+        - key: exhaustivity-S
+        - label: bootstrapped
+
+    - name: "exhaustivity T"
+      url: https://github.com/liufengyun/bench/blob/master/tests/exhaustivity-T.scala
+      lines:
+        - key: exhaustivity-T
+        - label: bootstrapped
+
+    - name: "exhaustivity V"
+      url: https://github.com/liufengyun/bench/blob/master/tests/exhaustivity-V.scala
+      lines:
+        - key: exhaustivity-V
+        - label: bootstrapped
+
+    - name: "issue #1535"
+      url: https://github.com/liufengyun/bench/blob/master/tests/i1687.scala
+      lines:
+        - key: i1535
+        - label: bootstrapped
+
+    - name: "issue #1687"
+      url: https://github.com/liufengyun/bench/blob/master/tests/i1687.scala
+      lines:
+        - key: i1687
+        - label: bootstrapped
+
+    - name: "empty class"
+      url: https://github.com/liufengyun/bench/blob/master/tests/empty-class.scala
+      lines:
+        - key: empty-class
+        - label: bootstrapped
+
+    - name: "empty object"
+      url: https://github.com/liufengyun/bench/blob/master/tests/empty-object.scala
+      lines:
+        - key: empty-object
+        - label: bootstrapped
+
+    - name: "empty file"
+      url: https://github.com/liufengyun/bench/blob/master/tests/empty-file.scala
+      lines:
+        - key: empty-file
+        - label: bootstrapped
+
+    - name: "Inline a quote"
+      url: https://github.com/liufengyun/bench/blob/master/tests/power-macro/PowerInlined-1.scala
+      lines:
+        - key: power-macro-power-inlined-1
+        - label: bootstrapped
+
+    - name: "Inline 1k quotes"
+      url: https://github.com/liufengyun/bench/blob/master/tests/power-macro/PowerInlined-1k.scala
+      lines:
+        - key: power-macro-power-inlined-1k
+        - label: bootstrapped
+
+scripts:
+    dotty:
+        - measure $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
+
+    scala-library:
+        - measure -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
+
+    re2s:
+        - measure $(find $PROG_HOME/tests/re2s/src -name *.scala)
+
+    implicit-cache:
+        - measure $PROG_HOME/tests/implicit_cache.scala
+
+    implicit-scope-loop:
+        - measure $PROG_HOME/tests/implicit-scope-loop.scala
+
+    i1535:
+        - measure $PROG_HOME/tests/i1535.scala
+
+    i1687:
+        - measure $PROG_HOME/tests/i1687.scala
+
+    vector:
+        - measure 20 30 3 $PROG_HOME/tests/Vector.scala
+
+    vector-opt:
+        - measure-opt 20 30 3 $PROG_HOME/tests/Vector.scala
+
+    empty-class:
+        - measure $PROG_HOME/tests/empty-class.scala
+
+    empty-object:
+        - measure $PROG_HOME/tests/empty-object.scala
+
+    empty-file:
+        - measure $PROG_HOME/tests/empty-file.scala
+
+    patmatexhaust:
+        - measure 20 40 3 $PROG_HOME/tests/patmatexhaust.scala
+
+    exhaustivity-I:
+        - measure 20 40 3 $PROG_HOME/tests/exhaustivity-I.scala
+
+    exhaustivity-S:
+        - measure 20 40 3 $PROG_HOME/tests/exhaustivity-S.scala
+
+    exhaustivity-T:
+        - measure 20 40 3 $PROG_HOME/tests/exhaustivity-T.scala
+
+    exhaustivity-V:
+        - measure 20 40 3 $PROG_HOME/tests/exhaustivity-V.scala
+
+    implicitNums:
+        - measure $PROG_HOME/tests/implicitNums.scala
+
+    scalapb:
+        - source $PROG_HOME/tests/scripts/scalapb
+
+    scalap:
+        - source $PROG_HOME/tests/scripts/scalap
+
+    power-macro-power-inlined-1:
+        - source $PROG_HOME/tests/scripts/power-macro-1
+
+    power-macro-power-inlined-1k:
+        - source $PROG_HOME/tests/scripts/power-macro-1k
+
+
+config:
+    pr_base_url: "https://github.com/lampepfl/dotty/pull/"
