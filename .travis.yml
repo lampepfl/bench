@@ -14,5 +14,5 @@ script:
   - git submodule update tests/scalapb
   - git clone --recursive --single-branch https://github.com/lampepfl/dotty.git
   - echo "hello, world" > /dev/stdout
-  - bin/profile profiles/ci.yml profiles/ci
-  - bin/gauge -o /dev/stdout -p profiles/ci 9999 master
+  - bin/sync-profiles
+  - bin/gauge -o /dev/stdout -p profiles/ci.plan 9999 master
