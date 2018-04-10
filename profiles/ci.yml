@@ -1,57 +1,57 @@
 scripts:
     dotty:
-        - measure $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
+        - measure 1 1 1 $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
 
     scala-library:
-        - measure -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
+        - measure 1 1 1 -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
 
     re2s:
-        - measure $(find $PROG_HOME/tests/re2s/src -name *.scala)
+        - measure 1 1 1 $(find $PROG_HOME/tests/re2s/src -name *.scala)
 
     implicit-cache:
-        - measure $PROG_HOME/tests/implicit_cache.scala
+        - measure 1 1 1 $PROG_HOME/tests/implicit_cache.scala
 
     implicit-scope-loop:
-        - measure $PROG_HOME/tests/implicit-scope-loop.scala
+        - measure 1 1 1 $PROG_HOME/tests/implicit-scope-loop.scala
 
     i1535:
-        - measure $PROG_HOME/tests/i1535.scala
+        - measure 1 1 1 $PROG_HOME/tests/i1535.scala
 
     i1687:
-        - measure $PROG_HOME/tests/i1687.scala
+        - measure 1 1 1 $PROG_HOME/tests/i1687.scala
 
     vector:
-        - measure 20 30 3 $PROG_HOME/tests/Vector.scala
+        - measure 1 1 1 $PROG_HOME/tests/Vector.scala
 
     vector-opt:
-        - measure-opt 20 30 3 $PROG_HOME/tests/Vector.scala
+        - measure-opt 1 1 1 $PROG_HOME/tests/Vector.scala
 
     empty-class:
-        - measure $PROG_HOME/tests/empty-class.scala
+        - measure 1 1 1 $PROG_HOME/tests/empty-class.scala
 
     empty-object:
-        - measure $PROG_HOME/tests/empty-object.scala
+        - measure 1 1 1 $PROG_HOME/tests/empty-object.scala
 
     empty-file:
-        - measure $PROG_HOME/tests/empty-file.scala
+        - measure 1 1 1 $PROG_HOME/tests/empty-file.scala
 
     patmatexhaust:
-        - measure 20 40 3 $PROG_HOME/tests/patmatexhaust.scala
+        - measure 1 1 1 $PROG_HOME/tests/patmatexhaust.scala
 
     exhaustivity-I:
-        - measure 20 40 3 $PROG_HOME/tests/exhaustivity-I.scala
+        - measure 1 1 1 $PROG_HOME/tests/exhaustivity-I.scala
 
     exhaustivity-S:
-        - measure 20 40 3 $PROG_HOME/tests/exhaustivity-S.scala
+        - measure 1 1 1 $PROG_HOME/tests/exhaustivity-S.scala
 
     exhaustivity-T:
-        - measure 20 40 3 $PROG_HOME/tests/exhaustivity-T.scala
+        - measure 1 1 1 $PROG_HOME/tests/exhaustivity-T.scala
 
     exhaustivity-V:
-        - measure 20 40 3 $PROG_HOME/tests/exhaustivity-V.scala
+        - measure 1 1 1 $PROG_HOME/tests/exhaustivity-V.scala
 
     implicitNums:
-        - measure $PROG_HOME/tests/implicitNums.scala
+        - measure 1 1 1 $PROG_HOME/tests/implicitNums.scala
 
     # scalapb:
     #     - source $PROG_HOME/tests/scripts/scalapb
