@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+# Generate json output by key
+#
+#     csv data.csv out/
+#
+# The data will be generated as `out/key.json`.
+
+require 'csv'
+# require 'optparse'
+require 'json'
+
+# options = {}
+# OptionParser.new do |opts|
+#   opts.banner = "Usage: csv [-s] data.csv out/"
+
+#   opts.on("-s", "--[no-]sample", "sample history data to reduce size") do |v|
+#     options[:sample] = v
+#   end
+# end.parse!
+
+csv_file = ARGV[0]
+out_dir  = ARGV[1]
+
+table = {}
+
+def process(row)
+  line = []
+  line[0] = row[1].to_i                                      # PR
+  line[1] = row[2].strip                                     # time
+  line[2] = row[3].strip                                     # commit
+  line[3] = row[4].to_f                                      # median
+  line[4] = row[7].split.map { |item| item.to_f }.min        # min
+  line
+end
+
+CSV.foreach(csv_file) do |row|
+  table[row[0]] = [] unless table.key?(row[0])
+
+  table[row[0]].push(row)
+end
+
+table.each do |key, rows|
+  File.open("#{out_dir}/#{key}.json","w") do |f|
+    processed = rows.map { |row| process(row) }
+    f.write(processed.to_json)
+  end
+end
