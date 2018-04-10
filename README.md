@@ -4,7 +4,7 @@ Benchmarking Dotty
 
 ## Usage
 
-- `bin/master`: used for benchmarking the master
+- `bin/master`: for benchmarking the master
 - `bin/run`: for manually benchmarking a specific period (after 2017.10.27)
 - `bin/pull`: for testing a specific pull request
 
@@ -12,23 +12,23 @@ Check the documentation in the source code of each command for more detail.
 
 ## Add Test
 
-Update the two files below:
+Update the profiles below:
 
-- `bin/charts.js`
-- `bin/plan`
+- `profiles/default.yml`
+- `profiles/ci.yml`
 
-## Schedule a regression job
+## Schedule a job
 
 - Put regression jobs as scripts under `jobs/`.
 - Remember to use absolute path with the `$PROG_HOME` variable
 
 The command `bin/run` does the above automatically, allowing
 specify an interval by PR numbers, optionally with a step.
-You may need to specify a custom plan, check `bin/plan`.
+You may need to specify a custom plan, check `profiles/*.yml`.
 
 ## Development
 
-- Put new test in both `bin/plan-ci` and `bin/plan`
+- Put new test in relevant profiles under `profiles/*.yml`
 - Make a pull request
 
 ## Dependencies
@@ -46,11 +46,14 @@ You may need to specify a custom plan, check `bin/plan`.
 
 - Install all dependencies listed above
 - Clone current project and its submodules, submodules of submodules
+- Update configuration in `bin/config`
+- Authorize `ghi config --auth`, make sure it works from command line
+- Make sure `git` can push to current project
+- Setup cron jobs listed in `bin/cron`
 - Checkout the branch `gh-pages` of current project as a folder `site` under current project
 - Make a git repo under the directory `data` for storing test data, make sure `git push origin master:master` works for the repo.
 - In `dotty` folder, run `git remote add staging https://github.com/dotty-staging/dotty.git`
-- Update configuration in `bin/config`
+- run `bin/synch-profiles` once
 - Run static web server for logs: `ecstatic ./logs --port 8000 --content-type text/plain`
-- Setup cron jobs listed in `bin/cron`, run `bin/cpu` once, start `bin/poll` and `bin/queue`
-- Authorize `ghi config --auth`, make sure it works from command line
-- Make sure `git` can push to current project
+- run `bin/cpu` once
+- start `bin/poll` and `bin/queue` as long-running service
