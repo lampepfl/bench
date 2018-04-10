@@ -37,7 +37,7 @@ if [[ $changes == "0" ]]; then
   git add .
   git commit -m "[bot] add data"
   git push origin master:master
-done
+fi
 
 ## build web
 cd "$PROG_HOME/web"
