@@ -24,13 +24,21 @@ out_dir  = ARGV[1]
 
 table = {}
 
+def median(array)
+  sorted = array.sort
+  len = sorted.length
+  (sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0
+end
+
 def process(row)
   line = []
   line[0] = row[1].to_i                                      # PR
   line[1] = row[2].strip                                     # time
   line[2] = row[3].strip                                     # commit
-  line[3] = row[4].to_f                                      # median
-  line[4] = row[7].split.map { |item| item.to_f }.min        # min
+
+  array = row[7].split.map { |item| item.to_f }
+  line[3] = median(array)                                    # median
+  line[4] = array.min                                        # min
   line
 end
 
