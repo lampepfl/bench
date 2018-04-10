@@ -9,7 +9,7 @@ The data should be put in `data/`.
 Example data format can be found [here](https://github.com/liufengyun/bench/tree/gh-pages/data):
 
 - `charts.js`: specify meta data for charts
-- `dataset.json`: holds all data points for charts
+- `key.json`: hold data points for the line `key`
 
 ## Development
 
