@@ -2,4 +2,4 @@ mkdir -p "$PROG_HOME/tests/implicitNums-out"
 
 compile -d "$PROG_HOME/tests/implicitNums-out" "$PROG_HOME/tests/implicitNums.scala"
 
-measure "from-tasty/implicitNums.scala"  -from-tasty  -classpath "$PROG_HOME/tests/implicitNums-out" Test
+measure "from-tasty-implicitNums"  -from-tasty  -classpath "$PROG_HOME/tests/implicitNums-out" Test

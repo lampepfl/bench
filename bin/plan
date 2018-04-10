@@ -1,25 +1,25 @@
 # Dotty Project
 measure "dotty" $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
-measure "tests/scala-library" -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
+measure "scala-library" -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
 
-measure "tests/re2s" $(find $PROG_HOME/tests/re2s/src -name *.scala)
+measure "re2s" $(find $PROG_HOME/tests/re2s/src -name *.scala)
 
 # microbenchmarks
-measure "tests/implicit_cache.scala" $PROG_HOME/tests/implicit_cache.scala
-measure "tests/implicit-scope-loop.scala" $PROG_HOME/tests/implicit-scope-loop.scala
-measure "tests/i1535.scala" $PROG_HOME/tests/i1535.scala
-measure "tests/i1687.scala" $PROG_HOME/tests/i1687.scala
-measure "tests/Vector.scala" 20 30 3 $PROG_HOME/tests/Vector.scala
-measure-opt "opts/Vector.scala" 20 30 3 $PROG_HOME/tests/Vector.scala
-measure "tests/empty-class.scala" $PROG_HOME/tests/empty-class.scala
-measure "tests/empty-object.scala" $PROG_HOME/tests/empty-object.scala
-measure "tests/empty-file.scala" $PROG_HOME/tests/empty-file.scala
-measure "tests/patmatexhaust.scala" 20 40 3 $PROG_HOME/tests/patmatexhaust.scala
-measure "tests/exhaustivity-I.scala" 20 40 3 $PROG_HOME/tests/exhaustivity-I.scala
-measure "tests/exhaustivity-S.scala" 20 40 3 $PROG_HOME/tests/exhaustivity-S.scala
-measure "tests/exhaustivity-T.scala" 20 40 3 $PROG_HOME/tests/exhaustivity-T.scala
-measure "tests/exhaustivity-V.scala" 20 40 3 $PROG_HOME/tests/exhaustivity-V.scala
-measure "tests/implicitNums.scala" $PROG_HOME/tests/implicitNums.scala
+measure "implicit-cache" $PROG_HOME/tests/implicit_cache.scala
+measure "implicit-scope-loop" $PROG_HOME/tests/implicit-scope-loop.scala
+measure "i1535" $PROG_HOME/tests/i1535.scala
+measure "i1687" $PROG_HOME/tests/i1687.scala
+measure "vector" 20 30 3 $PROG_HOME/tests/Vector.scala
+measure-opt "vector-opt" 20 30 3 $PROG_HOME/tests/Vector.scala
+measure "empty-class" $PROG_HOME/tests/empty-class.scala
+measure "empty-object" $PROG_HOME/tests/empty-object.scala
+measure "empty-file" $PROG_HOME/tests/empty-file.scala
+measure "patmatexhaust" 20 40 3 $PROG_HOME/tests/patmatexhaust.scala
+measure "exhaustivity-I" 20 40 3 $PROG_HOME/tests/exhaustivity-I.scala
+measure "exhaustivity-S" 20 40 3 $PROG_HOME/tests/exhaustivity-S.scala
+measure "exhaustivity-T" 20 40 3 $PROG_HOME/tests/exhaustivity-T.scala
+measure "exhaustivity-V" 20 40 3 $PROG_HOME/tests/exhaustivity-V.scala
+measure "implicitNums" $PROG_HOME/tests/implicitNums.scala
 source $PROG_HOME/tests/scripts/scalapb
 source $PROG_HOME/tests/scripts/scalap
 source $PROG_HOME/tests/scripts/power-macro
