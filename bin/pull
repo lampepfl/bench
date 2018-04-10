@@ -197,7 +197,7 @@ cat $FILE >> $TEMP_FILE
 
 mkdir -p $SESSION_HOME/data
 cp bin/charts.js $SESSION_HOME/data/charts.js
-bin/csv2 $TEMP_FILE > $SESSION_HOME/data/
+bin/csv $TEMP_FILE $SESSION_HOME/data/
 
 # push to github
 cd $PROG_HOME/site
