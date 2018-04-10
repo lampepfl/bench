@@ -75,7 +75,7 @@ while getopts "c:n" opt; do
     c)
       COMMITS=$OPTARG
       ;;
-    c)
+    p)
       PROFILE=$OPTARG
       ;;
     n)
