@@ -15,4 +15,5 @@ script:
   - git clone --recursive --single-branch https://github.com/lampepfl/dotty.git
   - echo "hello, world" > /dev/stdout
   - bin/sync-profiles
-  - bin/gauge -o /dev/stdout -p profiles/ci.plan 9999 master
+  - bin/gauge -o data.csv -p profiles/ci.plan 9999 master
+  - mkdir data && bin/csv data.csv data/
