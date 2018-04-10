@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-# Generate json output by key
+# Generate test plan and web charts code from test profiles
 #
-#     profile data.yml plan
-#     profile data.yml charts.js
+#     profile data.yml data.plan
+#     profile data.yml data.js
 #
 # The data will be generated as `out/key.json`.
 
