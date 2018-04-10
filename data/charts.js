@@ -7,108 +7,108 @@ Bench.charts = [
         "url": "https://github.com/lampepfl/dotty"
     },
     {
-        "lines": [ { "key": "tests/Vector.scala", "name": "bootstrapped" },
-                   { "key": "opts/Vector.scala", "name": "optimised" }
+        "lines": [ { "key": "vector", "name": "bootstrapped" },
+                   { "key": "vector-opt", "name": "optimised" }
                  ],
         "name": "Vector",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/Vector.scala"
     },
     {
-        "lines": [ { "key": "tests/scala-library", "name": "bootstrapped" } ],
+        "lines": [ { "key": "scala-library", "name": "bootstrapped" } ],
         "name": "scala library",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/scala-library"
     },
     {
-        "lines": [ { "key": "tests/scalapb", "name": "bootstrapped" } ],
+        "lines": [ { "key": "scalapb", "name": "bootstrapped" } ],
         "name": "scalapb",
         "url": "https://github.com/liufengyun/ScalaPB/"
     },
     {
-        "lines": [ { "key": "tests/scalap", "name": "bootstrapped" } ],
+        "lines": [ { "key": "scalap", "name": "bootstrapped" } ],
         "name": "scalap",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/scalap"
     },
     {
-        "lines": [ { "key": "tests/re2s", "name": "bootstrapped" } ],
+        "lines": [ { "key": "re2s", "name": "bootstrapped" } ],
         "name": "re2",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/re2s"
     },
     {
         "lines": [
-            { "key": "tests/implicit_cache.scala", "name": "bootstrapped" }
+            { "key": "implicit-cache", "name": "bootstrapped" }
         ],
         "name": "implicit cache I",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/implicit_cache.scala"
     },
     {
         "lines": [
-            { "key": "tests/implicitNums.scala", "name": "bootstrapped" }
+            { "key": "implicitNums", "name": "bootstrapped" }
         ],
         "name": "implicit cache II",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/implicitNums.scala"
     },
     {
-        "lines": [ { "key": "tests/implicit-scope-loop.scala", "name": "bootstrapped" } ],
+        "lines": [ { "key": "implicit-scope-loop", "name": "bootstrapped" } ],
         "name": "implicit scope loop",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/implicit-scope-loop.scala"
     },
     {
-        "lines": [ { "key": "tests/patmatexhaust.scala", "name": "bootstrapped" } ],
+        "lines": [ { "key": "patmatexhaust", "name": "bootstrapped" } ],
         "name": "exhaustivity check",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/patmatexhaust.scala"
     },
     {
-        "lines": [ { "key": "tests/exhaustivity-I.scala", "name": "bootstrapped" } ],
+        "lines": [ { "key": "exhaustivity-I", "name": "bootstrapped" } ],
         "name": "exhaustivity I",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/exhaustivity-I.scala"
     },
     {
-        "lines": [ { "key": "tests/exhaustivity-S.scala", "name": "bootstrapped" } ],
+        "lines": [ { "key": "exhaustivity-S", "name": "bootstrapped" } ],
         "name": "exhaustivity S",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/exhaustivity-S.scala"
     },
     {
-        "lines": [ { "key": "tests/exhaustivity-T.scala", "name": "bootstrapped" } ],
+        "lines": [ { "key": "exhaustivity-T", "name": "bootstrapped" } ],
         "name": "exhaustivity T",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/exhaustivity-T.scala"
     },
     {
-        "lines": [ { "key": "tests/exhaustivity-V.scala", "name": "bootstrapped" } ],
+        "lines": [ { "key": "exhaustivity-V", "name": "bootstrapped" } ],
         "name": "exhaustivity V",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/exhaustivity-V.scala"
     },
     {
-        "lines": [ { "key": "tests/i1535.scala", "name": "bootstrapped" } ],
+        "lines": [ { "key": "i1535", "name": "bootstrapped" } ],
         "name": "issue #1535",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/i1535.scala"
     },
     {
-        "lines": [ { "key": "tests/i1687.scala", "name": "bootstrapped" } ],
+        "lines": [ { "key": "i1687", "name": "bootstrapped" } ],
         "name": "issue #1687",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/i1687.scala"
     },
     {
-        "lines": [ { "key": "tests/empty-class.scala", "name": "bootstrapped" } ],
+        "lines": [ { "key": "empty-class", "name": "bootstrapped" } ],
         "name": "empty class",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/empty-class.scala"
     },
     {
-        "lines": [ { "key": "tests/empty-object.scala", "name": "bootstrapped" } ],
+        "lines": [ { "key": "empty-object", "name": "bootstrapped" } ],
         "name": "empty object",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/empty-object.scala"
     },
     {
-        "lines": [ { "key": "tests/empty-file.scala", "name": "bootstrapped" } ],
+        "lines": [ { "key": "empty-file", "name": "bootstrapped" } ],
         "name": "empty file",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/empty-file.scala"
     },
     {
-        "lines": [ { "key": "tests/power-macro/PowerInlined-1.scala", "name": "bootstrapped" } ],
+        "lines": [ { "key": "power-macro-power-inlined-1", "name": "bootstrapped" } ],
         "name": "Inline a quote",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/power-macro/PowerInlined-1.scala"
     },
     {
-        "lines": [ { "key": "tests/power-macro/PowerInlined-1k.scala", "name": "bootstrapped" } ],
+        "lines": [ { "key": "power-macro-power-inlined-1k", "name": "bootstrapped" } ],
         "name": "Inline 1k quotes",
         "url": "https://github.com/liufengyun/bench/blob/master/tests/power-macro/PowerInlined-1k.scala"
     }
