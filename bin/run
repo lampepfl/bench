@@ -44,19 +44,6 @@ source "$PROG_HOME/bin/config"
 
 args="$@"
 
-## errors
-
-function report {
-  message="regression scheduling failed for following benchmarks:
-
-arguments: $args
-"
-
-  ghi comment $MONITOR_ISSUE -m "$message" -- $MONITOR_REPO
-}
-
-trap report ERR
-
 # parse command line params
 while getopts "f:t:s:o:p:" opt; do
  case $opt in

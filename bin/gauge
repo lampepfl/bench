@@ -38,16 +38,6 @@ if [ -z "$PROG_HOME" ] ; then
   cd "$saveddir"
 fi
 
-## error
-
-function report {
-  content=$(tail -n 20 $LOG)
-  message="test $PR $COMMIT failed, check $LOG for more information"
-
-  ghi comment $MONITOR_ISSUE -m "$message" -- $MONITOR_REPO
-}
-
-trap report ERR
 
 ## init
 
