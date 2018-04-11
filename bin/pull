@@ -70,7 +70,7 @@ source "$PROG_HOME/bin/common"
 PROFILE=default
 
 ############## Options
-while getopts "c:n" opt; do
+while getopts "c:np:" opt; do
   case $opt in
     c)
       COMMITS=$OPTARG
@@ -127,7 +127,7 @@ cd $PROG_HOME
 
 ############## check profile & update plan
 
-if [! -f profiles/$PROFILE.yml ]; then
+if [ ! -f profiles/$PROFILE.yml ]; then
    echo "unknown profile: $PROFILE" >> $LOG
    exit 1
 fi
@@ -151,6 +151,7 @@ from_branch=$(echo $info | jq -r '.branch' )
 if [[ -z $COMMITS ]]; then
   COMMITS="$last_commit"
 fi
+
 
 
 cd dotty/
