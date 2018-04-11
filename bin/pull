@@ -50,13 +50,11 @@ function report {
 
   message="performance test failed:
 
-```
-$content
-```
-
 Please check $log_url for more information"
 
   ghi comment $PR -m "$message" -- $REPO
+
+  exit 1
 }
 
 trap 'report' ERR
