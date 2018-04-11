@@ -15,8 +15,21 @@ Profile = YAML.load_file(ARGV[0])
 def generate_js
   File.open(ARGV[1], "w") do |f|
     f.puts "var Bench = Bench || {}"
-    f.print "Bench.charts = "
-    f.puts Profile["charts"].to_json
+
+    f.puts "Bench.charts = ["
+    charts = Profile["charts"] || []
+
+    charts.each_with_index do |chart, index|
+      f.print chart.to_json
+      if index == charts.size - 1
+         f.puts
+      else
+         f.puts ","
+      end
+    end
+
+    f.puts "]"
+
     if Profile.key?("config")
       f.print "Bench.config = "
       f.puts Profile["config"].to_json

@@ -51,6 +51,15 @@ end
 table.each do |key, rows|
   File.open("#{out_dir}/#{key}.json","w") do |f|
     processed = rows.map { |row| process(row) }
-    f.write(processed.to_json)
+    f.puts "["
+    processed.each_with_index do |row, index|
+      f.print(row.to_json)
+      if index == processed.size - 1
+         f.puts
+      else
+         f.puts ","
+      end
+    end
+    f.puts "]"
   end
 end
