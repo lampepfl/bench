@@ -74,7 +74,7 @@ while true; do
   wget https://api.github.com/repos/$REPO/issues/comments?since=$LAST_POLL -O $output
   LAST_POLL=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-  pulls=$(cat $output | jq -r '.[] | select((.body | test("^(re)?test performance (with \w+ )?please")) and (.html_url | contains("pull")) ) | [.html_url,  .body] | @tsv')
+  pulls=$(cat $output | jq -r '.[] | select((.body | test("^(re)?test performance +(with #\\w+ +)?please")) and (.html_url | contains("pull")) ) | [.html_url,  .body] | @tsv')
 
   while IFS= read -r line; do
     if [ "$line" != "" ]; then
@@ -88,7 +88,7 @@ while true; do
         commits=""  # reset is important
       fi
 
-      profile_info=$(echo $line | grep "test performance" | sed 's/.*test performance with (\w+) please.*$/\1/' | sed 's/[^0-9a-z ]//g') # sanitize input
+      profile_info=$(echo $line | grep "test performance" | sed 's/.*test performance with #\([a-zA-Z0-9]\+\) please.*$/\1/' | sed 's/[^0-9a-z ]//g') # sanitize input
       if [[ $profile_info != *"test performance"* ]]; then
         profile=$profile_info
       else
