@@ -46,7 +46,7 @@ function flatten() {
   Bench.charts.map(function(chart) {
     chart.lines.map(function(line) {
       var name = chart.name;
-      if (chart.lines.length > 1) name = name + " - " + line.name;
+      if (chart.lines.length > 1) name = name + " - " + line.label;
       Bench.flattened.push({
         "key": line.key,
         "name": name,
@@ -153,7 +153,7 @@ window.showTime = function() {
           var pindex = activeElems[0]._index;
           var dindex = activeElems[0]._datasetIndex;
           var obj = getItem(dindex, pindex);
-          var win = window.open(Bench.pr_base_url + obj[0], '_blank');
+          var win = window.open(Bench.config.pr_base_url + obj[0], '_blank');
           win.focus();
         }
       }
@@ -305,7 +305,7 @@ window.showCommit = function () {
           var pindex = activeElems[0]._index;
           var dindex = activeElems[0]._datasetIndex;
           var obj = getItem(dindex, pindex);
-          var win = window.open(Bench.pr_base_url + obj[0], '_blank');
+          var win = window.open(Bench.config.pr_base_url + obj[0], '_blank');
           win.focus();
         }
       }
