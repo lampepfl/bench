@@ -2,22 +2,27 @@
 
 # Generate json output by key
 #
-#     csv data.csv out/
+#     csv [-p profile.yml] data.csv out/
 #
 # The data will be generated as `out/key.json`.
 
 require 'csv'
-# require 'optparse'
+require 'optparse'
 require 'json'
+require 'yaml'
 
-# options = {}
-# OptionParser.new do |opts|
-#   opts.banner = "Usage: csv [-s] data.csv out/"
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: csv [-p profile.yml] data.csv out/"
 
-#   opts.on("-s", "--[no-]sample", "sample history data to reduce size") do |v|
-#     options[:sample] = v
-#   end
-# end.parse!
+  opts.on("-p", "--profile profile.yml", "path to a profile to filter the data") do |v|
+    options[:profile] = v
+  end
+
+  # opts.on("-s", "--[no-]sample", "sample history data to reduce size") do |v|
+  #   options[:sample] = v
+  # end
+end.parse!
 
 csv_file = ARGV[0]
 out_dir  = ARGV[1]
@@ -48,7 +53,15 @@ CSV.foreach(csv_file) do |row|
   table[row[0]].push(row)
 end
 
+if options.key?(:profile)
+  profile = YAML.load_file(options[:profile])
+else
+  profile = nil
+end
+
 table.each do |key, rows|
+  next unless profile.nil? || profile["scripts"].key?(key)
+
   File.open("#{out_dir}/#{key}.json","w") do |f|
     processed = rows.map { |row| process(row) }
     f.puts "["

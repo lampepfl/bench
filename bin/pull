@@ -213,7 +213,7 @@ cat $FILE >> $TEMP_FILE
 
 mkdir -p $SESSION_HOME/data
 cp profiles/$PROFILE.js $SESSION_HOME/data/charts.js
-bin/csv $TEMP_FILE $SESSION_HOME/data/
+bin/csv -p profiles/$PROFILE.yml $TEMP_FILE $SESSION_HOME/data/
 
 # push to github
 cd $PROG_HOME/site
