@@ -1,0 +1,80 @@
+charts:
+
+    - name: Vector
+      url: https://github.com/liufengyun/bench/blob/master/tests/Vector.scala
+      lines:
+        - key: vector
+          label: bootstrapped
+
+    - name: "scala library"
+      url: https://github.com/liufengyun/bench/blob/master/tests/scala-library
+      lines:
+        - key: scala-library
+          label: bootstrapped
+
+    - name: scalapb
+      url: https://github.com/liufengyun/ScalaPB/
+      lines:
+        - key: scalapb
+          label: bootstrapped
+
+    - name: scalap
+      url: https://github.com/liufengyun/bench/blob/master/tests/scalap
+      lines:
+        - key: scalap
+          label: bootstrapped
+
+    - name: re2
+      url: https://github.com/liufengyun/bench/blob/master/tests/re2s
+      lines:
+        - key: re2s
+          label: bootstrapped
+
+    - name: "empty class"
+      url: https://github.com/liufengyun/bench/blob/master/tests/empty-class.scala
+      lines:
+        - key: empty-class
+          label: bootstrapped
+
+    - name: "empty object"
+      url: https://github.com/liufengyun/bench/blob/master/tests/empty-object.scala
+      lines:
+        - key: empty-object
+          label: bootstrapped
+
+    - name: "empty file"
+      url: https://github.com/liufengyun/bench/blob/master/tests/empty-file.scala
+      lines:
+        - key: empty-file
+          label: bootstrapped
+
+scripts:
+
+    scala-library:
+        - measure -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
+
+    re2s:
+        - measure $(find $PROG_HOME/tests/re2s/src -name *.scala)
+
+    vector:
+        - measure 20 30 3 $PROG_HOME/tests/Vector.scala
+
+    empty-class:
+        - measure $PROG_HOME/tests/empty-class.scala
+
+    empty-object:
+        - measure $PROG_HOME/tests/empty-object.scala
+
+    empty-file:
+        - measure $PROG_HOME/tests/empty-file.scala
+
+
+    scalapb:
+        - source $PROG_HOME/tests/scripts/scalapb
+
+    scalap:
+        - source $PROG_HOME/tests/scripts/scalap
+
+
+config:
+    pr_base_url: "https://github.com/lampepfl/dotty/pull/"
