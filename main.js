@@ -90,7 +90,7 @@ window.showTime = function() {
       if (isDedup) points = dedup(points);
 
       return {
-        label: tuple.line.name,
+        label: tuple.line.label,
         fill: false,
         backgroundColor: colors[colorNames[index]],
         data: points
