@@ -1,0 +1,84 @@
+#!/usr/bin/env ruby
+
+# handle commands appear in comments
+#
+#     process repo comments.json
+#
+# Complex string processing is a mess in bash scripts, thus
+# we use a ruby script.
+
+require 'json'
+
+REPO=ARGV[0]
+FILE=ARGV[1]
+
+def notify(pr, commits)
+  Dir.chdir(File.expand_path("..", __dir__)) do
+    total=`find jobs/ -name "*.job" | wc -l`.strip
+    running=`find jobs/ -name "*.running" | wc -l`.strip
+
+    if commits.size == 0
+      message="performance test scheduled: #{total} job(s) in queue, #{running} running."
+    else
+      message="performance test scheduled for #{commits.join(" ")}: #{total} job(s) in queue, #{running} running."
+    end
+
+    `ghi comment #{pr} -m "#{message}"  -- #{REPO}`
+  end
+end
+
+def valid?(comment)
+  !comment["body"].empty? && {
+    parts = comment["body"].split
+    (parts[0] == "test" || parts[0] == "retest") &&
+    parts[1] == "performance"
+  } &&
+  comment["html_url"].include?("pull")
+end
+
+# Github data format:  https://api.github.com/repos/lampepfl/dotty/issues/comments?since=2018-04-10
+#
+# [
+# {
+#   "url": "https://api.github.com/repos/lampepfl/dotty/issues/comments/380351884",
+#   "html_url": "https://github.com/lampepfl/dotty/pull/4244#issuecomment-380351884",
+#   "id": 380351884,
+#   "user": {
+#     "login": "liufengyun",
+#     "id": 754633,
+#   },
+#   "created_at": "2018-04-11T07:16:13Z",
+#   "updated_at": "2018-04-11T07:16:13Z",
+#   "body": "test performance with #quotes please"
+# }
+# ]
+def fiter(file)
+  content = File.read(file)
+  data = JSON.parse(content)
+  data.select { |comment| valid?(comment) }
+end
+
+def process(comment)
+  message = comment["body"]
+
+  # https://github.com/lampepfl/dotty/pull/2970#issuecomment-321860528
+  pr = comment["html_url"][/.*pull\/([0-9]+)#.*/, 1]
+
+  commits = (message[/.*:(.*)/, 1] || "").split.map { |hash| hash.gsub(/[^0-9a-z]/i, '') }.select { |hash| !hash.empty? }
+
+  profile = (message[/.* with #(\w+) *./, 1] || "default").gsub(/[^0-9a-z]/i, '')
+
+  fresh = ""
+  fresh = "-n" if message =~ /.*retest.*/
+
+  commits_str = ""
+  commits_str = "-c " + commits.join(":") if commits.size > 0
+
+  `echo "bin/pull -p #{profile} #{fresh} #{commits_str} #{pr}" > jobs/pull-#{pr}.job`
+
+  notify pr commits
+end
+
+filter(FILE).each do |command|
+  process(command)
+end
