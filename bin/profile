@@ -39,6 +39,8 @@ end
 
 def generate_scripts
   File.open(ARGV[1], "w") do |f|
+    f.puts "set -e" # exit on error
+    f.puts
     Profile["scripts"].each do |key, value|
       f.puts "set-key #{key}"
       f.puts value
