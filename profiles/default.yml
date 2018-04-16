@@ -4,6 +4,8 @@ charts:
       lines:
         - key:  dotty
           label: bootstrapped
+        - key:  dotty-sbt
+          label: with sbt phases
 
     - name: Vector
       url: https://github.com/liufengyun/bench/blob/master/tests/Vector.scala
@@ -130,6 +132,9 @@ charts:
 scripts:
     dotty:
         - measure $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
+
+    dotty-sbt:
+        - measure -Yforce-sbt-phases $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
 
     scala-library:
         - measure -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
