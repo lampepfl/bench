@@ -2,12 +2,22 @@
 
 # handle commands appear in comments
 #
-#     process repo comments.json
+#     process [-t expect.txt] repo comments.json
 #
 # Complex string processing is a mess in bash scripts, thus
 # we use a ruby script.
 
 require 'json'
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: process [-t expect.txt] repo comments.json"
+
+  opts.on("-t", "--test expect.txt", "path to a expect file") do |v|
+    options[:test] = v
+  end
+end.parse!
 
 REPO=ARGV[0]
 FILE=ARGV[1]
@@ -28,11 +38,11 @@ def notify(pr, commits)
 end
 
 def valid?(comment)
-  !comment["body"].empty? && {
+  !comment["body"].empty? && (
     parts = comment["body"].split
     (parts[0] == "test" || parts[0] == "retest") &&
     parts[1] == "performance"
-  } &&
+  ) &&
   comment["html_url"].include?("pull")
 end
 
@@ -52,7 +62,7 @@ end
 #   "body": "test performance with #quotes please"
 # }
 # ]
-def fiter(file)
+def filter(file)
   content = File.read(file)
   data = JSON.parse(content)
   data.select { |comment| valid?(comment) }
@@ -68,17 +78,60 @@ def process(comment)
 
   profile = (message[/.* with #(\w+) *./, 1] || "default").gsub(/[^0-9a-z]/i, '')
 
-  fresh = ""
-  fresh = "-n" if message =~ /.*retest.*/
+  fresh = message =~ /.*retest.*/
 
-  commits_str = ""
-  commits_str = "-c " + commits.join(":") if commits.size > 0
-
-  `echo "bin/pull -p #{profile} #{fresh} #{commits_str} #{pr}" > jobs/pull-#{pr}.job`
-
-  notify pr commits
+  {
+    pr: pr,
+    profile: profile,
+    fresh: fresh,
+    commits: commits
+  }
 end
 
-filter(FILE).each do |command|
-  process(command)
+def execute(command)
+  pr = command[:pr]
+
+  fresh = ""
+  fresh = "-n" if command[:fresh]
+
+  commits = ""
+  commits = "-c " + command[:commits].join(":") if command[:commits].size > 0
+
+  Dir.chdir(File.expand_path("../..", __FILE__)) do
+    `echo "bin/pull -p #{command[:profile]} #{fresh} #{commits} #{pr}" > jobs/pull-#{pr}.job`
+  end
+
+  notify pr command[:commits]
+end
+
+# don't use MiniTest for simplicity
+def assert(expr, message)
+  raise message unless expr
+end
+
+def test(file, expect)
+  expected = File.read(expect)
+  s = StringIO.new
+  filter(file).each do |message|
+    s.puts process(message)
+  end
+  actual = s.string
+  message = <<-HEREDOC
+======= actual =========
+#{actual}
+
+======= expected =========
+#{expected}
+HEREDOC
+  assert(actual.strip == expected.strip, message)
+end
+
+if __FILE__ == $0
+  if options.key?(:test)
+    test(FILE, options[:test])
+  else
+    filter(FILE).each do |message|
+      execute(process(message))
+    end
+  end
 end
