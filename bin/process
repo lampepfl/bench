@@ -19,6 +19,7 @@ OptionParser.new do |opts|
   end
 end.parse!
 
+USERS=%w(odersky biboudis allanrenucci Blaisorblade Duhemm gsps smarter nicolasstucki liufengyun OlivierBlanvillain)
 PROG_HOME=File.expand_path("../..", __FILE__)
 REPO=ARGV[0]
 FILE=ARGV[1]
@@ -44,7 +45,8 @@ def valid?(comment)
     (parts[0] == "test" || parts[0] == "retest") &&
     parts[1] == "performance"
   ) &&
-  comment["html_url"].include?("pull")
+  comment["html_url"].include?("pull") &&
+  USERS.include?(comment["user"]["login"])
 end
 
 # Github data format:  https://api.github.com/repos/lampepfl/dotty/issues/comments?since=2018-04-10

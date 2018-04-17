@@ -48,7 +48,6 @@ source bin/config
 
 ############# Variables
 
-USERS=(odersky DarkDimius felixmulder smarter nicolasstucki liufengyun OlivierBlanvillain)
 REPO=lampepfl/dotty
 LAST_POLL=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
