@@ -19,11 +19,12 @@ OptionParser.new do |opts|
   end
 end.parse!
 
+PROG_HOME=File.expand_path("../..", __FILE__)
 REPO=ARGV[0]
 FILE=ARGV[1]
 
 def notify(pr, commits)
-  Dir.chdir(File.expand_path("..", __dir__)) do
+  Dir.chdir(PROG_HOME) do
     total=`find jobs/ -name "*.job" | wc -l`.strip
     running=`find jobs/ -name "*.running" | wc -l`.strip
 
@@ -97,7 +98,7 @@ def execute(command)
   commits = ""
   commits = "-c " + command[:commits].join(":") if command[:commits].size > 0
 
-  Dir.chdir(File.expand_path("../..", __FILE__)) do
+  Dir.chdir(PROG_HOME) do
     `echo "bin/pull -p #{command[:profile]} #{fresh} #{commits} #{pr}" > jobs/pull-#{pr}.job`
   end
 
