@@ -12,7 +12,7 @@ require 'optparse'
 
 options = {}
 OptionParser.new do |opts|
-  opts.banner = "Usage: process [-t expect.txt] repo comments.json"
+  opts.banner = "Usage: process [-t expect.txt] lampepfl/dotty comments.json"
 
   opts.on("-t", "--test expect.txt", "path to a expect file") do |v|
     options[:test] = v
@@ -104,7 +104,7 @@ def execute(command)
     `echo "bin/pull -p #{command[:profile]} #{fresh} #{commits} #{pr}" > jobs/pull-#{pr}.job`
   end
 
-  notify pr command[:commits]
+  notify(pr, command[:commits])
 end
 
 # don't use MiniTest for simplicity
