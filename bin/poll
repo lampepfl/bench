@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 # poll github to check performance commands
 
 if [ -z "$PROG_HOME" ] ; then
@@ -39,8 +41,7 @@ polling service exception"
   exit 1
 }
 
-# trap report INT TERM EXIT
-trap report EXIT
+trap report ERR
 
 ############# Config
 cd $PROG_HOME
