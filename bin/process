@@ -79,7 +79,7 @@ def process(comment)
 
   commits = (message[/.*:(.*)/, 1] || "").split.map { |hash| hash.gsub(/[^0-9a-z]/i, '') }.select { |hash| !hash.empty? }
 
-  profile = (message[/.* with #(\w+) *./, 1] || "default").gsub(/[^0-9a-z]/i, '')
+  profile = (message[/.* with #(\w+) *./, 1] || "pull").gsub(/[^0-9a-z]/i, '')
 
   fresh = message =~ /.*retest.*/
 
