@@ -1,0 +1,18 @@
+charts:
+    - name: "dotty (source changes over time)"
+      url: https://github.com/lampepfl/dotty
+      lines:
+        - key:  dotty
+          label: bootstrapped
+        - key:  dotty-sbt
+          label: with sbt phases
+
+scripts:
+    dotty:
+        - measure $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
+
+    dotty-sbt:
+        - measure -Yforce-sbt-phases $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
+
+config:
+    pr_base_url: "https://github.com/lampepfl/dotty/pull/"
