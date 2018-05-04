@@ -8,9 +8,6 @@ charts:
           label: with sbt phases
 
 scripts:
-    dotty:
-        - measure $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
-
     dotty-sbt:
         - measure -Yforce-sbt-phases $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
 

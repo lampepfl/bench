@@ -59,8 +59,15 @@ else
   profile = nil
 end
 
+keys =
+  if profile.nil? || profile["charts"].nil? || profile["charts"].empty?
+    []
+  else
+    profile["charts"].map { |chart| chart["lines"].map { |line| line["key"] } }.flatten
+  end
+
 table.each do |key, rows|
-  next unless profile.nil? || profile["scripts"].key?(key)
+  next unless keys.include?(key)
 
   File.open("#{out_dir}/#{key}.json","w") do |f|
     processed = rows.map { |row| process(row) }
