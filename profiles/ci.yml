@@ -53,6 +53,9 @@ scripts:
     implicitNums:
         - measure 1 1 1 $PROG_HOME/tests/implicitNums.scala
 
+    inductive-implicits:
+        - measure 1 1 1 $PROG_HOME/tests/inductive-implicits.scala
+
     # scalapb:
     #     - source $PROG_HOME/tests/scripts/scalapb
 
