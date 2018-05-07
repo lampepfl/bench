@@ -1,6 +1,6 @@
-{:pr=>"4282", :profile=>"default", :fresh=>nil, :commits=>[]}
-{:pr=>"3503", :profile=>"default", :fresh=>0, :commits=>[]}
-{:pr=>"4288", :profile=>"default", :fresh=>nil, :commits=>["abcd", "32df3", "9jd832"]}
+{:pr=>"4282", :profile=>"pull", :fresh=>nil, :commits=>[]}
+{:pr=>"3503", :profile=>"pull", :fresh=>0, :commits=>[]}
+{:pr=>"4288", :profile=>"pull", :fresh=>nil, :commits=>["abcd", "32df3", "9jd832"]}
 {:pr=>"4244", :profile=>"quotes", :fresh=>0, :commits=>["abcd", "32df3", "9jd832"]}
-{:pr=>"4244", :profile=>"default", :fresh=>nil, :commits=>["abcd", "32df3", "9jd832"]}
+{:pr=>"4244", :profile=>"pull", :fresh=>nil, :commits=>["abcd", "32df3", "9jd832"]}
 {:pr=>"4242", :profile=>"quotes", :fresh=>0, :commits=>[]}
