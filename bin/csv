@@ -67,7 +67,7 @@ keys =
   end
 
 table.each do |key, rows|
-  next unless keys.include?(key)
+  next unless keys.empty? || keys.include?(key)
 
   File.open("#{out_dir}/#{key}.json","w") do |f|
     processed = rows.map { |row| process(row) }
