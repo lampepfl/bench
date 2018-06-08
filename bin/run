@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eE
+set -e
 
 # usage: run [-p PLAN] [-f PR] [-t PR] [-s STEP] [-o FILE]
 #

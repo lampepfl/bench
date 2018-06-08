@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eE
+set -e
 
 # Test a merge point on master
 #

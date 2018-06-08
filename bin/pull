@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eE
+set -e
 
 # usage: pull [-n] [-p PROFILE] [-c COMMIT1:COMMIT2] PR
 #
