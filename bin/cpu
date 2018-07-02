@@ -9,5 +9,15 @@ do
    cpufreq-set -u 2.5Ghz -d 2.5Ghz -c $i
 done
 
+# disable hyper-threading
+cat /sys/devices/system/cpu/cpu*/topology/thread_siblings_list | \
+awk -F, '{print $2}' | \
+sort -n | \
+uniq | while read X
+do
+  echo $X
+  echo 0 > /sys/devices/system/cpu/cpu$X/online
+done
+
 # grep -E '^model name|^cpu MHz' /proc/cpuinfo
 cpufreq-info

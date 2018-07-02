@@ -1,7 +1,7 @@
 MONITOR_REPO=liufengyun/bench
 WEB_URL=http://dotty-bench.epfl.ch
 LOG_URL=http://lamppc37.epfl.ch:8000
-POLL_SLEEP=60
+POLL_SLEEP=120
 QUEUE_IDLE_SLEEP=60
 FILE="$PROG_HOME/data/history.csv"
 PLAN="$PROG_HOME/profiles/default.plan"

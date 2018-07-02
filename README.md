@@ -45,6 +45,13 @@ You may need to specify a custom plan, check `profiles/*.yml`.
 ## Deployment
 
 - Install all dependencies listed above
+- Disable system update to use a fixed version of kernel
+
+    # edit file /etc/apt/apt.conf.d/10periodic
+    APT::Periodic::Update-Package-Lists "0";
+    APT::Periodic::Download-Upgradeable-Packages "0";
+    APT::Periodic::AutocleanInterval "0";
+
 - Clone current project and its submodules, submodules of submodules
 - Update configuration in `bin/config`
 - Authorize `ghi config --auth`, make sure it works from command line
