@@ -23,9 +23,6 @@ scripts:
     vector:
         - measure 1 1 1 $PROG_HOME/tests/Vector.scala
 
-    vector-opt:
-        - measure-opt 1 1 1 $PROG_HOME/tests/Vector.scala
-
     empty-class:
         - measure 1 1 1 $PROG_HOME/tests/empty-class.scala
 

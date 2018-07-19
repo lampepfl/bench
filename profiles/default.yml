@@ -12,8 +12,6 @@ charts:
       lines:
         - key: vector
           label: bootstrapped
-        - key: vector-opt
-          label: optimised
 
     - name: "scala library"
       url: https://github.com/liufengyun/bench/blob/master/tests/scala-library
@@ -165,9 +163,6 @@ scripts:
 
     vector:
         - measure 20 30 3 $PROG_HOME/tests/Vector.scala
-
-    vector-opt:
-        - measure-opt 20 30 3 $PROG_HOME/tests/Vector.scala
 
     empty-class:
         - measure $PROG_HOME/tests/empty-class.scala

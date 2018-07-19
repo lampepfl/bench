@@ -9,11 +9,7 @@ jmh() {
 
   cd "$PROG_HOME/dotty"
 
-  if [ "$OPT" == "yes" ]; then
-    sbt "dotty-bench-optimised/jmh:run $args -d $PROG_HOME/out -nowarn"
-  else
-    sbt "dotty-bench-bootstrapped/jmh:run $args -d $PROG_HOME/out -nowarn"
-  fi
+  sbt "dotty-bench-bootstrapped/jmh:run $args -d $PROG_HOME/out -nowarn"
 }
 
 measure() {
@@ -28,12 +24,6 @@ measure() {
 
     echo "$key, $pr, $time, $commit, $(date), $warmups, $runs_flat" >> "$FILE"
   fi
-}
-
-measure-opt() {
-  OPT="yes"
-  measure "$@"
-  OPT=""
 }
 
 prepare() {
