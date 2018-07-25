@@ -22,7 +22,15 @@ measure() {
     runs_flat=$(echo "$runs" | tr '\n' ' ')
     runs_flat=$(trim "$runs_flat")
 
-    echo "$key, $pr, $time, $commit, $(date), $warmups, $runs_flat" >> "$FILE"
+    if [ -z "$runs_flat" ]; then
+      log_url="$LOG_URL/$(basename $LOG)"
+      message="test failed
+
+Please check the log file for more details: $LOG"
+      ghi open -m "$message" -- $MONITOR_REPO
+    else
+      echo "$key, $pr, $time, $commit, $(date), $warmups, $runs_flat" >> "$FILE"
+    fi
   fi
 }
 
