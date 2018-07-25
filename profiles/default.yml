@@ -92,7 +92,7 @@ charts:
           label: bootstrapped
 
     - name: "issue #1535"
-      url: https://github.com/liufengyun/bench/blob/master/tests/i1687.scala
+      url: https://github.com/liufengyun/bench/blob/master/tests/i1535.scala
       lines:
         - key: i1535
           label: bootstrapped
