@@ -19,8 +19,6 @@ Bench.charts = [
 {"name":"issue #1687","url":"https://github.com/liufengyun/bench/blob/master/tests/i1687.scala","lines":[{"key":"i1687","label":"bootstrapped"}]},
 {"name":"empty class","url":"https://github.com/liufengyun/bench/blob/master/tests/empty-class.scala","lines":[{"key":"empty-class","label":"bootstrapped"}]},
 {"name":"empty object","url":"https://github.com/liufengyun/bench/blob/master/tests/empty-object.scala","lines":[{"key":"empty-object","label":"bootstrapped"}]},
-{"name":"empty file","url":"https://github.com/liufengyun/bench/blob/master/tests/empty-file.scala","lines":[{"key":"empty-file","label":"bootstrapped"}]},
-{"name":"Inline a quote","url":"https://github.com/liufengyun/bench/blob/master/tests/power-macro/PowerInlined-1.scala","lines":[{"key":"power-macro-power-inlined-1","label":"bootstrapped"}]},
-{"name":"Inline 1k quotes","url":"https://github.com/liufengyun/bench/blob/master/tests/power-macro/PowerInlined-1k.scala","lines":[{"key":"power-macro-power-inlined-1k","label":"bootstrapped"}]}
+{"name":"empty file","url":"https://github.com/liufengyun/bench/blob/master/tests/empty-file.scala","lines":[{"key":"empty-file","label":"bootstrapped"}]}
 ]
 Bench.config = {"pr_base_url":"https://github.com/lampepfl/dotty/pull/"}
