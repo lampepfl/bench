@@ -59,8 +59,8 @@ scripts:
     # scalap:
     #     - source $PROG_HOME/tests/scripts/scalap
 
-    # power-macro-power-inlined-1:
-    #     - source $PROG_HOME/tests/scripts/power-macro-1
+    power-macro-power-inlined-1:
+        - source $PROG_HOME/tests/scripts/power-macro-1
 
-    # power-macro-power-inlined-1k:
-    #     - source $PROG_HOME/tests/scripts/power-macro-1k
+    power-macro-power-inlined-1k:
+        - source $PROG_HOME/tests/scripts/power-macro-1k
