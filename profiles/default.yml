@@ -12,10 +12,6 @@ charts:
       lines:
         - key: vector
           label: bootstrapped
-
-    - name: Vector -from-tasty
-      url: https://github.com/liufengyun/bench/blob/master/tests/Vector.scala
-      lines:
         - key: vector-from-tasty
           label: bootstrapped
 
