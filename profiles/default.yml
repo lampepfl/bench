@@ -13,6 +13,12 @@ charts:
         - key: vector
           label: bootstrapped
 
+    - name: Vector -from-tasty
+      url: https://github.com/liufengyun/bench/blob/master/tests/Vector.scala
+      lines:
+        - key: vector-from-tasty
+          label: bootstrapped
+
     - name: "scala library"
       url: https://github.com/liufengyun/bench/blob/master/tests/scala-library
       lines:
@@ -163,6 +169,9 @@ scripts:
 
     vector:
         - measure 20 30 3 $PROG_HOME/tests/Vector.scala
+
+    vector-from-tasty:
+        - source $PROG_HOME/tests/scripts/vector-from-tasty
 
     empty-class:
         - measure $PROG_HOME/tests/empty-class.scala
