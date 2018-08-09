@@ -13,7 +13,7 @@ charts:
         - key: vector
           label: bootstrapped
         - key: vector-from-tasty
-          label: bootstrapped
+          label: from tasty
 
     - name: "scala library"
       url: https://github.com/liufengyun/bench/blob/master/tests/scala-library
