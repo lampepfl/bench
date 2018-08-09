@@ -23,6 +23,9 @@ scripts:
     vector:
         - measure 1 1 1 $PROG_HOME/tests/Vector.scala
 
+    vector-from-tasty:
+        - source $PROG_HOME/tests/scripts/vector-from-tasty
+
     empty-class:
         - measure 1 1 1 $PROG_HOME/tests/empty-class.scala
 

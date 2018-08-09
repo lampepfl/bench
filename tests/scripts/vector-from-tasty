@@ -1,0 +1,5 @@
+mkdir -p "$PROG_HOME/tests/vector-from-tasty/out"
+
+compile -d "$PROG_HOME/tests/vector-from-tasty/out" "$PROG_HOME/tests/Vector.scala"
+
+measure -classpath "$PROG_HOME/tests/vector-from-tasty/out" -from-tasty scala.collection.immutable.Vector scala.collection.immutable.VectorIterator scala.collection.immutable.VectorBuilder scala.collection.immutable.VectorPointer
