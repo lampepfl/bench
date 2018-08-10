@@ -1,7 +1,7 @@
 var Bench = Bench || {}
 Bench.charts = [
 {"name":"dotty (source changes over time)","url":"https://github.com/lampepfl/dotty","lines":[{"key":"dotty","label":"bootstrapped"},{"key":"dotty-sbt","label":"with sbt phases"}]},
-{"name":"Vector","url":"https://github.com/liufengyun/bench/blob/master/tests/Vector.scala","lines":[{"key":"vector","label":"bootstrapped"},{"key":"vector-from-tasty","label":"from tasty"}]},
+{"name":"Vector","url":"https://github.com/liufengyun/bench/blob/master/tests/Vector.scala","lines":[{"key":"vector","label":"bootstrapped"}]},
 {"name":"scala library","url":"https://github.com/liufengyun/bench/blob/master/tests/scala-library","lines":[{"key":"scala-library","label":"bootstrapped"}]},
 {"name":"scalapb","url":"https://github.com/liufengyun/ScalaPB/","lines":[{"key":"scalapb","label":"bootstrapped"}]},
 {"name":"scalap","url":"https://github.com/liufengyun/bench/blob/master/tests/scalap","lines":[{"key":"scalap","label":"bootstrapped"}]},
