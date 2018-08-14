@@ -80,5 +80,3 @@ _site/
 jobs/*.done
 logs/*.out
 
-profiles/*.js
-profiles/*.plan

@@ -1,0 +1,68 @@
+set -e
+
+set-key dotty
+measure $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
+
+set-key scala-library
+measure -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
+
+set-key re2s
+measure $(find $PROG_HOME/tests/re2s/src -name *.scala)
+
+set-key implicit-cache
+measure $PROG_HOME/tests/implicit_cache.scala
+
+set-key implicit-scope-loop
+measure $PROG_HOME/tests/implicit-scope-loop.scala
+
+set-key inductive-implicits
+measure $PROG_HOME/tests/inductive-implicits.scala
+
+set-key i1535
+measure $PROG_HOME/tests/i1535.scala
+
+set-key i1687
+measure $PROG_HOME/tests/i1687.scala
+
+set-key vector
+measure 20 30 3 $PROG_HOME/tests/Vector.scala
+
+set-key empty-class
+measure $PROG_HOME/tests/empty-class.scala
+
+set-key empty-object
+measure $PROG_HOME/tests/empty-object.scala
+
+set-key empty-file
+measure $PROG_HOME/tests/empty-file.scala
+
+set-key patmatexhaust
+measure 20 40 3 $PROG_HOME/tests/patmatexhaust.scala
+
+set-key exhaustivity-I
+measure 20 40 3 $PROG_HOME/tests/exhaustivity-I.scala
+
+set-key exhaustivity-S
+measure 20 40 3 $PROG_HOME/tests/exhaustivity-S.scala
+
+set-key exhaustivity-T
+measure 20 40 3 $PROG_HOME/tests/exhaustivity-T.scala
+
+set-key exhaustivity-V
+measure 20 40 3 $PROG_HOME/tests/exhaustivity-V.scala
+
+set-key implicitNums
+measure $PROG_HOME/tests/implicitNums.scala
+
+set-key scalapb
+source $PROG_HOME/tests/scripts/scalapb
+
+set-key scalap
+source $PROG_HOME/tests/scripts/scalap
+
+set-key power-macro-power-inlined-1
+source $PROG_HOME/tests/scripts/power-macro-1
+
+set-key power-macro-power-inlined-1k
+source $PROG_HOME/tests/scripts/power-macro-1k
+

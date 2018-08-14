@@ -1,0 +1,5 @@
+set -e
+
+set-key vector-from-tasty
+source $PROG_HOME/tests/scripts/vector-from-tasty
+
