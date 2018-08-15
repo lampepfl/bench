@@ -2,4 +2,4 @@ mkdir -p "$PROG_HOME/tests/implicit_cache-out"
 
 compile -d "$PROG_HOME/tests/implicit_cache-out" "$PROG_HOME/tests/implicit_cache.scala"
 
-measure "from-tasty-implicit-cache"  -from-tasty  -classpath "$PROG_HOME/tests/implicit_cache-out" Test A Foo
+measure "implicit-cache-from-tasty"  -from-tasty  -classpath "$PROG_HOME/tests/implicit_cache-out" Test A Foo
