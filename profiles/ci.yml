@@ -11,6 +11,9 @@ scripts:
     implicit-cache:
         - measure 1 1 1 $PROG_HOME/tests/implicit_cache.scala
 
+    implicit-cache-from-tasty:
+        - source $PROG_HOME/tests/scripts/implicit-cache-from-tasty
+
     implicit-scope-loop:
         - measure 1 1 1 $PROG_HOME/tests/implicit-scope-loop.scala
 
@@ -22,9 +25,6 @@ scripts:
 
     vector:
         - measure 1 1 1 $PROG_HOME/tests/Vector.scala
-
-    vector-from-tasty:
-        - source $PROG_HOME/tests/scripts/vector-from-tasty
 
     empty-class:
         - measure 1 1 1 $PROG_HOME/tests/empty-class.scala
@@ -52,6 +52,9 @@ scripts:
 
     implicitNums:
         - measure 1 1 1 $PROG_HOME/tests/implicitNums.scala
+
+    implicitNums-from-tasty:
+        - source $PROG_HOME/tests/scripts/implicitNums-from-tasty
 
     inductive-implicits:
         - measure 1 1 1 $PROG_HOME/tests/inductive-implicits.scala

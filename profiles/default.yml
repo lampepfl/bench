@@ -12,8 +12,6 @@ charts:
       lines:
         - key: vector
           label: bootstrapped
-        - key: vector-from-tasty
-          label: from tasty
 
     - name: "scala library"
       url: https://github.com/liufengyun/bench/blob/master/tests/scala-library
@@ -44,12 +42,16 @@ charts:
       lines:
         - key: implicit-cache
           label: bootstrapped
+        - key: implicit-cache-from-tasty
+          label: from tasty
 
     - name: "implicit cache II"
       url: https://github.com/liufengyun/bench/blob/master/tests/implicitNums.scala
       lines:
         - key: implicitNums
           label: bootstrapped
+        - key: implicitNums-from-tasty
+          label: from tasty
 
     - name: "implicit scope loop"
       url: https://github.com/liufengyun/bench/blob/master/tests/implicit-scope-loop.scala
@@ -151,6 +153,9 @@ scripts:
     implicit-cache:
         - measure $PROG_HOME/tests/implicit_cache.scala
 
+    implicit-cache-from-tasty:
+        - source $PROG_HOME/tests/scripts/implicit-cache-from-tasty
+
     implicit-scope-loop:
         - measure $PROG_HOME/tests/implicit-scope-loop.scala
 
@@ -165,9 +170,6 @@ scripts:
 
     vector:
         - measure 20 30 3 $PROG_HOME/tests/Vector.scala
-
-    vector-from-tasty:
-        - source $PROG_HOME/tests/scripts/vector-from-tasty
 
     empty-class:
         - measure $PROG_HOME/tests/empty-class.scala
@@ -195,6 +197,9 @@ scripts:
 
     implicitNums:
         - measure $PROG_HOME/tests/implicitNums.scala
+
+    implicitNums-from-tasty:
+        - source $PROG_HOME/tests/scripts/implicitNums-from-tasty
 
     scalapb:
         - source $PROG_HOME/tests/scripts/scalapb
