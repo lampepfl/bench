@@ -15,6 +15,9 @@ measure $(find $PROG_HOME/tests/re2s/src -name *.scala)
 set-key implicit-cache
 measure $PROG_HOME/tests/implicit_cache.scala
 
+set-key implicit-cache-from-tasty
+source $PROG_HOME/tests/scripts/implicit-cache-from-tasty
+
 set-key implicit-scope-loop
 measure $PROG_HOME/tests/implicit-scope-loop.scala
 
@@ -29,9 +32,6 @@ measure $PROG_HOME/tests/i1687.scala
 
 set-key vector
 measure 20 30 3 $PROG_HOME/tests/Vector.scala
-
-set-key vector-from-tasty
-source $PROG_HOME/tests/scripts/vector-from-tasty
 
 set-key empty-class
 measure $PROG_HOME/tests/empty-class.scala
@@ -59,6 +59,9 @@ measure 20 40 3 $PROG_HOME/tests/exhaustivity-V.scala
 
 set-key implicitNums
 measure $PROG_HOME/tests/implicitNums.scala
+
+set-key implicitNums-from-tasty
+source $PROG_HOME/tests/scripts/implicitNums-from-tasty
 
 set-key scalapb
 source $PROG_HOME/tests/scripts/scalapb
