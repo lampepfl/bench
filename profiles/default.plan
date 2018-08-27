@@ -1,7 +1,7 @@
 set -e
 
 set-key dotty
-measure $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
+measure -with-compiler $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
 
 set-key dotty-sbt
 measure -Yforce-sbt-phases $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
