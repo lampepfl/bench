@@ -4,7 +4,7 @@ set-key dotty
 measure -with-compiler $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
 
 set-key dotty-sbt
-measure -Yforce-sbt-phases $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
+measure -with-compiler -Yforce-sbt-phases $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
 
 set-key scala-library
 measure -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
