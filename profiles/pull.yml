@@ -133,7 +133,7 @@ charts:
 
 scripts:
     dotty:
-        - measure -with-dotty $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
+        - measure -with-compiler $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
 
     scala-library:
         - measure -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
