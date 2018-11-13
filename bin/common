@@ -24,7 +24,7 @@ measure() {
 
     if [ -z "$runs_flat" ]; then
       log_url="$LOG_URL/$(basename $LOG)"
-      message="test failed
+      message="test $key failed for $pr
 
 Please check the log file for more details: $LOG"
       ghi open -m "$message" -- $MONITOR_REPO
