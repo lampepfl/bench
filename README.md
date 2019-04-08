@@ -31,6 +31,16 @@ You may need to specify a custom plan, check `profiles/*.yml`.
 - Put new test in relevant profiles under `profiles/*.yml`
 - Make a pull request
 
+## How to debug a test
+
+```
+cp profiles/default.plan profiles/scalapb.plan
+# edit profiles/scalapb.plan to only keep the test relevant for debug
+
+# run test with a PR and commit hash -- PR can be a random number
+bin/gauge -p profiles/scalapb.plan  6179 54fb992
+```
+
 ## Dependencies
 
 - [jq](https://stedolan.github.io/jq)

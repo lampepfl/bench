@@ -10,7 +10,7 @@ set -e
 #    -p PLAN     path to the test plan
 #
 # e.g.
-#        gauge -o /path/to/data.csv -p bin/plan 2874 a2dbd
+#        gauge -o /path/to/data.csv -p profiles/default.plan 2874 a2dbd
 
 
 if [ -z "$PROG_HOME" ] ; then
