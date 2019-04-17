@@ -54,6 +54,8 @@ bin/gauge -p profiles/scalapb.plan  6179 54fb992
 
 ## Deployment
 
+Current kernel: 4.4.0-78-generic #99-Ubuntu
+
 - Install all dependencies listed above
 - Disable system update to use a fixed version of kernel
 
