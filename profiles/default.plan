@@ -75,3 +75,9 @@ source $PROG_HOME/tests/scripts/power-macro-1
 set-key power-macro-power-inlined-1k
 source $PROG_HOME/tests/scripts/power-macro-1k
 
+set-key tuple22-tail
+measure $PROG_HOME/tests/tuple22-tail.scala
+
+set-key generic-tuple22-tail
+measure $PROG_HOME/tests/generic-tuple22-tail.scala
+

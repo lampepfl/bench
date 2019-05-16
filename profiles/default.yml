@@ -137,6 +137,18 @@ charts:
         - key: power-macro-power-inlined-1k
           label: bootstrapped
 
+    - name: "Tuple22.tail"
+      url: https://github.com/liufengyun/bench/blob/master/tests/tuple22-tail.scala
+      lines:
+        - key: tuple22-tail
+          label: bootstrapped
+
+    - name: "Generic Tuple22.tail"
+      url: https://github.com/liufengyun/bench/blob/master/tests/generic-tuple22-tail.scala
+      lines:
+        - key: generic-tuple22-tail
+          label: bootstrapped
+
 scripts:
     dotty:
         - measure -with-compiler $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
@@ -213,6 +225,11 @@ scripts:
     power-macro-power-inlined-1k:
         - source $PROG_HOME/tests/scripts/power-macro-1k
 
+    tuple22-tail:
+        - measure $PROG_HOME/tests/tuple22-tail.scala
+
+    generic-tuple22-tail:
+        - measure $PROG_HOME/tests/generic-tuple22-tail.scala
 
 config:
     pr_base_url: "https://github.com/lampepfl/dotty/pull/"
