@@ -23,6 +23,6 @@ Bench.charts = [
 {"name":"Inline a quote","url":"https://github.com/liufengyun/bench/blob/master/tests/power-macro/PowerInlined-1.scala","lines":[{"key":"power-macro-power-inlined-1","label":"bootstrapped"}]},
 {"name":"Inline 1k quotes","url":"https://github.com/liufengyun/bench/blob/master/tests/power-macro/PowerInlined-1k.scala","lines":[{"key":"power-macro-power-inlined-1k","label":"bootstrapped"}]},
 {"name":"Tuple22.tail","url":"https://github.com/liufengyun/bench/blob/master/tests/tuple22-tail.scala","lines":[{"key":"tuple22-tail","label":"bootstrapped"}]},
-{"name":"Tuple22.tail","url":"https://github.com/liufengyun/bench/blob/master/tests/generic-tuple22-tail.scala","lines":[{"key":"generic-tuple22-tail","label":"bootstrapped"}]}
+{"name":"Generic Tuple22.tail","url":"https://github.com/liufengyun/bench/blob/master/tests/generic-tuple22-tail.scala","lines":[{"key":"generic-tuple22-tail","label":"bootstrapped"}]}
 ]
 Bench.config = {"pr_base_url":"https://github.com/lampepfl/dotty/pull/"}

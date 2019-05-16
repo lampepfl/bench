@@ -17,6 +17,8 @@ Update the profiles below:
 - `profiles/default.yml`
 - `profiles/ci.yml`
 
+Then run `bin/sync-profiles` to update the test files and json files.
+
 ## Schedule a job
 
 - Put regression jobs as scripts under `jobs/`.
