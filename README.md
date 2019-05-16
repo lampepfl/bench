@@ -19,14 +19,34 @@ Update the profiles below:
 
 Then run `bin/sync-profiles` to update the test files and json files.
 
-## Schedule a job
+## Schedule one test job
 
-- Put regression jobs as scripts under `jobs/`.
-- Remember to use absolute path with the `$PROG_HOME` variable
+Put regression jobs as scripts under `jobs/`.
 
-The command `bin/run` does the above automatically, allowing
-specify an interval by PR numbers, optionally with a step.
-You may need to specify a custom plan, check `profiles/*.yml`.
+```
+bin/gauge 6514 49f254a
+```
+
+The command `bin/gauge` accepts the following options:
+
+- `-o File`: output file for test data, defaults to `FILE` in `bin/config`
+- `-p PLAN`: the test plan to execute, defaults to `PLAN` in `bin/config`
+
+To only measure a specific test target, just create a test plan for that test.
+
+## Regressional benchmarks
+
+The command `bin/run` allows schedule history benchmarks for a designated test target.
+It accepts the following options:
+
+- `-p PLAN`: the test plan to execute
+- `-f PR`: from which PR (excluded)
+- `-t PR`: to which PR (excluded)
+- `-s STEP`: execute test plan every n pull requests, defaults to 0
+- `-o FILE`: output file for test data, defaults to `FILE` in `bin/config`
+
+The command only schedules the tasks under the directory `jobs/`, which will be executed
+by the scheduler.
 
 ## Development
 
