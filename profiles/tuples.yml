@@ -1,0 +1,24 @@
+charts:
+    - name: "Tuple22.tail"
+      url: https://github.com/liufengyun/bench/blob/master/tests/tuple22-tail.scala
+      lines:
+        - key: tuple22-tail
+          label: bootstrapped
+
+    - name: "Generic Tuple22.tail"
+      url: https://github.com/liufengyun/bench/blob/master/tests/generic-tuple22-tail.scala
+      lines:
+        - key: generic-tuple22-tail
+          label: bootstrapped
+
+scripts:
+
+    tuple22-tail:
+        - measure $PROG_HOME/tests/tuple22-tail.scala
+
+    generic-tuple22-tail:
+        - measure $PROG_HOME/tests/generic-tuple22-tail.scala
+
+
+config:
+    pr_base_url: "https://github.com/lampepfl/dotty/pull/"
