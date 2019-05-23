@@ -22,7 +22,10 @@ Bench.charts = [
 {"name":"empty file","url":"https://github.com/liufengyun/bench/blob/master/tests/empty-file.scala","lines":[{"key":"empty-file","label":"bootstrapped"}]},
 {"name":"Inline a quote","url":"https://github.com/liufengyun/bench/blob/master/tests/power-macro/PowerInlined-1.scala","lines":[{"key":"power-macro-power-inlined-1","label":"bootstrapped"}]},
 {"name":"Inline 1k quotes","url":"https://github.com/liufengyun/bench/blob/master/tests/power-macro/PowerInlined-1k.scala","lines":[{"key":"power-macro-power-inlined-1k","label":"bootstrapped"}]},
-{"name":"Tuple22.tail","url":"https://github.com/liufengyun/bench/blob/master/tests/tuple22-tail.scala","lines":[{"key":"tuple22-tail","label":"bootstrapped"}]},
-{"name":"Generic Tuple22.tail","url":"https://github.com/liufengyun/bench/blob/master/tests/generic-tuple22-tail.scala","lines":[{"key":"generic-tuple22-tail","label":"bootstrapped"}]}
+{"name":"Tuple22 creation with Tuple22.apply","url":"https://github.com/liufengyun/bench/blob/master/tests/tuple22-creation-apply.scala","lines":[{"key":"tuple22-creation-apply","label":"bootstrapped"}]},
+{"name":"Tuple22 creation with *:","url":"https://github.com/liufengyun/bench/blob/master/tests/tuple22-creation-cons.scala","lines":[{"key":"tuple22-creation-cons","label":"bootstrapped"}]},
+{"name":"Tuple22.tail","url":"https://github.com/liufengyun/bench/blob/master/tests/tuple22-tails.scala","lines":[{"key":"tuple22-tails","label":"bootstrapped"}]},
+{"name":"Tuple22.apply","url":"https://github.com/liufengyun/bench/blob/master/tests/tuple22-apply.scala","lines":[{"key":"tuple22-apply","label":"bootstrapped"}]},
+{"name":"Tuple22.size","url":"https://github.com/liufengyun/bench/blob/master/tests/tuple22-size.scala","lines":[{"key":"tuple22-size","label":"bootstrapped"}]}
 ]
 Bench.config = {"pr_base_url":"https://github.com/lampepfl/dotty/pull/"}
