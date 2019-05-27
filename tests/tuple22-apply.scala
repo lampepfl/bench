@@ -7,5 +7,5 @@ class Foo {
   tup22.apply(21)
 
   val tup23: (Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int) = ???
-  tup22.apply(22)
+  tup23.apply(22)
 }
