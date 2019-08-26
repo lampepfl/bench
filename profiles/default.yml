@@ -7,6 +7,12 @@ charts:
         - key:  dotty-sbt
           label: with sbt phases
 
+    - name: "scala stdlib-2.13"
+      url: https://github.com/dotty-staging/scala/commits/stdLib213-dotty-community-build
+      lines:
+        - key: stdlib213
+          label: bootstrapped
+
     # - name: scalapb
     #  url: https://github.com/liufengyun/ScalaPB/
     #  lines:
@@ -224,6 +230,9 @@ scripts:
 
     power-macro-power-inlined-1k:
         - source $PROG_HOME/tests/scripts/power-macro-1k
+
+    stdlib213:
+        - source $PROG_HOME/tests/scripts/stdlib213
 
     tuple22-creation-apply:
         - measure $PROG_HOME/tests/tuple22-creation-apply.scala

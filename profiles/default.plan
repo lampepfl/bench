@@ -63,6 +63,9 @@ source $PROG_HOME/tests/scripts/power-macro-1
 set-key power-macro-power-inlined-1k
 source $PROG_HOME/tests/scripts/power-macro-1k
 
+set-key stdlib213
+source $PROG_HOME/tests/scripts/stdlib213
+
 set-key tuple22-creation-apply
 measure $PROG_HOME/tests/tuple22-creation-apply.scala
 

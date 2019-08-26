@@ -5,6 +5,12 @@ charts:
         - key:  dotty
           label: bootstrapped
 
+    - name: "scala stdlib-2.13"
+      url: https://github.com/dotty-staging/scala/commits/stdLib213-dotty-community-build
+      lines:
+        - key: stdlib213
+          label: bootstrapped
+
     # - name: scalapb
     #   url: https://github.com/liufengyun/ScalaPB/
     #   lines:
@@ -167,6 +173,9 @@ scripts:
 
     implicitNums:
         - measure $PROG_HOME/tests/implicitNums.scala
+
+    stdlib213:
+        - source $PROG_HOME/tests/scripts/stdlib213
 
     scalapb:
         - source $PROG_HOME/tests/scripts/scalapb

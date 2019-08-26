@@ -48,6 +48,9 @@ measure 20 40 3 $PROG_HOME/tests/exhaustivity-V.scala
 set-key implicitNums
 measure $PROG_HOME/tests/implicitNums.scala
 
+set-key stdlib213
+source $PROG_HOME/tests/scripts/stdlib213
+
 set-key scalapb
 source $PROG_HOME/tests/scripts/scalapb
 
