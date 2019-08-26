@@ -10,8 +10,6 @@ branches:
     - master
     - develop
 script:
-  - git submodule init
-  - git submodule update tests/scalapb
   - git clone --recursive --single-branch https://github.com/lampepfl/dotty.git
   - echo "hello, world" > /dev/stdout
   - bin/sync-profiles
