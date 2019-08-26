@@ -1,9 +1,0 @@
-[submodule "dotty"]
-	path = dotty
-	url = https://github.com/lampepfl/dotty.git
-[submodule "web"]
-	path = web
-	url = https://github.com/liufengyun/bench-web.git
-[submodule "tests/scalapb"]
-	path = tests/scalapb
-	url = https://github.com/liufengyun/ScalaPB.git

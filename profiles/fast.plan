@@ -1,13 +1,7 @@
 set -e
 
-set-key scala-library
-measure -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
-
 set-key re2s
 measure $(find $PROG_HOME/tests/re2s/src -name *.scala)
-
-set-key vector
-measure 20 30 3 $PROG_HOME/tests/Vector.scala
 
 set-key empty-class
 measure $PROG_HOME/tests/empty-class.scala

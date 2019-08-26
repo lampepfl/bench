@@ -2,8 +2,8 @@ scripts:
     dotty:
         - measure 1 1 1 -with-compiler $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
 
-    scala-library:
-        - measure 1 1 1 -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
+    # scala-library:
+    #    - measure 1 1 1 -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
 
     re2s:
         - measure 1 1 1 $(find $PROG_HOME/tests/re2s/src -name *.scala)
@@ -23,8 +23,8 @@ scripts:
     i1687:
         - measure 1 1 1 $PROG_HOME/tests/i1687.scala
 
-    vector:
-        - measure 1 1 1 $PROG_HOME/tests/Vector.scala
+    # vector:
+    #    - measure 1 1 1 $PROG_HOME/tests/Vector.scala
 
     empty-class:
         - measure 1 1 1 $PROG_HOME/tests/empty-class.scala

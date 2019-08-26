@@ -88,7 +88,9 @@ APT::Periodic::Download-Upgradeable-Packages "0";
 APT::Periodic::AutocleanInterval "0";
 ```
 
-- Clone current project and its submodules, submodules of submodules
+- Clone current project, and under the project root:
+  - `git clone git@github.com:lampepfl/dotty.git`
+  - `git clone git@github.com:liufengyun/bench-web.git web`
 - Update configuration in `bin/config`
 - Authorize `ghi config --auth`, make sure it works from command line
 - Make sure `git` can push to current project

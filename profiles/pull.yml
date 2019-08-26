@@ -5,29 +5,17 @@ charts:
         - key:  dotty
           label: bootstrapped
 
-    - name: Vector
-      url: https://github.com/liufengyun/bench/blob/master/tests/Vector.scala
-      lines:
-        - key: vector
-          label: bootstrapped
+    # - name: scalapb
+    #   url: https://github.com/liufengyun/ScalaPB/
+    #   lines:
+    #     - key: scalapb
+    #       label: bootstrapped
 
-    - name: "scala library"
-      url: https://github.com/liufengyun/bench/blob/master/tests/scala-library
-      lines:
-        - key: scala-library
-          label: bootstrapped
-
-    - name: scalapb
-      url: https://github.com/liufengyun/ScalaPB/
-      lines:
-        - key: scalapb
-          label: bootstrapped
-
-    - name: scalap
-      url: https://github.com/liufengyun/bench/blob/master/tests/scalap
-      lines:
-        - key: scalap
-          label: bootstrapped
+    # - name: scalap
+    #   url: https://github.com/liufengyun/bench/blob/master/tests/scalap
+    #   lines:
+    #     - key: scalap
+    #       label: bootstrapped
 
     - name: re2
       url: https://github.com/liufengyun/bench/blob/master/tests/re2s
@@ -135,9 +123,6 @@ scripts:
     dotty:
         - measure -with-compiler $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
 
-    scala-library:
-        - measure -language:Scala2 $(find $PROG_HOME/tests/scala-library -name *.scala)
-
     re2s:
         - measure $(find $PROG_HOME/tests/re2s/src -name *.scala)
 
@@ -155,9 +140,6 @@ scripts:
 
     i1687:
         - measure $PROG_HOME/tests/i1687.scala
-
-    vector:
-        - measure 20 30 3 $PROG_HOME/tests/Vector.scala
 
     empty-class:
         - measure $PROG_HOME/tests/empty-class.scala
