@@ -1,10 +1,6 @@
 var Bench = Bench || {}
 Bench.charts = [
 {"name":"dotty (source changes over time)","url":"https://github.com/lampepfl/dotty","lines":[{"key":"dotty","label":"bootstrapped"},{"key":"dotty-sbt","label":"with sbt phases"}]},
-{"name":"Vector","url":"https://github.com/liufengyun/bench/blob/master/tests/Vector.scala","lines":[{"key":"vector","label":"bootstrapped"}]},
-{"name":"scala library","url":"https://github.com/liufengyun/bench/blob/master/tests/scala-library","lines":[{"key":"scala-library","label":"bootstrapped"}]},
-{"name":"scalapb","url":"https://github.com/liufengyun/ScalaPB/","lines":[{"key":"scalapb","label":"bootstrapped"}]},
-{"name":"scalap","url":"https://github.com/liufengyun/bench/blob/master/tests/scalap","lines":[{"key":"scalap","label":"bootstrapped"}]},
 {"name":"re2","url":"https://github.com/liufengyun/bench/blob/master/tests/re2s","lines":[{"key":"re2s","label":"bootstrapped"}]},
 {"name":"implicit cache I","url":"https://github.com/liufengyun/bench/blob/master/tests/implicit_cache.scala","lines":[{"key":"implicit-cache","label":"bootstrapped"},{"key":"implicit-cache-from-tasty","label":"from tasty"}]},
 {"name":"implicit cache II","url":"https://github.com/liufengyun/bench/blob/master/tests/implicitNums.scala","lines":[{"key":"implicitNums","label":"bootstrapped"},{"key":"implicitNums-from-tasty","label":"from tasty"}]},
