@@ -1,6 +1,5 @@
 var Bench = Bench || {}
 Bench.charts = [
-{"name":"scalapb","url":"https://github.com/liufengyun/ScalaPB/","lines":[{"key":"scalapb","label":"bootstrapped"}]},
 {"name":"scalap","url":"https://github.com/liufengyun/bench/blob/master/tests/scalap","lines":[{"key":"scalap","label":"bootstrapped"}]},
 {"name":"re2","url":"https://github.com/liufengyun/bench/blob/master/tests/re2s","lines":[{"key":"re2s","label":"bootstrapped"}]},
 {"name":"empty class","url":"https://github.com/liufengyun/bench/blob/master/tests/empty-class.scala","lines":[{"key":"empty-class","label":"bootstrapped"}]},

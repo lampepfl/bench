@@ -7,17 +7,23 @@ charts:
         - key:  dotty-sbt
           label: with sbt phases
 
+    - name: "scala stdlib-2.13"
+      url: https://github.com/dotty-staging/scala/commits/stdLib213-dotty-community-build
+      lines:
+        - key: stdlib213
+          label: bootstrapped
+
     # - name: scalapb
     #  url: https://github.com/liufengyun/ScalaPB/
     #  lines:
     #    - key: scalapb
     #      label: bootstrapped
 
-    # - name: scalap
-    #   url: https://github.com/liufengyun/bench/blob/master/tests/scalap
-    #   lines:
-    #     - key: scalap
-    #       label: bootstrapped
+    - name: scalap
+      url: https://github.com/dotty-staging/scala/commits/scalap-dotty-community-build-2.13
+      lines:
+        - key: scalap
+          label: bootstrapped
 
     - name: re2
       url: https://github.com/liufengyun/bench/blob/master/tests/re2s
@@ -216,14 +222,17 @@ scripts:
     # scalapb:
     #    - source $PROG_HOME/tests/scripts/scalapb
 
-    # scalap:
-    #    - source $PROG_HOME/tests/scripts/scalap
+    scalap:
+       - source $PROG_HOME/tests/scripts/scalap
 
     power-macro-power-inlined-1:
         - source $PROG_HOME/tests/scripts/power-macro-1
 
     power-macro-power-inlined-1k:
         - source $PROG_HOME/tests/scripts/power-macro-1k
+
+    stdlib213:
+        - source $PROG_HOME/tests/scripts/stdlib213
 
     tuple22-creation-apply:
         - measure $PROG_HOME/tests/tuple22-creation-apply.scala

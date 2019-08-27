@@ -5,17 +5,17 @@ charts:
         - key:  dotty
           label: bootstrapped
 
-    # - name: scalapb
-    #   url: https://github.com/liufengyun/ScalaPB/
-    #   lines:
-    #     - key: scalapb
-    #       label: bootstrapped
+    - name: "scala stdlib-2.13"
+      url: https://github.com/dotty-staging/scala/commits/stdLib213-dotty-community-build
+      lines:
+        - key: stdlib213
+          label: bootstrapped
 
-    # - name: scalap
-    #   url: https://github.com/liufengyun/bench/blob/master/tests/scalap
-    #   lines:
-    #     - key: scalap
-    #       label: bootstrapped
+    - name: scalap
+      url: https://github.com/dotty-staging/scala/commits/scalap-dotty-community-build-2.13
+      lines:
+        - key: scalap
+          label: bootstrapped
 
     - name: re2
       url: https://github.com/liufengyun/bench/blob/master/tests/re2s
@@ -168,8 +168,8 @@ scripts:
     implicitNums:
         - measure $PROG_HOME/tests/implicitNums.scala
 
-    scalapb:
-        - source $PROG_HOME/tests/scripts/scalapb
+    stdlib213:
+        - source $PROG_HOME/tests/scripts/stdlib213
 
     scalap:
         - source $PROG_HOME/tests/scripts/scalap

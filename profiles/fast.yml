@@ -1,11 +1,5 @@
 charts:
 
-    - name: scalapb
-      url: https://github.com/liufengyun/ScalaPB/
-      lines:
-        - key: scalapb
-          label: bootstrapped
-
     - name: scalap
       url: https://github.com/liufengyun/bench/blob/master/tests/scalap
       lines:
@@ -49,10 +43,6 @@ scripts:
 
     empty-file:
         - measure $PROG_HOME/tests/empty-file.scala
-
-
-    scalapb:
-        - source $PROG_HOME/tests/scripts/scalapb
 
     scalap:
         - source $PROG_HOME/tests/scripts/scalap
