@@ -12,9 +12,6 @@ measure $PROG_HOME/tests/empty-object.scala
 set-key empty-file
 measure $PROG_HOME/tests/empty-file.scala
 
-set-key scalapb
-source $PROG_HOME/tests/scripts/scalapb
-
 set-key scalap
 source $PROG_HOME/tests/scripts/scalap
 

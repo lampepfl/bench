@@ -11,12 +11,6 @@ charts:
         - key: stdlib213
           label: bootstrapped
 
-    # - name: scalapb
-    #   url: https://github.com/liufengyun/ScalaPB/
-    #   lines:
-    #     - key: scalapb
-    #       label: bootstrapped
-
     - name: scalap
       url: https://github.com/dotty-staging/scala/commits/scalap-dotty-community-build-2.13
       lines:
@@ -176,9 +170,6 @@ scripts:
 
     stdlib213:
         - source $PROG_HOME/tests/scripts/stdlib213
-
-    scalapb:
-        - source $PROG_HOME/tests/scripts/scalapb
 
     scalap:
         - source $PROG_HOME/tests/scripts/scalap
