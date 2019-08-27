@@ -1,4 +1,4 @@
-# Bench [![Build Status](https://travis-ci.org/liufengyun/bench.svg?branch=master)](https://travis-ci.org/liufengyun/bench)
+# Bench [![Build Status](https://travis-ci.org/lampepfl/bench.svg?branch=master)](https://travis-ci.org/lampepfl/bench)
 
 Benchmarking Dotty
 
