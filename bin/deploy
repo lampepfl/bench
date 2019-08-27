@@ -42,8 +42,6 @@ fi
 ## build web
 cd "$PROG_HOME/web"
 
-git fetch origin
-git merge origin/master
 npm run build
 
 # copy resource

@@ -1,0 +1,6 @@
+DEST_BASE_DIR=$1
+
+scp index.html $DEST_BASE_DIR
+scp bundle.js $DEST_BASE_DIR
+rsync -auzv -e ssh css $DEST_BASE_DIR
+rsync -auzv -e ssh data $DEST_BASE_DIR
