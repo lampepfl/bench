@@ -91,7 +91,6 @@ APT::Periodic::AutocleanInterval "0";
 
 - Clone current project, and under the project root:
   - `git clone git@github.com:lampepfl/dotty.git`
-  - `git clone git@github.com:liufengyun/bench-web.git web`
   - `curl -Lo bin/coursier https://git.io/coursier-cli && chmod +x bin/coursier && bin/coursier --help`
 - Update configuration in `bin/config`
 - Authorize `ghi config --auth`, make sure it works from command line

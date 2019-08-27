@@ -6,7 +6,7 @@ A simple web interface for Benchmarks
 
 The data should be put in `data/`.
 
-Example data format can be found [here](https://github.com/liufengyun/bench/tree/gh-pages/data):
+Example data format can be found [here](https://github.com/lampepfl/bench/tree/gh-pages/data):
 
 - `charts.js`: specify meta data for charts
 - `key.json`: hold data points for the line `key`
