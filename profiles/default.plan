@@ -57,6 +57,9 @@ measure $PROG_HOME/tests/implicitNums.scala
 set-key implicitNums-from-tasty
 source $PROG_HOME/tests/scripts/implicitNums-from-tasty
 
+set-key scalap
+source $PROG_HOME/tests/scripts/scalap
+
 set-key power-macro-power-inlined-1
 source $PROG_HOME/tests/scripts/power-macro-1
 

@@ -23,9 +23,6 @@ scripts:
     i1687:
         - measure 1 1 1 $PROG_HOME/tests/i1687.scala
 
-    # vector:
-    #    - measure 1 1 1 $PROG_HOME/tests/Vector.scala
-
     empty-class:
         - measure 1 1 1 $PROG_HOME/tests/empty-class.scala
 
@@ -62,8 +59,8 @@ scripts:
     # scalapb:
     #     - source $PROG_HOME/tests/scripts/scalapb
 
-    # scalap:
-    #     - source $PROG_HOME/tests/scripts/scalap
+    scalap:
+        - source $PROG_HOME/tests/scripts/scalap
 
     power-macro-power-inlined-1:
         - source $PROG_HOME/tests/scripts/power-macro-1

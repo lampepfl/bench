@@ -17,11 +17,11 @@ charts:
     #     - key: scalapb
     #       label: bootstrapped
 
-    # - name: scalap
-    #   url: https://github.com/liufengyun/bench/blob/master/tests/scalap
-    #   lines:
-    #     - key: scalap
-    #       label: bootstrapped
+    - name: scalap
+      url: https://github.com/dotty-staging/scala/commits/scalap-dotty-community-build-2.13
+      lines:
+        - key: scalap
+          label: bootstrapped
 
     - name: re2
       url: https://github.com/liufengyun/bench/blob/master/tests/re2s

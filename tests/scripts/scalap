@@ -1,15 +1,3 @@
-cd $PROG_HOME/tests/scalap/lib
+path=$($PROG_HOME/bin/coursier fetch -p org.scala-lang:scala-compiler:2.13.0)
 
-download() {
-  url=$1
-  file=$(basename "$url")
-  if [ ! -f "$file" ]; then
-      curl -O "$url"
-  fi
-}
-
-download http://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.12.4/scala-compiler-2.12.4.jar
-download http://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.4/scala-reflect-2.12.4.jar
-
-cd $PROG_HOME
-measure -language:Scala2 -classpath "$PROG_HOME/tests/scalap/lib/*" $(find $PROG_HOME/tests/scalap/src -name "*.scala")
+measure -language:Scala2 -classpath "$PROG_HOME/tests/scalap/lib/*" $(find $PROG_HOME/dotty/community-build/community-projects/scalap/src/scalap -name "*.scala")

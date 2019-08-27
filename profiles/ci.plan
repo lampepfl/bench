@@ -54,6 +54,9 @@ source $PROG_HOME/tests/scripts/implicitNums-from-tasty
 set-key inductive-implicits
 measure 1 1 1 $PROG_HOME/tests/inductive-implicits.scala
 
+set-key scalap
+source $PROG_HOME/tests/scripts/scalap
+
 set-key power-macro-power-inlined-1
 source $PROG_HOME/tests/scripts/power-macro-1
 
