@@ -11,6 +11,13 @@ Example data format can be found [here](https://github.com/lampepfl/bench/tree/g
 - `charts.js`: specify meta data for charts
 - `key.json`: hold data points for the line `key`
 
+You can get test data from the live website:
+
+```
+g clone --depth 1 git@github.com:lampepfl/bench.git -b gh-pages site
+cp -r site/data web/
+```
+
 ## Development
 
 - `npm install`
@@ -18,7 +25,5 @@ Example data format can be found [here](https://github.com/lampepfl/bench/tree/g
 
 ## Deployment
 
-- `npm run build`
 - `sh deploy user@host:path/to/dest/`
-
 

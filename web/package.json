@@ -1,24 +1,9 @@
 {
-  "name": "react-chartist",
+  "name": "bench-web",
   "scripts": {
-    "browser-sync": "browser-sync start --server --files './bundle.js'",
-    "watch-js": "watchify main.js -t [ babelify --presets react ] -o bundle.js -dv",
-    "build": "NODE_ENV=production browserify main.js -t [ babelify --presets react ] -t [ loose-envify --NODE_ENV production ] | NODE_ENV=production uglifyjs --compress --mangle > bundle.js",
-    "watch": "npm run browser-sync & npm run watch-js"
-  },
-  "dependencies": {
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
-    "chart.js": "^2.7.1"
+    "watch": "browser-sync start --server --files './main.js'"
   },
   "devDependencies": {
-    "babel": "^5.1.8",
-    "babel-preset-react": "^6.5.0",
-    "babelify": "^7.2.0",
-    "browser-sync": "^2.10.0",
-    "browserify": "^12.0.0",
-    "watchify": "^3.4.0",
-    "uglify-js": "^2.4.10",
-    "loose-envify": "^1.1.0"
+    "watchify": "^3.11.1"
   }
 }

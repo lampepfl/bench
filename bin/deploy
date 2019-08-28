@@ -47,7 +47,7 @@ npm run build
 # copy resource
 cd "$PROG_HOME"
 cp web/index.html site/
-cp web/bundle.js site/
+cp web/main.js site/
 cp -r web/css site/
 
 # build data
