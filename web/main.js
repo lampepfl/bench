@@ -54,7 +54,7 @@ function flatten() {
 
 function ChartView(chart, dom) {
   var view = {
-    // viewChanged: fn,   // register event
+    // checkChanged: fn,   // register event
     dom: dom,
     chart: chart,
     data: {},
@@ -68,6 +68,7 @@ function ChartView(chart, dom) {
     var width = $("#app").width(); // window size may change
 
     if (view.ready) {
+      $("input.show-all", dom).off("change"); // avoid memory leaks
       dom.innerHTML =
         `<div>
           <h3>
