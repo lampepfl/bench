@@ -199,7 +199,7 @@ npm run build
 # copy resource
 cd $PROG_HOME
 cp web/index.html $SESSION_HOME
-cp web/bundle.js $SESSION_HOME
+cp web/main.js $SESSION_HOME
 cp -r web/css $SESSION_HOME
 
 # build data

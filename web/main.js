@@ -1,8 +1,4 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var LineChart = require("./react-chartjs").Line;
-
-Bench = Bench || {};
+var Bench = Bench || {};
 
 function process(item) {
   return { y: item[3], x: item[1], obj: item };
@@ -56,6 +52,82 @@ function flatten() {
   });
 }
 
+function ChartView(chart, dom) {
+  var view = {
+    // checkChanged: fn,   // register event
+    dom: dom,
+    chart: chart,
+    data: {},
+    options: {},
+    ready: false,
+    showAll: false,
+    render: render
+  };
+
+  function render() {
+    var width = $("#app").width(); // window size may change
+
+    if (view.ready) {
+      $("input.show-all", dom).off("change"); // avoid memory leaks
+      dom.innerHTML =
+        `<div>
+          <h3>
+            <a href=${view.chart.url}>${view.chart.name}</a>
+            <span style="float: right">
+              <input type="checkbox" class="show-all" ${view.showAll ? "checked" : ""}/>
+              <small style="color: #aaa; fontSize: 15px"> show all points</small>
+            </span>
+          </h3>
+          <canvas width=${width} height="300"></canvas>
+        </div>`
+
+      var ctx = $('canvas', dom)[0].getContext('2d');
+      var lineChart = new Chart(ctx, {
+        type: "line",
+        data: view.data,
+        options: view.options
+      });
+
+      $("input.show-all", dom).on("change", e => {
+        view.checkChanged(e);
+      });
+    }
+    else {
+      dom.innerHTML = `<div><h2>${view.chart.name}</h2><p>Loading...</p></div>`
+    }
+  }
+
+  render();
+
+  return view;
+};
+
+function showChartList(charts, dataProvider, optionProvider) {
+  var container = document.getElementById('app');
+  container.innerHTML = "";
+  charts.map(function (chart) {
+    var dom = document.createElement("div");
+    container.appendChild(dom);
+    var view = ChartView(chart, dom);
+
+    function load(showAll) {
+      dataProvider(chart, !showAll, function(data) {
+        view.data = data;
+        view.ready = true;
+        view.options = optionProvider(view);
+        view.showAll = showAll;
+        view.render();
+      })
+    }
+
+    view.checkChanged = function(e) {
+      load(e.target.checked);
+    }
+
+    load(false);
+  });
+}
+
 window.showTime = function() {
   var colorNames  = ['yellow', 'purple', 'orange', 'green', 'blue', 'red', 'grey'];
   var colors = {
@@ -98,15 +170,15 @@ window.showTime = function() {
     });
   }
 
-  function options(chart) {
+  function options(view) {
     function getItem(didx, pidx) {
-      return chart.state.data["datasets"][didx].data[pidx].obj;
+      return view.data["datasets"][didx].data[pidx].obj;
     }
 
     return {
       responsive: true,
       legend: {
-        display: chart.props.chart.lines.length > 1
+        display: view.chart.lines.length > 1
       },
       tooltips: {
         callbacks: {
@@ -160,58 +232,12 @@ window.showTime = function() {
     }
   }
 
-  var ChartComponent = React.createClass({
-    getInitialState: function () {
-      return { data: {}, options: {}, ready: false, showAll: false };
-    },
-    handleChange: function (e) {
-      getData(this.props.chart, !e.target.checked, function(data) {
-        this.setState({ data: data, ready: true, options: options(this), showAll: this.state.showAll });
-      }.bind(this))
-    },
-    componentDidMount: function () {
-      getData(this.props.chart, !this.state.showAll, function(data) {
-        this.setState({ data: data, ready: true, options: options(this), showAll: this.state.showAll });
-      }.bind(this))
-    },
-    render: function () {
-      var width = $("#app").width();
-
-      if (this.state.ready)
-        return <div>
-          <h3>
-            <a href={this.props.url}>{this.props.name}</a>
-            <span style={{float: "right"}}>
-              <input type="checkbox" defaultChecked={this.props.showAll} onChange={this.handleChange} />
-              <small style={{color: "#aaa", fontSize: "15px"}}> show all points</small>
-            </span>
-          </h3>
-          <LineChart data={this.state.data} options={this.state.options} width={width} height="300" />
-        </div>
-      else
-        return <div><h2>{this.props.name}</h2><p>Loading...</p></div>
-    }
-  });
-
-  var ChartList = React.createClass({
-    render: function () {
-      var chartNodes = this.props.charts.map(function (chart) {
-        return <ChartComponent url={chart.url} name={chart.name} chart={chart} />
-      });
-
-      return <div className="chart-list">{chartNodes}</div>
-    }
-  })
-
-  ReactDOM.render(
-    <ChartList charts={Bench.charts}/>,
-    document.getElementById('app')
-  );
+  showChartList(Bench.charts, getData, options);
 }
 
 window.showCommit = function () {
-  function getData(key, isSample, callback) {
-    $.get("data/" + key + ".json", function (data) { // data cached by browser
+  function getData(chart, isSample, callback) {
+    $.get("data/" + chart.key + ".json", function (data) { // data cached by browser
       callback(prepareData(data, isSample))
     })
   }
@@ -264,9 +290,9 @@ window.showCommit = function () {
     }
   }
 
-  function options(chart) {
+  function options(view) {
     function getItem(didx, pidx) {
-      return chart.state.data["datasets"][didx].data[pidx].obj;
+      return view.data["datasets"][didx].data[pidx].obj;
     }
 
     return {
@@ -312,53 +338,7 @@ window.showCommit = function () {
     }
   }
 
-  var ChartComponent = React.createClass({
-    getInitialState: function () {
-      return { data: {}, options: {}, ready: false, showAll: false };
-    },
-    handleChange: function (e) {
-      getData(this.props.id, !e.target.checked, function(data) {
-        this.setState({ data: data, ready: true, options: options(this), showAll: this.state.showAll });
-      }.bind(this))
-    },
-    componentDidMount: function () {
-      getData(this.props.id, !this.state.showAll, function(data) {
-        this.setState({ data: data, ready: true, options: options(this), showAll: this.state.showAll });
-      }.bind(this))
-    },
-    render: function () {
-      var width = $("#app").width();
-
-      if (this.state.ready)
-        return <div>
-          <h3>
-            <a href={this.props.url}>{this.props.name}</a>
-            <span style={{float: "right"}}>
-              <input type="checkbox" defaultChecked={this.props.showAll} onChange={this.handleChange} />
-              <small style={{color: "#aaa", fontSize: "15px"}}> show all points</small>
-            </span>
-          </h3>
-          <LineChart data={this.state.data} options={this.state.options} width={width} height="300" />
-        </div>
-      else
-        return <div><h2>{this.props.name}</h2><p>Loading...</p></div>
-    }
-  });
-
-  var ChartList = React.createClass({
-    render: function () {
-      var chartNodes = this.props.charts.map(function (chart) {
-        return <ChartComponent url={chart.url} name={chart.name} id={chart.key} />
-      });
-
-      return <div className="chart-list">{chartNodes}</div>
-    }
-  })
-
-  ReactDOM.render(
-    <ChartList charts={Bench.flattened}/>,
-    document.getElementById('app')
-  );
+  showChartList(Bench.flattened, getData, options);
 }
 
 $(function () {
