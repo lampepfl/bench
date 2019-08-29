@@ -42,8 +42,6 @@ fi
 ## build web
 cd "$PROG_HOME/web"
 
-npm run build
-
 # copy resource
 cd "$PROG_HOME"
 cp web/index.html site/

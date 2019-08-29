@@ -68,7 +68,6 @@ bin/gauge -p profiles/scalapb.plan  6179 54fb992
 - [jq](https://stedolan.github.io/jq)
 - sed
 - cron
-- npm
 - [ghi](https://github.com/stephencelis/ghi)
 - git
 - sbt
