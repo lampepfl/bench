@@ -39,7 +39,7 @@ prepare() {
   # prepare dotty source code
   cd "$PROG_HOME/dotty"
   git reset --hard $commit
-  git submodule init
+  git submodule sync
   git submodule update
 
   git clean -xdf
