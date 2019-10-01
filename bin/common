@@ -67,6 +67,9 @@ test() {
   # start running benchmarks
   cd $PROG_HOME
 
+  # only remove ignored files -- don't use -xf!
+  git -Xf
+
   mkdir -p $PROG_HOME/out
 
   source "$PLAN" 2>&1 | tee "$LOG"
