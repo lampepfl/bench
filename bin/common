@@ -36,6 +36,11 @@ Please check the log file for more details: $LOG_URL/$(basename $LOG)"
 
 prepare() {
   commit=$1
+
+  # only remove ignored files -- don't use -xf!
+  cd $PROG_HOME
+  git clean -Xf
+
   # prepare dotty source code
   cd "$PROG_HOME/dotty"
   git reset --hard $commit
