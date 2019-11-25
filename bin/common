@@ -5,6 +5,8 @@ trim() {
 }
 
 jmh() {
+  command="$1"
+  shift
   args="$@"
 
   cd "$PROG_HOME/dotty"
@@ -12,7 +14,7 @@ jmh() {
   sbt "dotty-bench-bootstrapped/jmh:run $args -d $PROG_HOME/out -nowarn"
 }
 
-measure() {
+measure-jmh() {
   jmh "$@" 2>&1 | tee output.txt
 
   if [ $? -eq 0 ]; then
@@ -34,26 +36,12 @@ Please check the log file for more details: $LOG_URL/$(basename $LOG)"
   fi
 }
 
+measure() {
+  measure-jmh "dotty-bench-bootstrapped/jmh:run $@"
+}
+
 measure-run() {
-  cd "$PROG_HOME/dotty"
-  sbt "dotty-bench-run/jmh:run $@" 2>&1 | tee output.txt
-
-  if [ $? -eq 0 ]; then
-    runs=$(cat output.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/')
-    warmups=$(cat output.txt | grep -E '^# Warmup Iteration' | sed -r 's/^# Warmup Iteration.*: ([0-9\.]+).*$/\1/' | tr '\n' ' ')
-
-    runs_flat=$(echo "$runs" | tr '\n' ' ')
-    runs_flat=$(trim "$runs_flat")
-
-    if [ -z "$runs_flat" ]; then
-      log_url="$LOG_URL/$(basename $LOG)"
-      message="test $key failed for $pr
-
-Please check the log file for more details: $LOG_URL/$(basename $LOG)"
-    else
-      echo "$key, $pr, $time, $commit, $(date), $warmups, $runs_flat" >> "$FILE"
-    fi
-  fi
+  measure-jmh "dotty-bench-run/jmh:run $@"
 }
 
 prepare() {
