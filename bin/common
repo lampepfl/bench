@@ -6,7 +6,7 @@ trim() {
 
 measure-and-output() {
   cd "$PROG_HOME/dotty"
-  sbt "$@" 2>&1 | tee output.txt
+  sbt "$1" 2>&1 | tee output.txt
 
   if [ $? -eq 0 ]; then
     runs=$(cat output.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/')
@@ -28,11 +28,13 @@ Please check the log file for more details: $LOG_URL/$(basename $LOG)"
 }
 
 measure() {
-  measure-and-output "dotty-bench-bootstrapped/jmh:run $@ -d $PROG_HOME/out -nowarn"
+  args="$@"
+  measure-and-output "dotty-bench-bootstrapped/jmh:run $args -d $PROG_HOME/out -nowarn"
 }
 
 measure-run() {
-  measure-and-output "dotty-bench-run/jmh:run $@"
+  args="$@"
+  measure-and-output "dotty-bench-run/jmh:run $args"
 }
 
 prepare() {
