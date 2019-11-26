@@ -4,9 +4,13 @@ trim() {
   echo -e "$1" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'
 }
 
-measure-and-output() {
+run-sbt() {
   cd "$PROG_HOME/dotty"
-  sbt "$1" 2>&1 | tee output.txt
+  sbt "$1"
+}
+
+measure-and-output() {
+  run-sbt "$1" 2>&1 | tee output.txt
 
   if [ $? -eq 0 ]; then
     runs=$(cat output.txt | grep -E '^Iteration' | sed -r 's/^Iteration.*: ([0-9\.]+).*$/\1/')
