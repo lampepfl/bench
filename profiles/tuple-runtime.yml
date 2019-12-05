@@ -1,0 +1,17 @@
+charts:
+    - name: "Tuple reverse"
+      lines:
+        - key: tuple-reverse
+          label: bootstrapped
+
+    - name: "Tuple flatMap"
+      lines:
+        - key: tuple-flatMap
+          label: bootstrapped
+
+scripts:
+    tuple-reverse:
+        - measure-run TupleOps.reverse
+
+    tuple-flatMap:
+        - measure-run TupleOps.flatMap
