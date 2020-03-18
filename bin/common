@@ -38,7 +38,7 @@ measure() {
 
 measure-run() {
   args="$@"
-  measure-and-output "dotty-bench-run/jmh:run $args -- $PROG_HOME/out"
+  measure-and-output "dotty-bench-run/jmh:run $args --"
 }
 
 prepare() {
