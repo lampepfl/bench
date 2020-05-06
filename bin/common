@@ -6,7 +6,9 @@ trim() {
 
 run-sbt() {
   cd "$PROG_HOME/dotty"
-  sbt "$1"
+  mkdir -p "$SBT_HOME/boot"
+  mkdir -p "$IVY_HOME"
+  sbt --sbt-boot "$SBT_HOME/boot" --ivy "$IVY_HOME" --sbt-dir "$SBT_HOME" "$1"
 }
 
 measure-and-output() {
@@ -56,10 +58,10 @@ prepare() {
   git submodule update
 
   git clean -xdf
-  sbt "dotty-bench-bootstrapped/jmh:compile" 2>&1 | tee -a "$LOG"
+  run-sbt "dotty-bench-bootstrapped/jmh:compile" 2>&1 | tee -a "$LOG"
 
   # for compilation with `dotc`
-  sbt "dist-bootstrapped/pack"  2>&1 | tee -a "$LOG"
+  run-sbt "dist-bootstrapped/pack"  2>&1 | tee -a "$LOG"
 }
 
 compile() {
