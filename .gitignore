@@ -80,3 +80,5 @@ _site/
 jobs/*.done
 logs/*.out
 
+.sbt/
+.ivy2/
