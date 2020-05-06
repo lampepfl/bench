@@ -8,7 +8,7 @@ run-sbt() {
   cd "$PROG_HOME/dotty"
   mkdir -p "$SBT_HOME/boot"
   mkdir -p "$IVY_HOME"
-  sbt --sbt-boot "$SBT_HOME/boot" --ivy "$IVY_HOME" --sbt-dir "$SBT_HOME" "$1"
+  sbt -sbt-boot "$SBT_HOME/boot" -ivy "$IVY_HOME" -sbt-dir "$SBT_HOME" "$1"
 }
 
 measure-and-output() {
