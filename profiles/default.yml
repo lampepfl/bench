@@ -83,6 +83,12 @@ charts:
         - key: exhaustivity-V
           label: bootstrapped
 
+    - name: "exhaustivity MIPS"
+      url: https://github.com/lampepfl/dotty/blob/master/tests/patmat/i7186.scala
+      lines:
+        - key: exhaustivity-mips
+          label: bootstrapped
+
     - name: "issue #1535"
       url: https://github.com/lampepfl/bench/blob/master/tests/i1535.scala
       lines:
@@ -216,6 +222,9 @@ scripts:
 
     exhaustivity-V:
         - measure 20 40 3 $PROG_HOME/tests/exhaustivity-V.scala
+
+    exhaustivity-mips:
+        - measure 20 40 3 $PROG_HOME/dotty/tests/patmat/i7186.scala
 
     implicitNums:
         - measure $PROG_HOME/tests/implicitNums.scala
