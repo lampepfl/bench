@@ -22,7 +22,7 @@ measure-and-output() {
     runs_flat=$(trim "$runs_flat")
 
     if [ -z "$runs_flat" ]; then
-      if [ -z ${CI+x} ]; then
+      if [ -z "$CI" ]; then
         log_url="$LOG_URL/$(basename $LOG)"
         message="test $key failed for $pr
 
@@ -69,7 +69,8 @@ prepare() {
 }
 
 compile() {
-  run-sbt "dotty-bootstrapped/dotc" "$@" 2>&1 | tee -a "$LOG"
+  args="$@"
+  run-sbt "dotty-bootstrapped/dotc $args" 2>&1 | tee -a "$LOG"
 }
 
 set-key() {
