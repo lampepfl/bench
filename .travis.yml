@@ -10,5 +10,6 @@ branches:
     - master
     - develop
 script:
+  - set -e
   - bin/ci
 
