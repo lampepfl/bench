@@ -65,7 +65,7 @@ prepare() {
 }
 
 compile() {
-  "$PROG_HOME/dotty/bin/dotc" "$@" 2>&1 | tee -a "$LOG"
+  run-sbt "dotty-bootstrapped/dotc" "$@" 2>&1 | tee -a "$LOG"
 }
 
 set-key() {
