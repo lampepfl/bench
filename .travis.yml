@@ -10,6 +10,7 @@ branches:
     - master
     - develop
 script:
+  - echo "CI=true" >> bin/config
   - curl -Lo bin/coursier https://git.io/coursier-cli && chmod +x bin/coursier && bin/coursier --help
   - git clone --recursive --single-branch https://github.com/lampepfl/dotty.git
   - echo "hello, world" > /dev/stdout
