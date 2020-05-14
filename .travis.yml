@@ -10,11 +10,6 @@ branches:
     - master
     - develop
 script:
-  - curl -Lo bin/coursier https://git.io/coursier-cli && chmod +x bin/coursier && bin/coursier --help
-  - git clone --recursive --single-branch https://github.com/lampepfl/dotty.git
-  - echo "hello, world" > /dev/stdout
-  - bin/sync-profiles
-  - bin/process -t fixture/comments.txt lampepfl/dotty fixture/comments.json
-  - bin/gauge -o data.csv -p profiles/ci.plan 9999 master
-  - cat data.csv
-  - mkdir data && bin/csv -p profiles/fast.yml data.csv data/
+  - set -e
+  - bin/ci
+

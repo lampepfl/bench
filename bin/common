@@ -22,11 +22,15 @@ measure-and-output() {
     runs_flat=$(trim "$runs_flat")
 
     if [ -z "$runs_flat" ]; then
-      log_url="$LOG_URL/$(basename $LOG)"
-      message="test $key failed for $pr
+      if [ -z "$CI" ]; then
+        log_url="$LOG_URL/$(basename $LOG)"
+        message="test $key failed for $pr
 
 Please check the log file for more details: $LOG_URL/$(basename $LOG)"
-      ghi open -m "$message" -- $MONITOR_REPO
+        ghi open -m "$message" -- $MONITOR_REPO
+      else # CI is set
+        exit 1
+      fi
     else
       echo "$key, $pr, $time, $commit, $(date), $warmups, $runs_flat" >> "$FILE"
     fi
@@ -65,7 +69,8 @@ prepare() {
 }
 
 compile() {
-  "$PROG_HOME/dotty/bin/dotc" "$@" 2>&1 | tee -a "$LOG"
+  args="$@"
+  run-sbt "dotty-bootstrapped/dotc $args" 2>&1 | tee -a "$LOG"
 }
 
 set-key() {
