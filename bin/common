@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 trim() {
   echo -e "$1" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'
 }
