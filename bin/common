@@ -65,7 +65,7 @@ prepare() {
   run-sbt "dotty-bench-bootstrapped/jmh:compile" 2>&1 | tee -a "$LOG"
 
   # for compilation with `dotc`
-  run-sbt "dist-bootstrapped/pack"  2>&1 | tee -a "$LOG"
+  run-sbt "dist/pack"  2>&1 | tee -a "$LOG"
 }
 
 compile() {
