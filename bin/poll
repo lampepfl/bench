@@ -55,8 +55,10 @@ TEMP_FILE="$PROG_HOME/last-message.json"
 
 ############## Polling
 while true; do
-  wget https://api.github.com/repos/$REPO/issues/comments?since=$LAST_POLL -O "$TEMP_FILE"
+  curl "https://api.github.com/repos/$REPO/issues/comments?since=$LAST_POLL" > "$TEMP_FILE"
   LAST_POLL=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+  cat "$TEMP_FILE"
 
   bin/process $REPO "$TEMP_FILE"
 
