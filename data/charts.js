@@ -13,6 +13,7 @@ Bench.charts = [
 {"name":"exhaustivity S","url":"https://github.com/lampepfl/bench/blob/master/tests/exhaustivity-S.scala","lines":[{"key":"exhaustivity-S","label":"bootstrapped"}]},
 {"name":"exhaustivity T","url":"https://github.com/lampepfl/bench/blob/master/tests/exhaustivity-T.scala","lines":[{"key":"exhaustivity-T","label":"bootstrapped"}]},
 {"name":"exhaustivity V","url":"https://github.com/lampepfl/bench/blob/master/tests/exhaustivity-V.scala","lines":[{"key":"exhaustivity-V","label":"bootstrapped"}]},
+{"name":"exhaustivity MIPS","url":"https://github.com/lampepfl/dotty/blob/master/tests/patmat/i7186.scala","lines":[{"key":"exhaustivity-mips","label":"bootstrapped"}]},
 {"name":"issue #1535","url":"https://github.com/lampepfl/bench/blob/master/tests/i1535.scala","lines":[{"key":"i1535","label":"bootstrapped"}]},
 {"name":"issue #1687","url":"https://github.com/lampepfl/bench/blob/master/tests/i1687.scala","lines":[{"key":"i1687","label":"bootstrapped"}]},
 {"name":"empty class","url":"https://github.com/lampepfl/bench/blob/master/tests/empty-class.scala","lines":[{"key":"empty-class","label":"bootstrapped"}]},
