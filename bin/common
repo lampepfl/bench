@@ -53,7 +53,7 @@ prepare() {
   commit=$1
 
   cd $PROG_HOME
-  // clean up
+  # clean up logs that are 5 days old
   find logs/ -name "*.out" -type f -mtime +5 -exec rm -f {} \;
   rm -fr out
   mkdir -p out
