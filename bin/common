@@ -52,9 +52,11 @@ measure-run() {
 prepare() {
   commit=$1
 
-  # only remove ignored files -- don't use -xf!
   cd $PROG_HOME
-  git clean -Xf
+  # clean up logs that are 5 days old
+  find logs/ -name "*.out" -type f -mtime +5 -exec rm -f {} \;
+  rm -fr out
+  mkdir -p out
 
   # prepare dotty source code
   cd "$PROG_HOME/dotty"

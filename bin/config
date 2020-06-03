@@ -7,3 +7,5 @@ FILE="$PROG_HOME/data/history.csv"
 PLAN="$PROG_HOME/profiles/default.plan"
 SBT_HOME="$PROG_HOME/.sbt"
 IVY_HOME="$PROG_HOME/.ivy2"
+
+export COURSIER_CACHE="$PROG_HOME/.cache/coursier/v1"
