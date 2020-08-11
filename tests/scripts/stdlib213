@@ -1,8 +1,7 @@
 set -e
 
-pattern="! -name AnyVal.scala ! -name language.scala -name *.scala -o -name *.java"
+pattern="! -name AnyVal.scala ! -name language.scala ! -name volatile.scala -name *.scala -o -name *.java"
 stdlib213=$(find $PROG_HOME/dotty/community-build/community-projects/stdLib213/src/library/scala $pattern)
-pattern="! -name ValueOf.scala ! -name ModuleSerializationProxy.java ! -path **/src-non-bootstrapped/** ! -path **/scalaShadowing/** -name *.scala -o -name *.java"
-dottyLib=$(find $PROG_HOME/dotty/library/src/scala $pattern)
-measure -Ynew-collections -language:implicitConversions $stdlib213 $dottylib
+cd $PROG_HOME/dotty
+sbt "dotty-bootstrapped/dotc -language:implicitConversions $stdlib213"
 
