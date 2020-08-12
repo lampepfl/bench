@@ -183,6 +183,7 @@ window.showTime = function() {
       yaxis: {
         title: 'milliseconds',
         autorange: true,
+        rangemode: "tozero",
         // range: [86.8700008333, 138.870004167],
         type: 'linear'
       }
