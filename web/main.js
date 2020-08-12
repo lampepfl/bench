@@ -1,7 +1,7 @@
 var Bench = Bench || {};
 
 function process(item) {
-  return { y: item[3], x: item[1], obj: item };
+  return { y: item[3], x: new Date(item[1]), obj: item };
 }
 
 function sort(points) {
@@ -158,7 +158,7 @@ window.showTime = function() {
       },
       xaxis: {
         autorange: true,
-        // range: ['2015-02-17', '2017-02-16'],
+        range: ['2015-02-17', '2017-02-16'],
         rangeselector: {buttons: [
             {
               count: 1,
