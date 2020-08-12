@@ -137,6 +137,8 @@ window.showTime = function() {
       return {
         name: tuple.line.label,
         mode: "lines+markers",
+        type: "scatter",
+        line: {shape: 'hvh'},
         x: points.map(p => { return p.x; }),
         y: points.map(p => { return p.y; })
       };
@@ -158,7 +160,8 @@ window.showTime = function() {
       },
       xaxis: {
         autorange: true,
-        range: ['2015-02-17', '2017-02-16'],
+        autotick: true,
+        // range: ['2019-01-17', new Date()],
         rangeselector: {buttons: [
             {
               count: 1,
@@ -178,6 +181,7 @@ window.showTime = function() {
         type: 'date'
       },
       yaxis: {
+        title: 'milliseconds',
         autorange: true,
         // range: [86.8700008333, 138.870004167],
         type: 'linear'
