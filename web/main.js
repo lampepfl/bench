@@ -149,7 +149,13 @@ window.showTime = function() {
     }
 
     return {
-      title: 'Time Series with Rangeslider',
+      legend: {
+        orientation: "h",
+        yanchor: "bottom",
+        y: 1.02,
+        xanchor: "right",
+        x: 1
+      },
       xaxis: {
         autorange: true,
         // range: ['2015-02-17', '2017-02-16'],
