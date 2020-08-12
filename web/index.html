@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>Benchmarks</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" crossorigin="anonymous"></script>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
     <script src="main.js"></script>
     <script src="data/charts.js"></script>
@@ -139,11 +139,11 @@
       </div>
       <div class="sidebar-item">
         <div class="mx-button">
-            <input type="radio" name="mx" id="button2" onclick="showCommit()" checked>
+            <input type="radio" name="mx" id="button2" onclick="showCommit()">
             <label for="button2">Commit</label>
         </div>
         <div class="mx-button">
-          <input type="radio" name="mx" id="button1" onclick="showTime()">
+          <input type="radio" name="mx" id="button1" onclick="showTime()" checked>
           <label for="button1">Time</label>
         </div>
       </div>

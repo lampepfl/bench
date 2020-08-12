@@ -54,13 +54,11 @@ function flatten() {
 
 function ChartView(chart, dom) {
   var view = {
-    // checkChanged: fn,   // register event
     dom: dom,
     chart: chart,
     data: {},
     options: {},
     ready: false,
-    showAll: false,
     render: render
   };
 
@@ -68,29 +66,15 @@ function ChartView(chart, dom) {
     var width = $("#app").width(); // window size may change
 
     if (view.ready) {
-      $("input.show-all", dom).off("change"); // avoid memory leaks
       dom.innerHTML =
         `<div>
           <h3>
             <a href=${view.chart.url}>${view.chart.name}</a>
-            <span style="float: right">
-              <input type="checkbox" class="show-all" ${view.showAll ? "checked" : ""}/>
-              <small style="color: #aaa; fontSize: 15px"> show all points</small>
-            </span>
           </h3>
-          <canvas width=${width} height="300"></canvas>
+          <div class="chart" width=${width} height="300"></div>
         </div>`
 
-      var ctx = $('canvas', dom)[0].getContext('2d');
-      var lineChart = new Chart(ctx, {
-        type: "line",
-        data: view.data,
-        options: view.options
-      });
-
-      $("input.show-all", dom).on("change", e => {
-        view.checkChanged(e);
-      });
+      Plotly.newPlot($('.chart', dom)[0], view.data, view.options);
     }
     else {
       dom.innerHTML = `<div><h2>${view.chart.name}</h2><p>Loading...</p></div>`
@@ -110,21 +94,12 @@ function showChartList(charts, dataProvider, optionProvider) {
     container.appendChild(dom);
     var view = ChartView(chart, dom);
 
-    function load(showAll) {
-      dataProvider(chart, !showAll, function(data) {
-        view.data = data;
-        view.ready = true;
-        view.options = optionProvider(view);
-        view.showAll = showAll;
-        view.render();
-      })
-    }
-
-    view.checkChanged = function(e) {
-      load(e.target.checked);
-    }
-
-    load(false);
+    dataProvider(chart, false, function(data) {
+      view.data = data;
+      view.ready = true;
+      view.options = optionProvider(view);
+      view.render();
+    })
   });
 }
 
@@ -149,23 +124,21 @@ window.showTime = function() {
     })
 
     $.when.apply($, deferreds).then(function() {
-      callback({ datasets: prepareData(dataset, isDedup), labels: [] });
+      callback(prepareData(dataset, isDedup));
     })
   }
 
   function prepareData(datasets, isDedup) {
-    var index = -1;
     return datasets.map(function(tuple) {
-      index++;
 
       var points = sort(tuple.data.map(process))
       if (isDedup) points = dedup(points);
 
       return {
-        label: tuple.line.label,
-        fill: false,
-        backgroundColor: colors[colorNames[index]],
-        data: points
+        name: tuple.line.label,
+        mode: "lines+markers",
+        x: points.map(p => { return p.x; }),
+        y: points.map(p => { return p.y; })
       };
     });
   }
@@ -176,60 +149,90 @@ window.showTime = function() {
     }
 
     return {
-      responsive: true,
-      legend: {
-        display: view.chart.lines.length > 1
+      title: 'Time Series with Rangeslider',
+      xaxis: {
+        autorange: true,
+        // range: ['2015-02-17', '2017-02-16'],
+        rangeselector: {buttons: [
+            {
+              count: 1,
+              label: '1m',
+              step: 'month',
+              stepmode: 'backward'
+            },
+            {
+              count: 6,
+              label: '6m',
+              step: 'month',
+              stepmode: 'backward'
+            },
+            {step: 'all'}
+          ]},
+        // rangeslider: {range: ['2015-02-17', '2017-02-16']},
+        type: 'date'
       },
-      tooltips: {
-        callbacks: {
-          title: function (data) {
-            var item = getItem(data[0].datasetIndex, data[0].index);
-            var date = new Date(item[1]);
-            var day = date.getDate();
-            var month = date.getMonth() + 1;
-            var year = date.getFullYear();
-            return "PR#" + item[0] + " \n" + item[2] + " \n" + day + "/" + month + "/" + year;
-          },
-          label: function (point) {
-            var item = getItem(point.datasetIndex, point.index);
-            return numberWithCommas(point.yLabel) + "ms";
-          }
-        },
-        mode: "index",
-        intersect: false
-      },
-      scales: {
-        xAxes: [{
-          type: "time",
-          time: {
-            // format: 'MM/DD/YYYY HH:mm',
-            // round: 'day'
-            tooltipFormat: 'll HH:mm'
-          },
-          scaleLabel: {
-            display: false
-          }
-        }],
-        yAxes: [{
-          display: true,
-          scaleLabel: { display: true, labelString: 'ms' },
-          ticks: {
-            min: 0,
-            callback: function(value, index, values) { return numberWithCommas(value); }
-          }
-        }]
-      },
-      onClick: function(e) {
-        var activeElems = this.getElementsAtEvent(e);
-        if (activeElems.length > 0) {
-          var pindex = activeElems[0]._index;
-          var dindex = activeElems[0]._datasetIndex;
-          var obj = getItem(dindex, pindex);
-          var win = window.open(Bench.config.pr_base_url + obj[0], '_blank');
-          win.focus();
-        }
+      yaxis: {
+        autorange: true,
+        // range: [86.8700008333, 138.870004167],
+        type: 'linear'
       }
-    }
+    };
+
+    // return {
+    //   responsive: true,
+    //   legend: {
+    //     display: view.chart.lines.length > 1
+    //   },
+    //   tooltips: {
+    //     callbacks: {
+    //       title: function (data) {
+    //         var item = getItem(data[0].datasetIndex, data[0].index);
+    //         var date = new Date(item[1]);
+    //         var day = date.getDate();
+    //         var month = date.getMonth() + 1;
+    //         var year = date.getFullYear();
+    //         return "PR#" + item[0] + " \n" + item[2] + " \n" + day + "/" + month + "/" + year;
+    //       },
+    //       label: function (point) {
+    //         var item = getItem(point.datasetIndex, point.index);
+    //         return numberWithCommas(point.yLabel) + "ms";
+    //       }
+    //     },
+    //     mode: "index",
+    //     intersect: false
+    //   },
+    //   scales: {
+    //     xAxes: [{
+    //       type: "time",
+    //       time: {
+    //         // format: 'MM/DD/YYYY HH:mm',
+    //         // round: 'day'
+    //         tooltipFormat: 'll HH:mm'
+    //       },
+    //       scaleLabel: {
+    //         display: false
+    //       }
+    //     }],
+    //     yAxes: [{
+    //       display: true,
+    //       scaleLabel: { display: true, labelString: 'ms' },
+    //       ticks: {
+    //         min: 0,
+    //         callback: function(value, index, values) { return numberWithCommas(value); }
+    //       }
+    //     }]
+    //   },
+    //   onClick: function(e) {
+    //     var activeElems = this.getElementsAtEvent(e);
+    //     if (activeElems.length > 0) {
+    //       var pindex = activeElems[0]._index;
+    //       var dindex = activeElems[0]._datasetIndex;
+    //       var obj = getItem(dindex, pindex);
+    //       var win = window.open(Bench.config.pr_base_url + obj[0], '_blank');
+    //       win.focus();
+    //     }
+    //   }
+    // }
   }
 
   showChartList(Bench.charts, getData, options);
@@ -343,5 +346,5 @@ window.showCommit = function () {
 
 $(function () {
   flatten();
-  showCommit();
+  showTime();
 })
