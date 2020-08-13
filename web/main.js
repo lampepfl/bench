@@ -6,7 +6,7 @@ function process(item) {
 
 function sort(points) {
   return points.sort(function(a, b) {
-    return new Date(a.obj[1]) - new Date(b.obj[1]);
+    return a.obj[1] - b.obj[1];
   });
 }
 
@@ -26,6 +26,28 @@ function flatten() {
   });
 }
 
+function sample(points, rate) {
+  return points.reduce(function(acc, item) {
+    if (Math.random() < rate) acc.push(item);
+
+    return acc;
+  }, []);
+}
+
+function dedup(points) {
+  var lastDate = null;
+  points = points.reduce(function(acc, point) {
+    var curDate = new Date(point.x).toLocaleDateString();
+    if (!lastDate || lastDate !== curDate) {
+      lastDate = curDate;
+      acc.push(point);
+    }
+    return acc;
+  }, []);
+
+  return points;
+}
+
 function ChartView(chart, dom, dataProvider) {
 
   var data = [];
@@ -38,8 +60,8 @@ function ChartView(chart, dom, dataProvider) {
   }
 
   var options = {
-      paper_bgcolor: "#eee",
-      plot_bgcolor: "#ffe",
+      // paper_bgcolor: "#eee",
+      // plot_bgcolor: "#ffe",
       margin: {
         l: 60,
         r: 40,
@@ -111,7 +133,7 @@ function ChartView(chart, dom, dataProvider) {
 
   dom.innerHTML = `<div><h2>${chart.name}</h2><p>Loading...</p></div>`
 
-  dataProvider(chart, function(json) {
+  dataProvider(chart, false, function(json) {
     data = json;
     render();
   })
@@ -129,7 +151,7 @@ function showChartList(charts, dataProvider) {
 
 window.showTime = function() {
 
-  function getData(chart, callback) {
+  function getData(chart, isDedup, callback) {
     var dataset = []
     var deferreds = chart.lines.map(function(line) {
       return $.get("data/" + line.key + ".json", function(data) {
@@ -138,14 +160,16 @@ window.showTime = function() {
     })
 
     $.when.apply($, deferreds).then(function() {
-      callback(prepareData(dataset));
+      callback(prepareData(dataset, isDedup));
     })
   }
 
-  function prepareData(datasets) {
+  function prepareData(datasets, isDedup) {
     return datasets.map(function(tuple) {
 
       var points = sort(tuple.data.map(process))
+
+      if (isDedup) points = dedup(points);
 
       return {
         name: tuple.line.label,
@@ -163,14 +187,22 @@ window.showTime = function() {
 }
 
 window.showCommit = function () {
-  function getData(chart, callback) {
+  function getData(chart, isSample, callback) {
     $.get("data/" + chart.key + ".json", function (data) { // data cached by browser
-      callback(prepareData(data))
+      callback(prepareData(data), isSample)
     })
   }
 
-  function prepareData(data) {
+  function prepareData(data, isSample) {
     var points = sort(data.map(process))
+
+    if (isSample) {
+        var pts1 = sample(points.slice(0, -100), 50 / (points.length - 100));
+        var pts2 = sample(points.slice(-100, -40), 0.5);
+        var pts3 = points.slice(-40);
+
+        points = pts1.concat(pts2).concat(pts3);
+    }
 
     var median = {
         name: "median",
