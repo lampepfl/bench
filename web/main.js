@@ -38,8 +38,14 @@ function ChartView(chart, dom, dataProvider) {
   }
 
   var options = {
-      paper_bgcolor: "#eef",
-      plot_bgcolor: "#eef",
+      paper_bgcolor: "#eee",
+      plot_bgcolor: "#ffe",
+      margin: {
+        l: 60,
+        r: 40,
+        t: 60,
+        b: 40
+      },
       legend: {
         orientation: "h",
         yanchor: "bottom",
@@ -173,6 +179,7 @@ window.showCommit = function () {
         line: {shape: 'hvh'},
         x: points.map(p => { return p.x; }),
         y: points.map(p => { return p.y; }),
+        objects: points
     }
 
     var min = {
@@ -182,6 +189,7 @@ window.showCommit = function () {
         line: {shape: 'hvh'},
         x: points.map(p => { return p.x; }),
         y: points.map(p => { return p.obj[4]; }),
+        objects: points
     }
 
     return [median, min];
