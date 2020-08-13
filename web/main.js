@@ -18,20 +18,6 @@ function sample(points, rate) {
   }, []);
 }
 
-function dedup(points) {
-  var lastDate = null;
-  points = points.reduce(function(acc, point) {
-    var curDate = new Date(point.x).toLocaleDateString();
-    if (!lastDate || lastDate !== curDate) {
-      lastDate = curDate;
-      acc.push(point);
-    }
-    return acc;
-  }, []);
-
-  return points;
-}
-
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -52,119 +38,18 @@ function flatten() {
   });
 }
 
-function ChartView(chart, dom) {
-  var view = {
-    dom: dom,
-    chart: chart,
-    data: {},
-    options: {},
-    ready: false,
-    render: render
-  };
+function ChartView(chart, dom, dataProvider) {
 
-  function render() {
-    var width = $("#app").width(); // window size may change
+  var data = [];
 
-    if (view.ready) {
-      dom.innerHTML =
-        `<div>
-          <h3>
-            <a href=${view.chart.url}>${view.chart.name}</a>
-          </h3>
-          <div class="chart" width=${width} height="300"></div>
-        </div>`
-
-      Plotly.newPlot($('.chart', dom)[0], view.data, view.options);
-    }
-    else {
-      dom.innerHTML = `<div><h2>${view.chart.name}</h2><p>Loading...</p></div>`
-    }
+  function defaultRange() {
+    var now = new Date();
+    var start = new Date()
+    start.setMonth(start.getMonth()-3);
+    return [start, now];
   }
 
-  $(dom).on('plotly_click', function(event, data) {
-    if (data.points.length == 1) {
-      var pindex = data.points[0].pointNumber;
-      var dindex = data.points[0].curveNumber;
-      var obj = view.data[dindex].objects[pindex].obj;
-      var win = window.open(Bench.config.pr_base_url + obj[0], '_blank');
-      win.focus();
-    }
-  });
-
-  render();
-
-  return view;
-};
-
-function showChartList(charts, dataProvider, optionProvider) {
-  var container = document.getElementById('app');
-  container.innerHTML = "";
-  charts.map(function (chart) {
-    var dom = document.createElement("div");
-    container.appendChild(dom);
-    var view = ChartView(chart, dom);
-
-    dataProvider(chart, false, function(data) {
-      view.data = data;
-      view.ready = true;
-      view.options = optionProvider(view);
-      view.render();
-    })
-  });
-}
-
-window.showTime = function() {
-  var colorNames  = ['yellow', 'purple', 'orange', 'green', 'blue', 'red', 'grey'];
-  var colors = {
-    red: 'rgb(255, 99, 132)',
-    orange: 'rgb(255, 159, 64)',
-    yellow: 'rgb(255, 205, 86)',
-    green: 'rgb(75, 192, 192)',
-    blue: 'rgb(54, 162, 235)',
-    purple: 'rgb(153, 102, 255)',
-    grey: 'rgb(201, 203, 207)'
-  };
-
-  function getData(chart, isDedup, callback) {
-    var dataset = []
-    var deferreds = chart.lines.map(function(line) {
-      return $.get("data/" + line.key + ".json", function(data) {
-        dataset.push({ line: line, data: data });
-      })
-    })
-
-    $.when.apply($, deferreds).then(function() {
-      callback(prepareData(dataset, isDedup));
-    })
-  }
-
-  function prepareData(datasets, isDedup) {
-    return datasets.map(function(tuple) {
-
-      var points = sort(tuple.data.map(process))
-      if (isDedup) points = dedup(points);
-
-      return {
-        name: tuple.line.label,
-        mode: "lines+markers",
-        type: "scatter",
-        line: {shape: 'hvh'},
-        x: points.map(p => { return p.x; }),
-        y: points.map(p => { return p.y; }),
-        objects: points
-      };
-    });
-  }
-
-  function options(view) {
-    function defaultRange() {
-      var now = new Date();
-      var start = new Date()
-      start.setMonth(start.getMonth()-3);
-      return [start, now];
-    }
-
-    return {
+  var options = {
       legend: {
         orientation: "h",
         yanchor: "bottom",
@@ -202,29 +87,104 @@ window.showTime = function() {
         type: 'linear'
       },
       hovermode:'closest'
-    };
+  };
+
+  function render() {
+    var width = $("#app").width(); // window size may change
+
+    dom.innerHTML =
+      `<div>
+        <h3>
+          <a href=${chart.url}>${chart.name}</a>
+        </h3>
+        <div class="chart" width=${width} height="300"></div>
+      </div>`
+
+    Plotly.newPlot($('.chart', dom)[0], data, options);
   }
 
-  showChartList(Bench.charts, getData, options);
+  $(dom).on('plotly_click', function(event, edata) {
+    if (edata.points.length == 1) {
+      var pindex = edata.points[0].pointNumber;
+      var dindex = edata.points[0].curveNumber;
+      var obj = data[dindex].objects[pindex].obj;
+      var win = window.open(Bench.config.pr_base_url + obj[0], '_blank');
+      win.focus();
+    }
+  });
+
+  dom.innerHTML = `<div><h2>${chart.name}</h2><p>Loading...</p></div>`
+
+  dataProvider(chart, function(json) {
+    data = json;
+    render();
+  })
+};
+
+function showChartList(charts, dataProvider) {
+  var container = document.getElementById('app');
+  container.innerHTML = "";
+  charts.map(function (chart) {
+    var dom = document.createElement("div");
+    container.appendChild(dom);
+    ChartView(chart, dom, dataProvider);
+  });
 }
 
-window.showCommit = function () {
-  function getData(chart, isSample, callback) {
-    $.get("data/" + chart.key + ".json", function (data) { // data cached by browser
-      callback(prepareData(data, isSample))
+window.showTime = function() {
+  var colorNames  = ['yellow', 'purple', 'orange', 'green', 'blue', 'red', 'grey'];
+  var colors = {
+    red: 'rgb(255, 99, 132)',
+    orange: 'rgb(255, 159, 64)',
+    yellow: 'rgb(255, 205, 86)',
+    green: 'rgb(75, 192, 192)',
+    blue: 'rgb(54, 162, 235)',
+    purple: 'rgb(153, 102, 255)',
+    grey: 'rgb(201, 203, 207)'
+  };
+
+  function getData(chart, callback) {
+    var dataset = []
+    var deferreds = chart.lines.map(function(line) {
+      return $.get("data/" + line.key + ".json", function(data) {
+        dataset.push({ line: line, data: data });
+      })
+    })
+
+    $.when.apply($, deferreds).then(function() {
+      callback(prepareData(dataset));
     })
   }
 
-  function prepareData(data, isSample) {
+  function prepareData(datasets) {
+    return datasets.map(function(tuple) {
+
+      var points = sort(tuple.data.map(process))
+
+      return {
+        name: tuple.line.label,
+        mode: "lines+markers",
+        type: "scatter",
+        line: {shape: 'hvh'},
+        x: points.map(p => { return p.x; }),
+        y: points.map(p => { return p.y; }),
+        objects: points
+      };
+    });
+  }
+
+  showChartList(Bench.charts, getData);
+}
+
+window.showCommit = function () {
+  function getData(chart, callback) {
+    $.get("data/" + chart.key + ".json", function (data) { // data cached by browser
+      callback(prepareData(data))
+    })
+  }
+
+  function prepareData(data) {
     var points = sort(data.map(process))
-
-    if (isSample) {
-      var pts1 = sample(points.slice(0, -100), 50 / (points.length - 100));
-      var pts2 = sample(points.slice(-100, -40), 0.5);
-      var pts3 = points.slice(-40);
-
-      points = pts1.concat(pts2).concat(pts3);
-    }
 
     var median = {
         label: "median",
