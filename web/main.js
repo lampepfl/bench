@@ -235,7 +235,21 @@ window.showCommit = function () {
         objects: points
     }
 
-    return [median, min];
+    var moving = {
+      visible: true,
+      name: "moving average",
+      mode: "lines",
+      type: "scatter",
+      line: {shape: 'spline'},
+      x: median.x,
+      y: median.x.map(i => {
+        if (i < 2 || i > median.x.length - 3) return median.y[i];
+        else return (median.y[i - 2] + median.y[i - 1] + median.y[i] + median.y[i + 1]  + median.y[i + 2]) / 5;
+      }),
+      objects: points
+    }
+
+    return [median, moving, min];
   }
 
   function getOptions(data) {
