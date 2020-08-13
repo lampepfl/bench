@@ -78,7 +78,7 @@ function defaultOptions() {
       title: 'milliseconds',
       autorange: true,
       rangemode: "tozero",
-      fixedrange: true,
+      // fixedrange: true,
       // range: [86.8700008333, 138.870004167],
       type: 'linear'
     },
@@ -158,7 +158,7 @@ window.showTime = function() {
         name: tuple.line.label,
         mode: "lines+markers",
         type: "scatter",
-        line: {shape: 'hvh'},
+        line: {shape: 'spline'},
         x: points.map(p => { return p.x; }),
         y: points.map(p => { return p.y; }),
         objects: points
@@ -212,48 +212,46 @@ window.showCommit = function () {
         points = pts1.concat(pts2).concat(pts3);
     }
 
-    var labels = [];
-    for (var i = 0; i < points.length; i++) {
-      var date = points[i].x;
-      labels.push(date.toISOString().split('T')[0]);
-    }
-
     var index = 0;
 
     var median = {
         name: "median",
         mode: "lines+markers",
         type: "scatter",
-        line: {shape: 'hvh'},
+        line: {shape: 'spline'},
         x: points.map(p => { return index++; }),
         y: points.map(p => { return p.y; }),
-        objects: points,
-        labels: labels
+        objects: points
     }
 
-    index = 0;
-
     var min = {
+        visible: "legendonly",
         name: "min",
         mode: "lines",
         type: "scatter",
-        line: {shape: 'hvh'},
-        x: points.map(p => { return index++; }),
+        line: {shape: 'spline'},
+        x: median.x,
         y: points.map(p => { return p.obj[4]; }),
-        objects: points,
-        labels: labels
+        objects: points
     }
 
     return [median, min];
   }
 
   function getOptions(data) {
+    var labelIndices = sample(data[0].x, 60 / data[0].x.length);
+    var labels = [];
+    for (var i = 0; i < labelIndices.length; i++) {
+      var date = data[0].objects[i].x;
+      labels.push(date.toISOString().split('T')[0]);
+    }
+
     var options = defaultOptions();
-    // options.xaxis.range = [data[0].length - 100, data[0].length - 1];
+    options.xaxis.range = [data[0].x.length - 100, data[0].x.length - 1];
     options.xaxis.type = "linear";
-    options.xaxis.tickmode = "array";
-    options.xaxis.tickvals = data[0].x;
-    options.xaxis.ticktext = data[0].labels;
+    // options.xaxis.tickmode = "array";
+    // options.xaxis.tickvals = labelIndices;
+    // options.xaxis.ticktext = labels;
     return options;
   }
 
@@ -261,5 +259,6 @@ window.showCommit = function () {
 }
 
 $(function () {
-  showTime();
+  flatten();
+  showCommit();
 })
