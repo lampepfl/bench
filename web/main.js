@@ -1,7 +1,7 @@
 var Bench = Bench || {};
 
 function process(item) {
-  return { y: item[3], x: new Date(item[1]).toISOString(), obj: item };
+  return { y: item[3], x: new Date(item[1].replace("CET", "+0100").replace("CEST", "+0200")).toISOString(), obj: item };
 }
 
 function sort(points) {
