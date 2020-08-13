@@ -1,12 +1,12 @@
 var Bench = Bench || {};
 
 function process(item) {
-  return { y: item[3], x: new Date(item[1]), obj: item };
+  return { y: item[3], x: new Date(item[1]).toISOString(), obj: item };
 }
 
 function sort(points) {
   return points.sort(function(a, b) {
-    return a.x - b.x;
+    return new Date(a.x) - new Date(b.x);
   });
 }
 
@@ -66,7 +66,7 @@ function defaultOptions() {
       x: 1
     },
     xaxis: {
-      autorange: false,
+      autorange: true,
       zeroline: false,
       nticks: 30,
       // autotick: true,
@@ -205,35 +205,35 @@ window.showCommit = function () {
     var points = sort(data.map(process))
 
     if (isSample) {
-        var pts1 = sample(points.slice(0, -100), 50 / (points.length - 100));
-        var pts2 = sample(points.slice(-100, -40), 0.5);
-        var pts3 = points.slice(-40);
+      var pts1 = sample(points.slice(0, -100), 50 / (points.length - 100));
+      var pts2 = sample(points.slice(-100, -40), 0.5);
+      var pts3 = points.slice(-40);
 
-        points = pts1.concat(pts2).concat(pts3);
+      points = pts1.concat(pts2).concat(pts3);
     }
 
     var index = 0;
 
     var median = {
-        visible: "legendonly",
-        name: "median",
-        mode: "lines+markers",
-        type: "scatter",
-        line: {shape: 'spline'},
-        x: points.map(p => { return index++; }),
-        y: points.map(p => { return p.y; }),
-        objects: points
+      visible: "legendonly",
+      name: "median",
+      mode: "lines+markers",
+      type: "scatter",
+      line: {shape: 'spline'},
+      x: points.map(p => { return p.x; }),
+      y: points.map(p => { return p.y; }),
+      objects: points
     }
 
     var min = {
-        visible: "legendonly",
-        name: "min",
-        mode: "lines+markers",
-        type: "scatter",
-        line: {shape: 'spline'},
-        x: median.x,
-        y: points.map(p => { return p.obj[4]; }),
-        objects: points
+      visible: "legendonly",
+      name: "min",
+      mode: "lines+markers",
+      type: "scatter",
+      line: {shape: 'spline'},
+      x: median.x,
+      y: points.map(p => { return p.obj[4]; }),
+      objects: points
     }
 
     var moving = {
@@ -243,7 +243,7 @@ window.showCommit = function () {
       type: "scatter",
       line: {shape: 'spline'},
       x: median.x,
-      y: median.x.map(i => {
+      y: [...Array(points.length).keys()].map(i => {
         if (i < 2 || i > median.x.length - 3) return median.y[i];
         else return (median.y[i - 2] + median.y[i - 1] + median.y[i] + median.y[i + 1]  + median.y[i + 2]) / 5;
       }),
@@ -254,19 +254,9 @@ window.showCommit = function () {
   }
 
   function getOptions(data) {
-    var labelIndices = sample(data[0].x, 60 / data[0].x.length);
-    var labels = [];
-    for (var i = 0; i < labelIndices.length; i++) {
-      var date = data[0].objects[i].x;
-      labels.push(date.toISOString().split('T')[0]);
-    }
-
     var options = defaultOptions();
-    options.xaxis.range = [data[0].x.length - 100, data[0].x.length - 1];
-    options.xaxis.type = "linear";
-    // options.xaxis.tickmode = "array";
-    // options.xaxis.tickvals = labelIndices;
-    // options.xaxis.ticktext = labels;
+    options.xaxis.tickmode = "auto";
+    options.xaxis.dtick = 24 * 60 * 60 * 1000;
     return options;
   }
 
