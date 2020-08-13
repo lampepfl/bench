@@ -10,18 +10,6 @@ function sort(points) {
   });
 }
 
-function sample(points, rate) {
-  return points.reduce(function(acc, item) {
-    if (Math.random() < rate) acc.push(item);
-
-    return acc;
-  }, []);
-}
-
-function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
 function flatten() {
   Bench.flattened = [];
 
@@ -132,16 +120,6 @@ function showChartList(charts, dataProvider) {
 }
 
 window.showTime = function() {
-  var colorNames  = ['yellow', 'purple', 'orange', 'green', 'blue', 'red', 'grey'];
-  var colors = {
-    red: 'rgb(255, 99, 132)',
-    orange: 'rgb(255, 159, 64)',
-    yellow: 'rgb(255, 205, 86)',
-    green: 'rgb(75, 192, 192)',
-    blue: 'rgb(54, 162, 235)',
-    purple: 'rgb(153, 102, 255)',
-    grey: 'rgb(201, 203, 207)'
-  };
 
   function getData(chart, callback) {
     var dataset = []
@@ -187,94 +165,30 @@ window.showCommit = function () {
     var points = sort(data.map(process))
 
     var median = {
-        label: "median",
-        data: points,
-        fill: false,
-        borderColor: "rgba(100,100,100,0.2)",
-        backgroundColor: "yellow",
-        pointBorderColor: "rgba(220,220,220,1)",
-        pointBackgroundColor: "yellow",
-        pointBorderWidth: 1
+        name: "median",
+        mode: "lines+markers",
+        type: "scatter",
+        line: {shape: 'hvh'},
+        x: points.map(p => { return p.x; }),
+        y: points.map(p => { return p.y; }),
     }
-
-    var labels = [];
-    for (var i = 0; i < points.length; i++) {
-      var date = new Date(points[i].obj[1]);
-      var day = date.getDate();
-      var month = date.getMonth() + 1;
-      labels.push(day + "/" + month);
-    }
-
-    var minPoints = points.map(function(p) {
-      return { y: p.obj[4], x: p.index, obj: p.obj }
-    });
 
     var min = {
-        label: "min",
-        data: minPoints,
-        fill: false,
-        borderDash: [5, 5],
-        pointBorderWidth: 1
+        name: "min",
+        mode: "lines+markers",
+        type: "scatter",
+        line: {shape: 'hvh'},
+        x: points.map(p => { return p.x; }),
+        y: points.map(p => { return p.obj[4]; }),
     }
 
-    return {
-      labels: labels,
-      datasets: [median, min]
-    }
+    return [median, min];
   }
 
-  function options(view) {
-    function getItem(didx, pidx) {
-      return view.data["datasets"][didx].data[pidx].obj;
-    }
-
-    return {
-      responsive: true,
-      tooltips: {
-        callbacks: {
-          title: function (data) {
-            var item = getItem(data[0].datasetIndex, data[0].index);
-            var date = new Date(item[1]);
-            var day = date.getDate();
-            var month = date.getMonth() + 1;
-            var year = date.getFullYear();
-            return "PR#" + item[0] + " \n" + item[2] + " \n" + day + "/" + month + "/" + year;
-          },
-          label: function (point) {
-            var item = getItem(point.datasetIndex, point.index);
-            return numberWithCommas(point.yLabel) + "ms";
-          }
-        },
-        mode: "index",
-        intersect: false
-      },
-      scales: {
-        yAxes: [{
-          display: true,
-          scaleLabel: { display: true, labelString: 'ms' },
-          ticks: {
-            min: 0,
-            callback: function(value, index, values) { return numberWithCommas(value); }
-          }
-        }]
-      },
-      onClick: function(e) {
-        var activeElems = this.getElementsAtEvent(e);
-        if (activeElems.length > 0) {
-          var pindex = activeElems[0]._index;
-          var dindex = activeElems[0]._datasetIndex;
-          var obj = getItem(dindex, pindex);
-          var win = window.open(Bench.config.pr_base_url + obj[0], '_blank');
-          win.focus();
-        }
-      }
-    }
-  }
-
-  showChartList(Bench.flattened, getData, options);
+  showChartList(Bench.flattened, getData);
 }
 
 $(function () {
   flatten();
-  showTime();
+  showCommit();
 })
