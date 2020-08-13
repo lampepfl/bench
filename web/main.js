@@ -38,6 +38,8 @@ function ChartView(chart, dom, dataProvider) {
   }
 
   var options = {
+      paper_bgcolor: "#eef",
+      plot_bgcolor: "#eef",
       legend: {
         orientation: "h",
         yanchor: "bottom",
