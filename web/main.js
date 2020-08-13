@@ -81,11 +81,11 @@ function ChartView(chart, dom) {
     }
   }
 
-  $(dom).on('plotly_click', function(data) {
+  $(dom).on('plotly_click', function(event, data) {
     if (data.points.length == 1) {
       var pindex = data.points[0].pointNumber;
       var dindex = data.points[0].curveNumber;
-      var obj = view.data[dindex].objects[pindex];
+      var obj = view.data[dindex].objects[pindex].obj;
       var win = window.open(Bench.config.pr_base_url + obj[0], '_blank');
       win.focus();
     }
