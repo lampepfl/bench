@@ -48,64 +48,59 @@ function dedup(points) {
   return points;
 }
 
-function ChartView(chart, dom, dataProvider) {
+function defaultOptions() {
+  return {
+    // paper_bgcolor: "#eee",
+    // plot_bgcolor: "#ffe",
+    margin: {
+      l: 60,
+      r: 40,
+      t: 60,
+      b: 40
+    },
+    legend: {
+      orientation: "h",
+      yanchor: "bottom",
+      y: 1.02,
+      xanchor: "right",
+      x: 1
+    },
+    xaxis: {
+      autorange: false,
+      // autotick: true,
+      // range: defaultRange(),
+      rangeselector: {buttons: [
+          {
+            count: 1,
+            label: '1m',
+            step: 'month',
+            stepmode: 'backward'
+          },
+          {
+            count: 6,
+            label: '6m',
+            step: 'month',
+            stepmode: 'backward'
+          },
+          {step: 'all'}
+        ]},
+      // rangeslider: {},
+      type: 'date'
+    },
+    yaxis: {
+      title: 'milliseconds',
+      autorange: true,
+      rangemode: "tozero",
+      // range: [86.8700008333, 138.870004167],
+      type: 'linear'
+    },
+    hovermode:'closest'
+  };
+}
+
+function ChartView(chart, dom, dataProvider, optionsProvider) {
 
   var data = [];
-
-  function defaultRange() {
-    var now = new Date();
-    var start = new Date()
-    start.setMonth(start.getMonth()-3);
-    return [start, now];
-  }
-
-  var options = {
-      // paper_bgcolor: "#eee",
-      // plot_bgcolor: "#ffe",
-      margin: {
-        l: 60,
-        r: 40,
-        t: 60,
-        b: 40
-      },
-      legend: {
-        orientation: "h",
-        yanchor: "bottom",
-        y: 1.02,
-        xanchor: "right",
-        x: 1
-      },
-      xaxis: {
-        autorange: false,
-        // autotick: true,
-        range: defaultRange(),
-        rangeselector: {buttons: [
-            {
-              count: 1,
-              label: '1m',
-              step: 'month',
-              stepmode: 'backward'
-            },
-            {
-              count: 6,
-              label: '6m',
-              step: 'month',
-              stepmode: 'backward'
-            },
-            {step: 'all'}
-          ]},
-        // rangeslider: {},
-        type: 'date'
-      },
-      yaxis: {
-        title: 'milliseconds',
-        autorange: true,
-        rangemode: "tozero",
-        // range: [86.8700008333, 138.870004167],
-        type: 'linear'
-      },
-      hovermode:'closest'
-  };
 
   function render() {
     var width = $("#app").width(); // window size may change
@@ -118,7 +113,7 @@ function ChartView(chart, dom, dataProvider) {
         <div class="chart" width=${width} height="300"></div>
       </div>`
 
-    Plotly.newPlot($('.chart', dom)[0], data, options);
+    Plotly.newPlot($('.chart', dom)[0], data, optionsProvider(data));
   }
 
   $(dom).on('plotly_click', function(event, edata) {
@@ -139,13 +134,13 @@ function ChartView(chart, dom, dataProvider) {
   })
 };
 
-function showChartList(charts, dataProvider) {
+function showChartList(charts, dataProvider, optionsProvider) {
   var container = document.getElementById('app');
   container.innerHTML = "";
   charts.map(function (chart) {
     var dom = document.createElement("div");
     container.appendChild(dom);
-    ChartView(chart, dom, dataProvider);
+    ChartView(chart, dom, dataProvider, optionsProvider);
   });
 }
 
@@ -183,7 +178,16 @@ window.showTime = function() {
     });
   }
 
-  showChartList(Bench.charts, getData);
+  function getOptions(data) {
+    var options = defaultOptions();
+    var now = new Date();
+    var start = new Date()
+    start.setMonth(start.getMonth()-3);
+    options.xaxis.range = [start, now];
+    return options;
+  }
+
+  showChartList(Bench.charts, getData, getOptions);
 }
 
 window.showCommit = function () {
@@ -204,22 +208,26 @@ window.showCommit = function () {
         points = pts1.concat(pts2).concat(pts3);
     }
 
+    var index = 0;
+
     var median = {
         name: "median",
         mode: "lines+markers",
         type: "scatter",
         line: {shape: 'hvh'},
-        x: points.map(p => { return p.x; }),
+        x: points.map(p => { return index++; }),
         y: points.map(p => { return p.y; }),
         objects: points
     }
 
+    index = 0;
+
     var min = {
         name: "min",
-        mode: "lines+markers",
+        mode: "lines",
         type: "scatter",
         line: {shape: 'hvh'},
-        x: points.map(p => { return p.x; }),
+        x: points.map(p => { return index++; }),
         y: points.map(p => { return p.obj[4]; }),
         objects: points
     }
@@ -227,7 +235,13 @@ window.showCommit = function () {
     return [median, min];
   }
 
-  showChartList(Bench.flattened, getData);
+  function getOptions(data) {
+    var options = defaultOptions();
+    options.xaxis.range = [data.length - 40, data.length - 1];
+    return options;
+  }
+
+  showChartList(Bench.flattened, getData, getOptions);
 }
 
 $(function () {
