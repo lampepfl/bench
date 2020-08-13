@@ -215,6 +215,7 @@ window.showCommit = function () {
     var index = 0;
 
     var median = {
+        visible: "legendonly",
         name: "median",
         mode: "lines+markers",
         type: "scatter",
@@ -249,7 +250,7 @@ window.showCommit = function () {
       objects: points
     }
 
-    return [median, moving, min];
+    return [moving, median, min];
   }
 
   function getOptions(data) {
