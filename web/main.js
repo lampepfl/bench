@@ -6,7 +6,7 @@ function process(item) {
 
 function sort(points) {
   return points.sort(function(a, b) {
-    return a.x.getMilliseconds() - b.x.getMilliseconds();
+    return a.x - b.x;
   });
 }
 
@@ -78,6 +78,7 @@ function defaultOptions() {
       title: 'milliseconds',
       autorange: true,
       rangemode: "tozero",
+      fixedrange: true,
       // range: [86.8700008333, 138.870004167],
       type: 'linear'
     },
