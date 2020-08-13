@@ -67,23 +67,9 @@ function defaultOptions() {
     },
     xaxis: {
       autorange: false,
+      zeroline: false,
       // autotick: true,
       // range: defaultRange(),
-      rangeselector: {buttons: [
-          {
-            count: 1,
-            label: '1m',
-            step: 'month',
-            stepmode: 'backward'
-          },
-          {
-            count: 6,
-            label: '6m',
-            step: 'month',
-            stepmode: 'backward'
-          },
-          {step: 'all'}
-        ]},
       // rangeslider: {},
       type: 'date'
     },
@@ -184,6 +170,22 @@ window.showTime = function() {
     var start = new Date()
     start.setMonth(start.getMonth()-3);
     options.xaxis.range = [start, now];
+    options.rangeselector = {buttons: [
+      {
+        count: 1,
+        label: '1m',
+        step: 'month',
+        stepmode: 'backward'
+      },
+      {
+        count: 6,
+        label: '6m',
+        step: 'month',
+        stepmode: 'backward'
+      },
+      {step: 'all'}
+    ]};
+
     return options;
   }
 
@@ -208,6 +210,12 @@ window.showCommit = function () {
         points = pts1.concat(pts2).concat(pts3);
     }
 
+    var labels = [];
+    for (var i = 0; i < points.length; i++) {
+      var date = points[i].x;
+      labels.push(date.toISOString().split('T')[0]);
+    }
+
     var index = 0;
 
     var median = {
@@ -217,7 +225,8 @@ window.showCommit = function () {
         line: {shape: 'hvh'},
         x: points.map(p => { return index++; }),
         y: points.map(p => { return p.y; }),
-        objects: points
+        objects: points,
+        labels: labels
     }
 
     index = 0;
@@ -229,7 +238,8 @@ window.showCommit = function () {
         line: {shape: 'hvh'},
         x: points.map(p => { return index++; }),
         y: points.map(p => { return p.obj[4]; }),
-        objects: points
+        objects: points,
+        labels: labels
     }
 
     return [median, min];
@@ -237,7 +247,11 @@ window.showCommit = function () {
 
   function getOptions(data) {
     var options = defaultOptions();
-    options.xaxis.range = [data.length - 40, data.length - 1];
+    // options.xaxis.range = [data[0].length - 100, data[0].length - 1];
+    options.xaxis.type = "linear";
+    options.xaxis.tickmode = "array";
+    options.xaxis.tickvals = data[0].x;
+    options.xaxis.ticktext = data[0].labels;
     return options;
   }
 
