@@ -228,7 +228,7 @@ window.showCommit = function () {
     var min = {
         visible: "legendonly",
         name: "min",
-        mode: "lines",
+        mode: "lines+markers",
         type: "scatter",
         line: {shape: 'spline'},
         x: median.x,
