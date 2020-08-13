@@ -38,7 +38,7 @@ end
 def process(row)
   line = []
   line[0] = row[1].to_i                                      # PR
-  line[1] = row[2].strip                                     # time
+  line[1] = row[4].strip                                     # time
   line[2] = row[3].strip                                     # commit
 
   array = row[6].split.map { |item| item.to_f }
