@@ -6,7 +6,7 @@ function process(item) {
 
 function sort(points) {
   return points.sort(function(a, b) {
-    return a.obj[1] - b.obj[1];
+    return a.x.getMilliseconds() - b.x.getMilliseconds();
   });
 }
 
@@ -68,6 +68,7 @@ function defaultOptions() {
     xaxis: {
       autorange: false,
       zeroline: false,
+      nticks: 30,
       // autotick: true,
       // range: defaultRange(),
       // rangeslider: {},
@@ -170,7 +171,7 @@ window.showTime = function() {
     var start = new Date()
     start.setMonth(start.getMonth()-3);
     options.xaxis.range = [start, now];
-    options.rangeselector = {buttons: [
+    options.xaxis.rangeselector = {buttons: [
       {
         count: 1,
         label: '1m',
@@ -259,6 +260,5 @@ window.showCommit = function () {
 }
 
 $(function () {
-  flatten();
-  showCommit();
+  showTime();
 })
