@@ -1,12 +1,12 @@
 var Bench = Bench || {};
 
 function process(item) {
-  return { y: item[3], x: new Date(item[1].replace("CET", "+0100").replace("CEST", "+0200")).toISOString(), obj: item };
+  return { y: item[3], x: new Date(item[1]), obj: item };
 }
 
 function sort(points) {
   return points.sort(function(a, b) {
-    return new Date(a.x) - new Date(b.x);
+    return a.x - b.x;
   });
 }
 
@@ -68,11 +68,11 @@ function defaultOptions() {
     xaxis: {
       autorange: true,
       zeroline: false,
-      nticks: 30,
+      nticks: 20,
       // autotick: true,
       // range: defaultRange(),
       // rangeslider: {},
-      type: 'date'
+      // type: 'date'
     },
     yaxis: {
       title: 'milliseconds',
@@ -220,7 +220,7 @@ window.showCommit = function () {
       mode: "lines+markers",
       type: "scatter",
       line: {shape: 'spline'},
-      x: points.map(p => { return p.x; }),
+      x: points.map(p => { return index++; }),
       y: points.map(p => { return p.y; }),
       objects: points
     }
@@ -243,7 +243,7 @@ window.showCommit = function () {
       type: "scatter",
       line: {shape: 'spline'},
       x: median.x,
-      y: [...Array(points.length).keys()].map(i => {
+      y: median.x.map(i => {
         if (i < 2 || i > median.x.length - 3) return median.y[i];
         else return (median.y[i - 2] + median.y[i - 1] + median.y[i] + median.y[i + 1]  + median.y[i + 2]) / 5;
       }),
@@ -256,7 +256,16 @@ window.showCommit = function () {
   function getOptions(data) {
     var options = defaultOptions();
     options.xaxis.tickmode = "auto";
-    options.xaxis.dtick = 24 * 60 * 60 * 1000;
+    options.xaxis.customTickFn = function(i) {
+      if (i < data[0].objects.length) {
+        var date = data[0].objects[i].x;
+        return date.toISOString().substring(0, 10);
+      }
+      else {
+        return "";
+      }
+    };
+    // options.xaxis.dtick = 30 * 24 * 60 * 60 * 1000;
     return options;
   }
 
