@@ -26,28 +26,6 @@ function flatten() {
   });
 }
 
-function sample(points, rate) {
-  return points.reduce(function(acc, item) {
-    if (Math.random() < rate) acc.push(item);
-
-    return acc;
-  }, []);
-}
-
-function dedup(points) {
-  var lastDate = null;
-  points = points.reduce(function(acc, point) {
-    var curDate = new Date(point.x).toLocaleDateString();
-    if (!lastDate || lastDate !== curDate) {
-      lastDate = curDate;
-      acc.push(point);
-    }
-    return acc;
-  }, []);
-
-  return points;
-}
-
 function defaultOptions() {
   return {
     // paper_bgcolor: "#eee",
@@ -116,7 +94,7 @@ function ChartView(chart, dom, dataProvider, optionsProvider) {
 
   dom.innerHTML = `<div><h2>${chart.name}</h2><p>Loading...</p></div>`
 
-  dataProvider(chart, false, function(json) {
+  dataProvider(chart, function(json) {
     data = json;
     render();
   })
@@ -132,85 +110,16 @@ function showChartList(charts, dataProvider, optionsProvider) {
   });
 }
 
-window.showTime = function() {
-
-  function getData(chart, isDedup, callback) {
-    var dataset = []
-    var deferreds = chart.lines.map(function(line) {
-      return $.get("data/" + line.key + ".json", function(data) {
-        dataset.push({ line: line, data: data });
-      })
-    })
-
-    $.when.apply($, deferreds).then(function() {
-      callback(prepareData(dataset, isDedup));
-    })
-  }
-
-  function prepareData(datasets, isDedup) {
-    return datasets.map(function(tuple) {
-
-      var points = sort(tuple.data.map(process))
-
-      if (isDedup) points = dedup(points);
-
-      return {
-        name: tuple.line.label,
-        mode: "lines+markers",
-        type: "scatter",
-        line: {shape: 'spline'},
-        x: points.map(p => { return p.x; }),
-        y: points.map(p => { return p.y; }),
-        objects: points
-      };
-    });
-  }
-
-  function getOptions(data) {
-    var options = defaultOptions();
-    var now = new Date();
-    var start = new Date()
-    start.setMonth(start.getMonth()-3);
-    options.xaxis.range = [start, now];
-    options.xaxis.rangeselector = {buttons: [
-      {
-        count: 1,
-        label: '1m',
-        step: 'month',
-        stepmode: 'backward'
-      },
-      {
-        count: 6,
-        label: '6m',
-        step: 'month',
-        stepmode: 'backward'
-      },
-      {step: 'all'}
-    ]};
-
-    return options;
-  }
-
-  showChartList(Bench.charts, getData, getOptions);
-}
 
 window.showCommit = function () {
-  function getData(chart, isSample, callback) {
+  function getData(chart, callback) {
     $.get("data/" + chart.key + ".json", function (data) { // data cached by browser
-      callback(prepareData(data), isSample)
+      callback(prepareData(data))
     })
   }
 
-  function prepareData(data, isSample) {
+  function prepareData(data) {
     var points = sort(data.map(process))
-
-    if (isSample) {
-      var pts1 = sample(points.slice(0, -100), 50 / (points.length - 100));
-      var pts2 = sample(points.slice(-100, -40), 0.5);
-      var pts3 = points.slice(-40);
-
-      points = pts1.concat(pts2).concat(pts3);
-    }
 
     var index = 0;
 
@@ -265,7 +174,6 @@ window.showCommit = function () {
         return "";
       }
     };
-    // options.xaxis.dtick = 30 * 24 * 60 * 60 * 1000;
     return options;
   }
 
