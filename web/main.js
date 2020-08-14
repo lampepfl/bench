@@ -165,8 +165,9 @@ window.showCommit = function () {
   function getOptions(data) {
     var options = defaultOptions();
     options.xaxis.tickmode = "auto";
+    // options.xaxis.range = [data[0].x.length - 100, data[0].x.length];
     options.xaxis.customTickFn = function(i) {
-      if (i < data[0].objects.length) {
+      if (i >= 0 && i < data[0].objects.length) {
         var date = data[0].objects[i].x;
         return date.toISOString().substring(0, 10);
       }
