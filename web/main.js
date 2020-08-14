@@ -79,7 +79,7 @@ function ChartView(chart, dom, dataProvider, optionsProvider) {
         <div class="chart" width=${width} height="300"></div>
       </div>`
 
-    Plotly.newPlot($('.chart', dom)[0], data, optionsProvider(data));
+    Plotly.newPlot($('.chart', dom)[0], data, optionsProvider(data, chart));
   }
 
   $(dom).on('plotly_click', function(event, edata) {
@@ -110,21 +110,29 @@ function showChartList(charts, dataProvider, optionsProvider) {
   });
 }
 
-
 window.showCommit = function () {
   function getData(chart, callback) {
     $.get("data/" + chart.key + ".json", function (data) { // data cached by browser
-      callback(prepareData(data))
+      callback(prepareData(data, chart))
     })
   }
 
-  function prepareData(data) {
+  function prepareData(data, chart) {
     var points = sort(data.map(process))
 
     var index = 0;
 
+    function visible(trace) {
+      if (chart.key === "dotty") {
+        if (trace === "median") return true;
+        else return "legendonly";
+      }
+      else if (trace === "moving") return true;
+      else return "legendonly";
+    }
+
     var median = {
-      visible: "legendonly",
+      visible: visible("median"),
       name: "median",
       mode: "lines+markers",
       type: "scatter",
@@ -148,7 +156,7 @@ window.showCommit = function () {
     }
 
     var moving = {
-      visible: true,
+      visible: visible("moving"),
       name: "moving average",
       mode: "lines",
       type: "scatter",
@@ -164,10 +172,15 @@ window.showCommit = function () {
     return [moving, median, min];
   }
 
-  function getOptions(data) {
+  function getOptions(data, chart) {
     var options = defaultOptions();
     options.xaxis.tickmode = "auto";
-    // options.xaxis.range = [data[0].x.length - 100, data[0].x.length];
+
+    if (chart.key === "dotty") {
+      options.xaxis.autorange = false;
+      options.xaxis.range = [data[0].x.length - 100, data[0].x.length];
+    }
+
     options.xaxis.customTickFn = function(i) {
       if (i >= 0 && i < data[0].objects.length) {
         var date = data[0].objects[i].x;
