@@ -113,8 +113,8 @@ function showChartList(charts, dataProvider, optionsProvider) {
 window.showCommit = function () {
   function getData(chart, callback) {
     $.get("data/" + chart.key + ".json", function (data) { // data cached by browser
-      callback(prepareData(data, chart))
-    })
+      callback(prepareData(data, chart));
+    });
   }
 
   function prepareData(data, chart) {
@@ -124,8 +124,7 @@ window.showCommit = function () {
 
     function visible(trace) {
       if (chart.key === "dotty") {
-        if (trace === "median") return true;
-        else return "legendonly";
+        return true;
       }
       else if (trace === "moving") return true;
       else return "legendonly";
@@ -134,7 +133,7 @@ window.showCommit = function () {
     var median = {
       visible: visible("median"),
       name: "median",
-      mode: "lines+markers",
+      mode: "markers",
       type: "scatter",
       line: {shape: 'spline'},
       hoverinfo: "x+y+text",
@@ -147,7 +146,7 @@ window.showCommit = function () {
     var min = {
       visible: "legendonly",
       name: "min",
-      mode: "lines+markers",
+      mode: "markers",
       type: "scatter",
       line: {shape: 'spline'},
       x: median.x,
