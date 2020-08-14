@@ -129,6 +129,8 @@ window.showCommit = function () {
       mode: "lines+markers",
       type: "scatter",
       line: {shape: 'spline'},
+      hoverinfo: "x+y+text",
+      hovertext: points.map(p => { return "#" + p.obj[0] + ", " + p.obj[2] }),
       x: points.map(p => { return index++; }),
       y: points.map(p => { return p.y; }),
       objects: points
