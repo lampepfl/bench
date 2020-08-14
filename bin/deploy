@@ -44,9 +44,7 @@ cd "$PROG_HOME/web"
 
 # copy resource
 cd "$PROG_HOME"
-cp web/index.html site/
-cp web/main.js site/
-cp -r web/css site/
+cp -r web/* site/
 
 # build data
 mkdir -p site/data

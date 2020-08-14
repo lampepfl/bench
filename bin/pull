@@ -197,9 +197,7 @@ cd $PROG_HOME/web
 
 # copy resource
 cd $PROG_HOME
-cp web/index.html $SESSION_HOME
-cp web/main.js $SESSION_HOME
-cp -r web/css $SESSION_HOME
+cp -r web/* $SESSION_HOME
 
 # build data
 TEMP_FILE="/tmp/pull-$PR.csv"
