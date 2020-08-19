@@ -55,7 +55,7 @@ function defaultOptions() {
     yaxis: {
       title: 'milliseconds',
       autorange: true,
-      rangemode: "tozero",
+      rangemode: "nonnegative",
       // fixedrange: true,
       // range: [86.8700008333, 138.870004167],
       type: 'linear'
@@ -175,10 +175,8 @@ window.showCommit = function () {
     var options = defaultOptions();
     options.xaxis.tickmode = "auto";
 
-    if (chart.key === "dotty") {
-      options.xaxis.autorange = false;
-      options.xaxis.range = [data[0].x.length - 100, data[0].x.length];
-    }
+    options.xaxis.autorange = false;
+    options.xaxis.range = [data[0].x.length - 100, data[0].x.length];
 
     options.xaxis.customTickFn = function(i) {
       if (i >= 0 && i < data[0].objects.length) {
