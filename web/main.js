@@ -55,7 +55,7 @@ function defaultOptions() {
     yaxis: {
       title: 'milliseconds',
       autorange: true,
-      rangemode: "tozero",
+      rangemode: "nonnegative",
       // fixedrange: true,
       // range: [86.8700008333, 138.870004167],
       type: 'linear'
