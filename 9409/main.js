@@ -1,39 +1,13 @@
 var Bench = Bench || {};
 
 function process(item) {
-  return { y: item[3], x: item[1], obj: item };
+  return { y: item[3], x: new Date(item[1]), obj: item };
 }
 
 function sort(points) {
   return points.sort(function(a, b) {
-    return new Date(a.obj[1]) - new Date(b.obj[1]);
+    return a.x - b.x;
   });
-}
-
-function sample(points, rate) {
-  return points.reduce(function(acc, item) {
-    if (Math.random() < rate) acc.push(item);
-
-    return acc;
-  }, []);
-}
-
-function dedup(points) {
-  var lastDate = null;
-  points = points.reduce(function(acc, point) {
-    var curDate = new Date(point.x).toLocaleDateString();
-    if (!lastDate || lastDate !== curDate) {
-      lastDate = curDate;
-      acc.push(point);
-    }
-    return acc;
-  }, []);
-
-  return points;
-}
-
-function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 function flatten() {
@@ -52,293 +26,171 @@ function flatten() {
   });
 }
 
-function ChartView(chart, dom) {
-  var view = {
-    // checkChanged: fn,   // register event
-    dom: dom,
-    chart: chart,
-    data: {},
-    options: {},
-    ready: false,
-    showAll: false,
-    render: render
+function defaultOptions() {
+  return {
+    // paper_bgcolor: "#eee",
+    // plot_bgcolor: "#ffe",
+    margin: {
+      l: 60,
+      r: 40,
+      t: 60,
+      b: 40
+    },
+    legend: {
+      orientation: "h",
+      yanchor: "bottom",
+      y: 1.02,
+      xanchor: "right",
+      x: 1
+    },
+    xaxis: {
+      autorange: true,
+      zeroline: false,
+      nticks: 20,
+      // autotick: true,
+      // range: defaultRange(),
+      // rangeslider: {},
+      // type: 'date'
+    },
+    yaxis: {
+      title: 'milliseconds',
+      autorange: true,
+      rangemode: "nonnegative",
+      // fixedrange: true,
+      // range: [86.8700008333, 138.870004167],
+      type: 'linear'
+    },
+    hovermode:'closest'
   };
+}
+
+function ChartView(chart, dom, dataProvider, optionsProvider) {
+
+  var data = [];
 
   function render() {
     var width = $("#app").width(); // window size may change
 
-    if (view.ready) {
-      $("input.show-all", dom).off("change"); // avoid memory leaks
-      dom.innerHTML =
-        `<div>
-          <h3>
-            <a href=${view.chart.url}>${view.chart.name}</a>
-            <span style="float: right">
-              <input type="checkbox" class="show-all" ${view.showAll ? "checked" : ""}/>
-              <small style="color: #aaa; fontSize: 15px"> show all points</small>
-            </span>
-          </h3>
-          <canvas width=${width} height="300"></canvas>
-        </div>`
+    dom.innerHTML =
+      `<div>
+        <h3>
+          <a href=${chart.url}>${chart.name}</a>
+        </h3>
+        <div class="chart" width=${width} height="300"></div>
+      </div>`
 
-      var ctx = $('canvas', dom)[0].getContext('2d');
-      var lineChart = new Chart(ctx, {
-        type: "line",
-        data: view.data,
-        options: view.options
-      });
-
-      $("input.show-all", dom).on("change", e => {
-        view.checkChanged(e);
-      });
-    }
-    else {
-      dom.innerHTML = `<div><h2>${view.chart.name}</h2><p>Loading...</p></div>`
-    }
+    Plotly.newPlot($('.chart', dom)[0], data, optionsProvider(data, chart));
   }
 
-  render();
+  $(dom).on('plotly_click', function(event, edata) {
+    if (edata.points.length == 1) {
+      var pindex = edata.points[0].pointNumber;
+      var dindex = edata.points[0].curveNumber;
+      var obj = data[dindex].objects[pindex].obj;
+      var win = window.open(Bench.config.pr_base_url + obj[0], '_blank');
+      win.focus();
+    }
+  });
 
-  return view;
+  dom.innerHTML = `<div><h2>${chart.name}</h2><p>Loading...</p></div>`
+
+  dataProvider(chart, function(json) {
+    data = json;
+    render();
+  })
 };
 
-function showChartList(charts, dataProvider, optionProvider) {
+function showChartList(charts, dataProvider, optionsProvider) {
   var container = document.getElementById('app');
   container.innerHTML = "";
   charts.map(function (chart) {
     var dom = document.createElement("div");
     container.appendChild(dom);
-    var view = ChartView(chart, dom);
-
-    function load(showAll) {
-      dataProvider(chart, !showAll, function(data) {
-        view.data = data;
-        view.ready = true;
-        view.options = optionProvider(view);
-        view.showAll = showAll;
-        view.render();
-      })
-    }
-
-    view.checkChanged = function(e) {
-      load(e.target.checked);
-    }
-
-    load(false);
+    ChartView(chart, dom, dataProvider, optionsProvider);
   });
 }
 
-window.showTime = function() {
-  var colorNames  = ['yellow', 'purple', 'orange', 'green', 'blue', 'red', 'grey'];
-  var colors = {
-    red: 'rgb(255, 99, 132)',
-    orange: 'rgb(255, 159, 64)',
-    yellow: 'rgb(255, 205, 86)',
-    green: 'rgb(75, 192, 192)',
-    blue: 'rgb(54, 162, 235)',
-    purple: 'rgb(153, 102, 255)',
-    grey: 'rgb(201, 203, 207)'
-  };
-
-  function getData(chart, isDedup, callback) {
-    var dataset = []
-    var deferreds = chart.lines.map(function(line) {
-      return $.get("data/" + line.key + ".json", function(data) {
-        dataset.push({ line: line, data: data });
-      })
-    })
-
-    $.when.apply($, deferreds).then(function() {
-      callback({ datasets: prepareData(dataset, isDedup), labels: [] });
-    })
-  }
-
-  function prepareData(datasets, isDedup) {
-    var index = -1;
-    return datasets.map(function(tuple) {
-      index++;
-
-      var points = sort(tuple.data.map(process))
-      if (isDedup) points = dedup(points);
-
-      return {
-        label: tuple.line.label,
-        fill: false,
-        backgroundColor: colors[colorNames[index]],
-        data: points
-      };
+window.showCommit = function () {
+  function getData(chart, callback) {
+    $.get("data/" + chart.key + ".json", function (data) { // data cached by browser
+      callback(prepareData(data, chart));
     });
   }
 
-  function options(view) {
-    function getItem(didx, pidx) {
-      return view.data["datasets"][didx].data[pidx].obj;
-    }
-
-    return {
-      responsive: true,
-      legend: {
-        display: view.chart.lines.length > 1
-      },
-      tooltips: {
-        callbacks: {
-          title: function (data) {
-            var item = getItem(data[0].datasetIndex, data[0].index);
-            var date = new Date(item[1]);
-            var day = date.getDate();
-            var month = date.getMonth() + 1;
-            var year = date.getFullYear();
-            return "PR#" + item[0] + " \n" + item[2] + " \n" + day + "/" + month + "/" + year;
-          },
-          label: function (point) {
-            var item = getItem(point.datasetIndex, point.index);
-            return numberWithCommas(point.yLabel) + "ms";
-          }
-        },
-        mode: "index",
-        intersect: false
-      },
-      scales: {
-        xAxes: [{
-          type: "time",
-          time: {
-            // format: 'MM/DD/YYYY HH:mm',
-            // round: 'day'
-            tooltipFormat: 'll HH:mm'
-          },
-          scaleLabel: {
-            display: false
-          }
-        }],
-        yAxes: [{
-          display: true,
-          scaleLabel: { display: true, labelString: 'ms' },
-          ticks: {
-            min: 0,
-            callback: function(value, index, values) { return numberWithCommas(value); }
-          }
-        }]
-      },
-      onClick: function(e) {
-        var activeElems = this.getElementsAtEvent(e);
-        if (activeElems.length > 0) {
-          var pindex = activeElems[0]._index;
-          var dindex = activeElems[0]._datasetIndex;
-          var obj = getItem(dindex, pindex);
-          var win = window.open(Bench.config.pr_base_url + obj[0], '_blank');
-          win.focus();
-        }
-      }
-    }
-  }
-
-  showChartList(Bench.charts, getData, options);
-}
-
-window.showCommit = function () {
-  function getData(chart, isSample, callback) {
-    $.get("data/" + chart.key + ".json", function (data) { // data cached by browser
-      callback(prepareData(data, isSample))
-    })
-  }
-
-  function prepareData(data, isSample) {
+  function prepareData(data, chart) {
     var points = sort(data.map(process))
 
-    if (isSample) {
-      var pts1 = sample(points.slice(0, -100), 50 / (points.length - 100));
-      var pts2 = sample(points.slice(-100, -40), 0.5);
-      var pts3 = points.slice(-40);
+    var index = 0;
 
-      points = pts1.concat(pts2).concat(pts3);
+    function visible(trace) {
+      if (chart.key === "dotty") {
+        return true;
+      }
+      else if (trace === "moving") return true;
+      else return "legendonly";
     }
 
     var median = {
-        label: "median",
-        data: points,
-        fill: false,
-        borderColor: "rgba(100,100,100,0.2)",
-        backgroundColor: "yellow",
-        pointBorderColor: "rgba(220,220,220,1)",
-        pointBackgroundColor: "yellow",
-        pointBorderWidth: 1
+      visible: visible("median"),
+      name: "median",
+      mode: "markers",
+      type: "scatter",
+      line: {shape: 'spline'},
+      hoverinfo: "x+y+text",
+      hovertext: points.map(p => { return "#" + p.obj[0] + ", " + p.obj[2] }),
+      x: points.map(p => { return index++; }),
+      y: points.map(p => { return p.y; }),
+      objects: points
     }
-
-    var labels = [];
-    for (var i = 0; i < points.length; i++) {
-      var date = new Date(points[i].obj[1]);
-      var day = date.getDate();
-      var month = date.getMonth() + 1;
-      labels.push(day + "/" + month);
-    }
-
-    var minPoints = points.map(function(p) {
-      return { y: p.obj[4], x: p.index, obj: p.obj }
-    });
 
     var min = {
-        label: "min",
-        data: minPoints,
-        fill: false,
-        borderDash: [5, 5],
-        pointBorderWidth: 1
+      visible: "legendonly",
+      name: "min",
+      mode: "markers",
+      type: "scatter",
+      line: {shape: 'spline'},
+      x: median.x,
+      y: points.map(p => { return p.obj[4]; }),
+      objects: points
     }
 
-    return {
-      labels: labels,
-      datasets: [median, min]
+    var moving = {
+      visible: visible("moving"),
+      name: "moving average",
+      mode: "lines",
+      type: "scatter",
+      line: {shape: 'spline'},
+      x: median.x,
+      y: median.x.map(i => {
+        if (i < 2 || i > median.x.length - 3) return median.y[i];
+        else return (median.y[i - 2] + median.y[i - 1] + median.y[i] + median.y[i + 1]  + median.y[i + 2]) / 5;
+      }),
+      objects: points
     }
+
+    return [moving, median, min];
   }
 
-  function options(view) {
-    function getItem(didx, pidx) {
-      return view.data["datasets"][didx].data[pidx].obj;
-    }
+  function getOptions(data, chart) {
+    var options = defaultOptions();
+    options.xaxis.tickmode = "auto";
 
-    return {
-      responsive: true,
-      tooltips: {
-        callbacks: {
-          title: function (data) {
-            var item = getItem(data[0].datasetIndex, data[0].index);
-            var date = new Date(item[1]);
-            var day = date.getDate();
-            var month = date.getMonth() + 1;
-            var year = date.getFullYear();
-            return "PR#" + item[0] + " \n" + item[2] + " \n" + day + "/" + month + "/" + year;
-          },
-          label: function (point) {
-            var item = getItem(point.datasetIndex, point.index);
-            return numberWithCommas(point.yLabel) + "ms";
-          }
-        },
-        mode: "index",
-        intersect: false
-      },
-      scales: {
-        yAxes: [{
-          display: true,
-          scaleLabel: { display: true, labelString: 'ms' },
-          ticks: {
-            min: 0,
-            callback: function(value, index, values) { return numberWithCommas(value); }
-          }
-        }]
-      },
-      onClick: function(e) {
-        var activeElems = this.getElementsAtEvent(e);
-        if (activeElems.length > 0) {
-          var pindex = activeElems[0]._index;
-          var dindex = activeElems[0]._datasetIndex;
-          var obj = getItem(dindex, pindex);
-          var win = window.open(Bench.config.pr_base_url + obj[0], '_blank');
-          win.focus();
-        }
+    options.xaxis.autorange = false;
+    options.xaxis.range = [data[0].x.length - 100, data[0].x.length];
+
+    options.xaxis.customTickFn = function(i) {
+      if (i >= 0 && i < data[0].objects.length) {
+        var date = data[0].objects[i].x;
+        return date.toISOString().substring(0, 10);
       }
-    }
+      else {
+        return "";
+      }
+    };
+    return options;
   }
 
-  showChartList(Bench.flattened, getData, options);
+  showChartList(Bench.flattened, getData, getOptions);
 }
 
 $(function () {
