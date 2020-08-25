@@ -21,5 +21,5 @@ bin/sync-profiles
 bin/process -t fixture/comments.txt lampepfl/dotty fixture/comments.json
 bin/gauge -o data.csv -p profiles/ci.plan 9999 master
 cat data.csv
-mkdir data && bin/csv -p profiles/fast.yml data.csv data/
+mkdir data && bin/csv -p profiles/exhaustivity.yml data.csv data/
 
