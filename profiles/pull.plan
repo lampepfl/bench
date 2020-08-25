@@ -7,46 +7,46 @@ set-key re2s
 measure $(find $PROG_HOME/tests/re2s/src -name *.scala)
 
 set-key implicit-cache
-measure $PROG_HOME/tests/implicit_cache.scala
+measure $PROG_HOME/dotty/tests/bench/implicit_cache.scala
 
 set-key implicit-scope-loop
-measure $PROG_HOME/tests/implicit-scope-loop.scala
+measure $PROG_HOME/dotty/tests/bench/implicit-scope-loop.scala
 
 set-key inductive-implicits
-measure $PROG_HOME/tests/inductive-implicits.scala
+measure $PROG_HOME/dotty/tests/bench/inductive-implicits.scala
 
 set-key i1535
-measure $PROG_HOME/tests/i1535.scala
+measure $PROG_HOME/dotty/tests/bench/i1535.scala
 
 set-key i1687
-measure $PROG_HOME/tests/i1687.scala
+measure $PROG_HOME/dotty/tests/bench/i1687.scala
 
 set-key empty-class
-measure $PROG_HOME/tests/empty-class.scala
+measure $PROG_HOME/dotty/tests/bench/empty-class.scala
 
 set-key empty-object
-measure $PROG_HOME/tests/empty-object.scala
+measure $PROG_HOME/dotty/tests/bench/empty-object.scala
 
 set-key empty-file
-measure $PROG_HOME/tests/empty-file.scala
+measure $PROG_HOME/dotty/tests/bench/empty-file.scala
 
 set-key patmatexhaust
-measure 20 40 3 $PROG_HOME/tests/patmatexhaust.scala
+measure 20 40 3 $PROG_HOME/dotty/tests/bench/patmatexhaust.scala
 
 set-key exhaustivity-I
-measure 20 40 3 $PROG_HOME/tests/exhaustivity-I.scala
+measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-I.scala
 
 set-key exhaustivity-S
-measure 20 40 3 $PROG_HOME/tests/exhaustivity-S.scala
+measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-S.scala
 
 set-key exhaustivity-T
-measure 20 40 3 $PROG_HOME/tests/exhaustivity-T.scala
+measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-T.scala
 
 set-key exhaustivity-V
-measure 20 40 3 $PROG_HOME/tests/exhaustivity-V.scala
+measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-V.scala
 
 set-key implicitNums
-measure $PROG_HOME/tests/implicitNums.scala
+measure $PROG_HOME/dotty/tests/bench/implicitNums.scala
 
 set-key stdlib213
 source $PROG_HOME/tests/scripts/stdlib213
