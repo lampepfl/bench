@@ -70,7 +70,14 @@ do
     # Achieve the above by
     # 1. remember the last scheduled commit
     # 2. schedule new jobs from the last scheduled commit
-    echo "bin/gauge $pr $commit && bin/deploy" > "$PROG_HOME/jobs/work-merge-$pr.job"
+    job="$PROG_HOME/jobs/work-merge-$pr.job"
+    test_sbt=$((RANDOM % 100 < 10))
+    echo "bin/gauge $pr $commit && bin/deploy" > "$job"
+
+    if [[ $test_sbt -eq 1 ]]; then
+      echo "bin/gauge -p profiles/sbt.plan $pr $commit && bin/deploy" >> "$job"
+    end
+
     echo $commit > "$LAST"
   fi
 done <<< "$merge_commits"
