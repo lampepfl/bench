@@ -4,8 +4,6 @@ charts:
       lines:
         - key:  dotty
           label: bootstrapped
-        - key:  dotty-sbt
-          label: with sbt phases
 
     - name: "scala stdlib-2.13"
       url: https://github.com/dotty-staging/scala/commits/stdLib213-dotty-community-build
@@ -29,9 +27,6 @@ charts:
 scripts:
     dotty:
         - measure -with-compiler $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
-
-    dotty-sbt:
-        - measure -with-compiler -Yforce-sbt-phases $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
 
     re2s:
         - measure $(find $PROG_HOME/tests/re2s/src -name *.scala)

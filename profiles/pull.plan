@@ -3,9 +3,6 @@ set -e
 set-key dotty
 measure -with-compiler $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
 
-set-key dotty-sbt
-measure -with-compiler -Yforce-sbt-phases $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
-
 set-key re2s
 measure $(find $PROG_HOME/tests/re2s/src -name *.scala)
 
