@@ -2,6 +2,6 @@ set -e
 
 mkdir -p "$PROG_HOME/tests/implicit_cache-out"
 
-compile -d "$PROG_HOME/tests/implicit_cache-out" "$PROG_HOME/tests/implicit_cache.scala"
+compile -d "$PROG_HOME/tests/implicit_cache-out" "$PROG_HOME/dotty/tests/bench/implicit_cache.scala"
 
 measure -from-tasty  -classpath "$PROG_HOME/tests/implicit_cache-out" Test A Foo

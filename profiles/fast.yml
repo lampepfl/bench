@@ -13,19 +13,19 @@ charts:
           label: bootstrapped
 
     - name: "empty class"
-      url: https://github.com/lampepfl/bench/blob/master/tests/empty-class.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/empty-class.scala
       lines:
         - key: empty-class
           label: bootstrapped
 
     - name: "empty object"
-      url: https://github.com/lampepfl/bench/blob/master/tests/empty-object.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/empty-object.scala
       lines:
         - key: empty-object
           label: bootstrapped
 
     - name: "empty file"
-      url: https://github.com/lampepfl/bench/blob/master/tests/empty-file.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/empty-file.scala
       lines:
         - key: empty-file
           label: bootstrapped
@@ -36,16 +36,16 @@ scripts:
         - measure $(find $PROG_HOME/tests/re2s/src -name *.scala)
 
     empty-class:
-        - measure $PROG_HOME/tests/empty-class.scala
+        - measure $PROG_HOME/dotty/tests/bench/empty-class.scala
 
     empty-object:
-        - measure $PROG_HOME/tests/empty-object.scala
+        - measure $PROG_HOME/dotty/tests/bench/empty-object.scala
 
     empty-file:
-        - measure $PROG_HOME/tests/empty-file.scala
+        - measure $PROG_HOME/dotty/tests/bench/empty-file.scala
 
     scalap:
-        - source $PROG_HOME/tests/scripts/scalap
+        - source $PROG_HOME/dotty/tests/bench/scripts/scalap
 
 
 config:
