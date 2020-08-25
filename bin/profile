@@ -65,40 +65,36 @@ def load_file(data, file)
   data
 end
 
-def generate_js(data)
-  File.open(ARGV[1], "w") do |f|
-    f.puts "var Bench = Bench || {}"
+def generate_js(data, io)
+  io.puts "var Bench = Bench || {}"
 
-    f.puts "Bench.charts = ["
-    charts = data["charts"] || []
+  io.puts "Bench.charts = ["
+  charts = data["charts"] || []
 
-    charts.each_with_index do |chart, index|
-      f.print chart.to_json
-      if index == charts.size - 1
-         f.puts
-      else
-         f.puts ","
-      end
+  charts.each_with_index do |chart, index|
+    io.print chart.to_json
+    if index == charts.size - 1
+        io.puts
+    else
+        io.puts ","
     end
+  end
 
-    f.puts "]"
+  io.puts "]"
 
-    if data.key?("config")
-      f.print "Bench.config = "
-      f.puts data["config"].to_json
-    end
+  if data.key?("config")
+    io.print "Bench.config = "
+    io.puts data["config"].to_json
   end
 end
 
-def generate_scripts(data)
-  File.open(ARGV[1], "w") do |f|
-    f.puts "set -e" # exit on error
-    f.puts
-    data["scripts"].each do |key, value|
-      f.puts "set-key #{key}"
-      f.puts value
-      f.puts
-    end
+def generate_scripts(data, io)
+  io.puts "set -e" # exit on error
+  io.puts
+  data["scripts"].each do |key, value|
+    io.puts "set-key #{key}"
+    io.puts value
+    io.puts
   end
 end
 
@@ -109,9 +105,13 @@ if __FILE__ == $0
   data = load_file({}, ARGV[0])
 
   if ARGV[1].end_with?(".js")
-    generate_js(data)
+    File.open(ARGV[1], "w") do |f|
+      generate_js(data, f)
+    end
   else
-    generate_scripts(data)
+    File.open(ARGV[1], "w") do |f|
+      generate_scripts(data, f)
+    end
   end
 
   puts "DONE\n"
