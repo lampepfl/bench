@@ -24,97 +24,97 @@ charts:
           label: bootstrapped
 
     - name: "implicit cache I"
-      url: https://github.com/lampepfl/bench/blob/master/tests/implicit_cache.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/implicit_cache.scala
       lines:
         - key: implicit-cache
           label: bootstrapped
 
     - name: "implicit cache II"
-      url: https://github.com/lampepfl/bench/blob/master/tests/implicitNums.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/implicitNums.scala
       lines:
         - key: implicitNums
           label: bootstrapped
 
     - name: "implicit scope loop"
-      url: https://github.com/lampepfl/bench/blob/master/tests/implicit-scope-loop.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/implicit-scope-loop.scala
       lines:
         - key: implicit-scope-loop
           label: bootstrapped
 
     - name: "inductive implicits"
-      url: https://github.com/lampepfl/bench/blob/master/tests/inductive-implicits.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/inductive-implicits.scala
       lines:
         - key: inductive-implicits
           label: bootstrapped
 
     - name: "exhaustivity check"
-      url: https://github.com/lampepfl/bench/blob/master/tests/patmatexhaust.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/patmatexhaust.scala
       lines:
         - key: patmatexhaust
           label: bootstrapped
 
     - name: "exhaustivity I"
-      url: https://github.com/lampepfl/bench/blob/master/tests/exhaustivity-I.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/exhaustivity-I.scala
       lines:
         - key: exhaustivity-I
           label: bootstrapped
 
     - name: "exhaustivity S"
-      url: https://github.com/lampepfl/bench/blob/master/tests/exhaustivity-S.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/exhaustivity-S.scala
       lines:
         - key: exhaustivity-S
           label: bootstrapped
 
     - name: "exhaustivity T"
-      url: https://github.com/lampepfl/bench/blob/master/tests/exhaustivity-T.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/exhaustivity-T.scala
       lines:
         - key: exhaustivity-T
           label: bootstrapped
 
     - name: "exhaustivity V"
-      url: https://github.com/lampepfl/bench/blob/master/tests/exhaustivity-V.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/exhaustivity-V.scala
       lines:
         - key: exhaustivity-V
           label: bootstrapped
 
     - name: "issue #1535"
-      url: https://github.com/lampepfl/bench/blob/master/tests/i535.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/i535.scala
       lines:
         - key: i1535
           label: bootstrapped
 
     - name: "issue #1687"
-      url: https://github.com/lampepfl/bench/blob/master/tests/i1687.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/i1687.scala
       lines:
         - key: i1687
           label: bootstrapped
 
     - name: "empty class"
-      url: https://github.com/lampepfl/bench/blob/master/tests/empty-class.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/empty-class.scala
       lines:
         - key: empty-class
           label: bootstrapped
 
     - name: "empty object"
-      url: https://github.com/lampepfl/bench/blob/master/tests/empty-object.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/empty-object.scala
       lines:
         - key: empty-object
           label: bootstrapped
 
     - name: "empty file"
-      url: https://github.com/lampepfl/bench/blob/master/tests/empty-file.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/empty-file.scala
       lines:
         - key: empty-file
           label: bootstrapped
 
     - name: "Inline a quote"
-      url: https://github.com/lampepfl/bench/blob/master/tests/power-macro/PowerInlined-1.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/power-macro/PowerInlined-1.scala
       lines:
         - key: power-macro-power-inlined-1
           label: bootstrapped
 
     - name: "Inline 1k quotes"
-      url: https://github.com/lampepfl/bench/blob/master/tests/power-macro/PowerInlined-1k.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/power-macro/PowerInlined-1k.scala
       lines:
         - key: power-macro-power-inlined-1k
           label: bootstrapped
@@ -127,46 +127,46 @@ scripts:
         - measure $(find $PROG_HOME/tests/re2s/src -name *.scala)
 
     implicit-cache:
-        - measure $PROG_HOME/tests/implicit_cache.scala
+        - measure $PROG_HOME/dotty/tests/bench/implicit_cache.scala
 
     implicit-scope-loop:
-        - measure $PROG_HOME/tests/implicit-scope-loop.scala
+        - measure $PROG_HOME/dotty/tests/bench/implicit-scope-loop.scala
 
     inductive-implicits:
-        - measure $PROG_HOME/tests/inductive-implicits.scala
+        - measure $PROG_HOME/dotty/tests/bench/inductive-implicits.scala
 
     i1535:
-        - measure $PROG_HOME/tests/i1535.scala
+        - measure $PROG_HOME/dotty/tests/bench/i1535.scala
 
     i1687:
-        - measure $PROG_HOME/tests/i1687.scala
+        - measure $PROG_HOME/dotty/tests/bench/i1687.scala
 
     empty-class:
-        - measure $PROG_HOME/tests/empty-class.scala
+        - measure $PROG_HOME/dotty/tests/bench/empty-class.scala
 
     empty-object:
-        - measure $PROG_HOME/tests/empty-object.scala
+        - measure $PROG_HOME/dotty/tests/bench/empty-object.scala
 
     empty-file:
-        - measure $PROG_HOME/tests/empty-file.scala
+        - measure $PROG_HOME/dotty/tests/bench/empty-file.scala
 
     patmatexhaust:
-        - measure 20 40 3 $PROG_HOME/tests/patmatexhaust.scala
+        - measure 20 40 3 $PROG_HOME/dotty/tests/bench/patmatexhaust.scala
 
     exhaustivity-I:
-        - measure 20 40 3 $PROG_HOME/tests/exhaustivity-I.scala
+        - measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-I.scala
 
     exhaustivity-S:
-        - measure 20 40 3 $PROG_HOME/tests/exhaustivity-S.scala
+        - measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-S.scala
 
     exhaustivity-T:
-        - measure 20 40 3 $PROG_HOME/tests/exhaustivity-T.scala
+        - measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-T.scala
 
     exhaustivity-V:
-        - measure 20 40 3 $PROG_HOME/tests/exhaustivity-V.scala
+        - measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-V.scala
 
     implicitNums:
-        - measure $PROG_HOME/tests/implicitNums.scala
+        - measure $PROG_HOME/dotty/tests/bench/implicitNums.scala
 
     stdlib213:
         - source $PROG_HOME/tests/scripts/stdlib213

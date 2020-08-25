@@ -1,6 +1,6 @@
 charts:
     - name: "implicit cache I"
-      url: https://github.com/lampepfl/bench/blob/master/tests/implicit_cache.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/implicit_cache.scala
       lines:
         - key: implicit-cache
           label: bootstrapped
@@ -8,7 +8,7 @@ charts:
           label: from tasty
 
     - name: "implicit cache II"
-      url: https://github.com/lampepfl/bench/blob/master/tests/implicitNums.scala
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/implicitNums.scala
       lines:
         - key: implicitNums
           label: bootstrapped
