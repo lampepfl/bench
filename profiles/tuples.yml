@@ -29,6 +29,18 @@ charts:
         - key: tuple22-size
           label: bootstrapped
 
+    - name: "Tuple reverse (Runtime)"
+      url: https://github.com/lampepfl/dotty/blob/master/bench-run/src/main/scala/dotty/tools/benchmarks/tuples/TupleOps.scala#L59
+      lines:
+        - key: tuple-reverse
+          label: bootstrapped
+
+    - name: "Tuple flatMap (Runtime)"
+      url: https://github.com/lampepfl/dotty/blob/master/bench-run/src/main/scala/dotty/tools/benchmarks/tuples/TupleOps.scala#L64
+      lines:
+        - key: tuple-flatMap
+          label: bootstrapped
+
 scripts:
 
     tuple22-creation-apply:
@@ -45,6 +57,12 @@ scripts:
 
     tuple22-size:
         - measure $PROG_HOME/dotty/tests/bench/tuple22-size.scala
+
+    tuple-reverse:
+        - measure-run TupleOps.reverse
+
+    tuple-flatMap:
+        - measure-run TupleOps.flatMap
 
 config:
     pr_base_url: "https://github.com/lampepfl/dotty/pull/"
