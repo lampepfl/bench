@@ -2,9 +2,10 @@ includes:
     - projects.yml
     - implicits.yml
     - exhaustivity.yml
-    - quotes.yml
     - misc.yml
     - empty.yml
+    - quotes.yml
+    - tuples.yml
 
 
 config:
