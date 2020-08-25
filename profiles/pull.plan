@@ -3,17 +3,23 @@ set -e
 set-key dotty
 measure -with-compiler $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
 
+set-key dotty-sbt
+measure -with-compiler -Yforce-sbt-phases $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
+
 set-key re2s
 measure $(find $PROG_HOME/tests/re2s/src -name *.scala)
 
-set-key implicit-cache
-measure $PROG_HOME/dotty/tests/bench/implicit_cache.scala
+set-key scalap
+source $PROG_HOME/tests/scripts/scalap
 
-set-key implicit-scope-loop
-measure $PROG_HOME/dotty/tests/bench/implicit-scope-loop.scala
+set-key stdlib213
+source $PROG_HOME/tests/scripts/stdlib213
 
-set-key inductive-implicits
-measure $PROG_HOME/dotty/tests/bench/inductive-implicits.scala
+set-key power-macro-power-inlined-1
+source $PROG_HOME/tests/scripts/power-macro-1
+
+set-key power-macro-power-inlined-1k
+source $PROG_HOME/tests/scripts/power-macro-1k
 
 set-key i1535
 measure $PROG_HOME/dotty/tests/bench/i1535.scala
@@ -29,34 +35,4 @@ measure $PROG_HOME/dotty/tests/bench/empty-object.scala
 
 set-key empty-file
 measure $PROG_HOME/dotty/tests/bench/empty-file.scala
-
-set-key patmatexhaust
-measure 20 40 3 $PROG_HOME/dotty/tests/bench/patmatexhaust.scala
-
-set-key exhaustivity-I
-measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-I.scala
-
-set-key exhaustivity-S
-measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-S.scala
-
-set-key exhaustivity-T
-measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-T.scala
-
-set-key exhaustivity-V
-measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-V.scala
-
-set-key implicitNums
-measure $PROG_HOME/dotty/tests/bench/implicitNums.scala
-
-set-key stdlib213
-source $PROG_HOME/tests/scripts/stdlib213
-
-set-key scalap
-source $PROG_HOME/tests/scripts/scalap
-
-set-key power-macro-power-inlined-1
-source $PROG_HOME/tests/scripts/power-macro-1
-
-set-key power-macro-power-inlined-1k
-source $PROG_HOME/tests/scripts/power-macro-1k
 

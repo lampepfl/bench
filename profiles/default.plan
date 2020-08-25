@@ -9,6 +9,12 @@ measure -with-compiler -Yforce-sbt-phases $(find $PROG_HOME/dotty/compiler/src/d
 set-key re2s
 measure $(find $PROG_HOME/tests/re2s/src -name *.scala)
 
+set-key scalap
+source $PROG_HOME/tests/scripts/scalap
+
+set-key stdlib213
+source $PROG_HOME/tests/scripts/stdlib213
+
 set-key implicit-cache
 measure $PROG_HOME/dotty/tests/bench/implicit_cache.scala
 
@@ -21,20 +27,11 @@ measure $PROG_HOME/dotty/tests/bench/implicit-scope-loop.scala
 set-key inductive-implicits
 measure $PROG_HOME/dotty/tests/bench/inductive-implicits.scala
 
-set-key i1535
-measure $PROG_HOME/dotty/tests/bench/i1535.scala
+set-key implicitNums
+measure $PROG_HOME/dotty/tests/bench/implicitNums.scala
 
-set-key i1687
-measure $PROG_HOME/dotty/tests/bench/i1687.scala
-
-set-key empty-class
-measure $PROG_HOME/dotty/tests/bench/empty-class.scala
-
-set-key empty-object
-measure $PROG_HOME/dotty/tests/bench/empty-object.scala
-
-set-key empty-file
-measure $PROG_HOME/dotty/tests/bench/empty-file.scala
+set-key implicitNums-from-tasty
+source $PROG_HOME/tests/scripts/implicitNums-from-tasty
 
 set-key patmatexhaust
 measure 20 40 3 $PROG_HOME/dotty/tests/bench/patmatexhaust.scala
@@ -54,23 +51,26 @@ measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-V.scala
 set-key exhaustivity-mips
 measure 20 40 3 $PROG_HOME/dotty/tests/patmat/i7186.scala
 
-set-key implicitNums
-measure $PROG_HOME/dotty/tests/bench/implicitNums.scala
+set-key i1535
+measure $PROG_HOME/dotty/tests/bench/i1535.scala
 
-set-key implicitNums-from-tasty
-source $PROG_HOME/tests/scripts/implicitNums-from-tasty
+set-key i1687
+measure $PROG_HOME/dotty/tests/bench/i1687.scala
 
-set-key scalap
-source $PROG_HOME/tests/scripts/scalap
+set-key empty-class
+measure $PROG_HOME/dotty/tests/bench/empty-class.scala
+
+set-key empty-object
+measure $PROG_HOME/dotty/tests/bench/empty-object.scala
+
+set-key empty-file
+measure $PROG_HOME/dotty/tests/bench/empty-file.scala
 
 set-key power-macro-power-inlined-1
 source $PROG_HOME/tests/scripts/power-macro-1
 
 set-key power-macro-power-inlined-1k
 source $PROG_HOME/tests/scripts/power-macro-1k
-
-set-key stdlib213
-source $PROG_HOME/tests/scripts/stdlib213
 
 set-key tuple22-creation-apply
 measure $PROG_HOME/dotty/tests/bench/tuple22-creation-apply.scala
