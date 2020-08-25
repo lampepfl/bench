@@ -10,14 +10,64 @@
 require 'yaml'
 require 'json'
 
-Profile = YAML.load_file(ARGV[0])
+def include_file(data, file)
+  sub_data = YAML.load_file(file)
 
-def generate_js
+  # include file
+  includes = sub_data["includes"] || []
+  includes.each do |file|
+    data = include_file(data, file)
+  end
+
+  # check meta-propertis
+  if sub_data["config"]
+    if data["config"] == nil
+      data["config"] = sub_data["config"]
+    else
+      sub_data["config"].each do |key, value|
+        current = data["config"][key]
+        if current == nil
+          data["config"][key] = value
+        elsif current != value
+          raise "incompatible key: current = #{current}, found = #{value} in file #{file}"
+        end
+      end
+    end
+  end
+
+  lines = {}
+
+  # check lines
+  (sub_data["charts"] || []).each do |chart|
+    raise "lines cannot be empty, chart = #{chart["name"]}, file = #{file}" unless chart["lines"] && chart["lines"].size > 0
+
+    chart["lines"].each do |line|
+      raise "key = #{key} already included, file = #{file}" if lines[line["key"]]
+      lines[line["key"]] = true
+    end
+
+    data["charts"] << chart
+  end
+
+  # check no conflict in keys
+  (sub_data["scripts"] || {}).each do |key, value|
+    raise "key = #{key} already included" if (data["scripts"] || {})[key]
+    lines.delete(key)
+    data["scripts"][key] = value
+  end
+
+  # check that scripts are defined for declared lines
+  lines.each do |key, value|
+    raise "scripts not defined for #{key}, file = #{file}" if data["scripts"] && data["scripts"][key]
+  end
+end
+
+def generate_js(data)
   File.open(ARGV[1], "w") do |f|
     f.puts "var Bench = Bench || {}"
 
     f.puts "Bench.charts = ["
-    charts = Profile["charts"] || []
+    charts = data["charts"] || []
 
     charts.each_with_index do |chart, index|
       f.print chart.to_json
@@ -30,18 +80,18 @@ def generate_js
 
     f.puts "]"
 
-    if Profile.key?("config")
+    if data.key?("config")
       f.print "Bench.config = "
-      f.puts Profile["config"].to_json
+      f.puts data["config"].to_json
     end
   end
 end
 
-def generate_scripts
+def generate_scripts(data)
   File.open(ARGV[1], "w") do |f|
     f.puts "set -e" # exit on error
     f.puts
-    Profile["scripts"].each do |key, value|
+    data["scripts"].each do |key, value|
       f.puts "set-key #{key}"
       f.puts value
       f.puts
@@ -49,8 +99,10 @@ def generate_scripts
   end
 end
 
+data = include_file({}, ARGV[0])
+
 if ARGV[1].end_with?(".js")
-  generate_js
+  generate_js(data)
 else
-  generate_scripts
+  generate_scripts(data)
 end
