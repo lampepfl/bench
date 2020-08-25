@@ -29,7 +29,7 @@ def include_file(data, file)
         if current == nil
           data["config"][key] = value
         elsif current != value
-          raise "incompatible key: current = #{current}, found = #{value} in file #{file}"
+          raise "incompatible key: current = #{current}, found = #{value}, file #{file}"
         end
       end
     end
@@ -51,7 +51,7 @@ def include_file(data, file)
 
   # check no conflict in keys
   (sub_data["scripts"] || {}).each do |key, value|
-    raise "key = #{key} already included" if (data["scripts"] || {})[key]
+    raise "key = #{key} already included, file = #{file}" if (data["scripts"] || {})[key]
     lines.delete(key)
     data["scripts"][key] = value
   end
