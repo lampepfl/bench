@@ -15,8 +15,9 @@ def include_file(data, file)
 
   # include file
   includes = sub_data["includes"] || []
-  includes.each do |file|
-    data = include_file(data, file)
+  includes.each do |path|
+    path = File.expand_path(path, File.dirname(file)) # expand relative path
+    data = include_file(data, path)
   end
 
   # check meta-propertis
