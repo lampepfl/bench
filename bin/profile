@@ -11,6 +11,7 @@ require 'yaml'
 require 'json'
 
 def load_file(data, file)
+  puts "loading #{file}"
   sub_data = YAML.load_file(file)
 
   # include file
@@ -60,6 +61,8 @@ def load_file(data, file)
   lines.each do |key, value|
     raise "scripts not defined for #{key}, file = #{file}" if data["scripts"][key]
   end
+
+  data
 end
 
 def generate_js(data)
