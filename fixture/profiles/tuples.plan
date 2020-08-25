@@ -1,0 +1,23 @@
+set -e
+
+set-key tuple22-creation-apply
+measure $PROG_HOME/dotty/tests/bench/tuple22-creation-apply.scala
+
+set-key tuple22-creation-cons
+measure $PROG_HOME/dotty/tests/bench/tuple22-creation-cons.scala
+
+set-key tuple22-tails
+measure $PROG_HOME/dotty/tests/bench/tuple22-tails.scala
+
+set-key tuple22-apply
+measure $PROG_HOME/dotty/tests/bench/tuple22-apply.scala
+
+set-key tuple22-size
+measure $PROG_HOME/dotty/tests/bench/tuple22-size.scala
+
+set-key tuple-reverse
+measure-run TupleOps.reverse
+
+set-key tuple-flatMap
+measure-run TupleOps.flatMap
+

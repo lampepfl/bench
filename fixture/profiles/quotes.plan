@@ -1,0 +1,8 @@
+set -e
+
+set-key power-macro-power-inlined-1
+source $PROG_HOME/tests/scripts/power-macro-1
+
+set-key power-macro-power-inlined-1k
+source $PROG_HOME/tests/scripts/power-macro-1k
+
