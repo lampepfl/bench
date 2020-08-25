@@ -10,29 +10,28 @@
 require 'yaml'
 require 'json'
 
-def include_file(data, file)
+def load_file(data, file)
   sub_data = YAML.load_file(file)
 
   # include file
   includes = sub_data["includes"] || []
   includes.each do |path|
     path = File.expand_path(path, File.dirname(file)) # expand relative path
-    data = include_file(data, path)
+    data = load_file(data, path)
   end
 
+  # init
+  data["config"] ||= {}
+  data["charts"] ||= []
+  data["scripts"] ||= {}
+
   # check meta-propertis
-  if sub_data["config"]
-    if data["config"] == nil
-      data["config"] = sub_data["config"]
-    else
-      sub_data["config"].each do |key, value|
-        current = data["config"][key]
-        if current == nil
-          data["config"][key] = value
-        elsif current != value
-          raise "incompatible key: current = #{current}, found = #{value}, file #{file}"
-        end
-      end
+  (sub_data["config"] || {}).each do |key, value|
+    current = data["config"][key]
+    if current == nil
+      data["config"][key] = value
+    elsif current != value
+      raise "incompatible key: current = #{current}, found = #{value}, file #{file}"
     end
   end
 
@@ -52,14 +51,14 @@ def include_file(data, file)
 
   # check no conflict in keys
   (sub_data["scripts"] || {}).each do |key, value|
-    raise "key = #{key} already included, file = #{file}" if (data["scripts"] || {})[key]
+    raise "key = #{key} already included, file = #{file}" if data["scripts"][key]
     lines.delete(key)
     data["scripts"][key] = value
   end
 
   # check that scripts are defined for declared lines
   lines.each do |key, value|
-    raise "scripts not defined for #{key}, file = #{file}" if data["scripts"] && data["scripts"][key]
+    raise "scripts not defined for #{key}, file = #{file}" if data["scripts"][key]
   end
 end
 
@@ -100,7 +99,7 @@ def generate_scripts(data)
   end
 end
 
-data = include_file({}, ARGV[0])
+data = load_file({}, ARGV[0])
 
 if ARGV[1].end_with?(".js")
   generate_js(data)
