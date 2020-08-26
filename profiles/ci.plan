@@ -1,11 +1,5 @@
 set -e
 
-set-key dotty
-measure 1 1 1 -with-compiler $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
-
-set-key stdlib213
-source $PROG_HOME/tests/scripts/stdlib213
-
 set-key re2s
 measure 1 1 1 $(find $PROG_HOME/tests/re2s/src -name *.scala)
 

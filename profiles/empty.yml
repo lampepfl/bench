@@ -1,17 +1,5 @@
 charts:
 
-    - name: scalap
-      url: https://github.com/lampepfl/bench/blob/master/tests/scalap
-      lines:
-        - key: scalap
-          label: bootstrapped
-
-    - name: re2
-      url: https://github.com/lampepfl/bench/blob/master/tests/re2s
-      lines:
-        - key: re2s
-          label: bootstrapped
-
     - name: "empty class"
       url: https://github.com/lampepfl/dotty/blob/master/tests/bench/empty-class.scala
       lines:
@@ -32,9 +20,6 @@ charts:
 
 scripts:
 
-    re2s:
-        - measure $(find $PROG_HOME/tests/re2s/src -name *.scala)
-
     empty-class:
         - measure $PROG_HOME/dotty/tests/bench/empty-class.scala
 
@@ -43,10 +28,6 @@ scripts:
 
     empty-file:
         - measure $PROG_HOME/dotty/tests/bench/empty-file.scala
-
-    scalap:
-        - source $PROG_HOME/dotty/tests/bench/scripts/scalap
-
 
 config:
     pr_base_url: "https://github.com/lampepfl/dotty/pull/"

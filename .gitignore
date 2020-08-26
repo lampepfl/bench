@@ -82,3 +82,5 @@ logs/*.out
 
 .sbt/
 .ivy2/
+*.plan
+*.js

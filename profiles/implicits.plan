@@ -1,0 +1,20 @@
+set -e
+
+set-key implicit-cache
+measure $PROG_HOME/dotty/tests/bench/implicit_cache.scala
+
+set-key implicit-cache-from-tasty
+source $PROG_HOME/tests/scripts/implicit-cache-from-tasty
+
+set-key implicit-scope-loop
+measure $PROG_HOME/dotty/tests/bench/implicit-scope-loop.scala
+
+set-key inductive-implicits
+measure $PROG_HOME/dotty/tests/bench/inductive-implicits.scala
+
+set-key implicitNums
+measure $PROG_HOME/dotty/tests/bench/implicitNums.scala
+
+set-key implicitNums-from-tasty
+source $PROG_HOME/tests/scripts/implicitNums-from-tasty
+

@@ -1,0 +1,20 @@
+set -e
+
+set-key patmatexhaust
+measure 20 40 3 $PROG_HOME/dotty/tests/bench/patmatexhaust.scala
+
+set-key exhaustivity-I
+measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-I.scala
+
+set-key exhaustivity-S
+measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-S.scala
+
+set-key exhaustivity-T
+measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-T.scala
+
+set-key exhaustivity-V
+measure 20 40 3 $PROG_HOME/dotty/tests/bench/exhaustivity-V.scala
+
+set-key exhaustivity-mips
+measure 20 40 3 $PROG_HOME/dotty/tests/patmat/i7186.scala
+

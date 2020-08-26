@@ -1,8 +1,0 @@
-set -e
-
-set-key tuple-reverse
-measure-run TupleOps.reverse
-
-set-key tuple-flatMap
-measure-run TupleOps.flatMap
-

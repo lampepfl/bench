@@ -10,47 +10,109 @@
 require 'yaml'
 require 'json'
 
-Profile = YAML.load_file(ARGV[0])
+def load_file(data, file)
+  puts "loading #{file}"
+  sub_data = YAML.load_file(file)
 
-def generate_js
-  File.open(ARGV[1], "w") do |f|
-    f.puts "var Bench = Bench || {}"
+  # include file
+  includes = sub_data["includes"] || []
+  includes.each do |path|
+    path = File.expand_path(path, File.dirname(file)) # expand relative path
+    data = load_file(data, path)
+  end
 
-    f.puts "Bench.charts = ["
-    charts = Profile["charts"] || []
+  # init
+  data["config"] ||= {}
+  data["charts"] ||= []
+  data["scripts"] ||= {}
 
-    charts.each_with_index do |chart, index|
-      f.print chart.to_json
-      if index == charts.size - 1
-         f.puts
-      else
-         f.puts ","
-      end
+  # check meta-propertis
+  (sub_data["config"] || {}).each do |key, value|
+    current = data["config"][key]
+    if current == nil
+      data["config"][key] = value
+    elsif current != value
+      raise "incompatible key: current = #{current}, found = #{value}, file #{file}"
+    end
+  end
+
+  lines = {}
+
+  # check lines
+  (sub_data["charts"] || []).each do |chart|
+    raise "lines cannot be empty, chart = #{chart["name"]}, file = #{file}" unless chart["lines"] && chart["lines"].size > 0
+
+    chart["lines"].each do |line|
+      raise "key = #{key} already included, file = #{file}" if lines[line["key"]]
+      lines[line["key"]] = true
     end
 
-    f.puts "]"
+    data["charts"] << chart
+  end
 
-    if Profile.key?("config")
-      f.print "Bench.config = "
-      f.puts Profile["config"].to_json
+  # check no conflict in keys
+  (sub_data["scripts"] || {}).each do |key, value|
+    raise "key = #{key} already included, file = #{file}" if data["scripts"][key]
+    lines.delete(key)
+    data["scripts"][key] = value
+  end
+
+  # check that scripts are defined for declared lines
+  lines.each do |key, value|
+    raise "scripts not defined for #{key}, file = #{file}" if data["scripts"][key]
+  end
+
+  data
+end
+
+def generate_js(data, io)
+  io.puts "var Bench = Bench || {}"
+
+  io.puts "Bench.charts = ["
+  charts = data["charts"] || []
+
+  charts.each_with_index do |chart, index|
+    io.print chart.to_json
+    if index == charts.size - 1
+        io.puts
+    else
+        io.puts ","
     end
+  end
+
+  io.puts "]"
+
+  if data.key?("config")
+    io.print "Bench.config = "
+    io.puts data["config"].to_json
   end
 end
 
-def generate_scripts
-  File.open(ARGV[1], "w") do |f|
-    f.puts "set -e" # exit on error
-    f.puts
-    Profile["scripts"].each do |key, value|
-      f.puts "set-key #{key}"
-      f.puts value
-      f.puts
-    end
+def generate_scripts(data, io)
+  io.puts "set -e" # exit on error
+  io.puts
+  data["scripts"].each do |key, value|
+    io.puts "set-key #{key}"
+    io.puts value
+    io.puts
   end
 end
 
-if ARGV[1].end_with?(".js")
-  generate_js
-else
-  generate_scripts
+
+if __FILE__ == $0
+  puts "\ngenerating #{ARGV[1]} from #{ARGV[0]}"
+
+  data = load_file({}, ARGV[0])
+
+  if ARGV[1].end_with?(".js")
+    File.open(ARGV[1], "w") do |f|
+      generate_js(data, f)
+    end
+  else
+    File.open(ARGV[1], "w") do |f|
+      generate_scripts(data, f)
+    end
+  end
+
+  puts "DONE\n"
 end
