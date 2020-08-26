@@ -71,9 +71,10 @@ do
     # 1. remember the last scheduled commit
     # 2. schedule new jobs from the last scheduled commit
     job="$PROG_HOME/jobs/work-merge-$pr.job"
-    test_sbt=$((RANDOM % 100 < 10))
     echo "bin/gauge $pr $commit && bin/deploy" > "$job"
 
+    # test dotty-sbt every 10 PRs on average
+    test_sbt=$((RANDOM % 100 < 10))
     if [[ $test_sbt -eq 1 ]]; then
       echo "bin/gauge -p profiles/sbt.plan $pr $commit && bin/deploy" >> "$job"
     end
