@@ -18,6 +18,9 @@ source $PROG_HOME/tests/scripts/power-macro-1
 set-key power-macro-power-inlined-1k
 source $PROG_HOME/tests/scripts/power-macro-1k
 
+set-key quote-string-interpolation-matching
+source $PROG_HOME/tests/scripts/quote-string-interpolation-matching
+
 set-key i1535
 measure $PROG_HOME/dotty/tests/bench/i1535.scala
 

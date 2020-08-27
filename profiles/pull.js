@@ -6,6 +6,7 @@ Bench.charts = [
 {"name":"re2","url":"https://github.com/lampepfl/bench/blob/master/tests/re2s","lines":[{"key":"re2s","label":"bootstrapped"}]},
 {"name":"Inline a quote","url":"https://github.com/lampepfl/dotty/blob/master/tests/bench/power-macro/PowerInlined-1.scala","lines":[{"key":"power-macro-power-inlined-1","label":"bootstrapped"}]},
 {"name":"Inline 1k quotes","url":"https://github.com/lampepfl/dotty/blob/master/tests/bench/power-macro/PowerInlined-1k.scala","lines":[{"key":"power-macro-power-inlined-1k","label":"bootstrapped"}]},
+{"name":"Quote String interpolation matching","url":"https://github.com/lampepfl/dotty/blob/master/tests/bench/string-interpolation-macro/Test.scala","lines":[{"key":"quote-string-interpolation-matching","label":"bootstrapped"}]},
 {"name":"issue #1535","url":"https://github.com/lampepfl/dotty/blob/master/tests/bench/i1535.scala","lines":[{"key":"i1535","label":"bootstrapped"}]},
 {"name":"issue #1687","url":"https://github.com/lampepfl/dotty/blob/master/tests/bench/i1687.scala","lines":[{"key":"i1687","label":"bootstrapped"}]},
 {"name":"empty class","url":"https://github.com/lampepfl/dotty/blob/master/tests/bench/empty-class.scala","lines":[{"key":"empty-class","label":"bootstrapped"}]},

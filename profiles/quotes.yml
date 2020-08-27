@@ -11,6 +11,12 @@ charts:
         - key: power-macro-power-inlined-1k
           label: bootstrapped
 
+    - name: "Quote String interpolation matching"
+      url: https://github.com/lampepfl/dotty/blob/master/tests/bench/string-interpolation-macro/Test.scala
+      lines:
+        - key: quote-string-interpolation-matching
+          label: bootstrapped
+
 scripts:
 
     power-macro-power-inlined-1:
@@ -19,6 +25,8 @@ scripts:
     power-macro-power-inlined-1k:
         - source $PROG_HOME/tests/scripts/power-macro-1k
 
+    quote-string-interpolation-matching:
+        - source $PROG_HOME/tests/scripts/quote-string-interpolation-matching
 
 config:
     pr_base_url: "https://github.com/lampepfl/dotty/pull/"
