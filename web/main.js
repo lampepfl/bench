@@ -175,8 +175,17 @@ window.showCommit = function () {
     var options = defaultOptions();
     options.xaxis.tickmode = "auto";
 
+    const x_data = data[0].x;
+    const y_data = data[0].y;
+
     options.xaxis.autorange = false;
-    options.xaxis.range = [data[0].x.length - 100, data[0].x.length];
+    options.xaxis.range = [x_data.length - 100, x_data.length];
+
+    var max_y = 0;
+    for (let i = y_data.length - 100; i < y_data.length; i++) {
+      max_y = Math.max(max_y, y_data[i]);
+    }
+    options.yaxis.range = [0, max_y];
 
     options.xaxis.customTickFn = function(i) {
       if (i >= 0 && i < data[0].objects.length) {
