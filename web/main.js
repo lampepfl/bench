@@ -185,6 +185,7 @@ window.showCommit = function () {
     for (let i = y_data.length - 100; i < y_data.length; i++) {
       max_y = Math.max(max_y, y_data[i]);
     }
+    options.yaxis.autorange = false;
     options.yaxis.range = [0, max_y];
 
     options.xaxis.customTickFn = function(i) {
