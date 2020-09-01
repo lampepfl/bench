@@ -77,7 +77,7 @@ do
     test_sbt=$((RANDOM % 100 < 10))
     if [[ $test_sbt -eq 1 ]]; then
       echo "bin/gauge -p profiles/sbt.plan $pr $commit && bin/deploy" >> "$job"
-    end
+    fi
 
     echo $commit > "$LAST"
   fi
