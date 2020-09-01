@@ -182,12 +182,15 @@ window.showCommit = function () {
     options.xaxis.range = [x_data.length - 100, x_data.length];
 
     var max_y = 0;
+    var min_y = y_data[0];
     for (let i = y_data.length - 100; i < y_data.length; i++) {
       max_y = Math.max(max_y, y_data[i]);
+      min_y = Math.min(min_y, y_data[i]);
     }
-    max_y *= 1.2; // Give a small margin on top to not crop of highest dots
+    max_y *= 1.1;              // Give a small margin on top to not crop of highest dots
+    min_y *= 0.9; // Give a small margin at bottom
     options.yaxis.autorange = false;
-    options.yaxis.range = [0, max_y];
+    options.yaxis.range = [min_y, max_y];
 
     options.xaxis.customTickFn = function(i) {
       if (i >= 0 && i < data[0].objects.length) {
