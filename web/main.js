@@ -187,9 +187,8 @@ window.showCommit = function () {
       max_y = Math.max(max_y, y_data[i]);
       min_y = Math.min(min_y, y_data[i]);
     }
-    var delta = max_y - min_y;
-    max_y = max_y + delta;              // Give a small margin on top to not crop of highest dots
-    min_y = Math.max(min_y - delta, 0); // Give a small margin at bottom
+    max_y *= 1.1;              // Give a small margin on top to not crop of highest dots
+    min_y *= 0.9; // Give a small margin at bottom
     options.yaxis.autorange = false;
     options.yaxis.range = [min_y, max_y];
 
