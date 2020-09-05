@@ -178,17 +178,19 @@ window.showCommit = function () {
     const x_data = data[0].x;
     const y_data = data[0].y;
 
+    let range = x_data.length > 100 ? 100 : x_data.length;
+
     options.xaxis.autorange = false;
-    options.xaxis.range = [x_data.length - 100, x_data.length];
+    options.xaxis.range = [x_data.length - range, x_data.length];
 
     var max_y = 0;
     var min_y = y_data[0];
-    for (let i = y_data.length - 100; i < y_data.length; i++) {
+    for (let i = y_data.length - range; i < y_data.length; i++) {
       max_y = Math.max(max_y, y_data[i]);
       min_y = Math.min(min_y, y_data[i]);
     }
-    max_y *= 1.1;              // Give a small margin on top to not crop of highest dots
-    min_y *= 0.9; // Give a small margin at bottom
+    max_y *= 1.1;              // Give a small margin on top
+    min_y *= 0.9;              // Give a small margin at bottom
     options.yaxis.autorange = false;
     options.yaxis.range = [min_y, max_y];
 
