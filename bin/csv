@@ -9,7 +9,9 @@
 require 'csv'
 require 'optparse'
 require 'json'
-require 'yaml'
+
+require_relative './load_profile'
+
 
 options = {}
 OptionParser.new do |opts|
@@ -54,7 +56,7 @@ CSV.foreach(csv_file) do |row|
 end
 
 if options.key?(:profile)
-  profile = YAML.load_file(options[:profile])
+  profile = load_profile(options[:profile])
 else
   profile = nil
 end

@@ -23,3 +23,5 @@ bin/gauge -o data.csv -p profiles/ci.plan 9999 master
 cat data.csv
 mkdir data && bin/csv -p profiles/exhaustivity.yml data.csv data/
 
+bin/csv -p fixture/profiles/projects.yml fixture/data.csv fixture/
+diff fixture/dotty.json fixture/dotty-check.json
