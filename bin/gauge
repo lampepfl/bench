@@ -76,7 +76,7 @@ LOG="$PROG_HOME/logs/pr-$PR-$COMMIT.out"
 
 cd "$PROG_HOME/dotty"
 
-line=$(git show --no-patch --pretty=format:'%h,%an,%ad,%s' $COMMIT)
+line=$(git show --no-patch --pretty=format:'%h,%an,%aI,%s' $COMMIT)
 author=$(echo $line | cut -d',' -f2)
 time=$(echo $line | cut -d',' -f3)
 
