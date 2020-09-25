@@ -178,7 +178,7 @@ do
   cd $PROG_HOME/dotty
 
   # do a local merge
-  commit_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")   # use current time so the point appear last
+  commit_time=$(date +"%Y-%m-%dT%H:%M:%S%z")   # use current time so the point appear last
   short_hash=$(git rev-parse --short $origin_commit)
 
   git reset --hard origin/master
@@ -222,4 +222,3 @@ Visit $WEB_URL/$SESSION_DIR/ to see the changes.
 Benchmarks is based on merging with master ($master_hash)"
 
 ghi comment $PR -m "$message" -- $REPO
-

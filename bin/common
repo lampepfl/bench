@@ -34,7 +34,7 @@ Please check the log file for more details: $LOG_URL/$(basename $LOG)"
         exit 1
       fi
     else
-      echo "$key, $pr, $time, $commit, $(date -u +"%Y-%m-%dT%H:%M:%SZ"), $warmups, $runs_flat" >> "$FILE"
+      echo "$key, $pr, $time, $commit, $(date +"%Y-%m-%dT%H:%M:%S%z"), $warmups, $runs_flat" >> "$FILE"
     fi
   fi
 }
