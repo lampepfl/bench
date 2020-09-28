@@ -1,6 +1,7 @@
 includes:
     - projects.yml
     - implicits.yml
+    - typing.yml
     - exhaustivity.yml
     - misc.yml
     - empty.yml

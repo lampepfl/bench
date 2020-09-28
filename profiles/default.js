@@ -8,6 +8,7 @@ Bench.charts = [
 {"name":"implicit cache II","url":"https://github.com/lampepfl/dotty/blob/master/tests/bench/implicitNums.scala","lines":[{"key":"implicitNums","label":"bootstrapped"},{"key":"implicitNums-from-tasty","label":"from tasty"}]},
 {"name":"implicit scope loop","url":"https://github.com/lampepfl/dotty/blob/master/tests/bench/implicit-scope-loop.scala","lines":[{"key":"implicit-scope-loop","label":"bootstrapped"}]},
 {"name":"inductive implicits","url":"https://github.com/lampepfl/dotty/blob/master/tests/bench/inductive-implicits.scala","lines":[{"key":"inductive-implicits","label":"bootstrapped"}]},
+{"name":"Find Ref","url":"https://github.com/lampepfl/dotty/blob/master/tests/bench/FindRef.scala","lines":[{"key":"find-ref","label":"bootstrapped"}]},
 {"name":"exhaustivity check","url":"https://github.com/lampepfl/dotty/blob/master/tests/bench/patmatexhaust.scala","lines":[{"key":"patmatexhaust","label":"bootstrapped"}]},
 {"name":"exhaustivity I","url":"https://github.com/lampepfl/dotty/blob/master/tests/bench/exhaustivity-I.scala","lines":[{"key":"exhaustivity-I","label":"bootstrapped"}]},
 {"name":"exhaustivity S","url":"https://github.com/lampepfl/dotty/blob/master/tests/bench/exhaustivity-S.scala","lines":[{"key":"exhaustivity-S","label":"bootstrapped"}]},

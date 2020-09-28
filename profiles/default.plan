@@ -30,6 +30,9 @@ measure $PROG_HOME/dotty/tests/bench/implicitNums.scala
 set-key implicitNums-from-tasty
 source $PROG_HOME/tests/scripts/implicitNums-from-tasty
 
+set-key find-ref
+measure $PROG_HOME/dotty/tests/bench/FindRef.scala
+
 set-key patmatexhaust
 measure 20 40 3 $PROG_HOME/dotty/tests/bench/patmatexhaust.scala
 
