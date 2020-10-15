@@ -41,12 +41,12 @@ Please check the log file for more details: $LOG_URL/$(basename $LOG)"
 
 measure() {
   args="$@"
-  measure-and-output "dotty-bench-bootstrapped/jmh:run $args -d $PROG_HOME/out -nowarn"
+  measure-and-output "scala3-bench-bootstrapped/jmh:run $args -d $PROG_HOME/out -nowarn"
 }
 
 measure-run() {
   args="$@"
-  measure-and-output "dotty-bench-run/jmh:run $args --"
+  measure-and-output "scala3-bench-run/jmh:run $args --"
 }
 
 prepare() {
@@ -66,7 +66,7 @@ prepare() {
   git submodule update
 
   git clean -xdf
-  run-sbt "dotty-bench-bootstrapped/jmh:compile" 2>&1 | tee -a "$LOG"
+  run-sbt "scala3-bench-bootstrapped/jmh:compile" 2>&1 | tee -a "$LOG"
 
   # for compilation with `dotc`
   run-sbt "dist/pack"  2>&1 | tee -a "$LOG"
@@ -74,7 +74,7 @@ prepare() {
 
 compile() {
   args="$@"
-  run-sbt "dotty-bootstrapped/dotc $args" 2>&1 | tee -a "$LOG"
+  run-sbt "scala3-bootstrapped/scalac $args" 2>&1 | tee -a "$LOG"
 }
 
 set-key() {
