@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Benchmarks</title>
+    <script src='plotly-basic.min.js'></script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="main.js"></script>
+    <script src="data/charts.js"></script>
+    <link rel="stylesheet" href="css/poole.css">
+    <link rel="stylesheet" href="css/lanyon.css">
+    <style>
+      .wrap .masthead {
+        padding-bottom: 0;
+        margin-bottom: 0;
+      }
+      .container {
+        max-width: 100%;
+      }
+    </style>
+  </head>
+
+  <body class="theme-base-08 layout-reverse">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+         styles, `#sidebar-checkbox` for behavior. -->
+    <input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+    <!-- Toggleable sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-item">
+        <b>Dotty Benchmarks</b>
+      </div>
+
+      <div class="sidebar-item">
+        <nav className="sidebar-nav">
+          <p className="sidebar-nav-item"><a href="https://github.com/lampepfl/bench">lampepfl/bench</a></p>
+          <p className="sidebar-nav-item"><a href="https://github.com/lampepfl/bench-data">lampepfl/bench-data</a></p>
+        </nav>
+      </div>
+      <div class="sidebar-item">
+        <p>
+          &copy; LAMP/EPFL. All rights reserved.
+        </p>
+      </div>
+    </div>
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h2 class="masthead-title">
+            <a href="https://github.com/lampepfl/dotty" title="Home">Dotty Benchmarks</a>
+          </h2>
+        </div>
+      </div>
+
+      <div class="container content">
+        <ul style="font-family: monospace; font-size: 10px;">
+          <li>test performance please</li>
+          <li>test performance with #quotes please</li>
+          <li>retest performance please</li>
+          <li>test performance please: abcd 32df3</li>
+        </ul>
+
+        <div class="page" id="app"></div>
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+
+  </body>
+  </body>
+</html>
