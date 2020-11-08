@@ -1,7 +1,8 @@
 set -e
 
-mkdir -p "$PROG_HOME/tests/implicitNums-out"
+out="$PROG_HOME/tests/implicitNums-out"
+mkdir -p
 
-compile -d "$PROG_HOME/tests/implicitNums-out" "$PROG_HOME/dotty/tests/bench/implicitNums.scala"
+compile -d "$out" "$PROG_HOME/dotty/tests/bench/implicitNums.scala"
 
-measure -from-tasty  -classpath "$PROG_HOME/tests/implicitNums-out" Test
+measure -from-tasty "$out/Test.tasty"
