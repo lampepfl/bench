@@ -1,7 +1,7 @@
 set -e
 
 out="$PROG_HOME/tests/implicitNums-out"
-mkdir -p
+mkdir -p "$out"
 
 compile -d "$out" "$PROG_HOME/dotty/tests/bench/implicitNums.scala"
 
