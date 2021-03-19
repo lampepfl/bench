@@ -1,5 +1,5 @@
 MONITOR_REPO=lampepfl/bench
-WEB_URL=http://dotty-bench.epfl.ch
+WEB_URL=https://dotty-bench.epfl.ch
 LOG_URL=http://lamppc37.epfl.ch:8000
 POLL_SLEEP=120
 QUEUE_IDLE_SLEEP=60
