@@ -66,19 +66,19 @@ bin/gauge -p profiles/scalapb.plan  6179 54fb992
 ## Dependencies
 
 - [jq](https://stedolan.github.io/jq)
+- [coursier](https://get-coursier.io)
 - sed
 - cron
 - [ghi](https://github.com/stephencelis/ghi)
 - git
 - sbt
 - [ecstatic](https://github.com/jfhbrook/node-ecstatic)
-- [coursier](https://get-coursier.io)
 
 ## Deployment
 
 Current kernel: 4.4.0-78-generic #99-Ubuntu
 
-- Install all dependencies listed above
+- Install all dependencies listed above and make sure they are available in command line
 - Disable system update to use a fixed version of kernel
 
 ```
@@ -90,7 +90,6 @@ APT::Periodic::AutocleanInterval "0";
 
 - Clone current project, and under the project root:
   - `git clone git@github.com:lampepfl/dotty.git`
-  - `curl -Lo bin/coursier https://git.io/coursier-cli && chmod +x bin/coursier && bin/coursier --help`
 - Update configuration in `bin/config`
 - Authorize `ghi config --auth`, make sure it works from command line
 - Make sure `git` can push to current project
