@@ -17,6 +17,7 @@ echo "CI=true" >> bin/config
 curl -Lo bin/coursier https://git.io/coursier-cli && chmod +x bin/coursier && bin/coursier --help
 git clone --recursive --single-branch https://github.com/lampepfl/dotty.git
 echo "hello, world" > /dev/stdout
+ln -s dotty/bench/profiles profiles
 bin/sync-profiles
 bin/process -t fixture/comments.txt lampepfl/dotty fixture/comments.json
 bin/gauge -o data.csv -p profiles/ci.plan 9999 master
