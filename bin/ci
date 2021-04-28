@@ -16,7 +16,7 @@ done
 echo "CI=true" >> bin/config
 
 curl -fLo cs https://git.io/coursier-cli-"$(uname | tr LD ld)" && chmod +x cs && ./cs install cs && rm cs
-
+export PATH="$PATH:$HOME/.local/share/coursier/bin"
 cs --help
 
 git clone --recursive --single-branch https://github.com/lampepfl/dotty.git
