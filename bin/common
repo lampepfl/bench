@@ -97,3 +97,11 @@ test() {
 
   source "$PLAN" 2>&1 | tee "$LOG"
 }
+
+publish_log() {
+  log_name=$(basename $1)
+
+  mkdir -p "$PROG_HOME/site/logs/"
+  cp "$1" "$PROG_HOME/site/logs/$log_name"
+  eval "$WEB_PUBLISH"
+}

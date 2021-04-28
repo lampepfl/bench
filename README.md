@@ -95,8 +95,7 @@ APT::Periodic::AutocleanInterval "0";
 - Make sure `git` can push to current project
 - Setup cron jobs listed in `bin/cron`
 - Make a git repo under the directory `site` for displaying the charts
-  - Adapt the script `bin/deploy` and `bin/pull` for deployment of the web site
-  - Make sure that the web server sets the HTTP header `Cache-Control: no-cache` (see [#1193][#1193])
+  * Make sure that the web server sets the HTTP header `Cache-Control: no-cache` (see [#1193][#1193])
 - Make a git repo under the directory `data` for storing test data, make sure `git push origin master:master` works for the repo.
 - In `dotty` folder, run `git remote add staging https://github.com/dotty-staging/dotty.git`
 - Create a symbolic link `profiles` to `dotty/bench/profiles`

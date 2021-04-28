@@ -42,11 +42,8 @@ fi
 ############## Error handling
 
 function report {
-  if [ -f "$LOG" ]; then
-    content=$(tail -n 20 "$LOG")
-  fi
-
-  log_url="$LOG_URL/$(basename $LOG)"
+  log_url="$LOG_URL/$log_name"
+  publish_log "$LOG"
 
   message="performance test failed:
 
@@ -119,6 +116,9 @@ ORIG_FILE=$FILE
 FILE=$SESSION_HOME/history.csv
 LOG=$PROG_HOME/logs/pull-$PR-$(date +%m-%d-%H.%M).out
 REPO=lampepfl/dotty
+
+# make sure log exists
+touch "$LOG"
 
 ############## test
 cd $PROG_HOME
@@ -212,8 +212,7 @@ bin/csv -p profiles/$PROFILE.yml $TEMP_FILE $SESSION_HOME/data/
 cd $PROG_HOME/site
 git add .
 git commit -m "[bot]update site for pull request $PR"
-git push origin gh-pages:gh-pages
-
+eval "$WEB_PUBLISH"
 
 message="Performance test finished successfully:
 
