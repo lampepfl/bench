@@ -70,6 +70,9 @@ prepare() {
 
   # for compilation with `dotc`
   run-sbt "dist/pack"  2>&1 | tee -a "$LOG"
+
+  # update profiles
+  $PROG_HOME/bin/sync-profiles
 }
 
 compile() {
