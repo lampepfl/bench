@@ -103,7 +103,7 @@ publish_log() {
 
   mkdir -p "$PROG_HOME/site/logs/"
   cp "$1" "$PROG_HOME/site/logs/$log_name"
-  pushlish_site "publish log $log_name"
+  publish_site "publish log $log_name"
 }
 
 publish_site() {

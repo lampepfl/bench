@@ -99,7 +99,7 @@ APT::Periodic::AutocleanInterval "0";
   * Adapt the function `publish_site` in `bin/common`
 - Make a git repo under the directory `data` for storing test data, make sure `git push origin master:master` works for the repo.
 - In `dotty` folder, run `git remote add staging https://github.com/dotty-staging/dotty.git`
-- Create a symbolic link `profiles` to `dotty/bench/profiles`
+- Create a symbolic link: `ln -s dotty/bench/profiles profiles`
 - Run static web server for logs: `ecstatic ./logs --port 8000 --content-type text/plain`
 - run `bin/cpu` once
 - start `bin/poll` and `bin/queue` as long-running service
