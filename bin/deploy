@@ -40,9 +40,6 @@ if [[ $changes != "0" ]]; then
   git push origin master:master
 fi
 
-## build web
-cd "$PROG_HOME/web"
-
 # copy resource
 cd "$PROG_HOME"
 cp -r web/* site/

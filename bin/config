@@ -8,6 +8,5 @@ IVY_HOME="$PROG_HOME/.ivy2"
 
 WEB_URL=https://dotty-bench.epfl.ch
 LOG_URL=https://dotty-bench.epfl.ch/logs
-WEB_PUBLISH="git push origin gh-pages:gh-pages"
 
 export COURSIER_CACHE="$PROG_HOME/.cache/coursier/v1"
