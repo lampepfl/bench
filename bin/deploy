@@ -28,6 +28,7 @@ if [ -z "$PROG_HOME" ] ; then
 fi
 
 source "$PROG_HOME/bin/config"
+source "$PROG_HOME/bin/common"
 
 cd "$PROG_HOME/data"
 
@@ -52,7 +53,4 @@ cp profiles/default.js site/data/charts.js
 bin/csv "$FILE" site/data
 
 # push to github
-cd "$PROG_HOME/site"
-git add .
-git commit -m "[bot]update site"
-eval "$WEB_PUBLISH"
+publish_site "[bot]update site"

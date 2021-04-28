@@ -209,10 +209,7 @@ cp profiles/$PROFILE.js $SESSION_HOME/data/charts.js
 bin/csv -p profiles/$PROFILE.yml $TEMP_FILE $SESSION_HOME/data/
 
 # push to github
-cd $PROG_HOME/site
-git add .
-git commit -m "[bot]update site for pull request $PR"
-eval "$WEB_PUBLISH"
+publish_site "[bot]update site for pull request $PR"
 
 message="Performance test finished successfully:
 

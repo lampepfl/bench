@@ -103,5 +103,13 @@ publish_log() {
 
   mkdir -p "$PROG_HOME/site/logs/"
   cp "$1" "$PROG_HOME/site/logs/$log_name"
+  pushlish_site "publih log $log_name"
+}
+
+publish_site() {
+  msg="$1"
+  cd "$PROG_HOME/site"
+  git add .
+  git commit -m "$msg"
   eval "$WEB_PUBLISH"
 }
