@@ -94,10 +94,14 @@ APT::Periodic::AutocleanInterval "0";
 - Authorize `ghi config --auth`, make sure it works from command line
 - Make sure `git` can push to current project
 - Setup cron jobs listed in `bin/cron`
-- Checkout the branch `gh-pages` of current project as a folder `site` under current project
+- Make a git repo under the directory `site` for displaying the charts
+  * Make sure that the web server sets the HTTP header `Cache-Control: no-cache` (see [#1193][#1193])
 - Make a git repo under the directory `data` for storing test data, make sure `git push origin master:master` works for the repo.
 - In `dotty` folder, run `git remote add staging https://github.com/dotty-staging/dotty.git`
-- run `bin/synch-profiles` once
+- Create a symbolic link `profiles` to `dotty/bench/profiles`
 - Run static web server for logs: `ecstatic ./logs --port 8000 --content-type text/plain`
 - run `bin/cpu` once
 - start `bin/poll` and `bin/queue` as long-running service
+
+
+[#1193]: https://github.com/lampepfl/bench/issues/1193

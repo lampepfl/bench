@@ -55,4 +55,4 @@ bin/csv "$FILE" site/data
 cd "$PROG_HOME/site"
 git add .
 git commit -m "[bot]update site"
-git push origin gh-pages:gh-pages
+eval "$WEB_PUBLISH"

@@ -74,6 +74,9 @@ PR=$1
 COMMIT=$2
 LOG="$PROG_HOME/logs/pr-$PR-$COMMIT.out"
 
+# make sure log file exists
+touch "$LOG"
+
 cd "$PROG_HOME/dotty"
 
 line=$(git show --no-patch --pretty=format:'%h,%an,%aI,%s' $COMMIT)

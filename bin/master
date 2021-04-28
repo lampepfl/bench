@@ -31,6 +31,7 @@ fi
 ## error
 
 function report {
+  publish_log "$LOG"
   log_url="$LOG_URL/$(basename $LOG)"
   message="schedule master jobs failed
 
@@ -49,6 +50,9 @@ source "$PROG_HOME/bin/config"
 LOG="$PROG_HOME/logs/$(date +%m-%d).out"
 LAST="$PROG_HOME/data/LAST_SCHEDULED"
 FROM_COMMIT=$(cat "$LAST")
+
+# make sure log file exists
+touch "$LOG"
 
 cd "$PROG_HOME/dotty"
 git fetch origin master

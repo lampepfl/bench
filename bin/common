@@ -70,6 +70,9 @@ prepare() {
 
   # for compilation with `dotc`
   run-sbt "dist/pack"  2>&1 | tee -a "$LOG"
+
+  # update profiles
+  $PROG_HOME/bin/sync-profiles
 }
 
 compile() {
@@ -93,4 +96,12 @@ test() {
   mkdir -p $PROG_HOME/out
 
   source "$PLAN" 2>&1 | tee "$LOG"
+}
+
+publish_log() {
+  log_name=$(basename $1)
+
+  mkdir -p "$PROG_HOME/site/logs/"
+  cp "$1" "$PROG_HOME/site/logs/$log_name"
+  eval "$WEB_PUBLISH"
 }
