@@ -1,5 +1,0 @@
-set -e
-
-set-key find-ref
-measure $PROG_HOME/dotty/tests/bench/FindRef.scala
-

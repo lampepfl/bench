@@ -1,5 +1,0 @@
-set -e
-
-set-key dotty-sbt
-measure -with-compiler -Yforce-sbt-phases -with-dotty $(find $PROG_HOME/dotty/compiler/src/dotty -name *.scala -o -name *.java)
-
