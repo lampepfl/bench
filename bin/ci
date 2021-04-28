@@ -14,7 +14,11 @@ do
 done
 
 echo "CI=true" >> bin/config
-curl -Lo bin/coursier https://git.io/coursier-cli && chmod +x bin/coursier && bin/coursier --help
+
+curl -fLo cs https://git.io/coursier-cli-"$(uname | tr LD ld)" && chmod +x cs && ./cs install cs && rm cs
+
+cs --help
+
 git clone --recursive --single-branch https://github.com/lampepfl/dotty.git
 echo "hello, world" > /dev/stdout
 ln -s dotty/bench/profiles profiles
