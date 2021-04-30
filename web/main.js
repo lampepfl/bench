@@ -194,9 +194,10 @@ window.showCommit = function () {
     options.yaxis.autorange = false;
     options.yaxis.range = [min_y, max_y];
 
-    options.xaxis.customTickFn = function(i) {
-      if (i >= 0 && i < data[0].objects.length) {
-        var date = data[0].objects[i].x;
+    options.xaxis.customTickFn = function(x) {
+      if (x >= 0 && x < data[0].objects.length) {
+        var index = Math.round(x);
+        var date = data[0].objects[index].x;
         return date.toISOString().substring(0, 10);
       }
       else {
