@@ -125,12 +125,15 @@ cd $PROG_HOME
 
 ############## check profile & update plan
 
-if [ ! -f profiles/$PROFILE.yml ]; then
-   echo "unknown profile: $PROFILE" >> $LOG
-   exit 1
-fi
+# check after reset the commit
+check_profile() {
+  if [ ! -f profiles/$PROFILE.yml ]; then
+     echo "unknown profile: $PROFILE" >> $LOG
+     exit 1
+  fi
 
-PLAN=$PROG_HOME/profiles/$PROFILE.plan
+  PLAN=$PROG_HOME/profiles/$PROFILE.plan
+}
 
 # make sure folder for session home exists
 mkdir -p $SESSION_HOME
@@ -185,6 +188,8 @@ do
   git merge $origin_commit -m "merge PR #$PR commit $short_hash with master" >> $LOG 2>&1
 
   prepare "HEAD"
+
+  check_profile
 
   cd $PROG_HOME
   test "$short_hash" "$author" "$commit_time" "$PR" >> $LOG 2>&1
