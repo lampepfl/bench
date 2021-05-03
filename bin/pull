@@ -127,7 +127,7 @@ cd $PROG_HOME
 
 # check after reset the commit
 check_profile() {
-  if [ ! -f profiles/$PROFILE.yml ]; then
+  if [ ! -f $PROG_HOME/profiles/$PROFILE.yml ]; then
      echo "unknown profile: $PROFILE" >> $LOG
      exit 1
   fi
