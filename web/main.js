@@ -196,7 +196,7 @@ window.showCommit = function () {
 
     options.xaxis.customTickFn = function(x) {
       if (x >= 0 && x < data[0].objects.length) {
-        var index = Math.round(x);
+        var index = Math.floor(x);
         var date = data[0].objects[index].x;
         return date.toISOString().substring(0, 10);
       }
