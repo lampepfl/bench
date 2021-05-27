@@ -19,7 +19,7 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-USERS=%w(odersky biboudis allanrenucci Blaisorblade Duhemm gsps smarter nicolasstucki liufengyun OlivierBlanvillain sjrd AleksanderBG milessabin anatoliykmetyuk bishabosha Linyxus)
+USERS=%w(odersky biboudis allanrenucci Blaisorblade Duhemm gsps smarter nicolasstucki liufengyun OlivierBlanvillain sjrd abgruszecki milessabin anatoliykmetyuk bishabosha Linyxus)
 PROG_HOME=File.expand_path("../..", __FILE__)
 REPO=ARGV[0]
 FILE=ARGV[1]
