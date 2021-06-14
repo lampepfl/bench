@@ -5,19 +5,18 @@ Benchmarking Dotty
 ## Usage
 
 - `bin/master`: for benchmarking the master
-- `bin/run`: for manually benchmarking a specific period (after 2017.10.27)
+- `bin/run`: for manually benchmarking a specific period
 - `bin/pull`: for testing a specific pull request
 
 Check the documentation in the source code of each command for more detail.
 
 ## Add Test
 
-Update the profiles below:
+Update the profiles in the project. For example, for Dotty:
 
-- `profiles/default.yml`
-- `profiles/ci.yml`
+- `bench/profiles/default.yml`
+- `bench/profiles/ci.yml`
 
-Then run `bin/sync-profiles` to update the test files and json files.
 
 ## Schedule one test job
 
@@ -48,11 +47,6 @@ It accepts the following options:
 The command only schedules the tasks under the directory `jobs/`, which will be executed
 by the scheduler.
 
-## Development
-
-- Put new test in relevant profiles under `profiles/*.yml`
-- Make a pull request
-
 ## How to debug a test
 
 ```
@@ -60,7 +54,7 @@ cp profiles/default.plan profiles/scalapb.plan
 # edit profiles/scalapb.plan to only keep the test relevant for debug
 
 # run test with a PR and commit hash -- PR can be a random number
-bin/gauge -p profiles/scalapb.plan  6179 54fb992
+bin/gauge -p profiles/scalapb.plan -o test.csv  6179 54fb992
 ```
 
 ## Dependencies
@@ -72,7 +66,6 @@ bin/gauge -p profiles/scalapb.plan  6179 54fb992
 - [ghi](https://github.com/stephencelis/ghi)
 - git
 - sbt
-- [ecstatic](https://github.com/jfhbrook/node-ecstatic)
 
 ## Deployment
 
@@ -100,7 +93,6 @@ APT::Periodic::AutocleanInterval "0";
 - Make a git repo under the directory `data` for storing test data, make sure `git push origin master:master` works for the repo.
 - In `dotty` folder, run `git remote add staging https://github.com/dotty-staging/dotty.git`
 - Create a symbolic link: `ln -s dotty/bench/profiles profiles`
-- Run static web server for logs: `ecstatic ./logs --port 8000 --content-type text/plain`
 - run `bin/cpu` once
 - start `bin/poll` and `bin/queue` as long-running service
 
