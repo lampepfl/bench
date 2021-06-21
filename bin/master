@@ -65,7 +65,7 @@ do
   author=$(echo $commit_line | cut -d',' -f2)
   time=$(echo $commit_line | cut -d',' -f3)
 
-  if [[ $commit_line == *"Merge pull request #"* ]] && [[ $commit_line == *"from dotty-staging"* ]]; then
+  if [[ $commit_line == *"Merge pull request #"* ]]; then
     pr=$(echo $commit_line | cut -d',' -f4 | grep -o 'pull request #[0-9]\+' | grep -o '[0-9]\+')
 
     # 1. avoiding rescheduling of same commit
