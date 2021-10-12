@@ -55,7 +55,8 @@ TEMP_FILE="$PROG_HOME/last-message.json"
 
 ############## Polling
 while true; do
-  curl "https://api.github.com/repos/$REPO/issues/comments?since=$LAST_POLL" > "$TEMP_FILE"
+  curl "https://api.github.com/repos/$REPO/issues/comments?since=$LAST_POLL" > "$TEMP_FILE" || \
+    (echo "Error fetching comments from the repo" && sleep $POLL_SLEEP && continue)
   LAST_POLL=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
   cat "$TEMP_FILE"
