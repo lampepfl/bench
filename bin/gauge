@@ -2,7 +2,7 @@
 
 set -e
 
-# Test a merge point on master
+# Test a merge point on main
 #
 # usage: gauge [-o FILE] [-p PLAN]  PR COMMIT
 #

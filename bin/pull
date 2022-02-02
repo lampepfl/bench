@@ -171,8 +171,8 @@ fi
 
 # get commits from github
 git fetch $remote_name $from_branch
-git fetch origin master
-master_hash=$(git rev-parse --short origin/master)
+git fetch origin main
+master_hash=$(git rev-parse --short origin/main)
 
 ############ test commits
 
@@ -184,8 +184,8 @@ do
   commit_time=$(date +"%Y-%m-%dT%H:%M:%S%z")   # use current time so the point appear last
   short_hash=$(git rev-parse --short $origin_commit)
 
-  git reset --hard origin/master
-  git merge $origin_commit -m "merge PR #$PR commit $short_hash with master" >> $LOG 2>&1
+  git reset --hard origin/main
+  git merge $origin_commit -m "merge PR #$PR commit $short_hash with main" >> $LOG 2>&1
 
   prepare "HEAD"
 
@@ -220,6 +220,6 @@ message="Performance test finished successfully:
 
 Visit $WEB_URL/$SESSION_DIR/ to see the changes.
 
-Benchmarks is based on merging with master ($master_hash)"
+Benchmarks is based on merging with main ($master_hash)"
 
 ghi comment $PR -m "$message" -- $REPO
