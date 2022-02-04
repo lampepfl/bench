@@ -85,10 +85,10 @@ fi
 # schedule
 
 cd "$PROG_HOME/dotty"
-git fetch origin master
+git fetch origin main
 
 # c488e01 is the commit that refactors the repo
-merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' c488e01..origin/master --reverse)
+merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' c488e01..origin/main --reverse)
 
 skip_counter=$SKIP
 in_range=false

@@ -33,7 +33,7 @@ fi
 function report {
   publish_log "$LOG"
   log_url="$LOG_URL/$(basename $LOG)"
-  message="schedule master jobs failed
+  message="scheduling of main branch jobs failed
 
 check $log_url for more information"
 
@@ -55,9 +55,9 @@ FROM_COMMIT=$(cat "$LAST")
 touch "$LOG"
 
 cd "$PROG_HOME/dotty"
-git fetch origin master
+git fetch origin main
 
-merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' $FROM_COMMIT..origin/master --reverse)
+merge_commits=$(git log --merges --pretty=format:'%h,%an,%ad,%s' $FROM_COMMIT..origin/main --reverse)
 
 while IFS= read -r commit_line
 do
