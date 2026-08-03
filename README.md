@@ -1,6 +1,6 @@
-# Bench [![Build Status](https://travis-ci.org/lampepfl/bench.svg?branch=master)](https://travis-ci.org/lampepfl/bench)
+# Bench
 
-Benchmarking Dotty
+**Scala 3 compiler benchmarks moved to https://github.com/lampepfl/scala3-benchmarks.**
 
 ## Usage
 
